@@ -21,7 +21,7 @@ ui <- fluidPage(
     tabPanel("ST Distribution",      
       fluidRow(
         column(4,wellPanel(sliderInput(inputId = "bars", label = "Number of bars:",min = 1,max = nlevels(kleborate_data$ST),step =1,
-                value = nlevels(kleborate_data$ST)))),
+                value = min(20,nlevels(kleborate_data$ST)))),
         column(8,plotOutput("SThist"))
     )),
     tabPanel("Heat Map", plotOutput("heatmap"))
