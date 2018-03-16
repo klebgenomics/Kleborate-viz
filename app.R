@@ -3,6 +3,7 @@ library(ggplot2)
 library(heatmaply)
 library(dplyr)
 library(reshape2)
+library(plotly)
 
 #Input data
 kleborate_data <- read.csv("kleborate_viz_test_data_mixedSTs.txt",sep="\t")
@@ -34,7 +35,7 @@ ui <- fluidPage(
         column(8,plotOutput("SThist"))
     ))),
     tabPanel("Heat Map", plotOutput("heatmap")),
-    tabPanel("Scatter plot", plotOutput("scatter"))
+    tabPanel("Scatter plot", plotlyOutput("scatter"))
   )
 )
 
@@ -77,9 +78,10 @@ server <- function(input, output) {
   })
   
   # Scatter plot
-  output$scatter <- renderPlot({
+  output$scatter <- renderPlotly({
     kleb_scatter <- kleborate_data %>% group_by(ST) %>% summarise(mean_vir = mean(virulence_score), mean_res = mean(resistance_score), total  = n())
-    ggplot(kleb_scatter, aes(x=mean_vir, y=mean_res, size = total)) + geom_point()
+    #ggplot(kleb_scatter, aes(x=mean_vir, y=mean_res, size = total)) + geom_point()
+    plot_ly(data=kleb_scatter, x=~mean_vir, y=~mean_res, text=~ST, type='scatter', mode='markers', marker=list(size=~log(total, 2)*4, opacity=0.5))
   })
   
 }
