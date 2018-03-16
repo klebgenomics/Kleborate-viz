@@ -19,7 +19,7 @@ ui <- fluidPage(
     tabPanel("Summary",
       fluidRow(
         column(4,fileInput('file', 'Choose Input Data (csv file)',accept=c('text/csv', 'text/comma-separated-values,text/plain','.csv')))
-                                #column(8,tableOutput('KleborateSummary'))
+                                ,column(8,tableOutput('summaryTable'))
     )),
     tabPanel("Resistance Score", plotOutput("ResistancePlot")), 
     tabPanel("Virulence Score", plotOutput("VirulencePlot")), 
@@ -49,6 +49,17 @@ server <- function(input, output) {
                 value = min(20,nlevels(KleborateData()$ST)))
   })
 
+  #Summary table: num species, # STs, mean vir, mean resistance
+  output$summaryTable <- renderTable(sumTable())
+  
+  sumTable <- reactive({
+    vs <- c("Mean virulence score",round(mean(KleborateData()$virulence_score),2))
+    vr <- c("Mean resistance score",round(mean(KleborateData()$resistance_score),2))
+    us <- c("Total unique specices",nlevels(KleborateData()$species))
+    st <- c("Total STs",nlevels(KleborateData()$ST))
+    sum_table <- t(data.frame(vs,vr,us,st))
+    return(sum_table)
+  })    
 
   #Resistance score plot
   output$ResistancePlot <- renderPlot({
@@ -114,3 +125,5 @@ server <- function(input, output) {
 
 #Load shiny app
 shinyApp(ui = ui, server = server)
+
+
