@@ -8,6 +8,10 @@ library(plotly)
 #Input data
 kleborate_data <- read.csv("kleborate_viz_test_data_mixedSTs.txt",sep="\t")
 
+# Making toggle list
+all_species = levels(kleborate_data$species)
+species_toggles = c("Klebsiella pneumoniae","Klebsiella quasipneumoniae","Klebsiella variicola","Klebsiella quasivariicola","Others")
+
 column_decoder <- read.csv("column_decoder.txt",sep="\t")
 resistance_class_columns <- as.character(column_decoder$column_name[column_decoder$type =="resistance_class"])
 virulence_locus_columns <- as.character(column_decoder$column_name[column_decoder$type =="virulence_locus"])
@@ -25,9 +29,15 @@ ui <- fluidPage(
                column(4,fileInput('file', 'Choose Input Data (csv file)',accept=c('text/csv', 'text/comma-separated-values,text/plain','.csv')))
                #column(8,tableOutput('KleborateSummary'))
              )),
-    tabPanel("Resistance Score", plotOutput("ResistancePlot")),
-
-    tabPanel("Virulence Score", plotOutput("VirulencePlot")),
+    
+    tabPanel("Resistance Score",
+             br(), checkboxGroupInput("res_species_toggle", label = "Toggle species", selected = species_toggles, choices = species_toggles), 
+             br(), plotOutput("ResistancePlot")),
+    
+    tabPanel("Virulence Score",
+             br(), checkboxGroupInput("vir_species_toggle", label = "Toggle species", selected = species_toggles, choices = species_toggles), 
+             br(), plotOutput("VirulencePlot")), 
+    
 
     tabPanel("ST Distribution",
              plotOutput("SThist"),
@@ -52,19 +62,41 @@ server <- function(input, output) {
   })
 
 
-  #Resistance score plot
-  output$ResistancePlot <- renderPlot({
-
-  species_cols <- colorRampPalette(c("#e67d77", "#f1c280", "#f5ecd1", "#98c4ca", "#7f8288"))(nlevels(KleborateData()$species))
-  ggplot(KleborateData(), aes(x = as.factor(resistance_score), fill = species)) + geom_bar() + theme(axis.text.x = element_text(colour = "black", size = 12), axis.text.y = element_text(colour = "black", size = 12), axis.title = element_text(colour = "black", size = 14), panel.background = element_blank(), panel.border = element_blank(), axis.line = element_line(colour = "black")) + scale_y_continuous(expand=c(0,0)) + scale_fill_manual(values = species_cols) + ylab("Number of isolates") + xlab("Resistance score") + labs(fill = "Species")
-
-  })
-
-  #Virulence score plot
-  output$VirulencePlot <- renderPlot({
-
+  #Generate colours for plots (based on logo colours)
   species_cols <- colorRampPalette(c("#e67d77", "#f1c280", "#f5ecd1", "#98c4ca", "#7f8288"))(nlevels(kleborate_data$species))
-  ggplot(KleborateData(), aes(x = as.factor(virulence_score), fill = species)) + geom_bar() + theme(axis.text.x = element_text(colour = "black", size = 12), axis.text.y = element_text(colour = "black", size = 12), axis.title = element_text(colour = "black", size = 14), panel.background = element_blank(), panel.border = element_blank(), axis.line = element_line(colour = "black")) + scale_y_continuous(expand=c(0,0)) + scale_fill_manual(values = species_cols) + ylab("Number of isolates") + xlab("Virulence score") + labs(fill = "Species")
+  
+  #Resistance score plot
+  res_filtered=reactive({
+    filter = input$res_species_toggle
+    if ('Klebsiella quasipneumoniae' %in% filter) { filter = c(filter, grep("Klebsiella quasip",all_species,value=TRUE,fixed=TRUE)) }
+    if ('Others' %in% filter) { filter = c(filter, all_species[!all_species %in% c(filter,grep("Klebsiella quasip",all_species,value=TRUE,fixed=TRUE),species_toggles)]) }
+    return(kleborate_data[kleborate_data$species%in%filter,])
+  })
+  output$ResistancePlot <- renderPlot({
+    ggplot(data=res_filtered(), aes(x = as.factor(resistance_score), fill = species)) + 
+      geom_bar() + theme(axis.text.x = element_text(colour = "black", size = 12), 
+                         axis.text.y = element_text(colour = "black", size = 12), 
+                         axis.title = element_text(colour = "black", size = 14), 
+                         panel.background = element_blank(), 
+                         panel.border = element_blank(), 
+                         axis.line = element_line(colour = "black")) + 
+      scale_y_continuous(expand=c(0,0)) + 
+      scale_fill_manual(values = species_cols) + 
+      ylab("Number of isolates") + 
+      xlab("Resistance score") + 
+      labs(fill = "Species")
+    
+  })
+  
+  #Virulence score plot
+  vir_filtered=reactive({
+    filter = input$vir_species_toggle
+    if ('Klebsiella quasipneumoniae' %in% filter) { filter = c(filter, grep("Klebsiella quasip",all_species,value=TRUE,fixed=TRUE)) }
+    if ('Others' %in% filter) { filter = c(filter, all_species[!all_species %in% c(filter,grep("Klebsiella quasip",all_species,value=TRUE,fixed=TRUE),species_toggles)]) }
+    return(kleborate_data[kleborate_data$species%in%filter,])
+  })
+  output$VirulencePlot <- renderPlot({
+    ggplot(data=vir_filtered(), aes(x = as.factor(virulence_score), fill = species)) + geom_bar() + theme(axis.text.x = element_text(colour = "black", size = 12), axis.text.y = element_text(colour = "black", size = 12), axis.title = element_text(colour = "black", size = 14), panel.background = element_blank(), panel.border = element_blank(), axis.line = element_line(colour = "black")) + scale_y_continuous(expand=c(0,0)) + scale_fill_manual(values = species_cols) + ylab("Number of isolates") + xlab("Virulence score") + labs(fill = "Species")  
   })
 
   #Sequence type histogram (interactive)
