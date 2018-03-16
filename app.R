@@ -45,17 +45,17 @@ server <- function(input, output) {
     data
   })
 
-  #Generate colours for plots (based on logo colours)
-  species_cols <- colorRampPalette(c("#e67d77", "#f1c280", "#f5ecd1", "#98c4ca", "#7f8288"))(nlevels(kleborate_data$species))
-  
+
   #Resistance score plot
   output$ResistancePlot <- renderPlot({
+  species_cols <- colorRampPalette(c("#e67d77", "#f1c280", "#f5ecd1", "#98c4ca", "#7f8288"))(nlevels(KleborateData()$species))
   ggplot(KleborateData(), aes(x = as.factor(resistance_score), fill = species)) + geom_bar() + theme(axis.text.x = element_text(colour = "black", size = 12), axis.text.y = element_text(colour = "black", size = 12), axis.title = element_text(colour = "black", size = 14), panel.background = element_blank(), panel.border = element_blank(), axis.line = element_line(colour = "black")) + scale_y_continuous(expand=c(0,0)) + scale_fill_manual(values = species_cols) + ylab("Number of isolates") + xlab("Resistance score") + labs(fill = "Species")
   
   })
   
   #Virulence score plot
   output$VirulencePlot <- renderPlot({
+  species_cols <- colorRampPalette(c("#e67d77", "#f1c280", "#f5ecd1", "#98c4ca", "#7f8288"))(nlevels(kleborate_data$species))
   ggplot(KleborateData(), aes(x = virulence_score, fill = species)) + geom_bar() + theme(axis.text.x = element_text(colour = "black", size = 12), axis.text.y = element_text(colour = "black", size = 12), axis.title = element_text(colour = "black", size = 14), panel.background = element_blank(), panel.border = element_blank(), axis.line = element_line(colour = "black")) + scale_y_continuous(expand=c(0,0)) + scale_fill_manual(values = species_cols) + ylab("Number of isolates") + xlab("Virulence score") + labs(fill = "Species")  
   })
   
@@ -105,6 +105,8 @@ server <- function(input, output) {
   })
   
 })
+}
+
 
 #Load shiny app
 shinyApp(ui = ui, server = server)
