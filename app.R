@@ -28,10 +28,13 @@ ui <- fluidPage(
       fluidRow(
         column(4,wellPanel(sliderInput(inputId = "bars", label = "Number of bars:",min = 1,max = nlevels(kleborate_data$ST),step =1,
                 value = min(20,nlevels(kleborate_data$ST)))),
+        br(),
+        selectInput("variable", "Colour bars by:",
+                c("Virulence score" = "virulence_score", "Resistance score" = "reistance_score")),
         column(8,plotOutput("SThist"))
-    )),
-    tabPanel("Heat Map", plotOutput("heatmap"))
-    )
+    ))),
+    tabPanel("Heat Map", plotOutput("heatmap")),
+    tabPanel("Scatter plot", plotOutput("scatter"))
   )
 )
 
@@ -64,6 +67,12 @@ server <- function(input, output) {
     vir_res$vir <- rownames(vir_res)
     vir_res_long <- melt(vir_res)
     ggplot(vir_res_long, aes(x = vir, y = variable)) + geom_tile(aes(fill=value)) + theme(axis.text.x = element_text(colour = "black", size = 12), axis.text.y = element_text(colour = "black", size = 12), axis.title = element_text(colour = "black", size = 14), panel.background = element_blank(), panel.border = element_blank()) + ylab("Resistance score") + xlab("Virulence score") + scale_x_discrete(expand = c(0,0)) + scale_y_discrete(expand = c(0,0)) + labs(fill = "Number of\nisolates") + scale_fill_gradient(low = "#ffffff", high = "#08306b")
+  })
+  
+  # Scatter plot
+  output$scatter <- renderPlot({
+    kleb_scatter <- kleborate_data %>% group_by(ST) %>% summarise(mean_vir = mean(virulence_score), mean_res = mean(resistance_score), total  = n())
+    ggplot(kleb_scatter, aes(x=mean_vir, y=mean_res, size = total)) + geom_point()
   })
   
 }
