@@ -8,6 +8,7 @@ library(reshape2)
 kleborate_data <- read.csv("kleborate_viz_test_data_mixedSTs.txt",sep="\t")
 
 
+  
 # Define UI for Shiny App: Kleborate Visualiser
 ui <- fluidPage(
   
@@ -15,7 +16,12 @@ ui <- fluidPage(
   titlePanel(title=div(img(src="logo.png",height=100,width=200),align="center")),
   
   # Tab layout
-  tabsetPanel(
+    tabsetPanel(
+    tabPanel("Summary",
+      fluidRow(
+        column(4,fileInput('file', 'Choose Input Data (csv file)',accept=c('text/csv', 'text/comma-separated-values,text/plain','.csv')))
+                                #column(8,tableOutput('KleborateSummary'))
+    )),
     tabPanel("Resistance Score", plotOutput("ResistancePlot")), 
     tabPanel("Virulence Score", plotOutput("VirulencePlot")), 
     tabPanel("ST Distribution",      
