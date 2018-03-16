@@ -30,6 +30,7 @@ ui <- fluidPage(
     tabPanel("Virulence Score", plotOutput("VirulencePlot")),
 
     tabPanel("ST Distribution",
+    		downloadButton(outputId = "STdist_plot_download", label = "Download the plot"),
              plotOutput("SThist"),
              column(6,selectInput("variable", label="Colour bars by:",
                                 c("virulence_score", virulence_locus_columns, "resistance_score", resistance_class_columns))),
@@ -39,6 +40,7 @@ ui <- fluidPage(
     tabPanel("Heat Map", plotOutput("heatmap")),
     tabPanel("Scatter plot", plotlyOutput("scatter"))
   )
+  
 )
 
 # Define server logic for app
@@ -50,7 +52,6 @@ server <- function(input, output) {
     data <- read.csv(inFile$datapath,sep="\t")
     data
   })
-
 
   #Resistance score plot
   output$ResistancePlot <- renderPlot({
@@ -74,8 +75,9 @@ server <- function(input, output) {
   resistance_score_scale_fill_manual <- scale_fill_manual(values=c("#ffffff", "#fcbba1", "#fb6a4a", "#cb181d"), name = "Resistance score", labels = c("0: ESBL and carbapenemase -ve", "1: ESBL +ve", "2: Carbepenemase +ve", "3: Carbapenemase +ve and colisitin resistance"))
 
 
-  output$SThist <- renderPlot({
 
+SThist_reactive <- reactive({
+  
     variable_to_stack = kleborate_data[, input$variable]
 
     if(input$variable == "virulence_score"){
@@ -91,14 +93,29 @@ server <- function(input, output) {
 	# individual genes
  	else {
       variable_to_stack <- (kleborate_data[, input$variable] != "-") *1 #turn this into a binary
-      cols <- c("#ffffff", "grey")
+      cols <- c("grey", "#cb181d")
       labels <- c("0: absent", "1: present")
       name <- as.character(column_decoder$display.name[column_decoder$column_name ==input$variable])
  	}
 
-
-    ggplot(kleborate_data, aes(x=reorder(ST,ST,function(x)-length(x)), fill = as.factor(variable_to_stack))) + geom_bar() + theme(axis.text.x = element_text(colour = "black", size = 12,angle = 45, hjust = 1), axis.text.y = element_text(colour = "black", size = 12), axis.title = element_text(colour = "black", size = 14), panel.background = element_blank(), panel.border = element_blank(), axis.line = element_line(colour = "black")) + ylab("Number of isolates") + xlab("ST") + scale_y_continuous(expand=c(0,0))+ scale_x_discrete(limits = (levels(reorder(kleborate_data$ST,kleborate_data$ST,function(x)-length(x)))[1:input$bars])) + scale_fill_manual(values = cols, labels=labels, name=name)
+   ggplot(kleborate_data, aes(x=reorder(ST,ST,function(x)-length(x)), fill = as.factor(variable_to_stack))) + geom_bar() + theme(axis.text.x = element_text(colour = "black", size = 12,angle = 45, hjust = 1), axis.text.y = element_text(colour = "black", size = 12), axis.title = element_text(colour = "black", size = 14), panel.background = element_blank(), panel.border = element_blank(), axis.line = element_line(colour = "black")) + ylab("Number of isolates") + xlab("ST") + scale_y_continuous(expand=c(0,0))+ scale_x_discrete(limits = (levels(reorder(kleborate_data$ST,kleborate_data$ST,function(x)-length(x)))[1:input$bars])) + scale_fill_manual(values = cols, labels=labels, name=name)
+      
     })
+    
+ output$SThist <- renderPlot ({
+ 
+ 	print(SThist_reactive())
+ 
+ })
+ 
+ output$STdist_plot_download <- downloadHandler(
+ 	filename = function() {"STdist.pdf"},
+ 	content = function(file) {
+ 		pdf(file)
+ 		print(SThist_reactive())
+ 		dev.off()
+ 	}
+ )
 
   #Heat map (interactive)
   output$heatmap <- renderPlot({
