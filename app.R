@@ -22,11 +22,13 @@ ui <- fluidPage(
       fluidRow(
         column(4,wellPanel(sliderInput(inputId = "bars", label = "Number of bars:",min = 1,max = nlevels(kleborate_data$ST),step =1,
                 value = min(20,nlevels(kleborate_data$ST)))),
+        br(),
+        selectInput("variable", "Colour bars by:",
+                c("Virulence score" = "virulence_score", "Resistance score" = "reistance_score")),
         column(8,plotOutput("SThist"))
-    )),
+    ))),
     tabPanel("Heat Map", plotOutput("heatmap")),
     tabPanel("Scatter plot", plotOutput("scatter"))
-    )
   )
 )
 
