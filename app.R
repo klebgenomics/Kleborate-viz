@@ -153,11 +153,10 @@ SThist_reactive <- reactive({
  	else {
 
       variable_to_stack <- (KleborateData()[, input$variable] != "-") *1 #turn this into a binary
-      cols <- c("#ffffff", "grey")
+      cols <- c("grey", "#67000d")
       labels <- c("0: absent", "1: present")
       name <- as.character(column_decoder$display.name[column_decoder$column_name ==input$variable])
  	}
-
 
     ggplot(KleborateData(), aes(x=reorder(ST,ST,function(x)-length(x)), fill = as.factor(variable_to_stack))) + geom_bar() + theme(axis.text.x = element_text(colour = "black", size = 12,angle = 45, hjust = 1), axis.text.y = element_text(colour = "black", size = 12), axis.title = element_text(colour = "black", size = 14), panel.background = element_blank(), panel.border = element_blank(), axis.line = element_line(colour = "black")) + ylab("Number of isolates") + xlab("ST") + scale_y_continuous(expand=c(0,0))+ scale_x_discrete(limits = (levels(reorder(KleborateData()$ST,KleborateData()$ST,function(x)-length(x)))[1:input$bars])) + scale_fill_manual(values = cols, labels=labels, name=name)
 
@@ -170,7 +169,7 @@ SThist_reactive <- reactive({
  })
  
  output$STdist_plot_download <- downloadHandler(
- 	filename = function() {"STdist.pdf"},
+ 	filename = function() {"ST_distribution.pdf"},
  	content = function(file) {
  		pdf(file)
  		print(SThist_reactive())
