@@ -49,7 +49,10 @@ ui <- fluidPage(
     ,
 
     tabPanel("Heat Map", plotOutput("heatmap")),
-    tabPanel("Scatter plot", plotlyOutput("scatter"))
+    tabPanel("Scatter plot",
+             plotlyOutput("st_scatter"),
+             column(6, plotlyOutput("st_virulence")),
+             column(6, plotlyOutput("st_resistance")))
   )
 )
 
