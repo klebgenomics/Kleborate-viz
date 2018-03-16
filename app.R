@@ -56,7 +56,7 @@ server <- function(input, output) {
   #Virulence score plot
   output$VirulencePlot <- renderPlot({
   species_cols <- colorRampPalette(c("#e67d77", "#f1c280", "#f5ecd1", "#98c4ca", "#7f8288"))(nlevels(kleborate_data$species))
-  ggplot(KleborateData(), aes(x = virulence_score, fill = species)) + geom_bar() + theme(axis.text.x = element_text(colour = "black", size = 12), axis.text.y = element_text(colour = "black", size = 12), axis.title = element_text(colour = "black", size = 14), panel.background = element_blank(), panel.border = element_blank(), axis.line = element_line(colour = "black")) + scale_y_continuous(expand=c(0,0)) + scale_fill_manual(values = species_cols) + ylab("Number of isolates") + xlab("Virulence score") + labs(fill = "Species")  
+  ggplot(KleborateData(), aes(x = as.factor(virulence_score), fill = species)) + geom_bar() + theme(axis.text.x = element_text(colour = "black", size = 12), axis.text.y = element_text(colour = "black", size = 12), axis.title = element_text(colour = "black", size = 14), panel.background = element_blank(), panel.border = element_blank(), axis.line = element_line(colour = "black")) + scale_y_continuous(expand=c(0,0)) + scale_fill_manual(values = species_cols) + ylab("Number of isolates") + xlab("Virulence score") + labs(fill = "Species")  
   })
   
   #Sequence type histogram (interactive)
@@ -71,17 +71,17 @@ server <- function(input, output) {
     #ggplot(kleborate_data, aes(x=reorder(ST,ST,function(x)-length(x)), fill = virulence_score)) + geom_bar() + theme(axis.text.x = element_text(colour = "black", size = 12,angle = 45, hjust = 1), axis.text.y = element_text(colour = "black", size = 12), axis.title = element_text(colour = "black", size = 14), panel.background = element_blank(), panel.border = element_blank(), axis.line = element_line(colour = "black")) + ylab("Number of isolates") + xlab("ST") + scale_y_continuous(expand=c(0,0)) + scale_x_discrete(limits = (levels(reorder(kleborate_data$ST,kleborate_data$ST,function(x)-length(x)))[1:input$bars]))
     
     if(input$variable == "virulence_score"){
-      cols <- c("#ffffff", "#c6dbef", "#6baed6", "#2171b5", "#08519c", "#08306b")
+      cols <- c("#deebf7", "#9ecae1", "#6baed6", "#4292c6", "#2171b5", "#08306b")
       labels <- c("0: None", "1: ybt", "2: ybt + clb", "3: iuc (indicates virulence plasmid)", "4: ybt + iuc", "5: ybt + clb + iuc")
       name <- "Virulence score"
     }
     else if(input$variable == "resistance_score"){
-      cols <- c("#ffffff", "#fcbba1", "#fb6a4a", "#cb181d")
-      labels <- c("0: ESBL and carbapenemase -ve", "1: ESBL +ve", "2: Carbepenemase +ve", "3: Carbapenemase +ve and colisitin resistance")
+      cols <- c("#fcbba1", "#fc9272", "#fb6a4a", "#ef3b2c", "#67000d")
+      labels <- c("0: ESBL and carbapenemase -ve", "1: ESBL +ve", "2: Carbapenemase +ve", "3: Carbapenemase +ve and colistin resistance")
       name <- "Resistance score"
     }
     
-    ggplot(kleborate_data, aes(x=reorder(ST,ST,function(x)-length(x)), fill = as.factor(kleborate_data[, input$variable]))) + geom_bar(colour="black") + theme(axis.text.x = element_text(colour = "black", size = 12,angle = 45, hjust = 1), axis.text.y = element_text(colour = "black", size = 12), axis.title = element_text(colour = "black", size = 14), panel.background = element_blank(), panel.border = element_blank(), axis.line = element_line(colour = "black")) + ylab("Number of isolates") + xlab("ST") + scale_y_continuous(expand=c(0,0))+ scale_x_discrete(limits = (levels(reorder(kleborate_data$ST,kleborate_data$ST,function(x)-length(x)))[1:input$bars])) + scale_fill_manual(values = cols, labels=labels, name=name)
+    ggplot(kleborate_data, aes(x=reorder(ST,ST,function(x)-length(x)), fill = as.factor(kleborate_data[, input$variable]))) + geom_bar() + theme(axis.text.x = element_text(colour = "black", size = 12,angle = 45, hjust = 1), axis.text.y = element_text(colour = "black", size = 12), axis.title = element_text(colour = "black", size = 14), panel.background = element_blank(), panel.border = element_blank(), axis.line = element_line(colour = "black")) + ylab("Number of isolates") + xlab("ST") + scale_y_continuous(expand=c(0,0))+ scale_x_discrete(limits = (levels(reorder(kleborate_data$ST,kleborate_data$ST,function(x)-length(x)))[1:input$bars])) + scale_fill_manual(values = cols, labels=labels, name=name)
     })
   
   #Heat map (interactive)
