@@ -1,9 +1,9 @@
 # Kleborate_viz
 Visualisation package for Kleborate
 
-Written in Shiny
+Written with Shiny for R
 
-Required:
+Required R packages:
 - heatmaply
 - ggplot2
 - reshape2
