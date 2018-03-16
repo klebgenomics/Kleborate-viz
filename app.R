@@ -12,7 +12,7 @@ kleborate_data <- read.csv("kleborate_viz_test_data_mixedSTs.txt",sep="\t")
 
 # Making toggle list
 all_species = levels(kleborate_data$species)
-species_toggles = c("Klebsiella pneumoniae","Klebsiella quasipneumoniae","Klebsiella variicola","Klebsiella quasivariicola","Others")
+species_toggles = c("Klebsiella pneumoniae","Klebsiella quasipneumoniae","Klebsiella variicola","Klebsiella quasivariicola")
 
 column_decoder <- read.csv("column_decoder.txt",sep="\t")
 resistance_class_columns <- as.character(column_decoder$column_name[column_decoder$type =="resistance_class"])
@@ -33,11 +33,11 @@ ui <- fluidPage(
              )),
     
     tabPanel("Resistance Score",
-             br(), checkboxGroupInput("res_species_toggle", label = "Toggle species", selected = species_toggles, choices = species_toggles), 
+             br(), checkboxGroupInput("res_species_toggle", label = "Toggle species", selected = species_toggles, choices = c(species_toggles, "Others")), 
              br(), plotOutput("ResistancePlot")),
     
     tabPanel("Virulence Score",
-             br(), checkboxGroupInput("vir_species_toggle", label = "Toggle species", selected = species_toggles, choices = species_toggles), 
+             br(), checkboxGroupInput("vir_species_toggle", label = "Toggle species", selected = species_toggles, choices = c(species_toggles, "Others")), 
              br(), plotOutput("VirulencePlot")), 
     
 
