@@ -24,8 +24,7 @@ ui <- fluidPage(
     tabPanel("Resistance Score", plotOutput("ResistancePlot")), 
     tabPanel("Virulence Score", plotOutput("VirulencePlot")), 
     tabPanel("ST Distribution", plotOutput("SThist"),
-        column(6,wellPanel(sliderInput(inputId = "bars", label = "Number of bars:",min = 1,max = nlevels(kleborate_data$ST),step =1,
-                value = min(20,nlevels(kleborate_data$ST)))),
+        column(6,wellPanel(uiOutput("numBars")),
         br(),
         selectInput("variable", label="Colour bars by:",
                 c("Virulence score" = "virulence_score", "Resistance score" = "resistance_score"))
@@ -42,7 +41,12 @@ server <- function(input, output) {
     inFile <- input$file
     if (is.null(inFile)) return(kleborate_data)
     data <- read.csv(inFile$datapath,sep="\t")
-    data
+    return(data)
+  })
+  
+  output$numBars <- renderUI({
+    sliderInput(inputId = "bars", label = "Number of bars:",min = 1,max = nlevels(KleborateData()$ST),step =1,
+                value = min(20,nlevels(KleborateData()$ST)))
   })
 
 
@@ -55,7 +59,7 @@ server <- function(input, output) {
   
   #Virulence score plot
   output$VirulencePlot <- renderPlot({
-  species_cols <- colorRampPalette(c("#e67d77", "#f1c280", "#f5ecd1", "#98c4ca", "#7f8288"))(nlevels(kleborate_data$species))
+  species_cols <- colorRampPalette(c("#e67d77", "#f1c280", "#f5ecd1", "#98c4ca", "#7f8288"))(nlevels(KleborateData()$species))
   ggplot(KleborateData(), aes(x = virulence_score, fill = species)) + geom_bar() + theme(axis.text.x = element_text(colour = "black", size = 12), axis.text.y = element_text(colour = "black", size = 12), axis.title = element_text(colour = "black", size = 14), panel.background = element_blank(), panel.border = element_blank(), axis.line = element_line(colour = "black")) + scale_y_continuous(expand=c(0,0)) + scale_fill_manual(values = species_cols) + ylab("Number of isolates") + xlab("Virulence score") + labs(fill = "Species")  
   })
   
@@ -81,7 +85,7 @@ server <- function(input, output) {
       name <- "Resistance score"
     }
     
-    ggplot(kleborate_data, aes(x=reorder(ST,ST,function(x)-length(x)), fill = as.factor(kleborate_data[, input$variable]))) + geom_bar(colour="black") + theme(axis.text.x = element_text(colour = "black", size = 12,angle = 45, hjust = 1), axis.text.y = element_text(colour = "black", size = 12), axis.title = element_text(colour = "black", size = 14), panel.background = element_blank(), panel.border = element_blank(), axis.line = element_line(colour = "black")) + ylab("Number of isolates") + xlab("ST") + scale_y_continuous(expand=c(0,0))+ scale_x_discrete(limits = (levels(reorder(kleborate_data$ST,kleborate_data$ST,function(x)-length(x)))[1:input$bars])) + scale_fill_manual(values = cols, labels=labels, name=name)
+    ggplot(KleborateData(), aes(x=reorder(ST,ST,function(x)-length(x)), fill = as.factor(KleborateData()[, input$variable]))) + geom_bar(colour="black") + theme(axis.text.x = element_text(colour = "black", size = 12,angle = 45, hjust = 1), axis.text.y = element_text(colour = "black", size = 12), axis.title = element_text(colour = "black", size = 14), panel.background = element_blank(), panel.border = element_blank(), axis.line = element_line(colour = "black")) + ylab("Number of isolates") + xlab("ST") + scale_y_continuous(expand=c(0,0))+ scale_x_discrete(limits = (levels(reorder(KleborateData()$ST,KleborateData()$ST,function(x)-length(x)))[1:input$bars])) + scale_fill_manual(values = cols, labels=labels, name=name)
     })
   
   #Heat map (interactive)
@@ -99,7 +103,7 @@ server <- function(input, output) {
     ggplot(kleb_scatter, aes(x=mean_vir, y=mean_res, size = total)) + geom_point()
     
   output$scatter <- renderPlotly({
-    kleb_scatter <- kleborate_data %>% group_by(ST) %>% summarise(mean_vir = mean(virulence_score), mean_res = mean(resistance_score), total  = n())
+    kleb_scatter <- KleborateData() %>% group_by(ST) %>% summarise(mean_vir = mean(virulence_score), mean_res = mean(resistance_score), total  = n())
     #ggplot(kleb_scatter, aes(x=mean_vir, y=mean_res, size = total)) + geom_point()
     plot_ly(data=kleb_scatter, x=~mean_vir, y=~mean_res, text=~ST, type='scatter', mode='markers', marker=list(size=~log(total, 2)*4, opacity=0.5))
   })
