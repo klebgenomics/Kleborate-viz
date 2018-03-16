@@ -27,7 +27,7 @@ ui <- fluidPage(
     tabPanel("Heat Map", plotOutput("heatmap"))
     )
   )
-
+)
 
 # Define server logic for app
 server <- function(input, output) {
