@@ -15,21 +15,23 @@ ui <- fluidPage(
   titlePanel(title=div(img(src="logo.png",height=100,width=200),align="center")),
   
   # Tab layout
-    tabsetPanel(
+  tabsetPanel(
     tabPanel("Summary",
-      fluidRow(
-        column(4,fileInput('file', 'Choose Input Data (csv file)',accept=c('text/csv', 'text/comma-separated-values,text/plain','.csv')))
-                                #column(8,tableOutput('KleborateSummary'))
-    )),
+             fluidRow(
+               column(4,fileInput('file', 'Choose Input Data (csv file)',accept=c('text/csv', 'text/comma-separated-values,text/plain','.csv')))
+               #column(8,tableOutput('KleborateSummary'))
+             )),
     tabPanel("Resistance Score", plotOutput("ResistancePlot")), 
-    tabPanel("Virulence Score", plotOutput("VirulencePlot")), 
-    tabPanel("ST Distribution", plotOutput("SThist"),
-        column(6,wellPanel(sliderInput(inputId = "bars", label = "Number of bars:",min = 1,max = nlevels(kleborate_data$ST),step =1,
-                value = min(20,nlevels(kleborate_data$ST)))),
-        br(),
-        selectInput("variable", label="Colour bars by:",
-                c("Virulence score" = "virulence_score", "Resistance score" = "resistance_score"))
-    )),
+
+    tabPanel("Virulence Score", plotOutput("VirulencePlot")),
+    
+    tabPanel("ST Distribution", 
+             plotOutput("SThist"),
+             column(6,selectInput("variable", label="Colour bars by:",
+                                c("Virulence score" = "virulence_score", "Resistance score" = "resistance_score", "Carbapenemase" = "Bla_Carb"))),
+             column(6,wellPanel(sliderInput(inputId = "bars", label = "Number of bars:",min = 1,max = nlevels(kleborate_data$ST),step =1,value = min(20,nlevels(kleborate_data$ST)))))
+    ),
+
     tabPanel("Heat Map", plotOutput("heatmap")),
     tabPanel("Scatter plot", plotlyOutput("scatter"))
   )
@@ -48,6 +50,7 @@ server <- function(input, output) {
 
   #Resistance score plot
   output$ResistancePlot <- renderPlot({
+
   species_cols <- colorRampPalette(c("#e67d77", "#f1c280", "#f5ecd1", "#98c4ca", "#7f8288"))(nlevels(KleborateData()$species))
   ggplot(KleborateData(), aes(x = as.factor(resistance_score), fill = species)) + geom_bar() + theme(axis.text.x = element_text(colour = "black", size = 12), axis.text.y = element_text(colour = "black", size = 12), axis.title = element_text(colour = "black", size = 14), panel.background = element_blank(), panel.border = element_blank(), axis.line = element_line(colour = "black")) + scale_y_continuous(expand=c(0,0)) + scale_fill_manual(values = species_cols) + ylab("Number of isolates") + xlab("Resistance score") + labs(fill = "Species")
   
@@ -55,6 +58,7 @@ server <- function(input, output) {
   
   #Virulence score plot
   output$VirulencePlot <- renderPlot({
+
   species_cols <- colorRampPalette(c("#e67d77", "#f1c280", "#f5ecd1", "#98c4ca", "#7f8288"))(nlevels(kleborate_data$species))
   ggplot(KleborateData(), aes(x = as.factor(virulence_score), fill = species)) + geom_bar() + theme(axis.text.x = element_text(colour = "black", size = 12), axis.text.y = element_text(colour = "black", size = 12), axis.title = element_text(colour = "black", size = 14), panel.background = element_blank(), panel.border = element_blank(), axis.line = element_line(colour = "black")) + scale_y_continuous(expand=c(0,0)) + scale_fill_manual(values = species_cols) + ylab("Number of isolates") + xlab("Virulence score") + labs(fill = "Species")  
   })
@@ -64,11 +68,11 @@ server <- function(input, output) {
   # define colour schemes and text for virulence/resistance
   virulence_score_scale_fill_manual <- scale_fill_manual(values=c("#ffffff", "#c6dbef", "#6baed6", "#2171b5", "#08519c", "#08306b"), name = "Virulence score", labels = c("0: None", "1: ybt", "2: ybt + clb", "3: iuc (indicates virulence plasmid)", "4: ybt + iuc", "5: ybt + clb + iuc"))
   resistance_score_scale_fill_manual <- scale_fill_manual(values=c("#ffffff", "#fcbba1", "#fb6a4a", "#cb181d"), name = "Resistance score", labels = c("0: ESBL and carbapenemase -ve", "1: ESBL +ve", "2: Carbepenemase +ve", "3: Carbapenemase +ve and colisitin resistance"))
-
+  
   
   output$SThist <- renderPlot({
-
-    #ggplot(kleborate_data, aes(x=reorder(ST,ST,function(x)-length(x)), fill = virulence_score)) + geom_bar() + theme(axis.text.x = element_text(colour = "black", size = 12,angle = 45, hjust = 1), axis.text.y = element_text(colour = "black", size = 12), axis.title = element_text(colour = "black", size = 14), panel.background = element_blank(), panel.border = element_blank(), axis.line = element_line(colour = "black")) + ylab("Number of isolates") + xlab("ST") + scale_y_continuous(expand=c(0,0)) + scale_x_discrete(limits = (levels(reorder(kleborate_data$ST,kleborate_data$ST,function(x)-length(x)))[1:input$bars]))
+    
+    variable_to_stack = kleborate_data[, input$variable]
     
     if(input$variable == "virulence_score"){
       cols <- c("#deebf7", "#9ecae1", "#6baed6", "#4292c6", "#2171b5", "#08306b")
@@ -80,7 +84,15 @@ server <- function(input, output) {
       labels <- c("0: ESBL and carbapenemase -ve", "1: ESBL +ve", "2: Carbapenemase +ve", "3: Carbapenemase +ve and colistin resistance")
       name <- "Resistance score"
     }
-    
+    # carbapenemase - yes/no
+    else if(input$variable == "Bla_Carb"){
+      variable_to_stack <- (kleborate_data[, input$variable] != "-") *1 #turn this into a binary
+      cols <- c("#ffffff", "#cb181d")
+      labels <- c("0: carbapenemase -ve", "1: carbapenemase +ve")
+      name <- "Carbapenemase"
+    }
+        
+
     ggplot(kleborate_data, aes(x=reorder(ST,ST,function(x)-length(x)), fill = as.factor(kleborate_data[, input$variable]))) + geom_bar() + theme(axis.text.x = element_text(colour = "black", size = 12,angle = 45, hjust = 1), axis.text.y = element_text(colour = "black", size = 12), axis.title = element_text(colour = "black", size = 14), panel.background = element_blank(), panel.border = element_blank(), axis.line = element_line(colour = "black")) + ylab("Number of isolates") + xlab("ST") + scale_y_continuous(expand=c(0,0))+ scale_x_discrete(limits = (levels(reorder(kleborate_data$ST,kleborate_data$ST,function(x)-length(x)))[1:input$bars])) + scale_fill_manual(values = cols, labels=labels, name=name)
     })
   
