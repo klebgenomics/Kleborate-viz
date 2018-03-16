@@ -1,74 +1,75 @@
-strain	strain
-species	species
-species_match	species_match
-contig_count	contig_count
-N50	N50
-largest_contig	largest_contig
-ST	ST
-virulence_score	virulence_score
-resistance_score	resistance_score
-num_resistance_classes	num_resistance_classes
-num_resistance_genes	num_resistance_genes
-Yersiniabactin	virulence
-YbST	virulence_ST
-Colibactin	virulence
-CbST	virulence_ST
-Aerobactin	virulence
-AbST	virulence_ST
-Salmochelin	virulence
-SmST	virulence_ST
-hypermucoidy	virulence
-wzi	allele
-K_locus	K-locus
-Chr_ST	ST
-gapA	allele
-infB	allele
-mdh	allele
-pgi	allele
-phoE	allele
-rpoB	allele
-tonB	allele
-ybtS	allele
-ybtX	allele
-ybtQ	allele
-ybtP	allele
-ybtA	allele
-irp2	allele
-irp1	allele
-ybtU	allele
-ybtT	allele
-ybtE	allele
-fyuA	allele
-clbA	allele
-clbB	allele
-clbC	allele
-clbD	allele
-clbE	allele
-clbF	allele
-clbG	allele
-clbH	allele
-clbI	allele
-clbL	allele
-clbM	allele
-clbN	allele
-clbO	allele
-clbP	allele
-clbQ	allele
-AGly	resistance_class
-Col	resistance_class
-Fcyn	resistance_class
-Flq	resistance_class
-Gly	resistance_class
-MLS	resistance_class
-Ntmdz	resistance_class
-Phe	resistance_class
-Rif	resistance_class
-Sul	resistance_class
-Tet	resistance_class
-Tmt	resistance_class
-Bla	resistance_class
-Bla_Carb	resistance_class
-Bla_ESBL	resistance_class
-Bla_ESBL_inhR	resistance_class
-Bla_broad	resistance_class
-Bla_broad_inhR	resistance_class
+column_name	type	display name
+strain	strain	strain
+species	species	species
+species_match	species_match	Species match
+contig_count	contig_count	Contig count
+N50	N50	N50
+largest_contig	largest_contig	Largest contig
+ST	ST	ST
+virulence_score	virulence_score	Virulence score
+resistance_score	resistance_score	Resistance score
+num_resistance_classes	num_resistance_classes	# Resistance classes
+num_resistance_genes	num_resistance_genes	# Resistance genes
+Yersiniabactin	virulence_locus	Yersiniabactin
+YbST	virulence_ST	YbST
+Colibactin	virulence_locus	Colibactin
+CbST	virulence_ST	CbST
+Aerobactin	virulence_locus	Aerobactin
+AbST	virulence_ST	AbST
+Salmochelin	virulence_locus	Salmochelin
+SmST	virulence_ST	SmST
+hypermucoidy	virulence_locus	hypermucoidy
+wzi	allele	wzi
+K_locus	K-locus	K locus
+Chr_ST	ST	Chr ST
+gapA	allele	gapA
+infB	allele	infB
+mdh	allele	mdh
+pgi	allele	pgi
+phoE	allele	phoE
+rpoB	allele	rpoB
+tonB	allele	tonB
+ybtS	allele	ybtS
+ybtX	allele	ybtX
+ybtQ	allele	ybtQ
+ybtP	allele	ybtP
+ybtA	allele	ybtA
+irp2	allele	irp2
+irp1	allele	irp1
+ybtU	allele	ybtU
+ybtT	allele	ybtT
+ybtE	allele	ybtE
+fyuA	allele	fyuA
+clbA	allele	clbA
+clbB	allele	clbB
+clbC	allele	clbC
+clbD	allele	clbD
+clbE	allele	clbE
+clbF	allele	clbF
+clbG	allele	clbG
+clbH	allele	clbH
+clbI	allele	clbI
+clbL	allele	clbL
+clbM	allele	clbM
+clbN	allele	clbN
+clbO	allele	clbO
+clbP	allele	clbP
+clbQ	allele	clbQ
+AGly	resistance_class	Aminoglycosides
+Col	resistance_class	Colistin
+Fcyn	resistance_class	Fosfomycin
+Flq	resistance_class	Fluoroquinolones
+Gly	resistance_class	Glycopeptides
+MLS	resistance_class	Macrolides
+Ntmdz	resistance_class	Nitroimidazole
+Phe	resistance_class	Phenicols
+Rif	resistance_class	Rifampin
+Sul	resistance_class	Sulfonamides
+Tet	resistance_class	Tetracycline
+Tmt	resistance_class	Trimethoprim
+Bla	resistance_class	Beta-lactamases
+Bla_Carb	resistance_class	Carbapenemases
+Bla_ESBL	resistance_class	ESBL
+Bla_ESBL_inhR	resistance_class	ESBL + inhibitors
+Bla_broad	resistance_class	Broad spectrum beta-lactamases
+Bla_broad_inhR	resistance_class	Broad spectrum beta-lactamases + inhibitors

@@ -8,6 +8,10 @@ library(plotly)
 #Input data
 kleborate_data <- read.csv("kleborate_viz_test_data_mixedSTs.txt",sep="\t")
 
+column_decoder <- read.csv("column_decoder.txt",sep="\t")
+resistance_class_columns <- as.character(column_decoder$column_name[column_decoder$type =="resistance_class"])
+virulence_locus_columns <- as.character(column_decoder$column_name[column_decoder$type =="virulence_locus"])
+
 # Define UI for Shiny App: Kleborate Visualiser
 ui <- fluidPage(
   
@@ -28,7 +32,7 @@ ui <- fluidPage(
     tabPanel("ST Distribution", 
              plotOutput("SThist"),
              column(6,selectInput("variable", label="Colour bars by:",
-                                c("Virulence score" = "virulence_score", "Resistance score" = "resistance_score", "Carbapenemase" = "Bla_Carb"))),
+                                c("virulence_score", virulence_locus_columns, "resistance_score", resistance_class_columns))),
              column(6,wellPanel(sliderInput(inputId = "bars", label = "Number of bars:",min = 1,max = nlevels(kleborate_data$ST),step =1,value = min(20,nlevels(kleborate_data$ST)))))
     ),
 
@@ -84,15 +88,13 @@ server <- function(input, output) {
       labels <- c("0: ESBL and carbapenemase -ve", "1: ESBL +ve", "2: Carbepenemase +ve", "3: Carbapenemase +ve and colisitin resistance")
       name <- "Resistance score"
     }
-    # carbapenemase - yes/no
-    else if(input$variable == "Bla_Carb"){
+	# individual genes
+ 	else {
       variable_to_stack <- (kleborate_data[, input$variable] != "-") *1 #turn this into a binary
       cols <- c("#ffffff", "#cb181d")
-      labels <- c("0: carbapenemase -ve", "1: carbapenemase +ve")
-      name <- "Carbapenemase"
-    }
-        
-
+      labels <- c("0: absent", "1: present")
+      name <- as.character(column_decoder$display.name[column_decoder$column_name ==input$variable])
+ 	}   
     
     ggplot(kleborate_data, aes(x=reorder(ST,ST,function(x)-length(x)), fill = as.factor(variable_to_stack))) + geom_bar(colour="black") + theme(axis.text.x = element_text(colour = "black", size = 12,angle = 45, hjust = 1), axis.text.y = element_text(colour = "black", size = 12), axis.title = element_text(colour = "black", size = 14), panel.background = element_blank(), panel.border = element_blank(), axis.line = element_line(colour = "black")) + ylab("Number of isolates") + xlab("ST") + scale_y_continuous(expand=c(0,0))+ scale_x_discrete(limits = (levels(reorder(kleborate_data$ST,kleborate_data$ST,function(x)-length(x)))[1:input$bars])) + scale_fill_manual(values = cols, labels=labels, name=name)
   })
