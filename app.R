@@ -25,15 +25,13 @@ ui <- fluidPage(
     )),
     tabPanel("Resistance Score", plotOutput("ResistancePlot")), 
     tabPanel("Virulence Score", plotOutput("VirulencePlot")), 
-    tabPanel("ST Distribution",      
-      fluidRow(
-        column(4,wellPanel(sliderInput(inputId = "bars", label = "Number of bars:",min = 1,max = nlevels(kleborate_data$ST),step =1,
+    tabPanel("ST Distribution", plotOutput("SThist"),
+        column(6,wellPanel(sliderInput(inputId = "bars", label = "Number of bars:",min = 1,max = nlevels(kleborate_data$ST),step =1,
                 value = min(20,nlevels(kleborate_data$ST)))),
         br(),
-        selectInput("variable", "Colour bars by:",
-                c("Virulence score" = "virulence_score", "Resistance score" = "reistance_score")),
-        column(8,plotOutput("SThist"))
-    ))),
+        selectInput("variable", label="Colour bars by:",
+                c("Virulence score" = "virulence_score", "Resistance score" = "resistance_score"))
+    )),
     tabPanel("Heat Map", plotOutput("heatmap")),
     tabPanel("Scatter plot", plotlyOutput("scatter"))
   )
@@ -64,9 +62,22 @@ server <- function(input, output) {
 
   
   output$SThist <- renderPlot({
-    ggplot(kleborate_data, aes(x=reorder(ST,ST,function(x)-length(x)), fill = as.factor(paste("kleborate_data$", input$variable, sep = ""))) + geom_bar() + theme(axis.text.x = element_text(colour = "black", size = 12,angle = 45, hjust = 1), axis.text.y = element_text(colour = "black", size = 12), axis.title = element_text(colour = "black", size = 14), panel.background = element_blank(), panel.border = element_blank(), axis.line = element_line(colour = "black")) + ylab("Number of isolates") + xlab("ST") + scale_y_continuous(expand=c(0,0))+ scale_x_discrete(limits = (levels(reorder(kleborate_data2$ST,kleborate_data2$ST,function(x)-length(x))))) + paste(input$variable, "_scale_fill_manual", sep = ""))
+    #ggplot(kleborate_data, aes(x=reorder(ST,ST,function(x)-length(x)), fill = virulence_score)) + geom_bar() + theme(axis.text.x = element_text(colour = "black", size = 12,angle = 45, hjust = 1), axis.text.y = element_text(colour = "black", size = 12), axis.title = element_text(colour = "black", size = 14), panel.background = element_blank(), panel.border = element_blank(), axis.line = element_line(colour = "black")) + ylab("Number of isolates") + xlab("ST") + scale_y_continuous(expand=c(0,0)) + scale_x_discrete(limits = (levels(reorder(kleborate_data$ST,kleborate_data$ST,function(x)-length(x)))[1:input$bars]))
+    
+    if(input$variable == "virulence_score"){
+      cols <- c("#ffffff", "#c6dbef", "#6baed6", "#2171b5", "#08519c", "#08306b")
+      labels <- c("0: None", "1: ybt", "2: ybt + clb", "3: iuc (indicates virulence plasmid)", "4: ybt + iuc", "5: ybt + clb + iuc")
+      name <- "Virulence score"
+    }
+    else if(input$variable == "resistance_score"){
+      cols <- c("#ffffff", "#fcbba1", "#fb6a4a", "#cb181d")
+      labels <- c("0: ESBL and carbapenemase -ve", "1: ESBL +ve", "2: Carbepenemase +ve", "3: Carbapenemase +ve and colisitin resistance")
+      name <- "Resistance score"
+    }
+    
+    ggplot(kleborate_data, aes(x=reorder(ST,ST,function(x)-length(x)), fill = as.factor(kleborate_data[, input$variable]))) + geom_bar(colour="black") + theme(axis.text.x = element_text(colour = "black", size = 12,angle = 45, hjust = 1), axis.text.y = element_text(colour = "black", size = 12), axis.title = element_text(colour = "black", size = 14), panel.background = element_blank(), panel.border = element_blank(), axis.line = element_line(colour = "black")) + ylab("Number of isolates") + xlab("ST") + scale_y_continuous(expand=c(0,0))+ scale_x_discrete(limits = (levels(reorder(kleborate_data$ST,kleborate_data$ST,function(x)-length(x)))[1:input$bars])) + scale_fill_manual(values = cols, labels=labels, name=name)
     })
-    #ggplot(kleborate_data, aes(x=reorder(ST,ST,function(x)-length(x)))) + geom_bar(fill = "#F1C280") + theme(axis.text.x = element_text(colour = "black", size = 12,angle = 45, hjust = 1), axis.text.y = element_text(colour = "black", size = 12), axis.title = element_text(colour = "black", size = 14), panel.background = element_blank(), panel.border = element_blank(), axis.line = element_line(colour = "black")) + ylab("Number of isolates") + xlab("ST") + scale_y_continuous(expand=c(0,0))+ scale_x_discrete(limits = (levels(reorder(kleborate_data$ST,kleborate_data$ST,function(x)-length(x)))[1:input$bars]))
+    
   
   #Heat map (interactive)
   output$heatmap <- renderPlot({
