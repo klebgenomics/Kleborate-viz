@@ -91,8 +91,7 @@ server <- function(input, output) {
 	# individual genes
  	else {
       variable_to_stack <- (kleborate_data[, input$variable] != "-") *1 #turn this into a binary
-      cols <- c("#ffffff", "#cb181d")
-
+      cols <- c("#ffffff", "grey")
       labels <- c("0: absent", "1: present")
       name <- as.character(column_decoder$display.name[column_decoder$column_name ==input$variable])
  	}
