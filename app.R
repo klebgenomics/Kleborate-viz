@@ -32,16 +32,16 @@ ui <- fluidPage(
                column(8,tableOutput('summaryTable'))
              )),
     
-    tabPanel("Resistance Score",
+    tabPanel("Resistance scores by species",
              br(), checkboxGroupInput("res_species_toggle", label = "Toggle species", selected = species_toggles, choices = c(species_toggles, "Others")), 
              br(), plotOutput("ResistancePlot")),
     
-    tabPanel("Virulence Score",
+    tabPanel("Virulence scores by species",
              br(), checkboxGroupInput("vir_species_toggle", label = "Toggle species", selected = species_toggles, choices = c(species_toggles, "Others")), 
              br(), plotOutput("VirulencePlot")), 
     
 
-    tabPanel("ST Distribution",
+    tabPanel("ST distribution",
     		downloadButton(outputId = "STdist_plot_download", label = "Download the plot"),
              plotOutput("SThist"),
              column(6,selectInput("variable", label="Colour bars by:",
@@ -49,8 +49,9 @@ ui <- fluidPage(
              column(6,wellPanel(uiOutput("numBars"))))
     ,
 
-    tabPanel("Heat Map", plotOutput("heatmap")),
-    tabPanel("Scatter plot",
+    tabPanel("Convergence heatmap", 
+             br(), plotlyOutput("heatmap")),
+    tabPanel("Convergence by ST",
              plotlyOutput("st_scatter"),
              column(6, plotlyOutput("st_virulence")),
              column(6, plotlyOutput("st_resistance")))
@@ -79,9 +80,9 @@ server <- function(input, output) {
   sumTable <- reactive({
     vs <- c("Mean virulence score",round(mean(KleborateData()$virulence_score),2))
     vr <- c("Mean resistance score",round(mean(KleborateData()$resistance_score),2))
-    us <- c("Total unique specices",nlevels(KleborateData()$species))
+    us <- c("Total unique species",nlevels(KleborateData()$species))
     st <- c("Total STs",nlevels(KleborateData()$ST))
-    sum_table <- t(data.frame(vs,vr,us,st))
+    sum_table <- t(data.frame(us,st,vs,vr))
     return(sum_table)
   })    
 
@@ -155,11 +156,16 @@ SThist_reactive <- reactive({
       variable_to_stack <- (KleborateData()[, input$variable] != "-") *1 #turn this into a binary
       cols <- c("grey", "#67000d")
       labels <- c("0: absent", "1: present")
-      name <- as.character(column_decoder$display.name[column_decoder$column_name ==input$variable])
+      name <- as.character(column_decoder$display.name[column_decoder$column_name == input$variable])
  	}
 
-    ggplot(KleborateData(), aes(x=reorder(ST,ST,function(x)-length(x)), fill = as.factor(variable_to_stack))) + geom_bar() + theme(axis.text.x = element_text(colour = "black", size = 12,angle = 45, hjust = 1), axis.text.y = element_text(colour = "black", size = 12), axis.title = element_text(colour = "black", size = 14), panel.background = element_blank(), panel.border = element_blank(), axis.line = element_line(colour = "black")) + ylab("Number of isolates") + xlab("ST") + scale_y_continuous(expand=c(0,0))+ scale_x_discrete(limits = (levels(reorder(KleborateData()$ST,KleborateData()$ST,function(x)-length(x)))[1:input$bars])) + scale_fill_manual(values = cols, labels=labels, name=name)
-
+    ggplot(KleborateData(), aes(x=reorder(ST,ST,function(x)-length(x)), fill = as.factor(variable_to_stack))) + 
+      geom_bar() + theme(axis.text.x = element_text(colour = "black", size = 12,angle = 45, hjust = 1), 
+                         axis.text.y = element_text(colour = "black", size = 12), axis.title = element_text(colour = "black", size = 14), 
+                         panel.background = element_blank(), panel.border = element_blank(), axis.line = element_line(colour = "black")) + 
+      ylab("Number of isolates") + xlab("ST") + scale_y_continuous(expand=c(0,0)) +
+      scale_x_discrete(limits = (levels(reorder(KleborateData()$ST,KleborateData()$ST,function(x)-length(x)))[1:input$bars])) + 
+      scale_fill_manual(values = cols, labels=labels, name=name)
     })
     
  output$SThist <- renderPlot ({
@@ -171,19 +177,26 @@ SThist_reactive <- reactive({
  output$STdist_plot_download <- downloadHandler(
  	filename = function() {"ST_distribution.pdf"},
  	content = function(file) {
- 		pdf(file)
+ 		pdf(file, width = 10, height = 6)
  		print(SThist_reactive())
  		dev.off()
  	}
  )
 
   #Heat map (interactive)
-  output$heatmap <- renderPlot({
-    vir_res <- table(factor(KleborateData()$virulence_score,c(0,1,2,3)),factor(KleborateData()$resistance_score,c(0,1,2)))
-    vir_res <- as.data.frame.matrix(vir_res)
-    vir_res$vir <- rownames(vir_res)
-    vir_res_long <- melt(vir_res)
-    ggplot(vir_res_long, aes(x = vir, y = variable)) + geom_tile(aes(fill=value)) + theme(axis.text.x = element_text(colour = "black", size = 12), axis.text.y = element_text(colour = "black", size = 12), axis.title = element_text(colour = "black", size = 14), panel.background = element_blank(), panel.border = element_blank()) + ylab("Resistance score") + xlab("Virulence score") + scale_x_discrete(expand = c(0,0)) + scale_y_discrete(expand = c(0,0)) + labs(fill = "Number of\nisolates") + scale_fill_gradient(low = "#ffffff", high = "#08306b")
+  output$heatmap <- renderPlotly({
+    # create colour palette
+    cols <- colorRampPalette(c("#f5ecd1", "#f1c280", "#e67d77"))(100)
+    cols <- c("#ffffff", cols)
+    
+    # format data
+    vir_res <- table(factor(KleborateData()$resistance_score,c(0,1,2,3)),factor(KleborateData()$virulence_score,c(0,1,2,3,4,5))) # create dataframe summary of res and vir scores
+    vir_res <- as.data.frame.matrix(vir_res) # convert to matrix
+    vir_res <- vir_res[ order(-as.numeric(row.names(vir_res))),] # reorder rows - descending
+    
+    # draw plot
+    heatmaply(vir_res, Rowv=NULL, Colv=NULL, ylab = "Resistance score", xlab = "Virulence score", fontsize_row = 12, fontsize_col = 12, subplot_margin = 3, colors = cols, margins = c(40,40), revR=TRUE, key.title = "# genomes", column_text_angle = 0)
+    
   })
 
   # ST tab plots
