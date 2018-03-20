@@ -22,7 +22,7 @@ virulence_locus_columns <- as.character(column_decoder$column_name[column_decode
 ui <- fluidPage(
 
   # App title
-  titlePanel(title=div(img(src="logo.png",height=100,width=200),align="center")),
+  titlePanel(title=div(img(src="logo.png",height=100,width=200),align="center"), windowTitle='Kleborate'),
 
   # Tab layout
   tabsetPanel(
