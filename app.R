@@ -52,10 +52,10 @@ ui <- fluidPage(
 	),
 
     tabPanel("ST distribution",
-    		downloadButton(outputId = "STdist_plot_download", label = "Download the plot"),
              plotOutput("SThist"),
              column(6,selectInput("variable", label="Colour bars by:",
-                                c("virulence_score", virulence_locus_columns, "resistance_score", resistance_class_columns))),
+                                c("virulence_score", virulence_locus_columns, "resistance_score", resistance_class_columns)),
+                                downloadButton(outputId = "STdist_plot_download", label = "Download the plot")),
              column(6,wellPanel(uiOutput("numBars"))))
     ,
 
