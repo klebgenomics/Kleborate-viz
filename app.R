@@ -51,12 +51,12 @@ ui <- fluidPage(
 
     tabPanel("Convergence heatmap", 
              br(), plotlyOutput("heatmap")),
+
     tabPanel("Convergence by ST",
              plotlyOutput("st_scatter"),
-             column(6, plotlyOutput("st_virulence")),
-             column(6, plotlyOutput("st_resistance")))
+             column(6, plotlyOutput("st_virulence"))
+    )
   )
-  
 )
 
 # Define server logic for app
@@ -199,38 +199,55 @@ SThist_reactive <- reactive({
     
   })
 
-  # ST tab plots
-  st_data <- kleborate_data %>% group_by(ST) %>% summarise(mean_vir = mean(virulence_score), mean_res = mean(resistance_score), total  = n())
+  ### Convergence by ST tab
+  ## Mean virulence and resistance scores
+  # Subset dataframe
+  kleborate_data.mean_vir_res <- kleborate_data %>% group_by(ST) %>% summarise(mean_vir = mean(virulence_score), mean_res = mean(resistance_score), total  = n())
+  # Scatter plot function, emits event data
   output$st_scatter <- renderPlotly({
     # Create scatterplot
-    p <- plot_ly(source="st_scatter") %>%
-      add_trace(data=st_data, x=~mean_vir, y=~mean_res, text=~ST, type='scatter', mode='markers', marker=list(size=~log(total, 2)*4, opacity=0.5), name=" ") %>%
-      layout(showlegend = FALSE)
-
+    p <- plot_ly(source='st_scatter') %>%
+      add_trace(data=kleborate_data.mean_vir_res, x=~mean_vir, y=~mean_res, text=~ST, type='scatter', mode='markers', marker=list(size=~log(total, 2)*4, opacity=0.5), name=' ') %>%
+      layout(title='Mean ST virulence and resistance score', showlegend = FALSE)
     # Add new trace with coloured point if there is event data
-    ed <- event_data("plotly_click", source="st_scatter")
+    ed <- event_data('plotly_click', source='st_scatter')
     if(is.null(ed) == FALSE && ed$curveNumber == 0) {
-      selected_st <- st_data[ed$pointNumber+1, ]
-      p <- p %>% add_trace(data=selected_st, x=~mean_vir, y=~mean_res, text=~ST, type='scatter', mode='markers', marker=list(size=~log(total, 2)*4, opacity=0.5), name=" ")
+      selected_st <- kleborate_data.mean_vir_res[ed$pointNumber+1, ]
+      p <- p %>% add_trace(data=selected_st, x=~mean_vir, y=~mean_res, text=~ST, type='scatter', mode='markers', marker=list(size=~log(total, 2)*4, opacity=0.5), name=' ')
     }
 
     return(p)
   })
 
-  # TODO: swap placeholder for real plot
-  output$st_virulence <- renderPlotly({
-    ed <- event_data("plotly_click", source="st_scatter")
-    st <- st_data$ST[ed$pointNumber]
-    st_data <- KleborateData()[KleborateData()$ST==st, ]
-    plot_ly(data=st_data, x=~strain, y=~contig_count, type='bar')
-  })
+  ## Mean observation of specific genes within an ST
+  # Subset virulence and antibiotic gene columns and group by ST
+  vir_ab_cols <- c('Yersiniabactin', 'Colibactin', 'Aerobactin', 'Salmochelin', 'AGly', 'Col', 'Fcyn', 'Flq', 'Gly', 'MLS', 'Ntmdz', 'Phe', 'Rif', 'Sul', 'Tet', 'Tmt', 'Bla', 'Bla_Carb', 'Bla_ESBL', 'Bla_ESBL_inhR', 'Bla_broad', 'Bla_broad_inhR')
+  kleborate_data.gene_vir_ab <- kleborate_data[ ,c('ST', vir_ab_cols)]
+  for(j in vir_ab_cols) {
+    kleborate_data.gene_vir_ab[ ,j] <- gsub('-', 0, kleborate_data.gene_vir_ab [,j])
+    kleborate_data.gene_vir_ab[kleborate_data.gene_vir_ab[ ,j]!=0,j] <- 1
+  }
+  kleborate_data.gene_vir_ab <- kleborate_data.gene_vir_ab %>% group_by(ST) %>% summarise(ybt = mean(as.numeric(as.character(Yersiniabactin))), clb = mean(as.numeric(as.character(Colibactin))), iuc = mean(as.numeric(as.character(Aerobactin))), iro = mean(as.numeric(as.character(Salmochelin))), Agly = mean(as.numeric(as.character(AGly))), Col = mean(as.numeric(as.character(Col))), Fcyn = mean(as.numeric(as.character(Fcyn))), Flq = mean(as.numeric(as.character(Flq))), Gly = mean(as.numeric(as.character(Gly))), MLS = mean(as.numeric(as.character(MLS))), Ntmdz = mean(as.numeric(as.character(Ntmdz))), Phe = mean(as.numeric(as.character(Phe))), Rif= mean(as.numeric(as.character(Rif))), Sul = mean(as.numeric(as.character(Sul))), Tet = mean(as.numeric(as.character(Tet))), Tmt = mean(as.numeric(as.character(Tmt))), Bla = mean(as.numeric(as.character(Bla))), Bla_Carb = mean(as.numeric(as.character(Bla_Carb))), Bla_ESBL = mean(as.numeric(as.character(Bla_ESBL))), Bla_ESBL_inhR = mean(as.numeric(as.character(Bla_ESBL_inhR))), Bla_broad = mean(as.numeric(as.character(Bla_broad))), Bla_broad_inhR = mean(as.numeric(as.character(Bla_broad_inhR))))
 
-  # TODO: swap placeholder for real plot
-  output$st_resistance <- renderPlotly({
-    ed <- event_data("plotly_click", source="st_scatter")
-    st <- st_data$ST[ed$pointNumber]
-    st_data <- KleborateData()[KleborateData()$ST==st, ]
-    plot_ly(data=st_data, x=~strain, y=~contig_count, type='bar')
+  # Bar plot function, recieves event data
+  output$st_virulence <- renderPlotly({
+    ed <- event_data('plotly_click', source='st_scatter')
+    title_base <- 'Mean gene presence'
+    if(is.null(ed) == FALSE && ed$curveNumber == 0) {
+      selected_st <- kleborate_data.gene_vir_ab[ed$pointNumber+1, ]
+      st_name <- as.character(selected_st[ ,1])
+      st_data <- selected_st[ ,2:length(selected_st)]
+      title <- paste(title_base, '-', st_name)
+      genes <- colnames(st_data)
+      values <- as.numeric(st_data)
+      st_data <- data.frame(gene=genes, value=values)
+      plot_ly(data=st_data, x=~gene, y=~value, type='bar') %>% layout(title=title_base, yaxis=list(range=c(0, 1)))
+    } else {
+      genes <- colnames(kleborate_data.gene_vir_ab)[2:length(kleborate_data.gene_vir_ab)]
+      values <- rep(0, length(kleborate_data.gene_vir_ab)-1)
+      empty_data <- data.frame(gene=genes, value=values)
+      plot_ly(data=empty_data, x=~gene, y=~value, type='bar') %>% layout(title=title_base, yaxis=list(range=c(0, 1)))
+    }
   })
 }
 
