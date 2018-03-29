@@ -94,8 +94,7 @@ server <- function(input, output) {
     st <- c("Total STs",nlevels(KleborateData()$ST))
     sum_table <- t(data.frame(us,st,vs,vr))
     return(sum_table)
-  })    
-
+  })   
 
   # Species filter - using reactive values
   kp_complex_spp_names <- c("Klebsiella pneumoniae", "Klebsiella variicola", "Klebsiella quasivariicola", 
@@ -143,15 +142,6 @@ server <- function(input, output) {
   output$resScoreBarBySpecies <- renderPlot ({
  	print(resScoreBarBySpecies_reactive())
   })
-
-#  output$resScoreBarBySpecies_plot_download <- downloadHandler(
-# 	filename = function() {"resScoreBarBySpecies.pdf"}, #default filenmae
-# 	content = function(file) {
-# 		pdf(file, width = 10, height = 6)
-#		print(resScoreBarBySpecies_reactive())
-# 		dev.off()
-# 	}
-# )
    
   #Virulence score plot
   virScoreBarBySpecies_reactive <- reactive({
@@ -176,6 +166,7 @@ server <- function(input, output) {
  	print(virScoreBarBySpecies_reactive())
   })
   
+  # download PDF of score bar plots
   output$scoreBarBySpecies_plot_download <- downloadHandler(
  	filename = function() {"scoreBarplotsBySpecies.pdf"}, #default filenmae
  	content = function(file) {
@@ -196,7 +187,8 @@ server <- function(input, output) {
 
 SThist_reactive <- reactive({
   
-    variable_to_stack = KleborateData()[, input$variable]
+    #variable_to_stack = KleborateData()[, input$variable]
+    variable_to_stack = species_filter$species_filtered_data[, input$variable]
 
     if(input$variable == "virulence_score"){
       cols <- c("#deebf7", "#9ecae1", "#6baed6", "#4292c6", "#2171b5", "#08306b")
@@ -212,18 +204,21 @@ SThist_reactive <- reactive({
 	# individual genes
  	else {
 
-      variable_to_stack <- (KleborateData()[, input$variable] != "-") *1 #turn this into a binary
+      #variable_to_stack <- (KleborateData()[, input$variable] != "-") *1 #turn this into a binary
+      variable_to_stack <- (species_filter$species_filtered_data[, input$variable] != "-") *1 #turn this into a binary
       cols <- c("grey", "#67000d")
       labels <- c("0: absent", "1: present")
       name <- as.character(column_decoder$display.name[column_decoder$column_name == input$variable])
  	}
 
-    ggplot(KleborateData(), aes(x=reorder(ST,ST,function(x)-length(x)), fill = as.factor(variable_to_stack))) + 
+#    ggplot(KleborateData(), aes(x=reorder(ST,ST,function(x)-length(x)), fill = as.factor(variable_to_stack))) + 
+    ggplot(species_filter$species_filtered_data, aes(x=reorder(ST,ST,function(x)-length(x)), fill = as.factor(variable_to_stack))) + 
       geom_bar() + theme(axis.text.x = element_text(colour = "black", size = 12,angle = 45, hjust = 1), 
                          axis.text.y = element_text(colour = "black", size = 12), axis.title = element_text(colour = "black", size = 14), 
                          panel.background = element_blank(), panel.border = element_blank(), axis.line = element_line(colour = "black")) + 
       ylab("Number of isolates") + xlab("ST") + scale_y_continuous(expand=c(0,0)) +
-      scale_x_discrete(limits = (levels(reorder(KleborateData()$ST,KleborateData()$ST,function(x)-length(x)))[1:input$bars])) + 
+#      scale_x_discrete(limits = (levels(reorder(KleborateData()$ST,KleborateData()$ST,function(x)-length(x)))[1:input$bars])) + 
+      scale_x_discrete(limits = (levels(reorder(species_filter$species_filtered_data$ST,species_filter$species_filtered_data$ST,function(x)-length(x)))[1:input$bars])) + 
       scale_fill_manual(values = cols, labels=labels, name=name)
     })
     
