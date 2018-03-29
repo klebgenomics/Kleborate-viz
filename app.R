@@ -20,7 +20,7 @@ virulence_locus_columns <- as.character(column_decoder$column_name[column_decode
 
 # Define UI for Shiny App: Kleborate Visualiser
 ui <- fluidPage(
-
+	
   # App title
   titlePanel(title=div(img(src="logo.png",height=100,width=200),align="center"), windowTitle='Kleborate'),
 
@@ -40,11 +40,13 @@ ui <- fluidPage(
     			),
 
     			mainPanel(
-    				h4("Resistance scores by species"),
-      				plotOutput("ResistancePlot", height="200px"),
-      				br(), 
-      				h4("Virulence scores by species"),
-      				plotOutput("VirulencePlot", height="200px")
+    				br(),
+      				plotOutput("resScoreBarBySpecies", height="200px"),
+      				#downloadButton(outputId = "resScoreBarBySpecies_plot_download", label = "Download plot"),
+      				br(),
+      				plotOutput("virScoreBarBySpecies", height="200px"),
+      				br(),
+      				div(style = "position:absolute;right:1em;",downloadButton(outputId = "scoreBarBySpecies_plot_download", label = "Download plots"))
     			)
 			)
 	),
@@ -119,13 +121,13 @@ server <- function(input, output) {
   })
   
   #Resistance score plot
-  output$ResistancePlot <- renderPlot({
+  resScoreBarBySpecies_reactive <- reactive({
 
-    
     ggplot(data=species_filter$species_filtered_data, aes(x = as.factor(resistance_score), fill = species)) + 
       geom_bar() + coord_flip() + theme(axis.text.x = element_text(colour = "black", size = 12), 
                          axis.text.y = element_text(colour = "black", size = 12), 
-                         axis.title = element_text(colour = "black", size = 14), 
+                         axis.title = element_text(colour = "black", size = 18), 
+                         plot.title = element_text(color="black", size=18, face="bold"),
                          panel.background = element_blank(), 
                          panel.border = element_blank(), 
                          axis.line = element_line(colour = "black")) + 
@@ -133,25 +135,32 @@ server <- function(input, output) {
       scale_fill_manual(values = species_filter$species_cols) + 
       ylab("Number of isolates") + 
       xlab("Resistance score") + 
-      labs(fill = "Species")
+      labs(fill = "Species") + 
+   	  ggtitle("Resistance scores by species")
     
   })
   
-  #Virulence score plot
-  output$VirulencePlot <- renderPlot({
+  output$resScoreBarBySpecies <- renderPlot ({
+ 	print(resScoreBarBySpecies_reactive())
+  })
 
-    species_cols = c("#875F9A","#e6b89c","#ead2ac","#9cafb7","#4281a4",
-                      colorRampPalette(c("#e67d77", "#f1c280", "#f5ecd1", "#98c4ca", "#7f8288"))(nlevels(KleborateData()$species)-5))
-    static_cols <- c("Klebsiella pneumoniae", "Klebsiella variicola", "Klebsiella quasivariicola", 
-                            "Klebsiella quasipneumoniae subsp. quasipneumoniae", "Klebsiella quasipneumoniae subsp. similipneumoniae")
-    names(species_cols) = c("Klebsiella pneumoniae", "Klebsiella variicola", "Klebsiella quasivariicola", 
-                            "Klebsiella quasipneumoniae subsp. quasipneumoniae", "Klebsiella quasipneumoniae subsp. similipneumoniae",
-                            levels(KleborateData()$species)[! levels(KleborateData()$species) %in% static_cols])
+#  output$resScoreBarBySpecies_plot_download <- downloadHandler(
+# 	filename = function() {"resScoreBarBySpecies.pdf"}, #default filenmae
+# 	content = function(file) {
+# 		pdf(file, width = 10, height = 6)
+#		print(resScoreBarBySpecies_reactive())
+# 		dev.off()
+# 	}
+# )
+   
+  #Virulence score plot
+  virScoreBarBySpecies_reactive <- reactive({
 
    ggplot(data=species_filter$species_filtered_data, aes(x = as.factor(virulence_score), fill = species)) + 
    		geom_bar() + coord_flip() + theme(axis.text.x = element_text(colour = "black", size = 12), 
    				axis.text.y = element_text(colour = "black", size = 12), 
-   				axis.title = element_text(colour = "black", size = 14), 
+   				axis.title = element_text(colour = "black", size = 18), 
+   				plot.title = element_text(color="black", size=18, face="bold"),
    				panel.background = element_blank(), 
    				panel.border = element_blank(), 
    				axis.line = element_line(colour = "black")) + 
@@ -159,8 +168,24 @@ server <- function(input, output) {
    				scale_fill_manual(values = species_filter$species_cols) +
    				ylab("Number of isolates") +
    				xlab("Virulence score") +
-   				labs(fill = "Species")  
+   				labs(fill = "Species") + 
+   				ggtitle("Virulence scores by species")
   })
+  
+  output$virScoreBarBySpecies <- renderPlot ({
+ 	print(virScoreBarBySpecies_reactive())
+  })
+  
+  output$scoreBarBySpecies_plot_download <- downloadHandler(
+ 	filename = function() {"scoreBarplotsBySpecies.pdf"}, #default filenmae
+ 	content = function(file) {
+ 		pdf(file, width = 10, height = 6)
+ 		print(resScoreBarBySpecies_reactive())
+ 		print(virScoreBarBySpecies_reactive())
+ 		dev.off()
+ 	}
+ )
+
 
   #Sequence type histogram (interactive)
 
@@ -169,13 +194,9 @@ server <- function(input, output) {
   resistance_score_scale_fill_manual <- scale_fill_manual(values=c("#ffffff", "#fcbba1", "#fb6a4a", "#cb181d"), name = "Resistance score", labels = c("0: ESBL and carbapenemase -ve", "1: ESBL +ve", "2: Carbepenemase +ve", "3: Carbapenemase +ve and colisitin resistance"))
 
 
-
-
 SThist_reactive <- reactive({
   
-
     variable_to_stack = KleborateData()[, input$variable]
-
 
     if(input$variable == "virulence_score"){
       cols <- c("#deebf7", "#9ecae1", "#6baed6", "#4292c6", "#2171b5", "#08306b")
