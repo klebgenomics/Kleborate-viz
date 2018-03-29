@@ -94,25 +94,35 @@ server <- function(input, output) {
     return(sum_table)
   })    
 
-  #Species filter
-  species_filtered=reactive({
+
+  # Species filter - using reactive values
+  kp_complex_spp_names <- c("Klebsiella pneumoniae", "Klebsiella variicola", "Klebsiella quasivariicola", 
+                            "Klebsiella quasipneumoniae subsp. quasipneumoniae", "Klebsiella quasipneumoniae subsp. similipneumoniae")
+  kp_complex_spp_colours <- c("#875F9A","#e6b89c","#ead2ac","#9cafb7","#4281a4")
+  names(kp_complex_spp_colours) <- kp_complex_spp_names
+
+  # reactive values for species list and colours, default = KP complex only
+  species_filter=reactiveValues(species_list=kp_complex_spp_names, species_cols = kp_complex_spp_colours)
+
+  observeEvent(input$species_toggle,
+  {
     filter = input$species_toggle
     if ('Klebsiella quasipneumoniae' %in% filter) { filter = c(filter, grep("Klebsiella quasip",all_species,value=TRUE,fixed=TRUE)) }
     if ('Others' %in% filter) { filter = c(filter, all_species[!all_species %in% c(filter,grep("Klebsiella quasip",all_species,value=TRUE,fixed=TRUE),species_toggles)]) }
-    return(KleborateData()[KleborateData()$species%in%filter,])
+    species_filter$species_filtered_data = KleborateData()[KleborateData()$species%in%filter,]
+    species_filter$species_cols = c(kp_complex_spp_colours[kp_complex_spp_names[kp_complex_spp_names %in% filter]],
+                        colorRampPalette(c("#e67d77", "#f1c280", "#f5ecd1", "#98c4ca", "#7f8288"))(nlevels(KleborateData()$species)-5)
+                      )
+    names(species_filter$species_cols) = c(kp_complex_spp_names[kp_complex_spp_names %in% filter],
+                            levels(KleborateData()$species)[! levels(KleborateData()$species) %in% kp_complex_spp_names])  
+    species_filter$species_list = filter  
   })
   
   #Resistance score plot
   output$ResistancePlot <- renderPlot({
-    species_cols = c("#875F9A","#e6b89c","#ead2ac","#9cafb7","#4281a4",
-                      colorRampPalette(c("#e67d77", "#f1c280", "#f5ecd1", "#98c4ca", "#7f8288"))(nlevels(KleborateData()$species)-5))
-    static_cols <- c("Klebsiella pneumoniae", "Klebsiella variicola", "Klebsiella quasivariicola", 
-                            "Klebsiella quasipneumoniae subsp. quasipneumoniae", "Klebsiella quasipneumoniae subsp. similipneumoniae")
-    names(species_cols) = c("Klebsiella pneumoniae", "Klebsiella variicola", "Klebsiella quasivariicola", 
-                            "Klebsiella quasipneumoniae subsp. quasipneumoniae", "Klebsiella quasipneumoniae subsp. similipneumoniae",
-                            levels(KleborateData()$species)[! levels(KleborateData()$species) %in% static_cols])
+
     
-    ggplot(data=species_filtered(), aes(x = as.factor(resistance_score), fill = species)) + 
+    ggplot(data=species_filter$species_filtered_data, aes(x = as.factor(resistance_score), fill = species)) + 
       geom_bar() + coord_flip() + theme(axis.text.x = element_text(colour = "black", size = 12), 
                          axis.text.y = element_text(colour = "black", size = 12), 
                          axis.title = element_text(colour = "black", size = 14), 
@@ -120,7 +130,7 @@ server <- function(input, output) {
                          panel.border = element_blank(), 
                          axis.line = element_line(colour = "black")) + 
       scale_y_continuous(expand=c(0,0)) + 
-      scale_fill_manual(values = species_cols) + 
+      scale_fill_manual(values = species_filter$species_cols) + 
       ylab("Number of isolates") + 
       xlab("Resistance score") + 
       labs(fill = "Species")
@@ -138,7 +148,7 @@ server <- function(input, output) {
                             "Klebsiella quasipneumoniae subsp. quasipneumoniae", "Klebsiella quasipneumoniae subsp. similipneumoniae",
                             levels(KleborateData()$species)[! levels(KleborateData()$species) %in% static_cols])
 
-   ggplot(data=species_filtered(), aes(x = as.factor(virulence_score), fill = species)) + 
+   ggplot(data=species_filter$species_filtered_data, aes(x = as.factor(virulence_score), fill = species)) + 
    		geom_bar() + coord_flip() + theme(axis.text.x = element_text(colour = "black", size = 12), 
    				axis.text.y = element_text(colour = "black", size = 12), 
    				axis.title = element_text(colour = "black", size = 14), 
@@ -146,7 +156,7 @@ server <- function(input, output) {
    				panel.border = element_blank(), 
    				axis.line = element_line(colour = "black")) + 
    				scale_y_continuous(expand=c(0,0)) + 
-   				scale_fill_manual(values = species_cols) +
+   				scale_fill_manual(values = species_filter$species_cols) +
    				ylab("Number of isolates") +
    				xlab("Virulence score") +
    				labs(fill = "Species")  
