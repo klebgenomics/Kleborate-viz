@@ -24,22 +24,25 @@ ui <- fluidPage(
   # App title
   titlePanel(title=div(img(src="logo.png",height=100,width=200),align="center"), windowTitle='Kleborate'),
 
-  # Tab layout
-  tabsetPanel(
-
-	tabPanel("Summary & Species Selection",
-			sidebarLayout(
-				sidebarPanel(
-					fileInput('file', 'Load Kleborate Output File (txt)',accept=c('text/csv', 'text/comma-separated-values,text/plain','.csv')),
-					br(),
-					h4("Data Summary"),
-					tableOutput('summaryTable'),
-					br(),
-      				checkboxGroupInput("species_toggle", label = "Toggle species", selected = species_toggles, 
-      					choices = c(species_toggles, "Others"))
-    			),
-
-    			mainPanel(
+  # common side bar to all plots
+  sidebarLayout(
+  
+  # side bar is where we load data, show summary, and choose species
+  	sidebarPanel(
+		fileInput('file', 'Load Kleborate Output File (txt)',accept=c('text/csv', 'text/comma-separated-values,text/plain','.csv')),
+		br(),
+		h4("Data Summary"),
+		tableOutput('summaryTable'),
+		br(),
+		checkboxGroupInput("species_toggle", label = "Toggle species", selected = species_toggles, 
+      		choices = c(species_toggles, "Others"))
+    ),
+  
+  # main panel has a selection of tabsets to plot different analyses
+  mainPanel(
+    # Tab layout
+    tabsetPanel(
+		tabPanel("Summary",
     				br(),
       				plotOutput("resScoreBarBySpecies", height="200px"),
       				#downloadButton(outputId = "resScoreBarBySpecies_plot_download", label = "Download plot"),
@@ -47,27 +50,25 @@ ui <- fluidPage(
       				plotOutput("virScoreBarBySpecies", height="200px"),
       				br(),
       				div(style = "position:absolute;right:1em;",downloadButton(outputId = "scoreBarBySpecies_plot_download", label = "Download plots"))
-    			)
-			)
-	),
-
-    tabPanel("ST distribution",
+    	),
+    	tabPanel("ST distribution",
              plotOutput("SThist"),
              column(6,selectInput("variable", label="Colour bars by:",
                                 c("virulence_score", virulence_locus_columns, "resistance_score", resistance_class_columns)),
                                 downloadButton(outputId = "STdist_plot_download", label = "Download the plot")),
-             column(6,wellPanel(uiOutput("numBars"))))
-    ,
-
-    tabPanel("Convergence heatmap", 
-             br(), plotlyOutput("heatmap")),
-
-    tabPanel("Convergence by ST",
+             column(6,wellPanel(uiOutput("numBars")))
+        ),
+    	tabPanel("Convergence heatmap", 
+             br(), plotlyOutput("heatmap")
+        ),
+    	tabPanel("Convergence by ST",
              plotlyOutput("st_scatter"),
              column(6, plotlyOutput("st_virulence"))
-    )
-  )
-)
+    	)
+  	) # end tabsetPanel
+  ) # end mainPanel
+) # end sidebarLayout
+) # end ui
 
 # Define server logic for app
 server <- function(input, output) {
@@ -203,35 +204,23 @@ SThist_reactive <- reactive({
 
 	# individual genes
  	else {
-#      variable_to_stack <- (KleborateData()[, input$variable] != "-") *1 #turn this into a binary
+
+      #variable_to_stack <- (KleborateData()[, input$variable] != "-") *1 #turn this into a binary
       variable_to_stack <- (species_filter$species_filtered_data[, input$variable] != "-") *1 #turn this into a binary
-      if (input$variable %in% virulence_locus_columns) {
-      	cols <- c("grey", "#2171b5") # blue for virulence variables
-      }
-      else { cols <- c("grey", "#ef3b2c") } # red for resistance variables
-      labels <- c("absent", "present")
+      cols <- c("grey", "#67000d")
+      labels <- c("0: absent", "1: present")
       name <- as.character(column_decoder$display.name[column_decoder$column_name == input$variable])
  	}
 
 #    ggplot(KleborateData(), aes(x=reorder(ST,ST,function(x)-length(x)), fill = as.factor(variable_to_stack))) + 
-    ggplot(species_filter$species_filtered_data, 
-    	aes(x=reorder(ST,ST,function(x)-length(x)), 
-    	fill = as.factor(variable_to_stack))) + 
-    	ggtitle(name) +
-      	geom_bar() + 
-      	theme(axis.text.x = element_text(colour = "black", size = 12, angle = 45, hjust = 1), 
-        	axis.text.y = element_text(colour = "black", size = 12),
-        	axis.title = element_text(colour = "black", size = 18), 
-            panel.background = element_blank(),
-            panel.border = element_blank(),
-            plot.title = element_text(color="black", size=18, face="bold", hjust = 0.5),
-            axis.line = element_line(colour = "black")) + 
-      	ylab("Number of isolates") + 
-      	xlab("ST") + 
-      	scale_y_continuous(expand=c(0,0)) +
-#        scale_x_discrete(limits = (levels(reorder(KleborateData()$ST,KleborateData()$ST,function(x)-length(x)))[1:input$bars])) + 
-      	scale_x_discrete(limits = (levels(reorder(species_filter$species_filtered_data$ST,species_filter$species_filtered_data$ST,function(x)-length(x)))[1:input$bars])) + 
-      	scale_fill_manual(values = cols, labels=labels, name=name)
+    ggplot(species_filter$species_filtered_data, aes(x=reorder(ST,ST,function(x)-length(x)), fill = as.factor(variable_to_stack))) + 
+      geom_bar() + theme(axis.text.x = element_text(colour = "black", size = 12,angle = 45, hjust = 1), 
+                         axis.text.y = element_text(colour = "black", size = 12), axis.title = element_text(colour = "black", size = 14), 
+                         panel.background = element_blank(), panel.border = element_blank(), axis.line = element_line(colour = "black")) + 
+      ylab("Number of isolates") + xlab("ST") + scale_y_continuous(expand=c(0,0)) +
+#      scale_x_discrete(limits = (levels(reorder(KleborateData()$ST,KleborateData()$ST,function(x)-length(x)))[1:input$bars])) + 
+      scale_x_discrete(limits = (levels(reorder(species_filter$species_filtered_data$ST,species_filter$species_filtered_data$ST,function(x)-length(x)))[1:input$bars])) + 
+      scale_fill_manual(values = cols, labels=labels, name=name)
     })
     
  output$SThist <- renderPlot ({
