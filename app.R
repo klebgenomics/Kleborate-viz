@@ -5,14 +5,8 @@ library(dplyr)
 library(reshape2)
 library(plotly)
 
-#TO DO: ALEX'S TOGGLE LISTS NEED TO BE MADE REACTIVE ie update with new input data
-
 #Input data
 kleborate_data <- read.csv("kleborate_viz_test_data_mixedSTs.txt",sep="\t")
-
-# Making toggle list
-all_species = levels(kleborate_data$species)
-species_toggles = c("Klebsiella pneumoniae","Klebsiella quasipneumoniae","Klebsiella variicola","Klebsiella quasivariicola")
 
 column_decoder <- read.csv("column_decoder.txt",sep="\t")
 resistance_class_columns <- as.character(column_decoder$column_name[column_decoder$type =="resistance_class"])
@@ -21,57 +15,58 @@ virulence_locus_columns <- as.character(column_decoder$column_name[column_decode
 # Define UI for Shiny App: Kleborate Visualiser
 ui <- fluidPage(
 	
-  # App title
-  titlePanel(title=div(img(src="logo.png",height=100,width=200),align="center"), windowTitle='Kleborate'),
-
-  # Tab layout
-  tabsetPanel(
-
-	tabPanel("Summary & Species Selection",
-			sidebarLayout(
-				sidebarPanel(
-					fileInput('file', 'Load Kleborate Output File (txt)',accept=c('text/csv', 'text/comma-separated-values,text/plain','.csv')),
-					br(),
-					h4("Data Summary"),
-					tableOutput('summaryTable'),
-					br(),
-      				checkboxGroupInput("species_toggle", label = "Toggle species", selected = species_toggles, 
-      					choices = c(species_toggles, "Others"))
-    			),
-
-    			mainPanel(
+  # common side bar to all plots
+  sidebarLayout(
+  
+  # side bar is where we load data, show summary, and choose species
+  	sidebarPanel(
+  		div(img(src="logo.png",height=100,width=200)),
+  		br(),
+		fileInput('file', 'Load Kleborate Output File (txt)',accept=c('text/csv', 'text/comma-separated-values,text/plain','.csv')),
+		br(),
+		h4("Data Summary"),
+		tableOutput('summaryTable'),
+		br(),
+		uiOutput("species_toggles_labelled_with_numbers")
+		#checkboxGroupInput("species_toggle", label = "Toggle species", selected = species_toggles, 
+      	#	choices = species_toggles_labels_reactive$species_toggles_labels)
+    ),
+  
+  # main panel has a selection of tabsets to plot different analyses
+  mainPanel(
+    # Tab layout
+    tabsetPanel(
+		tabPanel("Summary",
     				br(),
-      				plotOutput("resScoreBarBySpecies", height="200px"),
-      				#downloadButton(outputId = "resScoreBarBySpecies_plot_download", label = "Download plot"),
+      				plotOutput("resScoreBarBySpecies", height="240px"),
       				br(),
-      				plotOutput("virScoreBarBySpecies", height="200px"),
+      				plotOutput("virScoreBarBySpecies", height="240px"),
       				br(),
       				div(style = "position:absolute;right:1em;",downloadButton(outputId = "scoreBarBySpecies_plot_download", label = "Download plots"))
-    			)
-			)
-	),
-
-    tabPanel("ST distribution",
+    	),
+    	tabPanel("ST distribution",
              plotOutput("SThist"),
              column(6,selectInput("variable", label="Colour bars by:",
                                 c("virulence_score", virulence_locus_columns, "resistance_score", resistance_class_columns)),
                                 downloadButton(outputId = "STdist_plot_download", label = "Download the plot")),
-             column(6,wellPanel(uiOutput("numBars"))))
-    ,
-
-    tabPanel("Convergence heatmap", 
-             br(), plotlyOutput("heatmap")),
-
-    tabPanel("Convergence by ST",
+             column(6,wellPanel(uiOutput("numBars")))
+        ),
+    	tabPanel("Convergence heatmap", 
+             br(), plotlyOutput("heatmap")
+        ),
+    	tabPanel("Convergence by ST",
              plotlyOutput("st_scatter"),
              column(6, plotlyOutput("st_virulence"))
-    )
-  )
-)
+    	)
+  	) # end tabsetPanel
+  ) # end mainPanel
+) # end sidebarLayout
+) # end ui
 
 # Define server logic for app
-server <- function(input, output) {
-  #Upload input data
+server <- function(input, output, session) {
+
+  # Load input data
   KleborateData <- reactive({
     inFile <- input$file
     if (is.null(inFile)) return(kleborate_data)
@@ -83,8 +78,8 @@ server <- function(input, output) {
     sliderInput(inputId = "bars", label = "Number of bars:",min = 1,max = nlevels(KleborateData()$ST),step =1,
                 value = min(20,nlevels(KleborateData()$ST)))
   })
-
-  #Summary table: num species, # STs, mean vir, mean resistance
+  
+  # Summary table for side bar: num species, # STs, mean vir, mean resistance
   output$summaryTable <- renderTable(sumTable(),colnames=F)
   
   sumTable <- reactive({
@@ -97,29 +92,51 @@ server <- function(input, output) {
   })   
 
   # Species filter - using reactive values
+  ## NOTE: this is creating a new object species_filter$species_filtered_data which is the current data table subsetted to the species set
+  ## This is not ideal as it is duplicating the data object in memory, would probably be better to call
+  ## KleborateData()[KleborateData()$species %in% species_filter$species_list,] in all plots, 
+  ## not sure if we can create an easy container for this
+  
+  # default: species in the KP complex
   kp_complex_spp_names <- c("Klebsiella pneumoniae", "Klebsiella variicola", "Klebsiella quasivariicola", 
                             "Klebsiella quasipneumoniae subsp. quasipneumoniae", "Klebsiella quasipneumoniae subsp. similipneumoniae")
   kp_complex_spp_colours <- c("#875F9A","#e6b89c","#ead2ac","#9cafb7","#4281a4")
   names(kp_complex_spp_colours) <- kp_complex_spp_names
 
-  # reactive values for species list and colours, default = KP complex only
-  species_filter=reactiveValues(species_list=kp_complex_spp_names, species_cols = kp_complex_spp_colours)
+  # species toggles, labeled by number in each species
+  output$species_toggles_labelled_with_numbers <- renderUI({
+  	species_toggle_labels = c("Klebsiella pneumoniae","Klebsiella quasipneumoniae","Klebsiella variicola","Klebsiella quasivariicola","Others")
+  	species_toggle_labels[1] = paste("Klebsiella pneumoniae  (", sum(KleborateData()$species=="Klebsiella pneumoniae"),")",sep="")
+	species_toggle_labels[2] = paste("Klebsiella quasipneumoniae  (", 
+  			sum(KleborateData()$species %in% c("Klebsiella quasipneumoniae subsp. quasipneumoniae","Klebsiella quasipneumoniae subsp. similipneumoniae")
+  			),")",sep="")
+  	species_toggle_labels[3] = paste("Klebsiella variicola  (", sum(KleborateData()$species=="Klebsiella variicola"),")",sep="")
+  	species_toggle_labels[4] = paste("Klebsiella quasivariicola  (", sum(KleborateData()$species=="Klebsiella quasivariicola"),")",sep="")
+    species_toggle_labels[5] = paste("Others  (", sum( ! (KleborateData()$species %in% kp_complex_spp_names)),")",sep="")
+	checkboxGroupInput(inputId="species_toggle", label = "Toggle species", selected = species_toggle_labels[1:4], 
+      		choices = species_toggle_labels)
+  })
 
-  observeEvent(input$species_toggle,
-  {
-    filter = input$species_toggle
+  # reactive values for species list and colours
+  species_filter = reactiveValues(species_list=kp_complex_spp_names, species_cols = kp_complex_spp_colours)
+
+  observeEvent(input$species_toggle, {
+  	all_species = levels(KleborateData()$species)
+  	other_species = levels(KleborateData()$species[!(KleborateData()$species %in% kp_complex_spp_names)])
+    #filter = input$species_toggle
+    filter = unlist(strsplit(input$species_toggle,"  "))[seq(1,length(unlist(strsplit(input$species_toggle,"  "))),2)]
     if ('Klebsiella quasipneumoniae' %in% filter) { filter = c(filter, grep("Klebsiella quasip",all_species,value=TRUE,fixed=TRUE)) }
     if ('Others' %in% filter) { filter = c(filter, all_species[!all_species %in% c(filter,grep("Klebsiella quasip",all_species,value=TRUE,fixed=TRUE),species_toggles)]) }
-    species_filter$species_filtered_data = KleborateData()[KleborateData()$species%in%filter,]
+    species_filter$species_filtered_data = KleborateData()[KleborateData()$species %in% filter,]
     species_filter$species_cols = c(kp_complex_spp_colours[kp_complex_spp_names[kp_complex_spp_names %in% filter]],
-                        colorRampPalette(c("#e67d77", "#f1c280", "#f5ecd1", "#98c4ca", "#7f8288"))(nlevels(KleborateData()$species)-5)
+                        colorRampPalette(c("#e67d77", "#f1c280", "#f5ecd1", "#98c4ca", "#7f8288"))(length(other_species))
                       )
     names(species_filter$species_cols) = c(kp_complex_spp_names[kp_complex_spp_names %in% filter],
                             levels(KleborateData()$species)[! levels(KleborateData()$species) %in% kp_complex_spp_names])  
-    species_filter$species_list = filter  
+    species_filter$species_list = filter
   })
   
-  #Resistance score plot
+  # Resistance score plot - for summary page
   resScoreBarBySpecies_reactive <- reactive({
 
     ggplot(data=species_filter$species_filtered_data, aes(x = as.factor(resistance_score), fill = species)) + 
@@ -130,6 +147,7 @@ server <- function(input, output) {
                          panel.background = element_blank(), 
                          panel.border = element_blank(), 
                          axis.line = element_line(colour = "black")) + 
+      scale_x_discrete(limits=c(0:4)) +
       scale_y_continuous(expand=c(0,0)) + 
       scale_fill_manual(values = species_filter$species_cols) + 
       ylab("Number of isolates") + 
@@ -143,7 +161,7 @@ server <- function(input, output) {
  	print(resScoreBarBySpecies_reactive())
   })
    
-  #Virulence score plot
+  # Virulence score plot - for summary page
   virScoreBarBySpecies_reactive <- reactive({
 
    ggplot(data=species_filter$species_filtered_data, aes(x = as.factor(virulence_score), fill = species)) + 
@@ -154,19 +172,20 @@ server <- function(input, output) {
    				panel.background = element_blank(), 
    				panel.border = element_blank(), 
    				axis.line = element_line(colour = "black")) + 
-   				scale_y_continuous(expand=c(0,0)) + 
-   				scale_fill_manual(values = species_filter$species_cols) +
-   				ylab("Number of isolates") +
-   				xlab("Virulence score") +
-   				labs(fill = "Species") + 
-   				ggtitle("Virulence scores by species")
+      	scale_x_discrete(limits=c(0:5)) +
+   		scale_y_continuous(expand=c(0,0)) + 
+   		scale_fill_manual(values = species_filter$species_cols) +
+   		ylab("Number of isolates") +
+   		xlab("Virulence score") +
+   		labs(fill = "Species") + 
+   		ggtitle("Virulence scores by species")
   })
   
   output$virScoreBarBySpecies <- renderPlot ({
  	print(virScoreBarBySpecies_reactive())
   })
   
-  # download PDF of score bar plots
+  # download PDF of score bar plots - from summary page
   output$scoreBarBySpecies_plot_download <- downloadHandler(
  	filename = function() {"scoreBarplotsBySpecies.pdf"}, #default filenmae
  	content = function(file) {
@@ -177,13 +196,11 @@ server <- function(input, output) {
  	}
  )
 
-
-  #Sequence type histogram (interactive)
+  # Sequence type histogram (interactive)
 
   # define colour schemes and text for virulence/resistance
   virulence_score_scale_fill_manual <- scale_fill_manual(values=c("#ffffff", "#c6dbef", "#6baed6", "#2171b5", "#08519c", "#08306b"), name = "Virulence score", labels = c("0: None", "1: ybt", "2: ybt + clb", "3: iuc (indicates virulence plasmid)", "4: ybt + iuc", "5: ybt + clb + iuc"))
   resistance_score_scale_fill_manual <- scale_fill_manual(values=c("#ffffff", "#fcbba1", "#fb6a4a", "#cb181d"), name = "Resistance score", labels = c("0: ESBL and carbapenemase -ve", "1: ESBL +ve", "2: Carbepenemase +ve", "3: Carbapenemase +ve and colisitin resistance"))
-
 
 SThist_reactive <- reactive({
   
@@ -235,9 +252,7 @@ SThist_reactive <- reactive({
     })
     
  output$SThist <- renderPlot ({
- 
  	print(SThist_reactive())
- 
  })
  
  output$STdist_plot_download <- downloadHandler(

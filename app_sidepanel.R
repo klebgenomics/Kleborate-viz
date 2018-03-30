@@ -5,7 +5,6 @@ library(dplyr)
 library(reshape2)
 library(plotly)
 
-#TO DO: ALEX'S TOGGLE LISTS NEED TO BE MADE REACTIVE ie update with new input data
 
 #Input data
 kleborate_data <- read.csv("kleborate_viz_test_data_mixedSTs.txt",sep="\t")
@@ -22,13 +21,15 @@ virulence_locus_columns <- as.character(column_decoder$column_name[column_decode
 ui <- fluidPage(
 	
   # App title
-  titlePanel(title=div(img(src="logo.png",height=100,width=200),align="center"), windowTitle='Kleborate'),
+  #titlePanel(title=div(img(src="logo.png",height=100,width=200),align="center"), windowTitle='Kleborate'),
 
   # common side bar to all plots
   sidebarLayout(
   
   # side bar is where we load data, show summary, and choose species
   	sidebarPanel(
+  		div(img(src="logo.png",height=100,width=200)),
+  		br(),
 		fileInput('file', 'Load Kleborate Output File (txt)',accept=c('text/csv', 'text/comma-separated-values,text/plain','.csv')),
 		br(),
 		h4("Data Summary"),
