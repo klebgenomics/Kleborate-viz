@@ -49,7 +49,9 @@ ui <- fluidPage(
              plotOutput("SThist"),
              column(6,selectInput("variable", label="Colour bars by:",
                                 c("virulence_score", virulence_locus_columns, "resistance_score", resistance_class_columns)),
-                                downloadButton(outputId = "STdist_plot_download", label = "Download the plot")),
+                                downloadButton(outputId = "STdist_plot_download", label = "Download the plot"),
+                                downloadButton(outputId = "STdist_data_download", label = "Download the data")
+         	 ),
              column(6,wellPanel(uiOutput("numBars")))
         ),
     	tabPanel("Convergence heatmap", 
@@ -282,6 +284,20 @@ server <- function(input, output, session) {
  		print(SThist_reactive())
  		dev.off()
  	}
+ )
+ 
+ output$STdist_data_download <- downloadHandler(
+    filename = function() {
+      paste(input$variable, "_by_ST__res", input$res_score_range_slider[1],"-",input$res_score_range_slider[2],"_vir",
+      			input$vir_score_range_slider[1],"-",input$vir_score_range_slider[2],".csv", sep = "")
+    },
+    content = function(file) {
+      write.csv(
+      	table(KleborateData()[row_filter$spp_exp & row_filter$resScore_exp & row_filter$virScore_exp, "ST"],
+      		KleborateData()[row_filter$spp_exp & row_filter$resScore_exp & row_filter$virScore_exp, input$variable]
+      	)[rev(order(table(KleborateData()[row_filter$spp_exp & row_filter$resScore_exp & row_filter$virScore_exp, "ST"]))),],
+      file, row.names = TRUE)
+    }
  )
 
   #Heat map (interactive)

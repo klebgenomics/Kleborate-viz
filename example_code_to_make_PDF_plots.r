@@ -24,3 +24,20 @@
  
  resScoreBarBySpecies_plot_download
  virScoreBarBySpecies_plot_download
+ 
+ 
+ ### to download data table
+ 
+ # in ui:
+ downloadButton("downloadData", "Download")
+ 
+ # in server:
+ 
+   output$downloadData <- downloadHandler(
+    filename = function() {
+      paste(input$dataset, ".csv", sep = "")
+    },
+    content = function(file) {
+      write.csv(datasetInput(), file, row.names = FALSE)
+    }
+  )
