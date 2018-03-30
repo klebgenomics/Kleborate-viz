@@ -23,13 +23,14 @@ ui <- fluidPage(
   		div(img(src="logo.png",height=100,width=200)),
   		br(),
 		fileInput('file', 'Load Kleborate Output File (txt)',accept=c('text/csv', 'text/comma-separated-values,text/plain','.csv')),
-		br(),
 		h4("Data Summary"),
 		tableOutput('summaryTable'),
-		br(),
-		uiOutput("species_toggles_labelled_with_numbers")
-		#checkboxGroupInput("species_toggle", label = "Toggle species", selected = species_toggles, 
-      	#	choices = species_toggles_labels_reactive$species_toggles_labels)
+		h4("Data Subset for Analysis"),
+		uiOutput("species_toggles_labelled_with_numbers"),
+#		sliderInput(inputId = "res_score_range_slider", label = "Resistance scores:",min = 0,max = 3,step =1,
+#                value = c(0,3)),
+#		sliderInput(inputId = "vir_score_range_slider", label = "Virulence scores:",min = 0, max = 5,step =1,
+#                value = c(0,5))
     ),
   
   # main panel has a selection of tabsets to plot different analyses
@@ -38,9 +39,9 @@ ui <- fluidPage(
     tabsetPanel(
 		tabPanel("Summary",
     				br(),
-      				plotOutput("resScoreBarBySpecies", height="240px"),
+      				plotOutput("resScoreBarBySpecies", height="260px"),
       				br(),
-      				plotOutput("virScoreBarBySpecies", height="240px"),
+      				plotOutput("virScoreBarBySpecies", height="260px"),
       				br(),
       				div(style = "position:absolute;right:1em;",downloadButton(outputId = "scoreBarBySpecies_plot_download", label = "Download plots"))
     	),
@@ -100,7 +101,7 @@ server <- function(input, output, session) {
   # default: species in the KP complex
   kp_complex_spp_names <- c("Klebsiella pneumoniae", "Klebsiella variicola", "Klebsiella quasivariicola", 
                             "Klebsiella quasipneumoniae subsp. quasipneumoniae", "Klebsiella quasipneumoniae subsp. similipneumoniae")
-  kp_complex_spp_colours <- c("#875F9A","#e6b89c","#ead2ac","#9cafb7","#4281a4")
+  kp_complex_spp_colours <- c("#875F9A","#8CBDB2","#F0B663","#ED6060","#EDA483")
   names(kp_complex_spp_colours) <- kp_complex_spp_names
 
   # species toggles, labeled by number in each species
@@ -126,10 +127,14 @@ server <- function(input, output, session) {
     #filter = input$species_toggle
     filter = unlist(strsplit(input$species_toggle,"  "))[seq(1,length(unlist(strsplit(input$species_toggle,"  "))),2)]
     if ('Klebsiella quasipneumoniae' %in% filter) { filter = c(filter, grep("Klebsiella quasip",all_species,value=TRUE,fixed=TRUE)) }
-    if ('Others' %in% filter) { filter = c(filter, all_species[!all_species %in% c(filter,grep("Klebsiella quasip",all_species,value=TRUE,fixed=TRUE),species_toggles)]) }
+    if ('Others' %in% filter) { 
+    	filter = c(filter, 
+			all_species[!(all_species %in% kp_complex_spp_names)]
+    	) }
     species_filter$species_filtered_data = KleborateData()[KleborateData()$species %in% filter,]
     species_filter$species_cols = c(kp_complex_spp_colours[kp_complex_spp_names[kp_complex_spp_names %in% filter]],
-                        colorRampPalette(c("#e67d77", "#f1c280", "#f5ecd1", "#98c4ca", "#7f8288"))(length(other_species))
+#                        colorRampPalette(c("#e67d77", "#f1c280", "#f5ecd1", "#98c4ca", "#7f8288"))(length(other_species))
+						colorRampPalette(c("#000000", "#5B6894",  "#876738"))(length(other_species))
                       )
     names(species_filter$species_cols) = c(kp_complex_spp_names[kp_complex_spp_names %in% filter],
                             levels(KleborateData()$species)[! levels(KleborateData()$species) %in% kp_complex_spp_names])  
@@ -139,7 +144,7 @@ server <- function(input, output, session) {
   # Resistance score plot - for summary page
   resScoreBarBySpecies_reactive <- reactive({
 
-    ggplot(data=species_filter$species_filtered_data, aes(x = as.factor(resistance_score), fill = species)) + 
+    ggplot(data=species_filter$species_filtered_data, aes(x = resistance_score, fill = species)) + 
       geom_bar() + coord_flip() + theme(axis.text.x = element_text(colour = "black", size = 12), 
                          axis.text.y = element_text(colour = "black", size = 12), 
                          axis.title = element_text(colour = "black", size = 18), 
@@ -147,7 +152,7 @@ server <- function(input, output, session) {
                          panel.background = element_blank(), 
                          panel.border = element_blank(), 
                          axis.line = element_line(colour = "black")) + 
-      scale_x_discrete(limits=c(0:4)) +
+      scale_x_continuous(breaks=0:3) +		
       scale_y_continuous(expand=c(0,0)) + 
       scale_fill_manual(values = species_filter$species_cols) + 
       ylab("Number of isolates") + 
@@ -164,7 +169,7 @@ server <- function(input, output, session) {
   # Virulence score plot - for summary page
   virScoreBarBySpecies_reactive <- reactive({
 
-   ggplot(data=species_filter$species_filtered_data, aes(x = as.factor(virulence_score), fill = species)) + 
+   ggplot(data=species_filter$species_filtered_data, aes(x = virulence_score, fill = species)) + 
    		geom_bar() + coord_flip() + theme(axis.text.x = element_text(colour = "black", size = 12), 
    				axis.text.y = element_text(colour = "black", size = 12), 
    				axis.title = element_text(colour = "black", size = 18), 
@@ -172,7 +177,7 @@ server <- function(input, output, session) {
    				panel.background = element_blank(), 
    				panel.border = element_blank(), 
    				axis.line = element_line(colour = "black")) + 
-      	scale_x_discrete(limits=c(0:5)) +
+   		scale_x_continuous(breaks=0:5) +		
    		scale_y_continuous(expand=c(0,0)) + 
    		scale_fill_manual(values = species_filter$species_cols) +
    		ylab("Number of isolates") +
@@ -198,11 +203,8 @@ server <- function(input, output, session) {
 
   # Sequence type histogram (interactive)
 
-  # define colour schemes and text for virulence/resistance
-  virulence_score_scale_fill_manual <- scale_fill_manual(values=c("#ffffff", "#c6dbef", "#6baed6", "#2171b5", "#08519c", "#08306b"), name = "Virulence score", labels = c("0: None", "1: ybt", "2: ybt + clb", "3: iuc (indicates virulence plasmid)", "4: ybt + iuc", "5: ybt + clb + iuc"))
-  resistance_score_scale_fill_manual <- scale_fill_manual(values=c("#ffffff", "#fcbba1", "#fb6a4a", "#cb181d"), name = "Resistance score", labels = c("0: ESBL and carbapenemase -ve", "1: ESBL +ve", "2: Carbepenemase +ve", "3: Carbapenemase +ve and colisitin resistance"))
 
-SThist_reactive <- reactive({
+  SThist_reactive <- reactive({
   
     #variable_to_stack = KleborateData()[, input$variable]
     variable_to_stack = species_filter$species_filtered_data[, input$variable]
@@ -213,7 +215,7 @@ SThist_reactive <- reactive({
       name <- "Virulence score"
     }
     else if(input$variable == "resistance_score"){
-      cols <- c("#fcbba1", "#fc9272", "#fb6a4a", "#ef3b2c", "#67000d")
+      cols <- c("#fcbba1", "#fc9272", "#fb6a4a", "#BE413D")
       labels <- c("0: ESBL and carbapenemase -ve", "1: ESBL +ve", "2: Carbapenemase +ve", "3: Carbapenemase +ve and colistin resistance")
       name <- "Resistance score"
     }

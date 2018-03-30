@@ -17,3 +17,10 @@
  		dev.off()
  	}
  )
+ 
+ # position this download button somehwere in the layout
+ downloadButton(outputId = "STdist_plot_download", label = "Download the plot")
+ 
+ 
+ resScoreBarBySpecies_plot_download
+ virScoreBarBySpecies_plot_download
