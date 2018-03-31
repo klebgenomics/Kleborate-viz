@@ -70,6 +70,6 @@ Tmt	resistance_class	Trimethoprim
 Bla	resistance_class	Beta-lactamases
 Bla_Carb	resistance_class	Carbapenemases
 Bla_ESBL	resistance_class	ESBL
-Bla_ESBL_inhR	resistance_class	ESBL + inhibitors
-Bla_broad	resistance_class	Broad spectrum beta-lactamases
-Bla_broad_inhR	resistance_class	Broad spectrum beta-lactamases + inhibitors
+Bla_ESBL_inhR	resistance_class_ignore	ESBL + inhibitors
+Bla_broad	resistance_class_ignore	Broad spectrum beta-lactamases
+Bla_broad_inhR	resistance_class_ignore	Broad spectrum beta-lactamases + inhibitors

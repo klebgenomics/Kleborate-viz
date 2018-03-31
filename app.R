@@ -58,8 +58,10 @@ ui <- fluidPage(
              br(), plotlyOutput("heatmap")
         ),
     	tabPanel("Convergence by ST",
-             plotlyOutput("st_scatter"),
-             column(6, plotlyOutput("st_virulence"))
+    		br(),
+             plotlyOutput("st_scatter", height="300px"),
+             br(),
+             plotlyOutput("st_res_vir")
     	)
   	) # end tabsetPanel
   ) # end mainPanel
@@ -307,66 +309,112 @@ server <- function(input, output, session) {
     cols <- c("#ffffff", cols)
     
     # format data
-    vir_res <- table(factor(KleborateData()$resistance_score,c(0,1,2,3)),factor(KleborateData()$virulence_score,c(0,1,2,3,4,5))) # create dataframe summary of res and vir scores
-    vir_res <- as.data.frame.matrix(vir_res) # convert to matrix
-    vir_res <- vir_res[ order(-as.numeric(row.names(vir_res))),] # reorder rows - descending
-    
+#    vir_res <- table(factor(KleborateData()$resistance_score,c(0,1,2,3)),factor(KleborateData()$virulence_score,c(0,1,2,3,4,5))) # create dataframe summary of res and vir scores
+	vir_res <- table(factor(KleborateData()[row_filter$spp_exp,]$resistance_score,c(0,1,2,3)),
+			factor(KleborateData()[row_filter$spp_exp,]$virulence_score,c(0,1,2,3,4,5))) # create dataframe summary of res and vir scores
+    vir_res_heatmaply <- as.data.frame.matrix(vir_res) # convert to matrix for heatmaply
+    vir_res_heatmaply <- vir_res_heatmaply[ order(-as.numeric(row.names(vir_res_heatmaply))),] # reorder rows - descending
+    vir_res_plotly <- as.matrix(vir_res) # convert to matrix for plotly
+        
     # draw plot
-    heatmaply(vir_res, Rowv=NULL, Colv=NULL, ylab = "Resistance score", xlab = "Virulence score", fontsize_row = 12, fontsize_col = 12, subplot_margin = 3, colors = cols, margins = c(40,40), revR=TRUE, key.title = "# genomes", column_text_angle = 0)
-    
+    heatmaply(vir_res_heatmaply, Rowv=NULL, Colv=NULL, ylab = "Resistance score", xlab = "Virulence score", fontsize_row = 12, fontsize_col = 12, 
+    	subplot_margin = 3, colors = cols, margins = c(40,40), revR=TRUE, key.title = "# genomes", column_text_angle = 0,
+    	plot_method="ggplot", node_type="scatter", grid_size=20
+    	)
+
+	# heatmap with plotly
+#	plot_ly(z=~vir_res_plotly, type="heatmap", colors=colorRamp(c("white","yellow","red")), 
+#		x=c("0","1","2","3","4","5"), y=c("0","1","2","3"))
+
   })
 
   ### Convergence by ST tab
   ## Mean virulence and resistance scores
-  # Subset dataframe
-  kleborate_data.mean_vir_res <- kleborate_data %>% group_by(ST) %>% summarise(mean_vir = mean(virulence_score), mean_res = mean(resistance_score), total  = n())
+  
   # Scatter plot function, emits event data
   output$st_scatter <- renderPlotly({
+  	kleborate_data.mean_vir_res <- KleborateData()[row_filter$spp_exp,] %>% group_by(ST) %>% summarise(mean_vir = mean(virulence_score), mean_res = mean(resistance_score), total  = n())
+  	marker_function <- function(total) {
+  		if (nrow(KleborateData()[row_filter$spp_exp,])>100) { return(log(total, 2)*4) }
+  		else { return (total*10) }
+  	}
+  	
     # Create scatterplot
     p <- plot_ly(source='st_scatter') %>%
-      add_trace(data=kleborate_data.mean_vir_res, x=~mean_vir, y=~mean_res, text=~ST, type='scatter', mode='markers', marker=list(size=~log(total, 2)*4, opacity=0.5), name=' ') %>%
-      layout(title='Mean ST virulence and resistance score', showlegend = FALSE)
+      add_trace(data=kleborate_data.mean_vir_res, x=~mean_vir, y=~mean_res, text=~ST, type='scatter', mode='markers', marker=list(size=~marker_function(total), opacity=0.5), name=' ') %>%
+      layout(title='Mean virulence and resistance score by ST (click to show details)', 
+      	showlegend = FALSE, xaxis=list(title="mean virulence score"), yaxis=list(title="mean resistance score"))
     # Add new trace with coloured point if there is event data
     ed <- event_data('plotly_click', source='st_scatter')
     if(is.null(ed) == FALSE && ed$curveNumber == 0) {
       selected_st <- kleborate_data.mean_vir_res[ed$pointNumber+1, ]
-      p <- p %>% add_trace(data=selected_st, x=~mean_vir, y=~mean_res, text=~ST, type='scatter', mode='markers', marker=list(size=~log(total, 2)*4, opacity=0.5), name=' ')
+      p <- p %>% add_trace(data=selected_st, x=~mean_vir, y=~mean_res, text=~ST, type='scatter', mode='markers', marker=list(size=~marker_function(total), opacity=0.5), name=' ')
     }
-
     return(p)
   })
-
-  ## Mean observation of specific genes within an ST
-  # Subset virulence and antibiotic gene columns and group by ST
-  vir_ab_cols <- c('Yersiniabactin', 'Colibactin', 'Aerobactin', 'Salmochelin', 'AGly', 'Col', 'Fcyn', 'Flq', 'Gly', 'MLS', 'Ntmdz', 'Phe', 'Rif', 'Sul', 'Tet', 'Tmt', 'Bla', 'Bla_Carb', 'Bla_ESBL', 'Bla_ESBL_inhR', 'Bla_broad', 'Bla_broad_inhR')
-  kleborate_data.gene_vir_ab <- kleborate_data[ ,c('ST', vir_ab_cols)]
-  for(j in vir_ab_cols) {
-    kleborate_data.gene_vir_ab[ ,j] <- gsub('-', 0, kleborate_data.gene_vir_ab [,j])
-    kleborate_data.gene_vir_ab[kleborate_data.gene_vir_ab[ ,j]!=0,j] <- 1
-  }
-  kleborate_data.gene_vir_ab <- kleborate_data.gene_vir_ab %>% group_by(ST) %>% summarise(ybt = mean(as.numeric(as.character(Yersiniabactin))), clb = mean(as.numeric(as.character(Colibactin))), iuc = mean(as.numeric(as.character(Aerobactin))), iro = mean(as.numeric(as.character(Salmochelin))), Agly = mean(as.numeric(as.character(AGly))), Col = mean(as.numeric(as.character(Col))), Fcyn = mean(as.numeric(as.character(Fcyn))), Flq = mean(as.numeric(as.character(Flq))), Gly = mean(as.numeric(as.character(Gly))), MLS = mean(as.numeric(as.character(MLS))), Ntmdz = mean(as.numeric(as.character(Ntmdz))), Phe = mean(as.numeric(as.character(Phe))), Rif= mean(as.numeric(as.character(Rif))), Sul = mean(as.numeric(as.character(Sul))), Tet = mean(as.numeric(as.character(Tet))), Tmt = mean(as.numeric(as.character(Tmt))), Bla = mean(as.numeric(as.character(Bla))), Bla_Carb = mean(as.numeric(as.character(Bla_Carb))), Bla_ESBL = mean(as.numeric(as.character(Bla_ESBL))), Bla_ESBL_inhR = mean(as.numeric(as.character(Bla_ESBL_inhR))), Bla_broad = mean(as.numeric(as.character(Bla_broad))), Bla_broad_inhR = mean(as.numeric(as.character(Bla_broad_inhR))))
-
-  # Bar plot function, recieves event data
-  output$st_virulence <- renderPlotly({
-    ed <- event_data('plotly_click', source='st_scatter')
-    title_base <- 'Mean gene presence'
-    if(is.null(ed) == FALSE && ed$curveNumber == 0) {
-      selected_st <- kleborate_data.gene_vir_ab[ed$pointNumber+1, ]
-      st_name <- as.character(selected_st[ ,1])
-      st_data <- selected_st[ ,2:length(selected_st)]
-      title <- paste(title_base, '-', st_name)
-      genes <- colnames(st_data)
-      values <- as.numeric(st_data)
-      st_data <- data.frame(gene=genes, value=values)
-      plot_ly(data=st_data, x=~gene, y=~value, type='bar') %>% layout(title=title_base, yaxis=list(range=c(0, 1)))
-    } else {
-      genes <- colnames(kleborate_data.gene_vir_ab)[2:length(kleborate_data.gene_vir_ab)]
-      values <- rep(0, length(kleborate_data.gene_vir_ab)-1)
-      empty_data <- data.frame(gene=genes, value=values)
-      plot_ly(data=empty_data, x=~gene, y=~value, type='bar') %>% layout(title=title_base, yaxis=list(range=c(0, 1)))
+  
+  output$st_res_vir <- renderPlotly({
+  
+  	data_by_species <- KleborateData()[row_filter$spp_exp,]
+  	
+  	ed <- event_data('plotly_click', source='st_scatter')
+  	if(is.null(ed) == FALSE && ed$curveNumber == 0) {
+      selected_st <- levels(data_by_species$ST)[ed$pointNumber+1]
+      data_matrix <- data_by_species[data_by_species$ST %in% selected_st,]
+      st_name <- as.character(selected_st)
+      main_title = paste("Selected strains:",st_name)
     }
+    else {
+    	if (nrow(data_by_species) <= 30) {
+    		data_matrix <- data_by_species # show all
+    		main_title <- "All STs"
+    	}
+		else {
+			if (sum(data_by_species$virulence_score>=3 & data_by_species$resistance_score >=1)==0) {
+				kd <- data_by_species %>% group_by(ST) %>% summarise(mean_vir = mean(virulence_score), mean_res = mean(resistance_score), total  = n())
+				selected_st <- kd$ST[kd$mean_vir*kd$mean_res==max(kd$mean_vir*kd$mean_res)][1]
+				data_matrix <- data_by_species[data_by_species$ST %in% selected_st,]
+				st_name <- as.character(selected_st)
+				main_title = paste("Most convergent ST:",st_name)
+			}
+			else { # if there are strains with aerobactin and clinically significant resistance, report them
+				data_matrix <- data_by_species[data_by_species$virulence_score>=3 & data_by_species$resistance_score >=1,]
+				main_title <- "Convergent strains"
+			}
+		}
+    }
+    rownames(data_matrix) <- data_matrix[,1]
+      vir_data_matrix <- (data_matrix[,c(virulence_locus_columns)]!="-")*1 # convert to binary matrix
+      res_data_matrix <- (data_matrix[,c(resistance_class_columns)]!="-")*2 # convert to binary matrix
+      st_data_matrix <- as.data.frame.matrix(cbind(vir_data_matrix,res_data_matrix)) # format for heatmaply
+  
+  	# res/vir loads calculated from matrix
+#  	genefreq <- apply(st_data_matrix,2,mean)
+#  	virload <- apply(vir_data_matrix,1,mean)
+#  	resload <- apply(res_data_matrix,1,mean)
+      
+       # cluster rows if ≥3 strains
+      if(nrow(st_data_matrix)<3) {rowv=NULL}
+      else{rowv=T}
+      
+      # don't plot strain names if more than 30
+#      if(nrow(st_data_matrix)>50) {print_row_names=FALSE}
+#      else{print_row_names=TRUE}    
+
+      # draw plot with heatmaply
+	heatmaply(st_data_matrix, Rowv=rowv, Colv=NULL, xlab = "genotypes", hide_colorbar=T,
+          fontsize_row = 6, fontsize_col = 7,  revC=F,
+#          col_side_colors=as.data.frame.matrix(cbind(gene_freq=genefreq)), col_side_palette = colorRampPalette(c("white","black")),
+#          row_side_colors=as.data.frame.matrix(cbind(virload,resload)), 
+#		row_side_colors=as.data.frame.matrix(data_matrix[,c("virulence_score","resistance_score","num_resistance_classes","num_resistance_genes")]),
+#          row_side_palette = colorRampPalette(c("white","black")),
+    # 		showticklabels = c(TRUE,print_row_names),
+          colors=c("white","#2171b5","#ef3b2c"), main = main_title
+	)
+
   })
-}
+  
+} # end server
 
 
 #Load shiny app
