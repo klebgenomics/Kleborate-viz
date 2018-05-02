@@ -4,10 +4,9 @@ library(heatmaply)
 library(dplyr)
 library(reshape2)
 library(plotly)
-library(vegan)
 
 #Input data
-kleborate_data <- read.csv("kleborate_output.txt",sep="\t")
+kleborate_data <- read.csv("kleborate_viz_test_data_mixedSTs.txt",sep="\t")
 
 column_decoder <- read.csv("column_decoder.txt",sep="\t")
 resistance_class_columns <- as.character(column_decoder$column_name[column_decoder$type =="resistance_class"])
@@ -38,7 +37,7 @@ ui <- fluidPage(
   mainPanel(
     # Tab layout
     tabsetPanel(
-		tabPanel("Summary by species",
+		tabPanel("Summary",
     				br(),
       				plotOutput("resScoreBarBySpecies", height="260px"),
       				br(),
@@ -46,30 +45,23 @@ ui <- fluidPage(
       				br(),
       				div(style = "position:absolute;right:1em;",downloadButton(outputId = "scoreBarBySpecies_plot_download", label = "Download plots"))
     	),
-    	tabPanel("Genotypes by ST",
-             plotOutput("SThist", height="300px"),
+    	tabPanel("ST distribution",
+             plotOutput("SThist"),
              column(6,selectInput("variable", label="Colour bars by:",
                                 c("virulence_score", virulence_locus_columns, "resistance_score", resistance_class_columns)),
                                 downloadButton(outputId = "STdist_plot_download", label = "Download the plot"),
                                 downloadButton(outputId = "STdist_data_download", label = "Download the data")
          	 ),
-             column(6,wellPanel(uiOutput("numBars"))),
-             column(12,
-             	h4("Resistance vs virulence across all strains (click to select subset)"),
-             	plotlyOutput("heatmap", height="200px")
-             )
+             column(6,wellPanel(uiOutput("numBars")))
+        ),
+    	tabPanel("Convergence heatmap", 
+             br(), plotlyOutput("heatmap")
         ),
     	tabPanel("Convergence by ST",
     		br(),
              plotlyOutput("st_scatter", height="300px"),
              br(),
              plotlyOutput("st_res_vir")
-    	),
-    	tabPanel("K vs O diversity",
-    		br(),
-             plotlyOutput("k_vs_o_plotlyBubble", height="300px"),
-             br(),
-             plotlyOutput("k_o_barplot_selected", height="300px")
     	)
   	) # end tabsetPanel
   ) # end mainPanel
@@ -131,7 +123,7 @@ server <- function(input, output, session) {
   })
 
   # reactive values for species list (and species colours), and scores range
-  row_filter = reactiveValues(species_list=kp_complex_spp_names, species_cols = kp_complex_spp_colours, resScore_exp=NA, virScore_exp=NA, spp_exp=NA, selected_st=NA)
+  row_filter = reactiveValues(species_list=kp_complex_spp_names, species_cols = kp_complex_spp_colours, resScore_exp=NA, virScore_exp=NA, spp_exp=NA, selected_st_name=NA)
 
 	## NOTE to get the current data file subset to these rows use this:
 	## 	 KleborateData()[row_filter$spp_exp & row_filter$resScore_exp & row_filter$virScore_exp,]
@@ -240,14 +232,14 @@ server <- function(input, output, session) {
       names(cols) <- 0:5
       labels <- c("0: None", "1: ybt", "2: ybt + clb", "3: iuc (indicates virulence plasmid)", "4: ybt + iuc", "5: ybt + clb + iuc")
       names(labels) <- 0:5
-      name <- "Virulence score by ST (current subset)"
+      name <- "Virulence score"
     }
     else if(input$variable == "resistance_score"){
       cols <- c("#fcbba1", "#fc9272", "#fb6a4a", "#BE413D")
       names(cols) <- 0:3
       labels <- c("0: ESBL and carbapenemase -ve", "1: ESBL +ve", "2: Carbapenemase +ve", "3: Carbapenemase +ve and colistin resistance")
       names(labels) <- 0:3
-      name <- "Resistance score by ST (current subset)"
+      name <- "Resistance score"
     }
 
 	# individual genes
@@ -259,7 +251,7 @@ server <- function(input, output, session) {
       }
       else { cols <- c("grey", "#ef3b2c") } # red for resistance variables
       labels <- c("absent", "present")
-      name <- paste(as.character(column_decoder$display.name[column_decoder$column_name == input$variable]), " by ST (current subset)",sep="")
+      name <- as.character(column_decoder$display.name[column_decoder$column_name == input$variable])
  	}
 
     ggplot(data=KleborateData()[row_filter$spp_exp & row_filter$resScore_exp & row_filter$virScore_exp,], 
@@ -309,7 +301,7 @@ server <- function(input, output, session) {
     }
  )
 
-  # Heat map (interactive)
+  #Heat map (interactive)
   output$heatmap <- renderPlotly({
     # create colour palette
     cols <- colorRampPalette(c("#f5ecd1", "#f1c280", "#e67d77"))(100)
@@ -321,22 +313,19 @@ server <- function(input, output, session) {
 			factor(KleborateData()[row_filter$spp_exp,]$virulence_score,c(0,1,2,3,4,5))) # create dataframe summary of res and vir scores
     vir_res_heatmaply <- as.data.frame.matrix(vir_res) # convert to matrix for heatmaply
     vir_res_heatmaply <- vir_res_heatmaply[ order(-as.numeric(row.names(vir_res_heatmaply))),] # reorder rows - descending
-    NumStrains <- as.matrix(vir_res) # convert to matrix for plotly
+    vir_res_plotly <- as.matrix(vir_res) # convert to matrix for plotly
         
     # draw plot
-#    heatmaply(vir_res_heatmaply, Rowv=NULL, Colv=NULL, ylab = "Resistance score", xlab = #"Virulence score", fontsize_row = 12, fontsize_col = 12, 
-#    	subplot_margin = 3, colors = cols, margins = c(40,40), revR=TRUE, key.title = "# #genomes", column_text_angle = 0,
-#    	plot_method="ggplot", node_type="scatter", grid_size=20
-#    	)
+    heatmaply(vir_res_heatmaply, Rowv=NULL, Colv=NULL, ylab = "Resistance score", xlab = "Virulence score", fontsize_row = 12, fontsize_col = 12, 
+    	subplot_margin = 3, colors = cols, margins = c(40,40), revR=TRUE, key.title = "# genomes", column_text_angle = 0,
+    	plot_method="ggplot", node_type="scatter", grid_size=20
+    	)
 
 	# heatmap with plotly
-	plot_ly(z=~NumStrains, type="heatmap", colors=cols,
-		x=c("None", "ybt\n(ICEKp)", "ybt+clb\n(ICEKp)", "iuc\n(VP)","ybt (ICEKp)\n+iuc (VP)", "ybt+clb (ICEKp)\n+iuc (VP)"), y=c("S","ESBL","Carb","Col"),
-		xgap=5, ygap=5, showlegend=F
-	)
+#	plot_ly(z=~vir_res_plotly, type="heatmap", colors=colorRamp(c("white","yellow","red")), 
+#		x=c("0","1","2","3","4","5"), y=c("0","1","2","3"))
 
   })
-  
 
   ### Convergence by ST tab
   ## Mean virulence and resistance scores
@@ -356,15 +345,15 @@ server <- function(input, output, session) {
       add_trace(data=kleborate_data.mean_vir_res, x=~mean_vir, y=~mean_res, text=~ST, type='scatter', mode='markers', marker=list(size=~marker_function(total), opacity=0.5), name=' ') %>%
       layout(title='Mean virulence and resistance score by ST (click to show details)', 
       	showlegend = FALSE, xaxis=list(title="mean virulence score"), yaxis=list(title="mean resistance score"))
-      	
     # Add new trace with coloured point if there is event data
     ed <- event_data('plotly_click', source='st_scatter')
     if(is.null(ed) == FALSE && ed$curveNumber == 0) {
-      selected_st <- kleborate_data.mean_vir_res[ed$pointNumber+1, ]
-      p <- p %>% add_trace(data=selected_st, x=~mean_vir, y=~mean_res, text=~ST, type='scatter', mode='markers', marker=list(size=~marker_function(total), opacity=0.5), name=' ')
+      row_filter$selected_st_name <- as.character(kleborate_data.mean_vir_res$ST[ed$pointNumber+1])
+      selected_st_data <- kleborate_data.mean_vir_res[kleborate_data.mean_vir_res$ST==row_filter$selected_st_name, ] # data to plot
+      p <- p %>% add_trace(data=selected_st_data, x=~mean_vir, y=~mean_res, text=~ST, type='scatter', mode='markers', marker=list(size=~marker_function(total), opacity=0.5), name=' ')
     }
     return(p)
-  }) # end renderPlotly()
+  })
   
   output$st_res_vir <- renderPlotly({
   
@@ -372,9 +361,8 @@ server <- function(input, output, session) {
   	
   	ed <- event_data('plotly_click', source='st_scatter')
   	if(is.null(ed) == FALSE && ed$curveNumber == 0) {
-      selected_st <- levels(as.factor(as.character(data_by_species$ST)))[ed$pointNumber+1]
-      data_matrix <- data_by_species[data_by_species$ST %in% selected_st,]
-      st_name <- as.character(selected_st)
+      data_matrix <- data_by_species[data_by_species$ST == row_filter$selected_st_name,]
+      st_name <- row_filter$selected_st_name
       main_title = paste("Selected strains:",st_name)
     }
     else {
@@ -385,10 +373,10 @@ server <- function(input, output, session) {
 		else {
 			if (sum(data_by_species$virulence_score>=3 & data_by_species$resistance_score >=1)==0) {
 				kd <- data_by_species %>% group_by(ST) %>% summarise(mean_vir = mean(virulence_score), mean_res = mean(resistance_score), total  = n())
-				selected_st <- kd$ST[kd$mean_vir*kd$mean_res==max(kd$mean_vir*kd$mean_res)][1]
-				data_matrix <- data_by_species[data_by_species$ST %in% selected_st,]
-				st_name <- as.character(selected_st)
-				main_title = paste("Most convergent ST:",st_name)
+				selected_st_names <- kd$ST[kd$mean_vir*kd$mean_res==max(kd$mean_vir*kd$mean_res)][1]
+				data_matrix <- data_by_species[data_by_species$ST %in% selected_st_names,]
+				#st_name <- as.character(selected_st_names)
+				main_title = paste("Most convergent ST:",as.character(selected_st_names))
 			}
 			else { # if there are strains with aerobactin and clinically significant resistance, report them
 				data_matrix <- data_by_species[data_by_species$virulence_score>=3 & data_by_species$resistance_score >=1,]
@@ -426,60 +414,6 @@ server <- function(input, output, session) {
 	)
 
   })
-  
-  
-	# K vs O scatter plot by ST, emits event data
-	# TO DO: carry over the species & res selections for these plots
-  output$k_vs_o_plotlyBubble <- renderPlotly({
-  
-	  # generate dataframe with simpson diversity and total number of genomes per ST
-	  st_vs_k <- table(KleborateData()[row_filter$spp_exp,]$ST,KleborateData()[row_filter$spp_exp,]$K_locus)
-	  st_vs_o <- table(KleborateData()[row_filter$spp_exp,]$ST,KleborateData()[row_filter$spp_exp,]$O_locus)
-	  div_k <- as.data.frame(diversity(st_vs_k, index = "simpson"))
-	  div_o <- as.data.frame(diversity(st_vs_o, index = "simpson"))
-	  div_combined <- merge(div_k, div_o, by = 0)
-	  colnames(div_combined) <- c("ST", "kdiv", "odiv")
-	  div_combined$keff <- 1/(1-div_combined$kdiv)
-	  div_combined$oeff <- 1/(1-div_combined$odiv)
-	  div_combined$total <- rowSums(st_vs_k)
-  
-  
-      # Create scatterplot
-	# TO DO: carry over the species & res selections for these plots
-    k_vs_o <- plot_ly(source='k_vs_o_plotlyBubble') %>%
-      add_trace(data=div_combined, x = ~div_combined$keff, y = ~div_combined$oeff, size = ~div_combined$total*2, text = ~paste("ST: ", div_combined$ST)) %>%
-      layout(title='K and O diversity by ST (click to show details)',xaxis = list(title = "K locus diversity"), yaxis = list(title = "O locus diversity"))
-    
-  return(k_vs_o)
-  })
-  
-
-  # plot K locus heatmap for selected data
-  output$k_o_barplot_selected <- renderPlotly({
-  
-  	selected_st <- "ST17" # hard code an example for now, could change to most common ST
-  
-  ed <- event_data('plotly_click', source='k_vs_o_plotlyBubble')
-  	if(is.null(ed) == FALSE && ed$curveNumber == 0) {
-      selected_st <- levels(as.factor(as.character(KleborateData()$ST)))[ed$pointNumber+1]
-      
-    }
-    
-    data_matrix <- KleborateData()[KleborateData()$ST == selected_st,]
-    st_name <- paste(as.character(selected_st))
-    main_title = paste("Selected strains:",st_name)
-    
-    # K vs O heatmap
-    k_vs_o <- table(data_matrix$K_locus,data_matrix$O_locus)
-    k_vs_o <- as.data.frame.matrix( k_vs_o[rowSums(k_vs_o)>0, colSums(k_vs_o)>0] )
-      
-    # draw plot with heatmaply
-	heatmaply(k_vs_o, main = main_title, fontsize_row = 7, fontsize_col = 7, 
-		colors = c("white",colorRampPalette(colors = c("yellow", "darkred"))(max(k_vs_o)))
-	)
-
-  })
-  
   
 } # end server
 

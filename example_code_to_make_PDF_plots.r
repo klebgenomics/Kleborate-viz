@@ -29,11 +29,11 @@
  ### to download data table
  
  # in ui:
- downloadButton("downloadData", "Download")
+ downloadButton("STdist_data_download", "Download")
  
  # in server:
  
-   output$downloadData <- downloadHandler(
+   output$STdist_data_download <- downloadHandler(
     filename = function() {
       paste(input$dataset, ".csv", sep = "")
     },
