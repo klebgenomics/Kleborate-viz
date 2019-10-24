@@ -8,4 +8,4 @@ Required R packages:
 - ggplot2
 - reshape2
 - plotly
-- deplyr
+- dplyr
