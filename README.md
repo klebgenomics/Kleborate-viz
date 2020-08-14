@@ -19,11 +19,15 @@ KleborateViz requires the following packages (and their dependencies) to be inst
 
 ## CRAN
 
+```
+
 install.packages('shiny')
 install.packages('heatmaply')
 install.packages('ggplot2')
 install.packages('plotly')
 install.packages('dplyr')
+
+```
 
 ## Table of Contents
 
