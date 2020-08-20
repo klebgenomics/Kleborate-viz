@@ -4,16 +4,20 @@ library(heatmaply)
 library(dplyr)
 library(reshape2)
 library(plotly)
-
+library(vegan)
+library(ComplexHeatmap)
+library(readxl)
+library(pheatmap)
+library(ggrepel)
 
 #Input data
-kleborate_data <- read.csv("kleborate_viz_test_data_mixedSTs.txt",sep="\t")
+kleborate_data <- read.csv("~/data/kleborate_viz_test_data_mixedSTs.txt",sep="\t")
 
 # Making toggle list
 all_species = levels(kleborate_data$species)
 species_toggles = c("Klebsiella pneumoniae","Klebsiella quasipneumoniae","Klebsiella variicola","Klebsiella quasivariicola")
 
-column_decoder <- read.csv("column_decoder.txt",sep="\t")
+column_decoder <- read.csv("~/data/column_decoder.txt",sep="\t")
 resistance_class_columns <- as.character(column_decoder$column_name[column_decoder$type =="resistance_class"])
 virulence_locus_columns <- as.character(column_decoder$column_name[column_decoder$type =="virulence_locus"])
 
@@ -21,14 +25,14 @@ virulence_locus_columns <- as.character(column_decoder$column_name[column_decode
 ui <- fluidPage(
 	
   # App title
-  #titlePanel(title=div(img(src="logo.png",height=100,width=200),align="center"), windowTitle='Kleborate'),
+  #titlePanel(title=div(img(src="~/images/logo.png",height=100,width=200),align="center"), windowTitle='Kleborate'),
 
   # common side bar to all plots
   sidebarLayout(
   
   # side bar is where we load data, show summary, and choose species
   	sidebarPanel(
-  		div(img(src="logo.png",height=100,width=200)),
+  		div(img(src="~/images/logo.png",height=100,width=200)),
   		br(),
 		fileInput('file', 'Load Kleborate Output File (txt)',accept=c('text/csv', 'text/comma-separated-values,text/plain','.csv')),
 		br(),
@@ -98,6 +102,138 @@ server <- function(input, output) {
     return(sum_table)
   })   
 
+  # F1
+  ## NOTE: 
+  ## year_vir_res <- read.csv("/data/mean_vir_res_by_year_jun2020.csv")
+  ## p1 <- ggplot(year_vir_res, aes(x=year)) + geom_bar(aes(weight =year_vir_res$virulence_score)) + 
+  ## geom_line(aes(y=year_vir_res$Yersiniabactin, color = "red")) + geom_line(aes(y=year_vir_res$Colibactin, color = "blue")) 
+  ## + geom_line(aes(y=year_vir_res$Aerobactin, color = "grey")) + geom_line(aes(y=year_vir_res$Salmochelin, color = "white")) 
+  ## + geom_line(aes(y=year_vir_res$RmpADC, color = "black")) + geom_line(aes(y=year_vir_res$rmpA2, color = "orange")) + theme_bw()
+  ## p2 <- ggplot(year_vir_res, aes(x=year)) + geom_bar(aes(weight =year_vir_res$resistance_score)) + geom_line(aes(y=year_vir_res$Col, color = "red")) 
+  ## + geom_line(aes(y=year_vir_res$Bla_ESBL, color = "black")) + geom_line(aes(y=year_vir_res$Bla_Carb, color = "grey")) + theme_bw()
+  ## p3 <- ggplot(year_vir_res, aes(x=year)) + geom_line(aes(y=year_vir_res$num_resistance_classes, color = "red")) 
+  ## + geom_line(aes(y=year_vir_res$num_resistance_genes, color = "black")) + theme_bw()
+  ##
+  ##
+  # F2
+  ## NOTE: 
+  ## sample_vir_res <- read.csv("/data/mean_vir_res_scores_sampletype_jun2020.csv")
+  ##
+  ## ggplot(sample_vir_res, aes(x=sample_vir_res$mean_vir, y=sample_vir_res$mean_res)) 
+  ## + geom_point(aes(size=sample_vir_res$number.of.genomes)) + geom_text_repel(label=sample_vir_res$sample)
+  ## ST_vir_res <- read.csv("/data/mean_vir_res_scores_ST_jun2020.csv")
+  ## ggplot(ST_vir_res, aes(x=ST_vir_res$mean_vir, y=ST_vir_res$mean_res)) + geom_point(aes(size=ST_vir_res$number.of.genomes)) 
+  ## + geom_text_repel(label=ST_vir_res$ST)
+  ##
+  # F3
+  ##
+  ## NOTE: 
+  ## ST_data <- read.csv("/data/Kleborate_ST_vir_res_heatmap_toplot_Dec2019.csv")
+  ## row.names(ST_data) <- ST_data$X
+  ## ST_data <- ST_data [,2:25]
+  ## ST_heatmap <- pheatmap(ST_data)
+  ## ST_heatmap <- pheatmap(ST_data, cluster_cols = FALSE)
+  ## ST_heatmap <- pheatmap(ST_data, cluster_cols = FALSE, cluster_rows = FALSE)
+  ## ST_heatmap <- pheatmap(ST_data, cluster_cols = FALSE, cluster_rows = FALSE, cellheight = 7.5, 
+  ## color = colorRampPalette(c("#ffffff", "#aaaaaa", "#2d2c2c"))(10))
+  ## ST_heatmap <- pheatmap(ST_data, cluster_cols = FALSE, cluster_rows = FALSE, cellheight = 7.5, 
+  ## color = colorRampPalette(c("#ffffff", "#aaaaaa", "#2d2c2c"))(10), angle_col = 45)
+  ## bar <- read.csv("/data/Kleborate_ST_meta_barchart_toplot_Dec2019_v2.csv")
+  ## ggplot(bar, aes(fill=bar$category, y=value, x=bar$ST)) + geom_bar(position = "fill", stat = "identity") + coord_flip() + theme_bw() + 
+  ## scale_x_discrete(limits=c("ST258","ST11","ST15","ST512","ST307","ST101","ST16","ST147","ST23","ST14","ST37","ST45","ST17","ST231","ST340","ST35",
+  ## "ST29","ST48", "ST437","ST20","ST405","ST323","ST34","ST86","ST268","ST25","ST395","ST152","ST36","ST3128","ST874","ST13","ST336","ST39","ST392",
+  ## "ST111","ST65","ST661"))
+  ##
+  # F4
+  ## NOTE: 
+  ##
+  # F5
+  ## NOTE: 
+  ##
+  #  F6
+  ## NOTE: 
+  ## Eu_KO <- read.csv("/data/EuSCAPE_K_O_analysis.csv")
+  ## write.table(prop.table(table(Eu_KO$K_locus, Eu_KO$region), 2), file = "/data/K_region_prevalence_by_region_EuSCAPE_290719.csv")
+  ## cumulative_K_data <- read.csv("/data/K_region_prevalence_by_region_EuSCAPE_290719_cumulativeplot_v2.csv")
+  ## ggplot() + geom_step(data = cumulative_K_data, mapping = aes(x=no_K_loci, y=cf_asia_w))
+  ## ggplot() + geom_step(data = cumulative_K_data, mapping = aes(x=no_K_loci, y=cf_asia_w), color='#a9d7ed')
+  ## ggplot() + geom_step(data = cumulative_K_data, mapping = aes(x=no_K_loci, y=cf_asia_w), color='#a9d7ed') + 
+  ## geom_step(data = cumulative_K_data, mapping = aes(x=no_K_loci, y=cf_E_Europe), color='#fa9fb5') + geom_step(data = cumulative_K_data, mapping = aes(x=no_K_loci,
+  ## y=cf_N_Europe), color='#f768a1') + geom_step(data = cumulative_K_data, mapping = aes(x=no_K_loci, y=cf_S_Europe), color='#962e99') + 
+  ## geom_step(data = cumulative_K_data, mapping = aes(x=no_K_loci, y=cf_W_Europe), color = '#49006a') + theme_bw()
+  ## write.table(prop.table(table(Eu_KO$O_locus, Eu_KO$region), 2), file = "/data/O_locus_prevalence_by_region_EuSCAPE_290719.csv")
+  ## write.table(prop.table(table(Eu_KO$O_type, Eu_KO$region), 2), file = "/data/O_types_prevalence_by_region_EuSCAPE_290719.csv")
+  ## cumulative_O_data <- read.csv("/data/O_types_prevalence_by_region_EuSCAPE_290719_cumulativeplot.csv")
+  ## O_cumulative <- ggplot() + geom_step(data = cumulative_O_data, mapping = aes(x=no_O_type, y=cf_asia_w), color='#a9d7ed') + 
+  ## geom_step(data = cumulative_O_data, mapping = aes(x=no_O_type, y=cf_E_Europe), color='#fa9fb5') + geom_step(data = cumulative_O_data, 
+  ## mapping = aes(x=no_O_type, y=cf_N_Europe), color='#f768a1') + geom_step(data = cumulative_O_data, mapping = aes(x=no_O_type, y=cf_S_Europe), 
+  ## color='#962e99') + geom_step(data = cumulative_O_data, mapping = aes(x=no_O_type, y=cf_W_Europe), color = '#49006a') + theme_bw()
+  ## grid.arrange(K_cumulative, O_cumulative, nrow = 1)
+  ##
+  # F7A
+  ## NOTE:
+  ## data <- read.csv("/data/EuSCAPE-Kleborate-AMR_comparison_260819_forR.csv")
+  ## amr_df <- data.frame(data)
+  ## carb_summary <- as.character(amr_df$Bla_carb!="-")
+  ## carb_summary <- replace(carb_summary,carb_summary=="TRUE","Carbapenemase")
+  ## carb_summary <- replace(carb_summary,carb_summary=="FALSE","none")
+  ## amr_df$carb_summary <- factor(carb_summary, levels=c("none","Carbapenemase"))
+  ## ggplot(amr_df, aes(y=Meropenem_MIC,x= carb_summary)) + geom_boxplot() + geom_jitter() + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + 
+  ## geom_hline(yintercept=8, linetype="dashed", color = "red")+theme_classic() + ylab("MIC Imipenem") + xlab("Reported carbapenemase") + 
+  ## scale_y_continuous(trans = "log2")
+  ## ggplot(amr_df, aes(y=Meropenem_MIC,x= carb_summary)) + geom_boxplot() + geom_jitter(aes(colour=ST_to_plot)) + 
+  ## theme(axis.text.x = element_text(angle = 90, hjust = 1)) + geom_hline(yintercept=8, linetype="dashed", color = "red") + 
+  ## theme_classic() + ylab("MIC Imipenem") + xlab("Reported carbapenemase") + scale_y_continuous(trans = "log2")
+  ## carb_Omp_summary <- as.character(amr_df$Bla_carb)
+  ## carb_Omp_summary <- replace(carb_Omp_summary,amr_df$Bla_carb=="-" & amr_df$Omp=="-","none")
+  ## carb_Omp_summary <- replace(carb_Omp_summary,amr_df$Bla_carb!="-" & amr_df$Omp=="-","Carbapenemase")
+  ## carb_Omp_summary <- replace(carb_Omp_summary,amr_df$Bla_carb!="-" & amr_df$Omp!="-","Carbapenemase+Omp")
+  ## carb_Omp_summary <- replace(carb_Omp_summary,amr_df$Bla_carb=="-" & amr_df$Omp!="-","Omp")
+  ## amr_df$carb_Omp_summary <- factor(carb_Omp_summary, levels=c("none","Omp","Carbapenemase","Carbapenemase+Omp"))
+  ## ggplot(amr_df, aes(y=Meropenem_MIC,x= carb_Omp_summary)) + geom_boxplot() + geom_jitter() + 
+  ## theme(axis.text.x = element_text(angle = 90, hjust = 1)) + scale_y_continuous(trans="log2") + 
+  ## geom_hline(yintercept=8, linetype="dashed", color = "red") + theme_classic() + ylab("MIC Meropenem") + xlab("Reported carbapenemase")
+  ## ggplot(amr_df, aes(y=Meropenem_MIC,x= carb_Omp_summary)) + geom_boxplot() + geom_jitter(aes(colour=ST_to_plot)) + 
+  ## theme(axis.text.x = element_text(angle = 90, hjust = 1)) + scale_y_continuous(trans="log2") + geom_hline(yintercept=8, linetype="dashed", 
+  ## color = "red")+theme_classic() + ylab("MIC Meropenem") + xlab("Reported carbapenemase")
+  ## amr_df <- data.frame(data)
+  ## carb_summary <- as.character(amr_df$Bla_carb!="-")
+  ## carb_summary <- replace(carb_summary,carb_summary=="TRUE","Carbapenemase")
+  ## carb_summary <- replace(carb_summary,carb_summary=="FALSE","none")
+  ## amr_df$carb_summary <- factor(carb_summary, levels=c("none","Carbapenemase"))
+  ## ggplot(amr_df, aes(y=Meropenem_MIC,x= carb_summary)) + geom_boxplot() + geom_jitter() + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + 
+  ## geom_hline(yintercept=8, linetype="dashed", color = "red")+theme_classic() + ylab("MIC Meropenem") + xlab("Reported carbapenemase") + 
+  ## scale_y_continuous(trans = "log2")
+  ## ggplot(amr_df, aes(y=Meropenem_MIC,x= carb_summary)) + geom_boxplot() + geom_jitter(aes(colour=CG_to_plot)) + 
+  ## theme(axis.text.x = element_text(angle = 90, hjust = 1))+ geom_hline(yintercept=8, linetype="dashed", color = "red")+theme_classic() + 
+  ## ylab("MIC Meropenem") + xlab("Reported carbapenemase") + scale_y_continuous(trans = "log2")
+  ## carb_Omp_summary <- as.character(amr_df$Bla_carb)
+  ## carb_Omp_summary <- replace(carb_Omp_summary,amr_df$Bla_carb=="-" & amr_df$Omp=="-","none")
+  ## carb_Omp_summary <- replace(carb_Omp_summary,amr_df$Bla_carb!="-" & amr_df$Omp=="-","Carbapenemase")
+  ## carb_Omp_summary <- replace(carb_Omp_summary,amr_df$Bla_carb!="-" & amr_df$Omp!="-","Carbapenemase+Omp")
+  ## carb_Omp_summary <- replace(carb_Omp_summary,amr_df$Bla_carb=="-" & amr_df$Omp!="-","Omp")
+  ## amr_df$carb_Omp_summary <- factor(carb_Omp_summary, levels=c("none","Omp","Carbapenemase","Carbapenemase+Omp"))
+  ## ggplot(amr_df, aes(y=Meropenem_MIC,x= carb_Omp_summary)) + geom_boxplot() + geom_jitter(aes(colour=CG_to_plot)) + 
+  ## theme(axis.text.x = element_text(angle = 90, hjust = 1))+ scale_y_continuous(trans="log2")+ geom_hline(yintercept=8, linetype="dashed", color = "red") + 
+  ## theme_classic() + ylab("MIC Meropenem") + xlab("Reported carbapenemase")
+  ##
+  ##
+  # F7B
+  ## NOTE:
+  ## data <- read.csv("/data/EuSCAPE-Kleborate-AMR_comparison_260819_forR.csv")
+  ## amr_df <- data.frame(data)
+  ##
+  ## ggplot(amr_df, aes(y=Meropenem_MIC, x=Bla_carb_simplified)) + geom_boxplot() + geom_jitter(aes(colour=Omp_simplified))
+  ## + scale_y_continuous(trans="log2") + scale_color_manual(values=c("#000000", "#E69F00", "#CC0011", "#D16E66", "#D16E66", "#CC0011",
+  ## "#D16E66"))+theme_classic()
+  ##
+  
+  # Species filter - using reactive values
+  ## NOTE: this is creating a new object row_filter$row_filtered_data which is the current data table subsetted to the species set
+  ## This is not ideal as it is duplicating the data object in memory, would probably be better to call
+  ## KleborateData()[KleborateData()$species %in% row_filter$species_list,] in all plots, 
+  ## not sure if we can create an easy container for this
+  
   # Species filter - using reactive values
   kp_complex_spp_names <- c("Klebsiella pneumoniae", "Klebsiella variicola", "Klebsiella quasivariicola", 
                             "Klebsiella quasipneumoniae subsp. quasipneumoniae", "Klebsiella quasipneumoniae subsp. similipneumoniae")
@@ -310,5 +446,3 @@ SThist_reactive <- reactive({
 
 #Load shiny app
 shinyApp(ui = ui, server = server)
-
-
