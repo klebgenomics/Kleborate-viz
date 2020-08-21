@@ -51,7 +51,7 @@ sidebarLayout(
                      plotOutput("resScoreBarBySpecies", height="100px"),
                      br(),
                      plotOutput("virScoreBarBySpecies", height="200px"),
-                     br(),br(),br(),br(),br(),br(),br(),br(),br(),br(),br(),br(),br(),br(),
+                     br(),br(),br(),br(),br(),br(),br(),br(),br(),br(),br(),br(),br(),
                      div(style = "position:absolute;left:2em;",downloadButton(outputId = "scoreBarBySpecies_plot_download", label = "Download plot"))
             ),
             tabPanel("ST distribution",
@@ -61,18 +61,18 @@ sidebarLayout(
                    #c("virulence_score", "virulence_locus_columns", "resistance_score", "resistance_class_columns")),
                    br(),br(),br(),br(),
                    div(style = "position:absolute;left:2em;",downloadButton(outputId = "STdist_plot_download", label = "Download plot")),
-                   br(),br(),br(),br(),
+                   br(),br(),br(),
                    column(12,wellPanel(uiOutput("numBars")))
             ),
             tabPanel("Convergence heatmap", 
                    br(),
                    plotlyOutput("heatmap"),
-                   br(),br(),br(),br(),br(),br(),br(),br(),br(),br(),
+                   br(),br(),br(),br(),br(),br(),br(),br(),br(),
                    div(style = "position:absolute;left:2em;",downloadButton(outputId = "CovergenceHeatmap_plot_download", label = "Download plot"))
             ),
             tabPanel("Convergence by ST",
                    plotlyOutput("st_scatter"),
-                   br(),br(),br(),br(),br(),br(),br(),br(),br(),br(),br(),br(),
+                   br(),br(),br(),br(),br(),br(),br(),br(),br(),br(),
                    div(style = "position:absolute;left:2em;",downloadButton(outputId = "ConvergenceST_plot_download", label = "Download plot")),
                    br(),
                    column(6, plotlyOutput("st_virulence"))
