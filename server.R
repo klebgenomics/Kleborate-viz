@@ -21,6 +21,17 @@ library(RColorBrewer)
 #                                            SHINY SERVER START                                                 #
 ######################## *******************************  ************************************** ################ 
 
+column_decoder <- read.csv("column_decoder.txt",sep="\t")
+species_toggles = c("Klebsiella pneumoniae","Klebsiella quasipneumoniae","Klebsiella variicola","Klebsiella quasivariicola")
+
+#files to change - metadata or function
+year_vir_res <- read.csv("mean_vir_res_by_year_jun2020.csv")
+sample_vir_res <- read.csv("mean_vir_res_scores_sampletype_jun2020.csv")
+ST_data <- read.csv("Kleborate_ST_vir_res_heatmap_toplot_Dec2019.csv")
+bar <- read.csv("Kleborate_ST_meta_barchart_toplot_Dec2019_v2.csv")
+Eu_KO <- read.csv("EuSCAPE_K_O_analysis.csv")
+f7 <- read.csv("EuSCAPE-Kleborate-AMR_comparison_260819_forR.csv")
+
 server <- function(input, output){
   
   #kleborate_data <- reactive({
@@ -33,28 +44,13 @@ server <- function(input, output){
   KleborateData <- reactive({
     inFile <- input$file
     if (is.null(inFile)) return(kleborate_data)
-    data <- read.csv(inFile$datapath,sep="\t")
+    data <- read.csv(inFile$datapath, 1)
     return(data)
   })
-  
-  column_decoder <- read.csv("column_decoder.txt",sep="\t")
+
   resistance_class_columns <- as.character(column_decoder$column_name[column_decoder$type =="resistance_class"])
   virulence_locus_columns <- as.character(column_decoder$column_name[column_decoder$type =="virulence_locus"])
   all_species = levels(kleborate_data$species)
-  species_toggles = c("Klebsiella pneumoniae","Klebsiella quasipneumoniae","Klebsiella variicola","Klebsiella quasivariicola")
-  
-  #files to change - metadata or function
-  year_vir_res <- read.csv("mean_vir_res_by_year_jun2020.csv")
-  sample_vir_res <- read.csv("mean_vir_res_scores_sampletype_jun2020.csv")
-  ST_data <- read.csv("Kleborate_ST_vir_res_heatmap_toplot_Dec2019.csv")
-  bar <- read.csv("Kleborate_ST_meta_barchart_toplot_Dec2019_v2.csv")
-  Eu_KO <- read.csv("EuSCAPE_K_O_analysis.csv")
-  write.table(prop.table(table(Eu_KO$K_locus, Eu_KO$region), 2), file = "K_region_prevalence_by_region_EuSCAPE_290719.csv")
-  write.table(prop.table(table(Eu_KO$O_locus, Eu_KO$region), 2), file = "O_locus_prevalence_by_region_EuSCAPE_290719.csv")
-  write.table(prop.table(table(Eu_KO$O_type, Eu_KO$region), 2), file = "O_types_prevalence_by_region_EuSCAPE_290719.csv")
-  cumulative_K_data <- read.csv("K_region_prevalence_by_region_EuSCAPE_290719_cumulativeplot_v2.csv")
-  cumulative_O_data <- read.csv("O_types_prevalence_by_region_EuSCAPE_290719_cumulativeplot.csv")
-  f7 <- read.csv("EuSCAPE-Kleborate-AMR_comparison_260819_forR.csv")
   
   output$numBars <- renderUI({
     sliderInput(inputId = "bars", label = "Number of bars:",min = 1,max = nlevels(KleborateData()$ST),step =1,
@@ -116,6 +112,11 @@ server <- function(input, output){
   # F4, F5, F6 without example, revisit after
   
   f6 <- reactive({
+    write.table(prop.table(table(Eu_KO$K_locus, Eu_KO$region), 2), file = "K_region_prevalence_by_region_EuSCAPE_290719.csv")
+    write.table(prop.table(table(Eu_KO$O_locus, Eu_KO$region), 2), file = "O_locus_prevalence_by_region_EuSCAPE_290719.csv")
+    write.table(prop.table(table(Eu_KO$O_type, Eu_KO$region), 2), file = "O_types_prevalence_by_region_EuSCAPE_290719.csv")
+    cumulative_K_data <- read.csv("K_region_prevalence_by_region_EuSCAPE_290719_cumulativeplot.csv")
+    cumulative_O_data <- read.csv("O_types_prevalence_by_region_EuSCAPE_290719_cumulativeplot.csv")
     ggplot() + geom_step(f6 = cumulative_K_data, mapping = aes(x=no_K_loci, y=cf_asia_w))
     ggplot() + geom_step(f6 = cumulative_K_data, mapping = aes(x=no_K_loci, y=cf_asia_w), color='#a9d7ed')
     ggplot() + geom_step(f6 = cumulative_K_data, mapping = aes(x=no_K_loci, y=cf_asia_w), color='#a9d7ed') + 
@@ -398,6 +399,5 @@ server <- function(input, output){
       plot_ly(data=empty_data, x=~gene, y=~value, type='bar') %>% layout(title=title_base, yaxis=list(range=c(0, 1)))
     }
   })
-
-shinyApp(ui = ui, server = server)
 }
+shinyApp(ui = ui, server = server)

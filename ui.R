@@ -17,20 +17,27 @@ library(ggrepel)
 library(shinythemes)
 library(RColorBrewer)
 
-source("server.R", local = TRUE)
 
 ######################## *******************************  ************************************** ################
 #                                            SHINY UI START                                                     #
 ######################## *******************************  ************************************** ################  
 ui <- fluidPage(
-    titlePanel(title=div(img(src="logo.png",height=150,width=300))),
+    titlePanel(title=div(img(src="logo.png",height=100,width=200))),
 sidebarLayout(    
     sidebarPanel( position =c("left"),  style = "color:#337ab7", 
-        fileInput("file", "Load Kleborate output file",
-                  accept = c(".txt",".csv","tsv") ),
+        fileInput("file", "Load Kleborate output file", 
+                  accept = c(".txt")),
         #selectInput("col", "Column", choices = unique(colnames(input$file)
         #)),
-         br(),
+        fluidRow(
+          column(6,
+                 selectInput("select-input",label="Select country or region",choices=c("A","B","C")),
+                 sliderInput("slider-input",label="Numbers of resistance classes",value=5,min=1,max=10),
+                 dateRangeInput("date-range-input",label="Period"),
+                 hr(),
+                 submitButton(),
+          ),
+        ),
        br(),
        h4("Data Summary"),
        tableOutput("summaryTable"),

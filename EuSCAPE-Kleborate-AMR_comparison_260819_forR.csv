@@ -1,0 +1,1544 @@
+Strain,ST,ST_to_plot,CG_to_plot,carb_to_plot,Meropenem_MIC,ompK35_functionality,ompK36_functionality,Colistin_resistance,Col,Omp,Omp_simplified,Bla_carb,Bla_carb_simplified
+EuSCAPE_IT362,ST10,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_ME012,ST101,ST101,CG43,-,0.12,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_RS006,ST101,ST101,CG43,-,0.12,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_RS018,ST101,ST101,CG43,-,0.12,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_RS025,ST101,ST101,CG43,-,0.12,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_RS033,ST101,ST101,CG43,-,0.12,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_RS060,ST101,ST101,CG43,-,0.12,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_RS067,ST101,ST101,CG43,-,0.12,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_RS071,ST101,ST101,CG43,-,0.12,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_RS012,ST101,ST101,CG43,-,0.12,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_RS034,ST101,ST101,CG43,-,0.12,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_RS069,ST101,ST101,CG43,-,0.12,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_RS035,ST101,ST101,CG43,-,0.25,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_RS038,ST101,ST101,CG43,-,0.25,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_RS044,ST101,ST101,CG43,-,0.25,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_RS099,ST101,ST101,CG43,-,0.25,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_RS047,ST101,ST101,CG43,-,0.25,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_RS058,ST101,ST101,CG43,-,0.25,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_RS063,ST101,ST101,CG43,-,0.25,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_RS115,ST101,ST101,CG43,-,0.25,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_GR071,ST101,ST101,CG43,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_GR162,ST101,ST101,CG43,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_SI001,ST101,ST101,CG43,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_TR304,ST101,ST101,CG43,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_HR081,ST1010,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IT153,ST1013,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_RO008,ST1015,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_TR015,ST1015,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IT129,ST1017,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IT131,ST1017,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_EE012,ST104,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IT043,ST104,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_ES265,ST104,other,other,-,0.06,Functional,Functional,Resistant,-,-,-,-,wt
+EuSCAPE_TR014,ST105,other,CG152,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_TR217,ST105,other,CG152,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_NO001,ST107,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_ES142,ST107,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_UK079,ST107,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_MT008,ST1082,other,other,-,0.12,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_PL010,ST11,ST11,CG258,-,0.12,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_PL030,ST11,ST11,CG258,-,0.12,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_CZ025,ST11,ST11,CG258,-,0.12,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_HU022,ST11,ST11,CG258,-,0.12,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_HU031,ST11,ST11,CG258,-,0.12,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_HU033,ST11,ST11,CG258,-,0.12,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_CZ026,ST11,ST11,CG258,-,0.12,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_PL057,ST11,ST11,CG258,-,0.25,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_EE021,ST11,ST11,CG258,-,0.25,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_PL012,ST11,ST11,CG258,-,0.25,Functional,Functional,Resistant,-,-,-,-,wt
+EuSCAPE_EE006,ST11,ST11,CG258,-,0.25,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_HU017,ST11,ST11,CG258,-,0.25,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_PL004,ST11,ST11,CG258,-,0.25,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_EE005,ST11,ST11,CG258,-,0.5,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_PL007,ST11,ST11,CG258,-,1,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_CZ013,ST11,ST11,CG258,-,1,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_FR049,ST11,ST11,CG258,-,1,Functional,Non-functional,Sensitive,-,-,-,-,wt
+EuSCAPE_CZ016,ST11,ST11,CG258,-,4,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_SK030,ST11,ST11,CG258,-,8,Functional,Non-functional,Sensitive,-,-,-,-,wt
+EuSCAPE_PL016,ST11,ST11,CG258,-,8,Functional,Non-functional,Resistant,-,-,-,-,wt
+EuSCAPE_DE059,ST11,ST11,CG258,-,8,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_PL002,ST11,ST11,CG258,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_PL008,ST11,ST11,CG258,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_PL019,ST11,ST11,CG258,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_PL021,ST11,ST11,CG258,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_PL050,ST11,ST11,CG258,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_PL052,ST11,ST11,CG258,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_PL054,ST11,ST11,CG258,-,0.06,Functional,Functional,Resistant,-,-,-,-,wt
+EuSCAPE_FR008,ST11,ST11,CG258,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_SK001,ST11,ST11,CG258,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_SK004,ST11,ST11,CG258,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_SK009,ST11,ST11,CG258,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_SK010,ST11,ST11,CG258,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_SK011,ST11,ST11,CG258,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_SK016,ST11,ST11,CG258,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_SK022,ST11,ST11,CG258,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_SK027,ST11,ST11,CG258,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_FR071,ST11,ST11,CG258,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_EE002,ST11,ST11,CG258,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_FR062,ST11,ST11,CG258,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_IT155,ST11,ST11,CG258,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_LV002,ST11,ST11,CG258,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_HU052,ST11,ST11,CG258,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_ES158,ST11,ST11,CG258,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_SK013,ST11,ST11,CG258,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_RO073,ST11,ST11,CG258,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_RO079,ST11,ST11,CG258,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_HR013,ST11,ST11,CG258,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_PL028,ST11,ST11,CG258,-,0.12,Functional,Functional,Sensitive,MgrB-53%,-,-,-,wt
+EuSCAPE_PL031,ST11,ST11,CG258,-,0.12,Functional,Functional,Unknown,MgrB-53%,-,-,-,wt
+EuSCAPE_PL036,ST11,ST11,CG258,-,0.12,Functional,Functional,Unknown,MgrB-53%,-,-,-,wt
+EuSCAPE_PL060,ST11,ST11,CG258,-,0.12,Functional,Functional,Unknown,MgrB-53%,-,-,-,wt
+EuSCAPE_PL040,ST11,ST11,CG258,-,0.25,Functional,Functional,Unknown,MgrB-53%,-,-,-,wt
+EuSCAPE_PL038,ST11,ST11,CG258,-,2,Functional,Functional,Unknown,MgrB-53%,-,-,-,wt
+EuSCAPE_PL037,ST11,ST11,CG258,-,0.06,Functional,Functional,Unknown,MgrB-53%,-,-,-,wt
+EuSCAPE_TR018,ST110,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IT197,ST111,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_GR118,ST111,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_AT015,ST111,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_TR210,ST111,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_EE022,ST113,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_PL035,ST113,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_BE046,ST1145,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_AT005,ST1148,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_TR042,ST1193,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_TR221,ST1193,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_AT020,ST12,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_TR254,ST1207,other,other,-,0.12,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_GR111,ST1228,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_TR168,ST1228,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IE018,ST1236,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IE042,ST1236,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_LT008,ST1243,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IT360,ST1250,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_IL001,ST1269,other,other,-,0.12,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_UK023,ST13,ST13,other,-,0.12,Functional,Functional,Resistant,-,-,-,-,wt
+EuSCAPE_IL061,ST13,ST13,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IL082,ST13,ST13,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_ES288,ST13,ST13,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_CY002,ST13,ST13,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IL016,ST133,other,CG133,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IT143,ST133,other,CG133,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_CZ012,ST1333,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_DE045,ST1333,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_FR066,ST134,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_ES281,ST134,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_FR021,ST138,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_CZ010,ST14,ST14,CG14/15,-,0.12,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_FR050,ST14,ST14,CG14/15,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_IT215,ST14,ST14,CG14/15,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IT093,ST14,ST14,CG14/15,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_ES245,ST14,ST14,CG14/15,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_GR113,ST14,ST14,CG14/15,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_GR116,ST14,ST14,CG14/15,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_HR101,ST14,ST14,CG14/15,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_RS037,ST14,ST14,CG14/15,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_HR062,ST14,ST14,CG14/15,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IE039,ST14,ST14,CG14/15,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_TR282,ST14,ST14,CG14/15,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_TR307,ST14,ST14,CG14/15,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IT249,ST1401,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_RO013,ST1408,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IL055,ST1412,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IT057,ST1418,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_DE052,ST1456,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_BE032,ST1456,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_RO063,ST1469,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_RO047,ST147,ST147,CG147,-,0.12,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_FR016,ST147,ST147,CG147,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_FR072,ST147,ST147,CG147,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_IL006,ST147,ST147,CG147,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IL054,ST147,ST147,CG147,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_HU053,ST147,ST147,CG147,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_ES277,ST147,ST147,CG147,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_ES278,ST147,ST147,CG147,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_RO041,ST147,ST147,CG147,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_RO108,ST147,ST147,CG147,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_TR302,ST147,ST147,CG147,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IT342,ST1471,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_DE044,ST1473,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IE021,ST1478,other,other,-,0.25,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_UK107,ST1478,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_DE080,ST1486,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_BE104,ST1487,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_FR002,ST15,ST15,CG14/15,-,0.12,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_IT202,ST15,ST15,CG14/15,-,0.12,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_HU042,ST15,ST15,CG14/15,-,0.12,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_HU047,ST15,ST15,CG14/15,-,0.12,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_RO070,ST15,ST15,CG14/15,-,0.12,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IT071,ST15,ST15,CG14/15,-,0.25,Functional,Functional,Resistant,-,-,-,-,wt
+EuSCAPE_ES219,ST15,ST15,CG14/15,-,0.25,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_IE022,ST15,ST15,CG14/15,-,0.5,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_HR080,ST15,ST15,CG14/15,-,1,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_HR039,ST15,ST15,CG14/15,-,2,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_TR253,ST15,ST15,CG14/15,-,8,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_TR209,ST15,ST15,CG14/15,-,16,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_TR252,ST15,ST15,CG14/15,-,16,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_PL034,ST15,ST15,CG14/15,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_SK005,ST15,ST15,CG14/15,-,0.06,Non-functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_PL041,ST15,ST15,CG14/15,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_PL042,ST15,ST15,CG14/15,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_DE086,ST15,ST15,CG14/15,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_ME001,ST15,ST15,CG14/15,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IT089,ST15,ST15,CG14/15,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IT198,ST15,ST15,CG14/15,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_IT391,ST15,ST15,CG14/15,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_IT399,ST15,ST15,CG14/15,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_HU044,ST15,ST15,CG14/15,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_HU050,ST15,ST15,CG14/15,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_RO032,ST15,ST15,CG14/15,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_RS011,ST15,ST15,CG14/15,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_HR035,ST15,ST15,CG14/15,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_HR038,ST15,ST15,CG14/15,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_HR072,ST15,ST15,CG14/15,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IE029,ST15,ST15,CG14/15,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_BE036,ST15,ST15,CG14/15,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_BE013,ST15,ST15,CG14/15,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_BE026,ST15,ST15,CG14/15,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_BE075,ST15,ST15,CG14/15,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_TR107,ST15,ST15,CG14/15,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_TR157,ST15,ST15,CG14/15,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_TR019,ST15,ST15,CG14/15,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_TR175,ST15,ST15,CG14/15,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_PL020,ST152,ST152,CG152,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_PL051,ST152,ST152,CG152,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_BE059,ST152,ST152,CG152,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_PL047,ST152,ST152,CG152,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_PL053,ST152,ST152,CG152,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_RO072,ST1527,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_HR031,ST1535,other,other,-,0.25,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IL035,ST1536,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IT237,ST1536,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_ES230,ST1563,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_HR030,ST1574,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_UK002,ST1593,other,other,-,0.12,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_UK090,ST1593,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_FR012,ST16,ST16,CG17/20,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_ES246,ST16,ST16,CG17/20,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_TR159,ST160,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IT141,ST1626,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_IT147,ST1626,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_IT346,ST1628,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_ES063,ST163,other,other,-,0.12,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_ES204,ST163,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_HR027,ST163,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_GR120,ST1630,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_TR271,ST1634,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IL015,ST168,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IL023,ST1681,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_TR190,ST17,ST17,CG17/20,-,0.25,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_EE018,ST17,ST17,CG17/20,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_CZ031,ST17,ST17,CG17/20,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_AT019,ST17,ST17,CG17/20,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_IL065,ST17,ST17,CG17/20,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IT019,ST17,ST17,CG17/20,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_IT151,ST17,ST17,CG17/20,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_IT397,ST17,ST17,CG17/20,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_IT358,ST17,ST17,CG17/20,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_ES106,ST17,ST17,CG17/20,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_GR038,ST17,ST17,CG17/20,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_UK115,ST17,ST17,CG17/20,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_UK136,ST17,ST17,CG17/20,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_HR094,ST17,ST17,CG17/20,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_TR129,ST17,ST17,CG17/20,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_TR191,ST17,ST17,CG17/20,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_TR193,ST17,ST17,CG17/20,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_TR261,ST17,ST17,CG17/20,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_IT213,ST180,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_PL013,ST1801,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_ES124,ST1823,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_IT031,ST186,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_HR085,ST1875,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_TR305,ST188,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_RO075,ST189,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_PL033,ST1915,other,other,-,0.06,Functional,Functional,Resistant,-,-,-,-,wt
+EuSCAPE_GR004,ST1916,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_GR014,ST197,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_GR046,ST20,ST20,CG17/20,-,0.5,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IT050,ST20,ST20,CG17/20,-,16,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_SK014,ST20,ST20,CG17/20,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_DE029,ST20,ST20,CG17/20,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IT004,ST20,ST20,CG17/20,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_IT101,ST20,ST20,CG17/20,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IT121,ST20,ST20,CG17/20,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_IT099,ST20,ST20,CG17/20,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_ES242,ST20,ST20,CG17/20,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_GR061,ST20,ST20,CG17/20,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_BE041,ST20,ST20,CG17/20,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_MT014,ST200,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_HU065,ST200,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_TR149,ST200,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IT091,ST2078,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IT389,ST2089,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_ES286,ST215,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_BE049,ST215,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_ES086,ST2176,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_HR051,ST218,other,hv,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_TR197,ST219,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IT041,ST221,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_BE021,ST221,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_RO098,ST2286,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_AT028,ST23,ST23,hv,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_EE007,ST23,ST23,hv,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IT149,ST23,ST23,hv,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_TR231,ST23,ST23,hv,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_HU051,ST230,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_BE034,ST230,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_SK023,ST234,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_ES128,ST234,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_BE043,ST234,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_DE087,ST2362,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_AT009,ST2428,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_PL017,ST2447,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_GR043,ST2451,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IT251,ST2456,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_DE056,ST2462,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_RO090,ST2462,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_SI015,ST247,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_HU049,ST248-2LV,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_PL005,ST25,ST25,CG25,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_DE054,ST25,ST25,CG25,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IT193,ST25,ST25,CG25,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_UK127,ST25,ST25,CG25,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_RO085,ST25,ST25,CG25,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_RO087,ST25,ST25,CG25,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_UK137,ST25,ST25,CG25,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_HR098,ST25,ST25,CG25,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_HR026,ST25,ST25,CG25,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_BE052,ST25,ST25,CG25,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_TR286,ST25,ST25,CG25,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_SK032,ST251,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_GR131,ST2513,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_HU037,ST253,other,other,-,0.12,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IT344,ST2594,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_IT145,ST268,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_ES259,ST268,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_IL005,ST2703,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_ME017,ST274,ST274,ST274,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_ME018,ST274,ST274,ST274,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IT135,ST2777,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_IT177,ST278,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_ES215,ST278,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_ES257,ST278,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_IT059,ST2791,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_SK029,ST280,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_IT033,ST280,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_RS065,ST285,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_ME009,ST29,ST29,CG29,-,0.12,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_RS001,ST29,ST29,CG29,-,0.12,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_DE041,ST29,ST29,CG29,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_ME006,ST29,ST29,CG29,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_GR098,ST29,ST29,CG29,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_GR099,ST29,ST29,CG29,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_GR092,ST29,ST29,CG29,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_RS036,ST29,ST29,CG29,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_BE008,ST29,ST29,CG29,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_BE017,ST29,ST29,CG29,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_RS120,ST29,ST29,CG29,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_RS121,ST29,ST29,CG29,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_TR143,ST29,ST29,CG29,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_TR196,ST29,ST29,CG29,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_IL019,ST290,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_MT019,ST292,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IT037,ST2938,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_AT016,ST294,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_SI026,ST295,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_IT263,ST2981,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_DE015,ST299,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_TR255,ST299,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_DE060,ST2994,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_GR011,ST30,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_TR233,ST3003,other,other,-,0.12,Functional,Functional,Resistant,-,-,-,-,wt
+EuSCAPE_EE019,ST3009,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_DE050,ST301,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_MT006,ST307,ST307,CG307,-,0.12,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IT395,ST307,ST307,CG307,-,2,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_IT400,ST307,ST307,CG307,-,16,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_FR005,ST307,ST307,CG307,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_FR035,ST307,ST307,CG307,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_FR054,ST307,ST307,CG307,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_MT015,ST307,ST307,CG307,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_MT020,ST307,ST307,CG307,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_IT063,ST307,ST307,CG307,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_IL047,ST307,ST307,CG307,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IL026,ST307,ST307,CG307,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_ME003,ST307,ST307,CG307,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IT113,ST307,ST307,CG307,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_IT161,ST307,ST307,CG307,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_IT377,ST307,ST307,CG307,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_ES117,ST307,ST307,CG307,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_ES148,ST307,ST307,CG307,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_IT253,ST307,ST307,CG307,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_UK081,ST307,ST307,CG307,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_RO066,ST307,ST307,CG307,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_BE031,ST307,ST307,CG307,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_BE035,ST307,ST307,CG307,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_GR065,ST3072,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_GR079,ST308,other,other,-,0.12,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_TR038,ST309,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_IT313,ST310,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_PL055,ST3132,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_HR086,ST3132,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_FR019,ST3147,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_IT010,ST3155,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_BE022,ST321,other,other,-,0.12,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_HR012,ST322,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_CZ024,ST323,ST323,ST323,-,2,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_AT021,ST323,ST323,ST323,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_SK040,ST323,ST323,ST323,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_CZ003,ST323,ST323,ST323,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_ES224,ST323,ST323,ST323,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_ES192,ST323,ST323,ST323,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_GR159,ST323,ST323,ST323,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_UK099,ST327,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_ES241,ST33,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_IL071,ST3326,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IL066,ST336,ST336,CG17/20,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_TR095,ST336,ST336,CG17/20,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_IL036,ST337,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_GR021,ST3370,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_FR022,ST34,other,other,-,0.12,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_IT379,ST34,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_RS014,ST340,ST340,CG258,-,0.12,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_RS022,ST340,ST340,CG258,-,0.12,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_RS075,ST340,ST340,CG258,-,0.12,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_RS082,ST340,ST340,CG258,-,0.12,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_RS119,ST340,ST340,CG258,-,0.12,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_CZ006,ST340,ST340,CG258,-,0.12,Functional,Functional,Resistant,-,-,-,-,wt
+EuSCAPE_RS007,ST340,ST340,CG258,-,0.25,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_RS009,ST340,ST340,CG258,-,0.25,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_RS041,ST340,ST340,CG258,-,0.25,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_RS048,ST340,ST340,CG258,-,0.25,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_RS056,ST340,ST340,CG258,-,0.25,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_RS080,ST340,ST340,CG258,-,0.25,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_RS094,ST340,ST340,CG258,-,0.25,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_RS106,ST340,ST340,CG258,-,0.25,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_RS051,ST340,ST340,CG258,-,32,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_CZ004,ST340,ST340,CG258,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_CZ039,ST340,ST340,CG258,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_CZ011,ST340,ST340,CG258,-,2,Functional,Functional,Resistant,MgrB-87%,-,-,-,wt
+EuSCAPE_SI022,ST343,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_TR012,ST343,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_TR031,ST345,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_DE018,ST347,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_DE040,ST347,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_UK089,ST347,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IL028,ST348,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_CZ015,ST35,ST35,CG35,-,0.12,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_SI021,ST35,ST35,CG35,-,2,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_PL058,ST35,ST35,CG35,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_SK037,ST35,ST35,CG35,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_DE091,ST35,ST35,CG35,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IL067,ST35,ST35,CG35,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IT167,ST35,ST35,CG35,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_IT369,ST35,ST35,CG35,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_ES206,ST35,ST35,CG35,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_ES235,ST35,ST35,CG35,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_ES256,ST35,ST35,CG35,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_ES292,ST35,ST35,CG35,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_GR015,ST35,ST35,CG35,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_GR129,ST35,ST35,CG35,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_LU015,ST35,ST35,CG35,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_UK049,ST35,ST35,CG35,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_HR015,ST35,ST35,CG35,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_TR160,ST35,ST35,CG35,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_TR013,ST35,ST35,CG35,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_TR178,ST35,ST35,CG35,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IT115,ST35,ST35,CG35,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_TR170,ST35,ST35,CG35,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_FR080,ST3526,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_ES217,ST353,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_RS061,ST353,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_TR303,ST353,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_UK124,ST3531,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IT012,ST357,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_MT010,ST36,ST36,CG36,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IT065,ST36,ST36,CG36,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_IT006,ST36,ST36,CG36,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_IT239,ST36,ST36,CG36,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IT275,ST36,ST36,CG36,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_GR097,ST36,ST36,CG36,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_BE027,ST36,ST36,CG36,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_TR081,ST36,ST36,CG36,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_TR211,ST36,ST36,CG36,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_TR239,ST36,ST36,CG36,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_TR243,ST36,ST36,CG36,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_RS096,ST360,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_AT026,ST3634,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_AT030,ST3635,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_BE003,ST3636,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_BE024,ST3637,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_BE030,ST3638,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_BE048,ST3639,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_DE011,ST3640,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_HU041,ST3640,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_DE046,ST3641,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_DE053,ST3642,other,other,-,0.25,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_DE081,ST3643,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_ES207,ST3645,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_ES232,ST3646,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_ES244,ST3647,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_FR013,ST3649,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_GR115,ST3651,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_GR163,ST3652,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IL007,ST3653,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IL022,ST3653,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IL017,ST3654,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IT025,ST3655,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_IT047,ST3656,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_IT119,ST3657,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_IT211,ST3658,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IT217,ST3659,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_IT245,ST3660,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_IT350,ST3661,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_IT352,ST3661,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_IT373,ST3662,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_IT385,ST3663,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_LU004,ST3664,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_PL022,ST3665,other,other,-,0.12,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_RO034,ST3667,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_RO043,ST3668,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_RO114,ST3669,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_RS050,ST3670,other,other,-,0.12,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_RS083,ST3671,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_RS084,ST3671,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_SC033,ST3672,other,other,-,0.12,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_SK015,ST3674,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_SK045,ST3675,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_TR037,ST3676,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_TR065,ST3677,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_TR076,ST3678,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_TR080,ST3679,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_TR094,ST3680,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_UK105,ST3682,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_UK082,ST3682,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_UK084,ST3683,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_AT024,ST37,ST37,CG37,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_FR051,ST37,ST37,CG37,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_FR073,ST37,ST37,CG37,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_FR078,ST37,ST37,CG37,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_DE079,ST37,ST37,CG37,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_DE084,ST37,ST37,CG37,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IL050,ST37,ST37,CG37,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IT103,ST37,ST37,CG37,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IT307,ST37,ST37,CG37,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_IT348,ST37,ST37,CG37,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_ES243,ST37,ST37,CG37,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_GR005,ST37,ST37,CG37,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_UK121,ST37,ST37,CG37,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_LU009,ST37,ST37,CG37,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_UK100,ST37,ST37,CG37,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_RO017,ST37,ST37,CG37,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_RO021,ST37,ST37,CG37,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_HR102,ST37,ST37,CG37,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_HR032,ST37,ST37,CG37,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_HR055,ST37,ST37,CG37,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_HR064,ST37,ST37,CG37,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_TR099,ST37,ST37,CG37,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_TR199,ST37,ST37,CG37,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IT163,ST380,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_GR077,ST383,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_AT003,ST3863,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_BE039,ST3864,other,other,-,0.12,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IL014,ST3865,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IT035,ST3866,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_IT157,ST3867,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_MT004,ST3868,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_SC024,ST3869,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_IL010,ST3897,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IT371,ST3898,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_NO016,ST39,ST39,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_IT045,ST39,ST39,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_IL045,ST39,ST39,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_BE063,ST39,ST39,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_PL023,ST392,ST392,CG147,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IL085,ST392,ST392,CG147,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_ES234,ST392,ST392,CG147,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_EE016,ST3927,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_HR006,ST3928,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IE014,ST3930,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IT159,ST3931,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_IT191,ST3932,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IT309,ST3933,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_SI024,ST3937,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_TR218,ST3938,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_TR259,ST3939,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_IL068,ST4,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_BE122,ST4,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_BE018,ST405,ST405,ST405,-,0.12,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_ES102,ST405,ST405,ST405,-,0.5,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_CZ030,ST405,ST405,ST405,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_CZ028,ST405,ST405,ST405,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_CZ029,ST405,ST405,ST405,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_FR039,ST405,ST405,ST405,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_FR047,ST405,ST405,ST405,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_LT006,ST405,ST405,ST405,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IT027,ST405,ST405,ST405,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_IT016,ST405,ST405,ST405,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_IT247,ST405,ST405,ST405,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_IT185,ST405,ST405,ST405,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IT383,ST405,ST405,ST405,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_IT327,ST405,ST405,ST405,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_ES271,ST405,ST405,ST405,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_ES228,ST405,ST405,ST405,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_UK104,ST405,ST405,ST405,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_HR069,ST405,ST405,ST405,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_BE010,ST405,ST405,ST405,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_BE011,ST405,ST405,ST405,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_BE014,ST405,ST405,ST405,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_BE015,ST405,ST405,ST405,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_BE016,ST405,ST405,ST405,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_BE019,ST405,ST405,ST405,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_BE038,ST405,ST405,ST405,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_BE102,ST405,ST405,ST405,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_TR075,ST405,ST405,ST405,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_TR077,ST405,ST405,ST405,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_IT081,ST416,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_IT375,ST416,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_BE033,ST416,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_PL015,ST42,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_ES209,ST42,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_ES191,ST42,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_RO086,ST42,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_TR176,ST420,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_LU010,ST427,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_LU013,ST427,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_LU020,ST427,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IT219,ST432,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IT331,ST433,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_ES290,ST433,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_HR107,ST437,ST437,CG258,-,0.12,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_HR046,ST437,ST437,CG258,-,0.12,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_HR071,ST437,ST437,CG258,-,0.25,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_HR076,ST437,ST437,CG258,-,0.25,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_RS029,ST437,ST437,CG258,-,1,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_HR042,ST437,ST437,CG258,-,1,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_SI004,ST437,ST437,CG258,-,2,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_HR003,ST437,ST437,CG258,-,2,Functional,Non-functional,Unknown,-,-,-,-,wt
+EuSCAPE_LT007,ST437,ST437,CG258,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_HR108,ST437,ST437,CG258,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_HR103,ST437,ST437,CG258,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_HR024,ST437,ST437,CG258,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_HR065,ST437,ST437,CG258,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_RS031,ST437,ST437,CG258,-,32,Functional,Functional,Resistant,MgrB-0%,-,-,-,wt
+EuSCAPE_IT165,ST449,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_ES212,ST449,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_FR052,ST45,ST45,CG45,-,0.12,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_LU014,ST45,ST45,CG45,-,0.12,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_HR088,ST45,ST45,CG45,-,0.12,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_UK076,ST45,ST45,CG45,-,0.5,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_IT039,ST45,ST45,CG45,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_IT002,ST45,ST45,CG45,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_IT206,ST45,ST45,CG45,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_IT221,ST45,ST45,CG45,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_IT233,ST45,ST45,CG45,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_IT139,ST45,ST45,CG45,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_IT323,ST45,ST45,CG45,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_IT329,ST45,ST45,CG45,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_ES076,ST45,ST45,CG45,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_ES223,ST45,ST45,CG45,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_ES146,ST45,ST45,CG45,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_GR117,ST45,ST45,CG45,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_GR119,ST45,ST45,CG45,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_GR096,ST45,ST45,CG45,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_UK119,ST45,ST45,CG45,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_LU011,ST45,ST45,CG45,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_TR283,ST45,ST45,CG45,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_PL011,ST45,ST45,CG45,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_TR237,ST45,ST45,CG45,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_TR265,ST45,ST45,CG45,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_BE040,ST45,ST45,CG45,-,0.06,Functional,Functional,Unknown,MgrB-81%,-,-,-,wt
+EuSCAPE_ES258,ST453,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_IL038,ST458-1LV,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_SK038,ST461,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_IT225,ST461,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_GR114,ST461,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IT175,ST463,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IT315,ST466,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_ES205,ST466,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_IT255,ST471,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_IT261,ST471,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_IE043,ST48,other,other,-,0.12,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_HR014,ST48,other,other,-,2,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_DE088,ST48,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_ES200,ST48,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_TR281,ST48,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_HR058,ST485,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IE040,ST485,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_BE042,ST485,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_HR077,ST49,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_GR060,ST491,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IL025,ST496-1LV,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_SI006,ST5,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_IE010,ST5,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_HR028,ST502,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_SC014,ST502,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_TR213,ST504,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_RO030,ST505,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IT259,ST514,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_HR089,ST525,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_DE082,ST542,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_ES208,ST542,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_TR215,ST551,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_LU007,ST584,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_AT013,ST6,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_DE021,ST6,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_DE027,ST6,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_GR009,ST6,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_ES267,ST6,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_ES135,ST605,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_GR064,ST610,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_ES120,ST617,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_TR036,ST622,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_DE004,ST628,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IT018,ST628,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_IT200,ST628,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_HR052,ST629,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_TR110,ST636,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_BE029,ST641,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IE013,ST643,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_ES218,ST65,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_ES222,ST65,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_IE037,ST65,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_UK032,ST661,other,other,-,2,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_AT001,ST661,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_FR018,ST661,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_IT117,ST661,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_ES141,ST661,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_BE085,ST70,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_BE090,ST70,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_PL014,ST704,other,other,-,2,Functional,Non-functional,Resistant,-,-,-,-,wt
+EuSCAPE_IT111,ST713,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IT387,ST719,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_TR011,ST750,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_GR080,ST76,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_GR142,ST774,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_FR029,ST791,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_ES275,ST792,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_RO097,ST8,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_DE083,ST831,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IT291,ST86,ST86,hv,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_GR047,ST86,ST86,hv,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_RS109,ST86,ST86,hv,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_DE009,ST867,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_GR145,ST870,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_HR100,ST870,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_SC022,ST873,other,other,-,0.12,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_LT010,ST873,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_UK086,ST873,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IT223,ST881,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_IT321,ST881,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_GR112,ST882,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_UK001,ST882,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_TR133,ST882,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_TR308,ST882,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_TR272,ST882,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IT367,ST889,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_BU020,ST889,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_IT095,ST896,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_FR017,ST902,other,other,-,0.12,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_FR045,ST902,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_IT169,ST902,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_UK062,ST915,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_ME019,ST920,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_UK106,ST922,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_TR195,ST940,other,other,-,0.12,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_ES214,ST942,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_UK123,ST968,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IT133,ST985,other,other,-,0.06,Functional,Functional,Sensitive,-,-,-,-,wt
+EuSCAPE_TR151,ST985,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_TR285,ST985,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_TR270,ST985,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_EE015,ST995,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_RS110,ST999,other,other,-,0.06,Functional,Functional,Unknown,-,-,-,-,wt
+EuSCAPE_IT207,ST15,ST15,CG14/15,-,0.06,Non-functional,Functional,Sensitive,MgrB-0%,OmpK35-0%,OmpK35-trunc,-,mut
+EuSCAPE_RO062,ST525,other,other,-,0.06,Non-functional,Functional,Unknown,-,OmpK35-0%,OmpK35-trunc,-,mut
+EuSCAPE_HU001,ST525,other,other,-,2,Non-functional,Non-functional,Sensitive,-,OmpK35-0%;OmpK36-0%,OmpK35-trunc;OmpK36-trunc,-,mut
+EuSCAPE_HU014,ST15,ST15,CG14/15,-,0.25,Non-functional,Non-functional,Resistant,MgrB-0%,OmpK35-0%;OmpK36-86%,OmpK35-trunc;OmpK36-trunc,-,mut
+EuSCAPE_IT011,ST37,ST37,CG37,-,0.06,Non-functional,Functional,Sensitive,-,OmpK35-10%;OmpK36TD,OmpK35-trunc;OmpK36TD,-,mut
+EuSCAPE_PL003,ST37,ST37,CG37,-,0.06,Non-functional,Functional,Unknown,-,OmpK35-16%,OmpK35-trunc,-,mut
+EuSCAPE_RO081,ST147,ST147,CG147,-,0.06,Non-functional,Functional,Unknown,-,OmpK35-17%,OmpK35-trunc,-,mut
+EuSCAPE_SK020,ST20,ST20,CG17/20,-,0.06,Non-functional,Functional,Sensitive,-,OmpK35-17%,OmpK35-trunc,-,mut
+EuSCAPE_UK101,ST678,other,other,-,0.06,Non-functional,Functional,Unknown,-,OmpK35-17%,OmpK35-trunc,-,mut
+EuSCAPE_IL084,ST101,ST101,CG43,-,4,Non-functional,Non-functional,Resistant,MgrB-81%,OmpK35-17%;OmpK36-10%,OmpK35-trunc;OmpK36-trunc,-,mut
+EuSCAPE_DE047,ST14,ST14,CG14/15,-,4,Non-functional,Non-functional,Sensitive,-,OmpK35-17%;OmpK36-28%,OmpK35-trunc;OmpK36-trunc,-,mut
+EuSCAPE_DE023,ST14,ST14,CG14/15,-,8,Non-functional,Non-functional,Sensitive,-,OmpK35-17%;OmpK36-4%,OmpK35-trunc;OmpK36-trunc,-,mut
+EuSCAPE_FR001,ST101,ST101,CG43,-,0.12,Non-functional,Functional,Sensitive,-,OmpK35-17%;OmpK36GD,OmpK35-trunc;OmpK36GD,-,mut
+EuSCAPE_GR006,ST101,ST101,CG43,-,0.25,Non-functional,Functional,Sensitive,-,OmpK35-17%;OmpK36GD,OmpK35-trunc;OmpK36GD,-,mut
+EuSCAPE_TR273,ST101,ST101,CG43,-,0.5,Non-functional,Functional,Unknown,-,OmpK35-17%;OmpK36GD,OmpK35-trunc;OmpK36GD,-,mut
+EuSCAPE_RS076,ST101,ST101,CG43,-,1,Non-functional,Functional,Sensitive,-,OmpK35-17%;OmpK36GD,OmpK35-trunc;OmpK36GD,-,mut
+EuSCAPE_RO056,ST101,ST101,CG43,-,1,Non-functional,Functional,Unknown,-,OmpK35-17%;OmpK36GD,OmpK35-trunc;OmpK36GD,-,mut
+EuSCAPE_RO023,ST101,ST101,CG43,-,1,Non-functional,Functional,Sensitive,-,OmpK35-17%;OmpK36GD,OmpK35-trunc;OmpK36GD,-,mut
+EuSCAPE_RO117,ST101,ST101,CG43,-,1,Non-functional,Functional,Sensitive,-,OmpK35-17%;OmpK36GD,OmpK35-trunc;OmpK36GD,-,mut
+EuSCAPE_RS079,ST101,ST101,CG43,-,1,Non-functional,Functional,Sensitive,-,OmpK35-17%;OmpK36GD,OmpK35-trunc;OmpK36GD,-,mut
+EuSCAPE_RS118,ST101,ST101,CG43,-,1,Non-functional,Functional,Sensitive,-,OmpK35-17%;OmpK36GD,OmpK35-trunc;OmpK36GD,-,mut
+EuSCAPE_RO029,ST101,ST101,CG43,-,2,Non-functional,Functional,Unknown,-,OmpK35-17%;OmpK36GD,OmpK35-trunc;OmpK36GD,-,mut
+EuSCAPE_SC030,ST1,other,other,-,0.06,Non-functional,Functional,Sensitive,-,OmpK35-18%,OmpK35-trunc,-,mut
+EuSCAPE_SK048,ST11,ST11,CG258,-,0.06,Non-functional,Functional,Sensitive,-,OmpK35-18%,OmpK35-trunc,-,mut
+EuSCAPE_NO017,ST307,ST307,CG307,-,0.5,Non-functional,Functional,Sensitive,-,OmpK35-21%,OmpK35-trunc,-,mut
+EuSCAPE_IT076,ST307,ST307,CG307,-,8,Non-functional,Non-functional,Sensitive,-,OmpK35-21%;OmpK36-25%,OmpK35-trunc;OmpK36-trunc,-,mut
+EuSCAPE_GR160,ST231,other,other,-,0.06,Non-functional,Functional,Unknown,-,OmpK35-25%,OmpK35-trunc,-,mut
+EuSCAPE_GR066,ST258,ST258,CG258,-,0.06,Non-functional,Functional,Resistant,MgrB-62%,OmpK35-25%,OmpK35-trunc,-,mut
+EuSCAPE_IT334,ST512,ST512,CG258,-,0.12,Non-functional,Functional,Unknown,-,OmpK35-25%,OmpK35-trunc,-,mut
+EuSCAPE_SC001,ST258,ST258,CG258,-,0.06,Non-functional,Functional,Sensitive,MgrB-60%,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,-,mut
+EuSCAPE_IT087,ST512,ST512,CG258,-,0.25,Non-functional,Functional,Unknown,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,-,mut
+EuSCAPE_LT009,ST86,ST86,hv,-,1,Non-functional,Functional,Sensitive,-,OmpK35-28%;OmpK36TD,OmpK35-trunc;OmpK36TD,-,mut
+EuSCAPE_UK044,ST3681,other,other,-,0.5,Non-functional,Functional,Sensitive,-,OmpK35-31%,OmpK35-trunc,-,mut
+EuSCAPE_UK083,ST1496,other,other,-,0.06,Non-functional,Functional,Unknown,-,OmpK35-4%,OmpK35-trunc,-,mut
+EuSCAPE_AT004,ST11,ST11,CG258,-,0.12,Non-functional,Functional,Sensitive,-,OmpK35-40%,OmpK35-trunc,-,mut
+EuSCAPE_CZ034,ST11,ST11,CG258,-,0.12,Non-functional,Functional,Sensitive,-,OmpK35-40%,OmpK35-trunc,-,mut
+EuSCAPE_AT032,ST11,ST11,CG258,-,0.06,Non-functional,Functional,Sensitive,-,OmpK35-40%,OmpK35-trunc,-,mut
+EuSCAPE_LT004,ST1626,other,other,-,0.12,Non-functional,Functional,Unknown,-,OmpK35-40%,OmpK35-trunc,-,mut
+EuSCAPE_LT003,ST1626,other,other,-,2,Non-functional,Functional,Sensitive,-,OmpK35-40%,OmpK35-trunc,-,mut
+EuSCAPE_BU024,ST16,ST16,CG17/20,-,16,Non-functional,Functional,Sensitive,MgrB-0%,OmpK35-40%;OmpK36GD,OmpK35-trunc;OmpK36GD,-,mut
+EuSCAPE_PL049,ST16,ST16,CG17/20,-,0.06,Non-functional,Functional,Unknown,-,OmpK35-41%,OmpK35-trunc,-,mut
+EuSCAPE_HR029,ST15,ST15,CG14/15,-,4,Non-functional,Non-functional,Unknown,-,OmpK35-42%;OmpK36-0%,OmpK35-trunc;OmpK36-trunc,-,mut
+EuSCAPE_BE062,ST45,ST45,CG45,-,0.12,Non-functional,Functional,Unknown,MgrB-6%,OmpK35-48%,OmpK35-trunc,-,mut
+EuSCAPE_IL051,ST383,other,other,-,2,Non-functional,Non-functional,Resistant,-,OmpK35-48%;OmpK36-37%,OmpK35-trunc;OmpK36-trunc,-,mut
+EuSCAPE_GR070,ST147,ST147,CG147,-,0.12,Non-functional,Functional,Sensitive,-,OmpK35-48%;OmpK36GD,OmpK35-trunc;OmpK36GD,-,mut
+EuSCAPE_IT365,ST11,ST11,CG258,-,0.06,Non-functional,Functional,Sensitive,-,OmpK35-50%,OmpK35-trunc,-,mut
+EuSCAPE_ES067,ST11,ST11,CG258,-,0.5,Non-functional,Functional,Sensitive,-,OmpK35-52%,OmpK35-trunc,-,mut
+EuSCAPE_BE097,ST147,ST147,CG147,-,4,Non-functional,Non-functional,Unknown,-,OmpK35-58%;OmpK36-75%,OmpK35-trunc;OmpK36-trunc,-,mut
+EuSCAPE_SK026,ST11,ST11,CG258,-,0.5,Non-functional,Functional,Resistant,-,OmpK35-59%,OmpK35-trunc,-,mut
+EuSCAPE_SK003,ST11,ST11,CG258,-,0.06,Non-functional,Functional,Sensitive,-,OmpK35-59%,OmpK35-trunc,-,mut
+EuSCAPE_SK025,ST11,ST11,CG258,-,0.06,Non-functional,Functional,Sensitive,-,OmpK35-59%,OmpK35-trunc,-,mut
+EuSCAPE_CZ014,ST11,ST11,CG258,-,0.06,Non-functional,Functional,Sensitive,-,OmpK35-59%,OmpK35-trunc,-,mut
+EuSCAPE_IT023,ST15,ST15,CG14/15,-,0.06,Non-functional,Functional,Sensitive,-,OmpK35-59%,OmpK35-trunc,-,mut
+EuSCAPE_SK024,ST11,ST11,CG258,-,4,Non-functional,Non-functional,Sensitive,-,OmpK35-59%;OmpK36-0%,OmpK35-trunc;OmpK36-trunc,-,mut
+EuSCAPE_FR079,ST3650,other,other,-,0.06,Non-functional,Non-functional,Sensitive,-,OmpK35-59%;OmpK36-34%,OmpK35-trunc;OmpK36-trunc,-,mut
+EuSCAPE_SK046,ST11,ST11,CG258,-,8,Non-functional,Non-functional,Sensitive,-,OmpK35-59%;OmpK36-75%,OmpK35-trunc;OmpK36-trunc,-,mut
+EuSCAPE_SK033,ST11,ST11,CG258,-,1,Non-functional,Non-functional,Sensitive,-,OmpK35-59%;OmpK36-9%,OmpK35-trunc;OmpK36-trunc,-,mut
+EuSCAPE_RO045,ST15,ST15,CG14/15,-,1,Non-functional,Functional,Sensitive,-,OmpK35-59%;OmpK36GD,OmpK35-trunc;OmpK36GD,-,mut
+EuSCAPE_GR078,ST14,ST14,CG14/15,-,0.06,Non-functional,Functional,Unknown,-,OmpK35-64%,OmpK35-trunc,-,mut
+EuSCAPE_ES273,ST15,ST15,CG14/15,-,0.06,Non-functional,Functional,Sensitive,-,OmpK35-64%,OmpK35-trunc,-,mut
+EuSCAPE_ES119,ST15,ST15,CG14/15,-,0.06,Non-functional,Functional,Sensitive,-,OmpK35-64%,OmpK35-trunc,-,mut
+EuSCAPE_SK007,ST15,ST15,CG14/15,-,2,Non-functional,Non-functional,Sensitive,-,OmpK35-64%;OmpK36-8%,OmpK35-trunc;OmpK36-trunc,-,mut
+EuSCAPE_SK036,ST15,ST15,CG14/15,-,4,Non-functional,Non-functional,Sensitive,-,OmpK35-64%;OmpK36-8%,OmpK35-trunc;OmpK36-trunc,-,mut
+EuSCAPE_SI018,ST3673,other,other,-,2,Non-functional,Functional,Sensitive,-,OmpK35-66%,OmpK35-trunc,-,mut
+EuSCAPE_ES061,ST11,ST11,CG258,-,8,Non-functional,Functional,Sensitive,-,OmpK35-67%,OmpK35-trunc,-,mut
+EuSCAPE_PL006,ST147,ST147,CG147,-,0.12,Non-functional,Functional,Unknown,-,OmpK35-7%,OmpK35-trunc,-,mut
+EuSCAPE_BE108,ST1942,other,other,-,1,Non-functional,Functional,Unknown,-,OmpK35-7%,OmpK35-trunc,-,mut
+EuSCAPE_PL056,ST147,ST147,CG147,-,2,Non-functional,Non-functional,Sensitive,-,OmpK35-7%;OmpK36-28%,OmpK35-trunc;OmpK36-trunc,-,mut
+EuSCAPE_FR020,ST37,ST37,CG37,-,1,Non-functional,Non-functional,Sensitive,-,OmpK35-70%;OmpK36-85%,OmpK35-trunc;OmpK36-trunc,-,mut
+EuSCAPE_SI005,ST3936,other,other,-,2,Non-functional,Non-functional,Sensitive,-,OmpK35-71%;OmpK36-58%,OmpK35-trunc;OmpK36-trunc,-,mut
+EuSCAPE_EE008,ST395,ST395,CG258,-,0.12,Non-functional,Functional,Unknown,-,OmpK35-72%,OmpK35-trunc,-,mut
+EuSCAPE_IL073,ST395,ST395,CG258,-,16,Non-functional,Functional,Sensitive,-,OmpK35-72%,OmpK35-trunc,-,mut
+EuSCAPE_FR042,ST395,ST395,CG258,-,0.06,Non-functional,Functional,Sensitive,-,OmpK35-72%,OmpK35-trunc,-,mut
+EuSCAPE_EE009,ST395,ST395,CG258,-,0.06,Non-functional,Functional,Unknown,-,OmpK35-72%,OmpK35-trunc,-,mut
+EuSCAPE_IT021,ST395,ST395,CG258,-,0.06,Non-functional,Functional,Sensitive,-,OmpK35-72%,OmpK35-trunc,-,mut
+EuSCAPE_LU003,ST395,ST395,CG258,-,0.06,Non-functional,Functional,Unknown,-,OmpK35-72%,OmpK35-trunc,-,mut
+EuSCAPE_LU017,ST395,ST395,CG258,-,0.06,Non-functional,Functional,Unknown,-,OmpK35-72%,OmpK35-trunc,-,mut
+EuSCAPE_ME007,ST15,ST15,CG14/15,-,0.06,Non-functional,Functional,Unknown,-,OmpK35-87%,OmpK35-trunc,-,mut
+EuSCAPE_ME014,ST15,ST15,CG14/15,-,0.06,Non-functional,Functional,Unknown,-,OmpK35-87%,OmpK35-trunc,-,mut
+EuSCAPE_ME015,ST15,ST15,CG14/15,-,0.06,Non-functional,Functional,Unknown,-,OmpK35-87%,OmpK35-trunc,-,mut
+EuSCAPE_HR057,ST101,ST101,CG43,-,0.12,Non-functional,Functional,Unknown,-,OmpK35-88%,OmpK35-trunc,-,mut
+EuSCAPE_BE025,ST15,ST15,CG14/15,-,0.06,Non-functional,Functional,Unknown,-,OmpK35-88%,OmpK35-trunc,-,mut
+EuSCAPE_IL049,ST45,ST45,CG45,-,0.06,Non-functional,Functional,Unknown,-,OmpK35-88%,OmpK35-trunc,-,mut
+EuSCAPE_RO048,ST16,ST16,CG17/20,-,4,Non-functional,Non-functional,Sensitive,-,OmpK35-88%;OmpK36-45%,OmpK35-trunc;OmpK36-trunc,-,mut
+EuSCAPE_DE026,ST111,other,other,-,4,Non-functional,Non-functional,Unknown,-,OmpK35-88%;OmpK36-65%,OmpK35-trunc;OmpK36-trunc,-,mut
+EuSCAPE_CZ021,ST525,other,other,-,0.06,Non-functional,Functional,Sensitive,-,OmpK35-90%,OmpK35-trunc,-,mut
+EuSCAPE_SK012,ST11,ST11,CG258,-,0.12,Functional,Non-functional,Sensitive,-,OmpK36-0%,OmpK36-trunc,-,mut
+EuSCAPE_SK006,ST11,ST11,CG258,-,2,Functional,Non-functional,Sensitive,-,OmpK36-0%,OmpK36-trunc,-,mut
+EuSCAPE_SK034,ST11,ST11,CG258,-,4,Functional,Functional,Sensitive,-,OmpK36-0%,OmpK36-trunc,-,mut
+EuSCAPE_SK031,ST11,ST11,CG258,-,4,Functional,Non-functional,Sensitive,-,OmpK36-0%,OmpK36-trunc,-,mut
+EuSCAPE_HU027,ST11,ST11,CG258,-,0.06,Functional,Non-functional,Sensitive,-,OmpK36-0%,OmpK36-trunc,-,mut
+EuSCAPE_PL032,ST11,ST11,CG258,-,0.5,Functional,Non-functional,Resistant,MgrB-53%,OmpK36-0%,OmpK36-trunc,-,mut
+EuSCAPE_PL045,ST11,ST11,CG258,-,8,Functional,Non-functional,Resistant,MgrB-53%,OmpK36-0%,OmpK36-trunc,-,mut
+EuSCAPE_DE055,ST25,ST25,CG25,-,4,Functional,Non-functional,Sensitive,-,OmpK36-0%,OmpK36-trunc,-,mut
+EuSCAPE_FR030,ST307,ST307,CG307,-,8,Functional,Non-functional,Sensitive,-,OmpK36-0%,OmpK36-trunc,-,mut
+EuSCAPE_CZ008,ST340,ST340,CG258,-,32,Functional,Non-functional,Sensitive,-,OmpK36-0%,OmpK36-trunc,-,mut
+EuSCAPE_BE106,ST383,other,other,-,32,Non-functional,Non-functional,Unknown,-,OmpK36-0%,OmpK36-trunc,-,mut
+EuSCAPE_FR057,ST392,ST392,CG147,-,2,Functional,Non-functional,Sensitive,-,OmpK36-0%,OmpK36-trunc,-,mut
+EuSCAPE_IL057,ST394,other,other,-,4,Functional,Non-functional,Sensitive,-,OmpK36-0%,OmpK36-trunc,-,mut
+EuSCAPE_UK029,ST461,other,other,-,2,Functional,Non-functional,Sensitive,-,OmpK36-0%,OmpK36-trunc,-,mut
+EuSCAPE_UK007,ST73,other,other,-,0.12,Functional,Non-functional,Sensitive,-,OmpK36-0%,OmpK36-trunc,-,mut
+EuSCAPE_DE035,ST1804,other,other,-,4,Non-functional,Non-functional,Sensitive,-,OmpK36-10%,OmpK36-trunc,-,mut
+EuSCAPE_HU024,ST11,ST11,CG258,-,0.25,Functional,Non-functional,Sensitive,-,OmpK36-11%,OmpK36-trunc,-,mut
+EuSCAPE_HR063,ST437,ST437,CG258,-,4,Functional,Non-functional,Unknown,-,OmpK36-14%,OmpK36-trunc,-,mut
+EuSCAPE_SK002,ST11,ST11,CG258,-,4,Functional,Non-functional,Sensitive,-,OmpK36-15%,OmpK36-trunc,-,mut
+EuSCAPE_PL001,ST152,ST152,CG152,-,1,Functional,Non-functional,Sensitive,-,OmpK36-18%,OmpK36-trunc,-,mut
+EuSCAPE_CZ005,ST405,ST405,ST405,-,2,Functional,Non-functional,Sensitive,-,OmpK36-18%,OmpK36-trunc,-,mut
+EuSCAPE_DE020,ST15,ST15,CG14/15,-,1,Functional,Non-functional,Sensitive,-,OmpK36-19%,OmpK36-trunc,-,mut
+EuSCAPE_PL024,ST152,ST152,CG152,-,4,Functional,Non-functional,Sensitive,-,OmpK36-19%,OmpK36-trunc,-,mut
+EuSCAPE_HR074,ST437,ST437,CG258,-,4,Functional,Non-functional,Unknown,-,OmpK36-19%,OmpK36-trunc,-,mut
+EuSCAPE_HR087,ST437,ST437,CG258,-,4,Functional,Non-functional,Unknown,-,OmpK36-19%,OmpK36-trunc,-,mut
+EuSCAPE_HU040,ST363,other,other,-,0.25,Functional,Non-functional,Unknown,-,OmpK36-20%,OmpK36-trunc,-,mut
+EuSCAPE_AT002,ST11,ST11,CG258,-,8,Functional,Non-functional,Sensitive,-,OmpK36-21%,OmpK36-trunc,-,mut
+EuSCAPE_AT006,ST11,ST11,CG258,-,8,Functional,Non-functional,Sensitive,-,OmpK36-21%,OmpK36-trunc,-,mut
+EuSCAPE_EE004,ST17,ST17,CG17/20,-,2,Functional,Non-functional,Sensitive,-,OmpK36-24%,OmpK36-trunc,-,mut
+EuSCAPE_EE003,ST17,ST17,CG17/20,-,0.06,Functional,Non-functional,Unknown,-,OmpK36-24%,OmpK36-trunc,-,mut
+EuSCAPE_UK019,ST25,ST25,CG25,-,0.12,Functional,Non-functional,Sensitive,-,OmpK36-25%,OmpK36-trunc,-,mut
+EuSCAPE_HR075,ST437,ST437,CG258,-,8,Functional,Non-functional,Unknown,-,OmpK36-25%,OmpK36-trunc,-,mut
+EuSCAPE_IL072,ST111,other,other,-,4,Functional,Non-functional,Sensitive,-,OmpK36-31%,OmpK36-trunc,-,mut
+EuSCAPE_FR067,ST14,ST14,CG14/15,-,2,Functional,Non-functional,Sensitive,-,OmpK36-34%,OmpK36-trunc,-,mut
+EuSCAPE_HR047,ST15,ST15,CG14/15,-,2,Functional,Non-functional,Unknown,-,OmpK36-34%,OmpK36-trunc,-,mut
+EuSCAPE_IT380,ST323,ST323,ST323,-,4,Functional,Non-functional,Resistant,MgrB-0%,OmpK36-34%,OmpK36-trunc,-,mut
+EuSCAPE_DE034,ST405,ST405,ST405,-,1,Functional,Non-functional,Sensitive,-,OmpK36-34%,OmpK36-trunc,-,mut
+EuSCAPE_HR099,ST437,ST437,CG258,-,4,Functional,Non-functional,Unknown,-,OmpK36-34%,OmpK36-trunc,-,mut
+EuSCAPE_AT010,ST1243,other,other,-,2,Functional,Non-functional,Sensitive,-,OmpK36-39%,OmpK36-trunc,-,mut
+EuSCAPE_AT025,ST392,ST392,CG147,-,4,Functional,Non-functional,Sensitive,-,OmpK36-4%,OmpK36-trunc,-,mut
+EuSCAPE_HR059,ST437,ST437,CG258,-,4,Functional,Non-functional,Unknown,-,OmpK36-4%,OmpK36-trunc,-,mut
+EuSCAPE_HR061,ST437,ST437,CG258,-,4,Functional,Non-functional,Unknown,-,OmpK36-4%,OmpK36-trunc,-,mut
+EuSCAPE_ES066,ST405,ST405,ST405,-,4,Functional,Non-functional,Sensitive,-,OmpK36-44%,OmpK36-trunc,-,mut
+EuSCAPE_HR020,ST437,ST437,CG258,-,4,Functional,Non-functional,Unknown,-,OmpK36-44%,OmpK36-trunc,-,mut
+EuSCAPE_PL018,ST280,other,other,-,8,Functional,Non-functional,Resistant,MgrB-0%,OmpK36-45%,OmpK36-trunc,-,mut
+EuSCAPE_BE101,ST595,other,other,-,1,Functional,Non-functional,Unknown,-,OmpK36-47%,OmpK36-trunc,-,mut
+EuSCAPE_GR033,ST307,ST307,CG307,-,0.5,Functional,Non-functional,Unknown,-,OmpK36-48%,OmpK36-trunc,-,mut
+EuSCAPE_UK040,ST3393,other,other,-,0.25,Functional,Non-functional,Sensitive,-,OmpK36-49%,OmpK36-trunc,-,mut
+EuSCAPE_ES103,ST392,ST392,CG147,-,2,Functional,Non-functional,Sensitive,-,OmpK36-49%,OmpK36-trunc,-,mut
+EuSCAPE_SK044,ST11,ST11,CG258,-,0.5,Functional,Non-functional,Sensitive,-,OmpK36-50%,OmpK36-trunc,-,mut
+EuSCAPE_SI020,ST307,ST307,CG307,-,1,Functional,Non-functional,Sensitive,-,OmpK36-56%,OmpK36-trunc,-,mut
+EuSCAPE_RS107,ST340,ST340,CG258,-,0.5,Functional,Non-functional,Unknown,-,OmpK36-57%,OmpK36-trunc,-,mut
+EuSCAPE_CZ002,ST323,ST323,ST323,-,2,Functional,Non-functional,Sensitive,-,OmpK36-6%,OmpK36-trunc,-,mut
+EuSCAPE_LU001,ST45,ST45,CG45,-,4,Non-functional,Non-functional,Sensitive,-,OmpK36-6%,OmpK36-trunc,-,mut
+EuSCAPE_LU002,ST45,ST45,CG45,-,4,Non-functional,Non-functional,Unknown,-,OmpK36-6%,OmpK36-trunc,-,mut
+EuSCAPE_LU012,ST45,ST45,CG45,-,4,Non-functional,Non-functional,Unknown,-,OmpK36-6%,OmpK36-trunc,-,mut
+EuSCAPE_CZ017,ST45,ST45,CG45,-,8,Functional,Non-functional,Sensitive,-,OmpK36-6%,OmpK36-trunc,-,mut
+EuSCAPE_IE031,ST35,ST35,CG35,-,2,Functional,Non-functional,Sensitive,-,OmpK36-61%,OmpK36-trunc,-,mut
+EuSCAPE_BE061,ST307,ST307,CG307,-,4,Functional,Non-functional,Unknown,-,OmpK36-62%,OmpK36-trunc,-,mut
+EuSCAPE_CZ032,ST11,ST11,CG258,-,0.5,Functional,Non-functional,Sensitive,-,OmpK36-66%,OmpK36-trunc,-,mut
+EuSCAPE_HR010,ST437,ST437,CG258,-,8,Functional,Non-functional,Unknown,-,OmpK36-66%,OmpK36-trunc,-,mut
+EuSCAPE_HR017,ST437,ST437,CG258,-,8,Functional,Non-functional,Unknown,-,OmpK36-66%,OmpK36-trunc,-,mut
+EuSCAPE_SK008,ST11,ST11,CG258,-,4,Functional,Non-functional,Sensitive,-,OmpK36-7%,OmpK36-trunc,-,mut
+EuSCAPE_IL081,ST111,other,other,-,1,Functional,Non-functional,Sensitive,-,OmpK36-7%,OmpK36-trunc,-,mut
+EuSCAPE_DE057,ST17,ST17,CG17/20,-,2,Functional,Non-functional,Sensitive,-,OmpK36-73%,OmpK36-trunc,-,mut
+EuSCAPE_SK039,ST340,ST340,CG258,-,2,Functional,Non-functional,Sensitive,MgrB-0%,OmpK36-74%,OmpK36-trunc,-,mut
+EuSCAPE_HR005,ST437,ST437,CG258,-,4,Functional,Non-functional,Unknown,-,OmpK36-75%,OmpK36-trunc,-,mut
+EuSCAPE_HR016,ST437,ST437,CG258,-,8,Functional,Non-functional,Unknown,-,OmpK36-75%,OmpK36-trunc,-,mut
+EuSCAPE_IT083,ST512,ST512,CG258,-,0.06,Functional,Non-functional,Unknown,-,OmpK36-75%,OmpK36-trunc,-,mut
+EuSCAPE_PL025,ST11,ST11,CG258,-,2,Functional,Non-functional,Sensitive,-,OmpK36-78%,OmpK36-trunc,-,mut
+EuSCAPE_SK018,ST11,ST11,CG258,-,2,Functional,Non-functional,Sensitive,-,OmpK36-78%,OmpK36-trunc,-,mut
+EuSCAPE_CZ001,ST309,other,other,-,0.5,Functional,Non-functional,Sensitive,-,OmpK36-8%,OmpK36-trunc,-,mut
+EuSCAPE_TR306,ST185,other,other,-,0.25,Functional,Non-functional,Unknown,-,OmpK36-81%,OmpK36-trunc,-,mut
+EuSCAPE_UK055,ST29,ST29,CG29,-,0.5,Functional,Non-functional,Sensitive,-,OmpK36-84%,OmpK36-trunc,-,mut
+EuSCAPE_HR084,ST437,ST437,CG258,-,1,Functional,Non-functional,Unknown,-,OmpK36-85%,OmpK36-trunc,-,mut
+EuSCAPE_HR090,ST437,ST437,CG258,-,16,Functional,Non-functional,Unknown,MgrB-0%,OmpK36-85%,OmpK36-trunc,-,mut
+EuSCAPE_HR083,ST437,ST437,CG258,-,0.12,Functional,Functional,Unknown,-,OmpK36GD,OmpK36GD,-,mut
+EuSCAPE_HR091,ST437,ST437,CG258,-,0.5,Functional,Functional,Unknown,-,OmpK36GD,OmpK36GD,-,mut
+EuSCAPE_HR007,ST437,ST437,CG258,-,0.5,Functional,Functional,Unknown,-,OmpK36GD,OmpK36GD,-,mut
+EuSCAPE_HR106,ST437,ST437,CG258,-,1,Functional,Functional,Unknown,-,OmpK36GD,OmpK36GD,-,mut
+EuSCAPE_HR008,ST437,ST437,CG258,-,2,Functional,Functional,Unknown,-,OmpK36GD,OmpK36GD,-,mut
+EuSCAPE_HR066,ST437,ST437,CG258,-,2,Functional,Functional,Unknown,-,OmpK36GD,OmpK36GD,-,mut
+EuSCAPE_HR022,ST437,ST437,CG258,-,0.06,Functional,Functional,Unknown,-,OmpK36GD,OmpK36GD,-,mut
+EuSCAPE_HR025,ST437,ST437,CG258,-,0.06,Functional,Functional,Unknown,-,OmpK36GD,OmpK36GD,-,mut
+EuSCAPE_HR082,ST437,ST437,CG258,-,0.06,Functional,Functional,Unknown,-,OmpK36GD,OmpK36GD,-,mut
+EuSCAPE_ES100,ST11,ST11,CG258,KPC,2,Functional,Functional,Sensitive,-,-,-,KPC-2,KPC wt
+EuSCAPE_ES085,ST11,ST11,CG258,KPC,4,Functional,Functional,Sensitive,-,-,-,KPC-2,KPC wt
+EuSCAPE_ES073,ST11,ST11,CG258,KPC,8,Functional,Functional,Sensitive,-,-,-,KPC-2,KPC wt
+EuSCAPE_UK070,ST13,ST13,other,KPC,8,Functional,Functional,Sensitive,-,-,-,KPC-2,KPC wt
+EuSCAPE_RO039,ST147,ST147,CG147,KPC,8,Functional,Functional,Sensitive,-,-,-,KPC-2,KPC wt
+EuSCAPE_RO005,ST147,ST147,CG147,KPC,8,Functional,Functional,Sensitive,-,-,-,KPC-2,KPC wt
+EuSCAPE_RO076,ST147,ST147,CG147,KPC,16,Functional,Functional,Resistant,MgrB-0%,-,-,KPC-2,KPC wt
+EuSCAPE_GR101,ST1486,other,other,KPC,8,Functional,Functional,Unknown,-,-,-,KPC-2,KPC wt
+EuSCAPE_DE073,ST1848,other,other,KPC,32,Functional,Functional,Resistant,-,-,-,KPC-2,KPC wt
+EuSCAPE_IT396,ST307,ST307,CG307,KPC,32,Functional,Functional,Sensitive,-,-,-,KPC-2,KPC wt
+EuSCAPE_DE072,ST36,ST36,CG36,KPC,16,Functional,Functional,Sensitive,-,-,-,KPC-2,KPC wt
+EuSCAPE_DE076,ST36,ST36,CG36,KPC,16,Functional,Functional,Sensitive,-,-,-,KPC-2,KPC wt
+EuSCAPE_LU006,ST37,ST37,CG37,KPC,16,Functional,Functional,Sensitive,-,-,-,KPC-2,KPC wt
+EuSCAPE_LU018,ST37,ST37,CG37,KPC,16,Functional,Functional,Unknown,-,-,-,KPC-2,KPC wt
+EuSCAPE_GR153,ST420,other,other,KPC,8,Functional,Functional,Unknown,-,-,-,KPC-2,KPC wt
+EuSCAPE_UK069,ST449,other,other,KPC,32,Functional,Functional,Sensitive,-,-,-,KPC-2,KPC wt
+EuSCAPE_UK011,ST661,other,other,KPC,4,Functional,Functional,Sensitive,-,-,-,KPC-2,KPC wt
+EuSCAPE_UK063,ST915,other,other,KPC,8,Functional,Functional,Sensitive,-,-,-,KPC-2,KPC wt
+EuSCAPE_IT201,ST101,ST101,CG43,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-17%;OmpK36TD,OmpK35-trunc;OmpK36GD,KPC-2,KPC mut
+EuSCAPE_IT208,ST101,ST101,CG43,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-17%;OmpK36TD,OmpK35-trunc;OmpK36GD,KPC-2,KPC mut
+EuSCAPE_IT210,ST101,ST101,CG43,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-17%;OmpK36TD,OmpK35-trunc;OmpK36GD,KPC-2,KPC mut
+EuSCAPE_IT260,ST101,ST101,CG43,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-17%;OmpK36TD,OmpK35-trunc;OmpK36GD,KPC-2,KPC mut
+EuSCAPE_IT364,ST1685,other,other,KPC,32,Non-functional,Functional,Resistant,MgrB-0%,OmpK35-17%;OmpK36TD,OmpK35-trunc;OmpK36GD,KPC-2,KPC mut
+EuSCAPE_IT403,ST258,ST258,CG258,KPC,4,Non-functional,Functional,Sensitive,-,OmpK35-25%,OmpK35-trunc,KPC-2,KPC mut
+EuSCAPE_MK006,ST258,ST258,CG258,KPC,4,Non-functional,Functional,Sensitive,-,OmpK35-25%,OmpK35-trunc,KPC-2,KPC mut
+EuSCAPE_GR049,ST258,ST258,CG258,KPC,4,Non-functional,Functional,Unknown,-,OmpK35-25%,OmpK35-trunc,KPC-2,KPC mut
+EuSCAPE_GR055,ST258,ST258,CG258,KPC,4,Non-functional,Functional,Sensitive,-,OmpK35-25%,OmpK35-trunc,KPC-2,KPC mut
+EuSCAPE_HR021,ST258,ST258,CG258,KPC,4,Non-functional,Functional,Unknown,-,OmpK35-25%,OmpK35-trunc,KPC-2,KPC mut
+EuSCAPE_FR006,ST258,ST258,CG258,KPC,8,Non-functional,Functional,Resistant,-,OmpK35-25%,OmpK35-trunc,KPC-2,KPC mut
+EuSCAPE_DE051,ST258,ST258,CG258,KPC,8,Non-functional,Functional,Sensitive,-,OmpK35-25%,OmpK35-trunc,KPC-2,KPC mut
+EuSCAPE_DE074,ST258,ST258,CG258,KPC,8,Non-functional,Functional,Sensitive,-,OmpK35-25%,OmpK35-trunc,KPC-2,KPC mut
+EuSCAPE_UK030,ST258,ST258,CG258,KPC,8,Non-functional,Functional,Sensitive,-,OmpK35-25%,OmpK35-trunc,KPC-2,KPC mut
+EuSCAPE_BE092,ST258,ST258,CG258,KPC,8,Non-functional,Functional,Unknown,-,OmpK35-25%,OmpK35-trunc,KPC-2,KPC mut
+EuSCAPE_AT022,ST258,ST258,CG258,KPC,16,Non-functional,Functional,Sensitive,-,OmpK35-25%,OmpK35-trunc,KPC-2,KPC mut
+EuSCAPE_IT136,ST258,ST258,CG258,KPC,16,Non-functional,Functional,Sensitive,-,OmpK35-25%,OmpK35-trunc,KPC-2,KPC mut
+EuSCAPE_GR003,ST258,ST258,CG258,KPC,16,Non-functional,Functional,Unknown,-,OmpK35-25%,OmpK35-trunc,KPC-2,KPC mut
+EuSCAPE_GR149,ST258,ST258,CG258,KPC,16,Non-functional,Functional,Unknown,-,OmpK35-25%,OmpK35-trunc,KPC-2,KPC mut
+EuSCAPE_IE024,ST258,ST258,CG258,KPC,16,Non-functional,Functional,Sensitive,-,OmpK35-25%,OmpK35-trunc,KPC-2,KPC mut
+EuSCAPE_UK025,ST258,ST258,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%,OmpK35-trunc,KPC-2,KPC mut
+EuSCAPE_IT128,ST258,ST258,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%,OmpK35-trunc,KPC-2,KPC mut
+EuSCAPE_IT138,ST258,ST258,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%,OmpK35-trunc,KPC-2,KPC mut
+EuSCAPE_IT142,ST258,ST258,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%,OmpK35-trunc,KPC-2,KPC mut
+EuSCAPE_IT144,ST258,ST258,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%,OmpK35-trunc,KPC-2,KPC mut
+EuSCAPE_IT148,ST258,ST258,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%,OmpK35-trunc,KPC-2,KPC mut
+EuSCAPE_DE016,ST258,ST258,CG258,KPC,32,Non-functional,Functional,Resistant,MgrB-79%,OmpK35-25%,OmpK35-trunc,KPC-2,KPC mut
+EuSCAPE_GR022,ST258,ST258,CG258,KPC,32,Non-functional,Non-functional,Sensitive,MgrB-60%,OmpK35-25%;OmpK36-79%,OmpK35-trunc;OmpK36-trunc,KPC-2,KPC mut
+EuSCAPE_GR051,ST258,ST258,CG258,KPC,32,Non-functional,Functional,Sensitive,MgrB-60%,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-2,KPC mut
+EuSCAPE_GR053,ST258,ST258,CG258,KPC,32,Non-functional,Functional,Sensitive,MgrB-60%,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-2,KPC mut
+EuSCAPE_SK017,ST258,ST258,CG258,KPC,32,Non-functional,Functional,Sensitive,MgrB-60%,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-2,KPC mut
+EuSCAPE_DE028,ST258,ST258,CG258,KPC,32,Non-functional,Functional,Resistant,MgrB-60%,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-2,KPC mut
+EuSCAPE_GR030,ST258,ST258,CG258,KPC,32,Non-functional,Functional,Unknown,MgrB-60%,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-2,KPC mut
+EuSCAPE_GR057,ST258,ST258,CG258,KPC,32,Non-functional,Functional,Sensitive,MgrB-60%,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-2,KPC mut
+EuSCAPE_GR036,ST258,ST258,CG258,KPC,32,Non-functional,Functional,Unknown,MgrB-60%,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-2,KPC mut
+EuSCAPE_GR069,ST258,ST258,CG258,KPC,32,Non-functional,Functional,Resistant,MgrB-60%,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-2,KPC mut
+EuSCAPE_GR085,ST258,ST258,CG258,KPC,32,Non-functional,Functional,Sensitive,MgrB-60%,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-2,KPC mut
+EuSCAPE_GR107,ST258,ST258,CG258,KPC,32,Non-functional,Functional,Unknown,MgrB-60%,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-2,KPC mut
+EuSCAPE_GR108,ST258,ST258,CG258,KPC,32,Non-functional,Functional,Unknown,MgrB-60%,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-2,KPC mut
+EuSCAPE_GR146,ST258,ST258,CG258,KPC,32,Non-functional,Functional,Unknown,MgrB-60%,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-2,KPC mut
+EuSCAPE_GR151,ST258,ST258,CG258,KPC,32,Non-functional,Functional,Unknown,MgrB-60%,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-2,KPC mut
+EuSCAPE_GR154,ST258,ST258,CG258,KPC,32,Non-functional,Functional,Unknown,MgrB-60%,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-2,KPC mut
+EuSCAPE_GR105,ST258,ST258,CG258,KPC,32,Non-functional,Functional,Unknown,MgrB-60%,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-2,KPC mut
+EuSCAPE_GR089,ST258,ST258,CG258,KPC,32,Non-functional,Functional,Sensitive,MgrB-60%,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-2,KPC mut
+EuSCAPE_GR139,ST258,ST258,CG258,KPC,32,Non-functional,Functional,Unknown,MgrB-60%,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-2,KPC mut
+EuSCAPE_GR090,ST258,ST258,CG258,KPC,32,Non-functional,Functional,Sensitive,MgrB-60%,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-2,KPC mut
+EuSCAPE_GR165,ST258,ST258,CG258,KPC,32,Non-functional,Functional,Unknown,MgrB-60%,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-2,KPC mut
+EuSCAPE_GR091,ST258,ST258,CG258,KPC,32,Non-functional,Functional,Sensitive,MgrB-60%,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-2,KPC mut
+EuSCAPE_UK047,ST258,ST258,CG258,KPC,32,Non-functional,Functional,Sensitive,MgrB-60%,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-2,KPC mut
+EuSCAPE_ES057,ST1961,other,other,KPC,32,Non-functional,Non-functional,Sensitive,-,OmpK35-37%;OmpK36-11%,OmpK35-trunc;OmpK36-trunc,KPC-2,KPC mut
+EuSCAPE_LU008,ST147,ST147,CG147,KPC,16,Non-functional,Functional,Unknown,MgrB-62%,OmpK35-48%,OmpK35-trunc,KPC-2,KPC mut
+EuSCAPE_GR147,ST147,ST147,CG147,KPC,8,Non-functional,Functional,Unknown,MgrB-87%,OmpK35-48%,OmpK35-trunc,KPC-2,KPC mut
+EuSCAPE_DE024,ST147,ST147,CG147,KPC,32,Non-functional,Functional,Resistant,MgrB-6%,OmpK35-48%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-2,KPC mut
+EuSCAPE_UK067,ST915,other,other,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-8%,OmpK35-trunc,KPC-2,KPC mut
+EuSCAPE_LU019,ST37,ST37,CG37,KPC,32,Functional,Non-functional,Resistant,-,OmpK36-56%,OmpK36-trunc,KPC-2,KPC mut
+EuSCAPE_RO028,ST147,ST147,CG147,KPC,32,Functional,Functional,Sensitive,-,OmpK36GD,OmpK36GD,KPC-2,KPC mut
+EuSCAPE_ES089,ST11,ST11,CG258,KPC;OXA,0.12,Functional,Functional,Sensitive,-,-,-,KPC-2;OXA-48,KPC wt
+EuSCAPE_GR032,ST258,ST258,CG258,KPC;OXA,32,Non-functional,Functional,Unknown,MgrB-60%,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-2;OXA-48,KPC mut
+EuSCAPE_GR124,ST340,ST340,CG258,KPC;VIM,32,Functional,Functional,Unknown,-,-,-,KPC-2;VIM-1,KPC wt
+EuSCAPE_GR075,ST383,other,other,KPC;VIM,16,Functional,Functional,Unknown,-,-,-,KPC-2;VIM-1,KPC wt
+EuSCAPE_IT107,ST15,ST15,CG14/15,KPC,0.06,Non-functional,Functional,Unknown,-,OmpK35-22%,OmpK35-trunc,KPC-2?,KPC mut
+EuSCAPE_GR110,ST258,ST258,CG258,KPC,32,Non-functional,Functional,Unknown,MgrB-60%,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-2*,KPC mut
+EuSCAPE_BE067,ST101,ST101,CG43,KPC,2,Functional,Functional,Unknown,-,-,-,KPC-3,KPC wt
+EuSCAPE_BE064,ST101,ST101,CG43,KPC,8,Functional,Functional,Unknown,-,-,-,KPC-3,KPC wt
+EuSCAPE_BE079,ST101,ST101,CG43,KPC,8,Functional,Functional,Unknown,-,-,-,KPC-3,KPC wt
+EuSCAPE_BE082,ST101,ST101,CG43,KPC,16,Functional,Functional,Unknown,-,-,-,KPC-3,KPC wt
+EuSCAPE_BE083,ST101,ST101,CG43,KPC,16,Functional,Functional,Unknown,-,-,-,KPC-3,KPC wt
+EuSCAPE_IT127,ST11,ST11,CG258,KPC,0.12,Functional,Functional,Unknown,-,-,-,KPC-3,KPC wt
+EuSCAPE_IT046,ST15,ST15,CG14/15,KPC,16,Functional,Functional,Sensitive,-,-,-,KPC-3,KPC wt
+EuSCAPE_IL046,ST292,other,other,KPC,2,Functional,Functional,Sensitive,-,-,-,KPC-3,KPC wt
+EuSCAPE_IT355,ST307,ST307,CG307,KPC,2,Functional,Functional,Sensitive,-,-,-,KPC-3,KPC wt
+EuSCAPE_IT068,ST307,ST307,CG307,KPC,4,Functional,Functional,Sensitive,-,-,-,KPC-3,KPC wt
+EuSCAPE_BE103,ST392,ST392,CG147,KPC,2,Functional,Functional,Unknown,-,-,-,KPC-3,KPC wt
+EuSCAPE_IT042,ST101,ST101,CG43,KPC,1,Non-functional,Functional,Resistant,MgrB-4%,OmpK35-17%,OmpK35-trunc,KPC-3,KPC mut
+EuSCAPE_PL026,ST258,ST258,CG258,KPC,4,Non-functional,Functional,Unknown,-,OmpK35-25%,OmpK35-trunc,KPC-3,KPC mut
+EuSCAPE_IT007,ST258,ST258,CG258,KPC,4,Non-functional,Functional,Sensitive,-,OmpK35-25%,OmpK35-trunc,KPC-3,KPC mut
+EuSCAPE_IT292,ST258,ST258,CG258,KPC,8,Non-functional,Functional,Sensitive,-,OmpK35-25%,OmpK35-trunc,KPC-3,KPC mut
+EuSCAPE_ES289,ST258,ST258,CG258,KPC,8,Non-functional,Functional,Sensitive,-,OmpK35-25%,OmpK35-trunc,KPC-3,KPC mut
+EuSCAPE_ES291,ST258,ST258,CG258,KPC,8,Non-functional,Functional,Sensitive,-,OmpK35-25%,OmpK35-trunc,KPC-3,KPC mut
+EuSCAPE_UK014,ST258,ST258,CG258,KPC,8,Non-functional,Functional,Sensitive,-,OmpK35-25%,OmpK35-trunc,KPC-3,KPC mut
+EuSCAPE_PL039,ST258,ST258,CG258,KPC,16,Non-functional,Functional,Resistant,-,OmpK35-25%,OmpK35-trunc,KPC-3,KPC mut
+EuSCAPE_IT168,ST258,ST258,CG258,KPC,16,Non-functional,Functional,Resistant,-,OmpK35-25%,OmpK35-trunc,KPC-3,KPC mut
+EuSCAPE_IT290,ST258,ST258,CG258,KPC,16,Non-functional,Functional,Sensitive,-,OmpK35-25%,OmpK35-trunc,KPC-3,KPC mut
+EuSCAPE_ES293,ST258,ST258,CG258,KPC,16,Non-functional,Functional,Sensitive,-,OmpK35-25%,OmpK35-trunc,KPC-3,KPC mut
+EuSCAPE_GR158,ST258,ST258,CG258,KPC,16,Non-functional,Functional,Unknown,-,OmpK35-25%,OmpK35-trunc,KPC-3,KPC mut
+EuSCAPE_GR167,ST258,ST258,CG258,KPC,16,Non-functional,Functional,Unknown,-,OmpK35-25%,OmpK35-trunc,KPC-3,KPC mut
+EuSCAPE_UK048,ST258,ST258,CG258,KPC,16,Non-functional,Functional,Sensitive,-,OmpK35-25%,OmpK35-trunc,KPC-3,KPC mut
+EuSCAPE_IT162,ST258,ST258,CG258,KPC,32,Non-functional,Functional,Resistant,-,OmpK35-25%,OmpK35-trunc,KPC-3,KPC mut
+EuSCAPE_IT166,ST258,ST258,CG258,KPC,32,Non-functional,Functional,Resistant,-,OmpK35-25%,OmpK35-trunc,KPC-3,KPC mut
+EuSCAPE_IT347,ST258,ST258,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%,OmpK35-trunc,KPC-3,KPC mut
+EuSCAPE_GR166,ST258,ST258,CG258,KPC,32,Non-functional,Functional,Unknown,-,OmpK35-25%,OmpK35-trunc,KPC-3,KPC mut
+EuSCAPE_IT064,ST258,ST258,CG258,KPC,32,Non-functional,Functional,Resistant,-,OmpK35-25%,OmpK35-trunc,KPC-3,KPC mut
+EuSCAPE_IT244,ST258,ST258,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%,OmpK35-trunc,KPC-3,KPC mut
+EuSCAPE_IT092,ST512,ST512,CG258,KPC,8,Non-functional,Functional,Sensitive,-,OmpK35-25%,OmpK35-trunc,KPC-3,KPC mut
+EuSCAPE_IT005,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Resistant,-,OmpK35-25%,OmpK35-trunc,KPC-3,KPC mut
+EuSCAPE_IT266,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Resistant,-,OmpK35-25%,OmpK35-trunc,KPC-3,KPC mut
+EuSCAPE_IL044,ST258,ST258,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_AT027,ST258,ST258,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_UK057,ST258,ST258,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT056,ST512,ST512,CG258,KPC,4,Non-functional,Functional,Resistant,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IL012,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IL013,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT066,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Resistant,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IL062,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IL077,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IL083,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT234,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Resistant,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT180,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT382,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Resistant,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT335,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT368,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_BE070,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Unknown,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_BE071,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Unknown,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_BE073,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Unknown,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_BE091,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Unknown,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_BE093,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Unknown,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IL011,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_AT018,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IL004,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IL009,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IL018,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IL020,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IL021,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IL024,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Resistant,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IL034,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT022,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT024,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Resistant,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT026,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Resistant,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT030,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Resistant,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT034,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Resistant,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT036,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Resistant,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT038,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT044,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT048,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT060,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Resistant,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT072,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Resistant,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT074,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Resistant,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT078,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT084,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IL040,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IL041,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IL058,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IL059,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IL070,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IL076,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IL078,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IL079,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IL086,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT001,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IL033,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT013,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT015,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT017,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Resistant,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT020,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Resistant,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT196,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT102,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT216,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT222,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT224,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT104,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT226,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Resistant,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT228,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Resistant,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT236,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Resistant,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT238,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT240,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT242,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT246,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT250,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Resistant,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT252,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Resistant,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT254,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT256,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT108,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT110,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT090,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT112,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Resistant,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT118,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT120,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT122,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT124,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT126,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT130,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT132,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Resistant,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT134,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT152,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT174,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT178,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT182,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT184,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT188,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT190,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT194,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Resistant,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT274,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT394,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Resistant,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT404,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT288,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Resistant,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT294,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT308,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT316,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Resistant,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT318,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT322,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT324,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT326,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT328,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Resistant,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT333,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT336,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Unknown,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT337,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Resistant,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT343,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT359,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT366,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_BE084,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Unknown,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_BE098,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Unknown,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IL069,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT094,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT049,ST512,ST512,CG258,KPC,0.06,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT053,ST512,ST512,CG258,KPC,0.06,Non-functional,Functional,Sensitive,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT085,ST512,ST512,CG258,KPC,0.06,Non-functional,Functional,Unknown,-,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_AT012,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Resistant,MgrB-0%,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IL080,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,MgrB-0%,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT009,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Resistant,MgrB-0%,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT205,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Resistant,MgrB-0%,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT349,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Resistant,MgrB-0%,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT278,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,MgrB-17%,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT286,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,MgrB-17%,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_AT014,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Resistant,MgrB-51%,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_AT017,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Resistant,MgrB-51%,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT160,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Resistant,MgrB-6%,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT172,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Resistant,MgrB-6%,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IL048,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Resistant,MgrB-60%,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IL060,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Resistant,MgrB-60%,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IL063,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Resistant,MgrB-60%,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IL029,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,MgrB-60%,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT199,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Resistant,MgrB-60%,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT114,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Resistant,MgrB-60%,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT386,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Resistant,MgrB-60%,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT080,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,MgrB-62%,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT082,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Resistant,MgrB-62%,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT086,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Resistant,MgrB-62%,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT088,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Resistant,MgrB-62%,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT140,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Resistant,MgrB-62%,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT100,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Resistant,MgrB-62%,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT096,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Resistant,MgrB-62%,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT106,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Resistant,MgrB-68%,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT370,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Sensitive,MgrB-79%,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT028,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Resistant,MgrB-79%,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT032,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Resistant,MgrB-79%,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT258,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Resistant,MgrB-79%,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT384,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Resistant,MgrB-79%,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT388,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Resistant,MgrB-79%,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT262,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Resistant,MgrB-79%,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT264,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Resistant,MgrB-79%,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT330,ST512,ST512,CG258,KPC,32,Non-functional,Functional,Resistant,MgrB-87%,OmpK35-25%;OmpK36GD,OmpK35-trunc;OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT070,ST258,ST258,CG258,KPC,32,Non-functional,Functional,Resistant,-,OmpK35-25%;OmpK36TD,OmpK35-trunc;OmpK36TD,KPC-3,KPC mut
+EuSCAPE_IT248,ST258,ST258,CG258,KPC,32,Non-functional,Functional,Resistant,-,OmpK35-25%;OmpK36TD,OmpK35-trunc;OmpK36TD,KPC-3,KPC mut
+EuSCAPE_GR050,ST39,ST39,other,KPC,32,Functional,Functional,Sensitive,-,OmpK36GD,OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT341,ST512,ST512,CG258,KPC,8,Functional,Functional,Sensitive,-,OmpK36GD,OmpK36GD,KPC-3,KPC mut
+EuSCAPE_IT055,ST107,other,other,KPC,0.06,Functional,Functional,Sensitive,-,-,-,KPC-3?,KPC wt
+EuSCAPE_RS010,ST101,ST101,CG43,NDM,32,Functional,Functional,Sensitive,-,-,-,NDM-1,NDM wt
+EuSCAPE_GR010,ST11,ST11,CG258,NDM,4,Non-functional,Functional,Unknown,-,-,-,NDM-1,NDM wt
+EuSCAPE_IT058,ST11,ST11,CG258,NDM,8,Non-functional,Functional,Sensitive,-,-,-,NDM-1,NDM wt
+EuSCAPE_GR016,ST11,ST11,CG258,NDM,16,Non-functional,Functional,Unknown,-,-,-,NDM-1,NDM wt
+EuSCAPE_GR001,ST11,ST11,CG258,NDM,16,Non-functional,Functional,Unknown,-,-,-,NDM-1,NDM wt
+EuSCAPE_GR135,ST11,ST11,CG258,NDM,16,Non-functional,Functional,Unknown,-,-,-,NDM-1,NDM wt
+EuSCAPE_DE019,ST11,ST11,CG258,NDM,32,Functional,Functional,Sensitive,-,-,-,NDM-1,NDM wt
+EuSCAPE_BU022,ST11,ST11,CG258,NDM,32,Non-functional,Functional,Sensitive,-,-,-,NDM-1,NDM wt
+EuSCAPE_GR027,ST11,ST11,CG258,NDM,32,Non-functional,Functional,Unknown,-,-,-,NDM-1,NDM wt
+EuSCAPE_GR074,ST11,ST11,CG258,NDM,32,Non-functional,Functional,Unknown,-,-,-,NDM-1,NDM wt
+EuSCAPE_GR008,ST11,ST11,CG258,NDM,32,Non-functional,Functional,Unknown,-,-,-,NDM-1,NDM wt
+EuSCAPE_UK075,ST11,ST11,CG258,NDM,32,Functional,Functional,Sensitive,-,-,-,NDM-1,NDM wt
+EuSCAPE_RO054,ST11,ST11,CG258,NDM,32,Functional,Functional,Sensitive,-,-,-,NDM-1,NDM wt
+EuSCAPE_UK041,ST11,ST11,CG258,NDM,32,Non-functional,Functional,Sensitive,-,-,-,NDM-1,NDM wt
+EuSCAPE_IE019,ST11,ST11,CG258,NDM,32,Functional,Functional,Sensitive,-,-,-,NDM-1,NDM wt
+EuSCAPE_TR184,ST11,ST11,CG258,NDM,32,Functional,Functional,Unknown,-,-,-,NDM-1,NDM wt
+EuSCAPE_CZ007,ST11,ST11,CG258,NDM,32,Functional,Functional,Sensitive,-,-,-,NDM-1,NDM wt
+EuSCAPE_GR026,ST11,ST11,CG258,NDM,32,Non-functional,Functional,Unknown,-,-,-,NDM-1,NDM wt
+EuSCAPE_GR133,ST11,ST11,CG258,NDM,32,Non-functional,Functional,Unknown,-,-,-,NDM-1,NDM wt
+EuSCAPE_GR134,ST11,ST11,CG258,NDM,32,Non-functional,Functional,Unknown,-,-,-,NDM-1,NDM wt
+EuSCAPE_RO046,ST11,ST11,CG258,NDM,32,Functional,Functional,Sensitive,-,-,-,NDM-1,NDM wt
+EuSCAPE_GR094,ST11,ST11,CG258,NDM,32,Non-functional,Functional,Unknown,MgrB-49%,-,-,NDM-1,NDM wt
+EuSCAPE_GR121,ST11,ST11,CG258,NDM,32,Non-functional,Functional,Unknown,MgrB-60%,-,-,NDM-1,NDM wt
+EuSCAPE_RS046,ST274,ST274,ST274,NDM,2,Functional,Functional,Sensitive,-,-,-,NDM-1,NDM wt
+EuSCAPE_RS105,ST274,ST274,ST274,NDM,2,Functional,Functional,Sensitive,-,-,-,NDM-1,NDM wt
+EuSCAPE_ME010,ST274,ST274,ST274,NDM,4,Functional,Functional,Unknown,-,-,-,NDM-1,NDM wt
+EuSCAPE_ME013,ST274,ST274,ST274,NDM,4,Functional,Functional,Unknown,-,-,-,NDM-1,NDM wt
+EuSCAPE_ME016,ST274,ST274,ST274,NDM,8,Functional,Functional,Unknown,-,-,-,NDM-1,NDM wt
+EuSCAPE_ME004,ST274,ST274,ST274,NDM,16,Functional,Functional,Unknown,-,-,-,NDM-1,NDM wt
+EuSCAPE_ME005,ST274,ST274,ST274,NDM,16,Functional,Functional,Unknown,-,-,-,NDM-1,NDM wt
+EuSCAPE_ME011,ST274,ST274,ST274,NDM,16,Functional,Functional,Unknown,-,-,-,NDM-1,NDM wt
+EuSCAPE_ME020,ST274,ST274,ST274,NDM,16,Functional,Functional,Unknown,-,-,-,NDM-1,NDM wt
+EuSCAPE_IE008,ST323,ST323,ST323,NDM,32,Functional,Functional,Sensitive,-,-,-,NDM-1,NDM wt
+EuSCAPE_RS045,ST340,ST340,CG258,NDM,16,Functional,Functional,Resistant,-,-,-,NDM-1,NDM wt
+EuSCAPE_RS081,ST340,ST340,CG258,NDM,32,Functional,Functional,Sensitive,-,-,-,NDM-1,NDM wt
+EuSCAPE_RS021,ST340,ST340,CG258,NDM,32,Functional,Functional,Sensitive,-,-,-,NDM-1,NDM wt
+EuSCAPE_RS049,ST340,ST340,CG258,NDM,32,Functional,Functional,Sensitive,-,-,-,NDM-1,NDM wt
+EuSCAPE_PL046,ST3666,other,other,NDM,32,Non-functional,Functional,Sensitive,-,-,-,NDM-1,NDM wt
+EuSCAPE_RS002,ST437,ST437,CG258,NDM,32,Functional,Functional,Sensitive,-,-,-,NDM-1,NDM wt
+EuSCAPE_RS032,ST437,ST437,CG258,NDM,32,Functional,Functional,Sensitive,-,-,-,NDM-1,NDM wt
+EuSCAPE_RS057,ST437,ST437,CG258,NDM,32,Functional,Functional,Sensitive,-,-,-,NDM-1,NDM wt
+EuSCAPE_RS064,ST437,ST437,CG258,NDM,32,Functional,Functional,Sensitive,-,-,-,NDM-1,NDM wt
+EuSCAPE_RS072,ST437,ST437,CG258,NDM,32,Functional,Functional,Resistant,MgrB-0%,-,-,NDM-1,NDM wt
+EuSCAPE_RS102,ST437,ST437,CG258,NDM,32,Functional,Functional,Resistant,MgrB-0%,-,-,NDM-1,NDM wt
+EuSCAPE_RS040,ST437,ST437,CG258,NDM,32,Functional,Functional,Resistant,MgrB-0%,-,-,NDM-1,NDM wt
+EuSCAPE_AT029,ST15,ST15,CG14/15,NDM,32,Non-functional,Functional,Sensitive,-,OmpK35-0%,OmpK35-trunc,NDM-1,NDM mut
+EuSCAPE_SI002,ST101,ST101,CG43,NDM,8,Non-functional,Functional,Sensitive,-,OmpK35-17%;OmpK36GD,OmpK35-trunc;OmpK36GD,NDM-1,NDM mut
+EuSCAPE_RS052,ST101,ST101,CG43,NDM,32,Non-functional,Functional,Sensitive,-,OmpK35-17%;OmpK36GD,OmpK35-trunc;OmpK36GD,NDM-1,NDM mut
+EuSCAPE_RS100,ST101,ST101,CG43,NDM,32,Non-functional,Functional,Sensitive,-,OmpK35-17%;OmpK36GD,OmpK35-trunc;OmpK36GD,NDM-1,NDM mut
+EuSCAPE_RS103,ST101,ST101,CG43,NDM,32,Non-functional,Functional,Sensitive,-,OmpK35-17%;OmpK36GD,OmpK35-trunc;OmpK36GD,NDM-1,NDM mut
+EuSCAPE_BE050,ST101,ST101,CG43,NDM,32,Non-functional,Functional,Unknown,-,OmpK35-17%;OmpK36GD,OmpK35-trunc;OmpK36GD,NDM-1,NDM mut
+EuSCAPE_IL075,ST38,other,other,NDM,16,Non-functional,Functional,Sensitive,-,OmpK35-21%,OmpK35-trunc,NDM-1,NDM mut
+EuSCAPE_NO002,ST101,ST101,CG43,NDM,16,Non-functional,Functional,Sensitive,-,OmpK35-25%,OmpK35-trunc,NDM-1,NDM mut
+EuSCAPE_RS053,ST147,ST147,CG147,NDM,4,Functional,Functional,Sensitive,-,OmpK35-31%,OmpK35-trunc,NDM-1,NDM mut
+EuSCAPE_TR118,ST395,ST395,CG258,NDM,32,Non-functional,Functional,Sensitive,-,OmpK35-72%,OmpK35-trunc,NDM-1,NDM mut
+EuSCAPE_TR089,ST395,ST395,CG258,NDM,32,Non-functional,Functional,Unknown,-,OmpK35-72%,OmpK35-trunc,NDM-1,NDM mut
+EuSCAPE_TR126,ST395,ST395,CG258,NDM,32,Non-functional,Functional,Sensitive,-,OmpK35-72%,OmpK35-trunc,NDM-1,NDM mut
+EuSCAPE_TR061,ST395,ST395,CG258,NDM,32,Non-functional,Functional,Sensitive,-,OmpK35-72%,OmpK35-trunc,NDM-1,NDM mut
+EuSCAPE_TR085,ST395,ST395,CG258,NDM,32,Non-functional,Functional,Unknown,-,OmpK35-72%,OmpK35-trunc,NDM-1,NDM mut
+EuSCAPE_TR086,ST395,ST395,CG258,NDM,32,Non-functional,Functional,Resistant,-,OmpK35-72%,OmpK35-trunc,NDM-1,NDM mut
+EuSCAPE_AT023,ST11,ST11,CG258,NDM,32,Functional,Non-functional,Sensitive,-,OmpK36-34%,OmpK36-trunc,NDM-1,NDM mut
+EuSCAPE_PL048,ST11,ST11,CG258,NDM,32,Non-functional,Functional,Sensitive,-,OmpK36GD,OmpK36GD,NDM-1,NDM mut
+EuSCAPE_TR275,ST15,ST15,CG14/15,NDM;OXA,32,Functional,Functional,Sensitive,-,-,-,NDM-1;OXA-48,NDM wt
+EuSCAPE_RS054,ST101,ST101,CG43,NDM;OXA,32,Non-functional,Non-functional,Sensitive,-,OmpK35-17%;OmpK36-0%,OmpK35-trunc;OmpK36-trunc,NDM-1;OXA-48,NDM mut
+EuSCAPE_SI025,ST101,ST101,CG43,NDM;OXA,32,Non-functional,Functional,Sensitive,-,OmpK35-17%;OmpK36GD,OmpK35-trunc;OmpK36GD,NDM-1;OXA-48,NDM mut
+EuSCAPE_RS015,ST101,ST101,CG43,NDM;OXA,32,Non-functional,Functional,Sensitive,-,OmpK35-17%;OmpK36GD,OmpK35-trunc;OmpK36GD,NDM-1;OXA-48,NDM mut
+EuSCAPE_RS017,ST101,ST101,CG43,NDM;OXA,32,Non-functional,Functional,Sensitive,-,OmpK35-17%;OmpK36GD,OmpK35-trunc;OmpK36GD,NDM-1;OXA-48,NDM mut
+EuSCAPE_RS028,ST101,ST101,CG43,NDM;OXA,32,Non-functional,Functional,Sensitive,-,OmpK35-17%;OmpK36GD,OmpK35-trunc;OmpK36GD,NDM-1;OXA-48,NDM mut
+EuSCAPE_RS074,ST101,ST101,CG43,NDM;OXA,32,Non-functional,Functional,Resistant,-,OmpK35-17%;OmpK36GD,OmpK35-trunc;OmpK36GD,NDM-1;OXA-48,NDM mut
+EuSCAPE_TR123,ST395,ST395,CG258,NDM;OXA,32,Non-functional,Functional,Sensitive,-,OmpK35-72%,OmpK35-trunc,NDM-1;OXA-48,NDM mut
+EuSCAPE_TR083,ST395,ST395,CG258,NDM;OXA,32,Non-functional,Functional,Resistant,-,OmpK35-72%,OmpK35-trunc,NDM-1;OXA-48,NDM mut
+EuSCAPE_RS077,ST147,ST147,CG147,NDM;OXA,4,Non-functional,Functional,Sensitive,-,OmpK35-31%,OmpK35-trunc,NDM-1;OXA-48?,NDM mut
+EuSCAPE_ES093,ST11,ST11,CG258,NDM;VIM,16,Functional,Functional,Sensitive,-,-,-,NDM-1;VIM-1,NDM wt
+EuSCAPE_TR208,ST107,other,other,OXA,1,Functional,Functional,Resistant,MgrB-83%,-,-,OXA-162,OXA wt
+EuSCAPE_TR267,ST307,ST307,CG307,OXA,4,Functional,Functional,Unknown,-,-,-,OXA-162,OXA wt
+EuSCAPE_FR056,ST1709,other,CG147,OXA,0.5,Functional,Functional,Sensitive,-,-,-,OXA-204,OXA wt
+EuSCAPE_UK065,ST14,ST14,CG14/15,OXA,32,Non-functional,Functional,Sensitive,-,OmpK35-69%;OmpK36GD,OmpK35-trunc;OmpK36GD,OXA-232,OXA mut
+EuSCAPE_TR002,ST14,ST14,CG14/15,OXA,32,Functional,Functional,Sensitive,-,OmpK36GD,OmpK36GD,OXA-232,OXA mut
+EuSCAPE_TR009,ST14,ST14,CG14/15,OXA,32,Functional,Functional,Unknown,-,OmpK36GD,OmpK36GD,OXA-232,OXA mut
+EuSCAPE_TR010,ST14,ST14,CG14/15,OXA,32,Functional,Functional,Sensitive,-,OmpK36GD,OmpK36GD,OXA-232,OXA mut
+EuSCAPE_BE047,ST101,ST101,CG43,OXA,2,Functional,Functional,Unknown,-,-,-,OXA-48,OXA wt
+EuSCAPE_ES283,ST101,ST101,CG43,OXA,8,Functional,Functional,Sensitive,-,-,-,OXA-48,OXA wt
+EuSCAPE_ES254,ST104,other,other,OXA,0.5,Functional,Functional,Sensitive,-,-,-,OXA-48,OXA wt
+EuSCAPE_ES251,ST104,other,other,OXA,32,Functional,Functional,Sensitive,-,-,-,OXA-48,OXA wt
+EuSCAPE_ES253,ST104,other,other,OXA,32,Functional,Non-functional,Sensitive,-,-,-,OXA-48,OXA wt
+EuSCAPE_ES263,ST104,other,other,OXA,0.06,Functional,Functional,Sensitive,-,-,-,OXA-48,OXA wt
+EuSCAPE_TR245,ST107,other,other,OXA,1,Functional,Functional,Unknown,-,-,-,OXA-48,OXA wt
+EuSCAPE_TR244,ST107,other,other,OXA,4,Functional,Functional,Sensitive,-,-,-,OXA-48,OXA wt
+EuSCAPE_ES279,ST11,ST11,CG258,OXA,0.25,Functional,Functional,Sensitive,-,-,-,OXA-48,OXA wt
+EuSCAPE_ES047,ST11,ST11,CG258,OXA,0.5,Functional,Functional,Sensitive,-,-,-,OXA-48,OXA wt
+EuSCAPE_ES084,ST11,ST11,CG258,OXA,0.5,Functional,Functional,Sensitive,-,-,-,OXA-48,OXA wt
+EuSCAPE_GR031,ST11,ST11,CG258,OXA,1,Functional,Functional,Unknown,-,-,-,OXA-48,OXA wt
+EuSCAPE_BE111,ST11,ST11,CG258,OXA,1,Functional,Functional,Unknown,-,-,-,OXA-48,OXA wt
+EuSCAPE_AT011,ST11,ST11,CG258,OXA,2,Functional,Functional,Sensitive,-,-,-,OXA-48,OXA wt
+EuSCAPE_MT002,ST11,ST11,CG258,OXA,2,Functional,Functional,Unknown,-,-,-,OXA-48,OXA wt
+EuSCAPE_MT005,ST11,ST11,CG258,OXA,2,Functional,Functional,Sensitive,-,-,-,OXA-48,OXA wt
+EuSCAPE_MT009,ST11,ST11,CG258,OXA,2,Functional,Functional,Sensitive,-,-,-,OXA-48,OXA wt
+EuSCAPE_MT011,ST11,ST11,CG258,OXA,2,Functional,Functional,Sensitive,-,-,-,OXA-48,OXA wt
+EuSCAPE_MT013,ST11,ST11,CG258,OXA,2,Functional,Functional,Sensitive,-,-,-,OXA-48,OXA wt
+EuSCAPE_MT016,ST11,ST11,CG258,OXA,2,Functional,Functional,Sensitive,-,-,-,OXA-48,OXA wt
+EuSCAPE_BE100,ST11,ST11,CG258,OXA,2,Functional,Functional,Unknown,-,-,-,OXA-48,OXA wt
+EuSCAPE_ES075,ST11,ST11,CG258,OXA,0.5,Functional,Functional,Resistant,MgrB-83%,-,-,OXA-48,OXA wt
+EuSCAPE_ES082,ST11,ST11,CG258,OXA,0.5,Functional,Functional,Resistant,MgrB-83%,-,-,OXA-48,OXA wt
+EuSCAPE_TR180,ST13,ST13,other,OXA,1,Functional,Functional,Sensitive,-,-,-,OXA-48,OXA wt
+EuSCAPE_DE078,ST1307,other,other,OXA,1,Functional,Functional,Sensitive,-,-,-,OXA-48,OXA wt
+EuSCAPE_IE009,ST133,ST133,CG133,OXA,2,Functional,Functional,Sensitive,-,-,-,OXA-48,OXA wt
+EuSCAPE_IE002,ST133,ST133,CG133,OXA,2,Functional,Functional,Sensitive,-,-,-,OXA-48,OXA wt
+EuSCAPE_DE005,ST14,ST14,CG14/15,OXA,2,Functional,Functional,Resistant,MgrB-49%,-,-,OXA-48,OXA wt
+EuSCAPE_ES261,ST147,ST147,CG147,OXA,0.5,Functional,Functional,Sensitive,-,-,-,OXA-48,OXA wt
+EuSCAPE_BE105,ST147,ST147,CG147,OXA,1,Functional,Functional,Unknown,-,-,-,OXA-48,OXA wt
+EuSCAPE_TR027,ST147,ST147,CG147,OXA,1,Functional,Functional,Unknown,-,-,-,OXA-48,OXA wt
+EuSCAPE_TR026,ST147,ST147,CG147,OXA,2,Functional,Functional,Sensitive,-,-,-,OXA-48,OXA wt
+EuSCAPE_TR046,ST147,ST147,CG147,OXA,2,Functional,Functional,Unknown,-,-,-,OXA-48,OXA wt
+EuSCAPE_TR049,ST147,ST147,CG147,OXA,2,Functional,Functional,Unknown,-,-,-,OXA-48,OXA wt
+EuSCAPE_TR058,ST147,ST147,CG147,OXA,32,Functional,Functional,Sensitive,-,-,-,OXA-48,OXA wt
+EuSCAPE_DE017,ST15,ST15,CG14/15,OXA,1,Functional,Functional,Sensitive,-,-,-,OXA-48,OXA wt
+EuSCAPE_ES252,ST15,ST15,CG14/15,OXA,1,Functional,Functional,Resistant,-,-,-,OXA-48,OXA wt
+EuSCAPE_ES262,ST15,ST15,CG14/15,OXA,1,Functional,Functional,Sensitive,-,-,-,OXA-48,OXA wt
+EuSCAPE_ES269,ST15,ST15,CG14/15,OXA,1,Functional,Functional,Sensitive,-,-,-,OXA-48,OXA wt
+EuSCAPE_ES172,ST15,ST15,CG14/15,OXA,1,Functional,Functional,Sensitive,-,-,-,OXA-48,OXA wt
+EuSCAPE_CY006,ST15,ST15,CG14/15,OXA,1,Functional,Functional,Unknown,-,-,-,OXA-48,OXA wt
+EuSCAPE_ES150,ST15,ST15,CG14/15,OXA,32,Functional,Functional,Sensitive,-,-,-,OXA-48,OXA wt
+EuSCAPE_ES270,ST15,ST15,CG14/15,OXA,0.06,Functional,Functional,Sensitive,-,-,-,OXA-48,OXA wt
+EuSCAPE_TR117,ST16,ST16,CG17/20,OXA,1,Functional,Functional,Sensitive,-,-,-,OXA-48,OXA wt
+EuSCAPE_ES249,ST16,ST16,CG17/20,OXA,2,Functional,Functional,Sensitive,-,-,-,OXA-48,OXA wt
+EuSCAPE_TR106,ST16,ST16,CG17/20,OXA,2,Functional,Functional,Sensitive,-,-,-,OXA-48,OXA wt
+EuSCAPE_TR043,ST1731,other,other,OXA,2,Functional,Functional,Unknown,-,-,-,OXA-48,OXA wt
+EuSCAPE_TR181,ST20,ST20,CG17/20,OXA,1,Functional,Functional,Unknown,-,-,-,OXA-48,OXA wt
+EuSCAPE_TR040,ST20,ST20,CG17/20,OXA,4,Functional,Functional,Unknown,-,-,-,OXA-48,OXA wt
+EuSCAPE_FR036,ST218,other,hv,OXA,0.06,Functional,Functional,Sensitive,-,-,-,OXA-48,OXA wt
+EuSCAPE_TR229,ST23,ST23,hv,OXA,1,Functional,Functional,Resistant,-,-,-,OXA-48,OXA wt
+EuSCAPE_UK013,ST2333,other,other,OXA,2,Functional,Functional,Resistant,-,-,-,OXA-48,OXA wt
+EuSCAPE_TR048,ST2442,other,other,OXA,2,Functional,Functional,Unknown,-,-,-,OXA-48,OXA wt
+EuSCAPE_TR154,ST2673,other,other,OXA,1,Functional,Functional,Unknown,-,-,-,OXA-48,OXA wt
+EuSCAPE_BE107,ST268,other,other,OXA,1,Functional,Functional,Unknown,-,-,-,OXA-48,OXA wt
+EuSCAPE_TR227,ST281,other,other,OXA,2,Functional,Functional,Resistant,-,-,-,OXA-48,OXA wt
+EuSCAPE_TR059,ST294,other,other,OXA,2,Functional,Functional,Sensitive,-,-,-,OXA-48,OXA wt
+EuSCAPE_TR054,ST294,other,other,OXA,4,Functional,Functional,Sensitive,-,-,-,OXA-48,OXA wt
+EuSCAPE_TR062,ST294,other,other,OXA,4,Functional,Functional,Sensitive,-,-,-,OXA-48,OXA wt
+EuSCAPE_DE012,ST307,ST307,CG307,OXA,1,Functional,Functional,Sensitive,-,-,-,OXA-48,OXA wt
+EuSCAPE_FR040,ST307,ST307,CG307,OXA,1,Functional,Functional,Sensitive,-,-,-,OXA-48,OXA wt
+EuSCAPE_FR014,ST307,ST307,CG307,OXA,2,Functional,Functional,Sensitive,-,-,-,OXA-48,OXA wt
+EuSCAPE_FR044,ST307,ST307,CG307,OXA,2,Functional,Functional,Sensitive,-,-,-,OXA-48,OXA wt
+EuSCAPE_MT003,ST307,ST307,CG307,OXA,2,Functional,Functional,Sensitive,-,-,-,OXA-48,OXA wt
+EuSCAPE_ES149,ST307,ST307,CG307,OXA,2,Functional,Functional,Sensitive,-,-,-,OXA-48,OXA wt
+EuSCAPE_TR125,ST307,ST307,CG307,OXA,2,Functional,Functional,Sensitive,-,-,-,OXA-48,OXA wt
+EuSCAPE_FR070,ST307,ST307,CG307,OXA,4,Functional,Functional,Sensitive,-,-,-,OXA-48,OXA wt
+EuSCAPE_TR274,ST307,ST307,CG307,OXA,16,Functional,Functional,Unknown,-,-,-,OXA-48,OXA wt
+EuSCAPE_FR041,ST307,ST307,CG307,OXA,0.06,Functional,Functional,Sensitive,-,-,-,OXA-48,OXA wt
+EuSCAPE_ES248,ST326,other,other,OXA,1,Functional,Functional,Sensitive,-,-,-,OXA-48,OXA wt
+EuSCAPE_UK026,ST336,ST336,CG17/20,OXA,4,Functional,Functional,Sensitive,-,-,-,OXA-48,OXA wt
+EuSCAPE_RS093,ST340,ST340,CG258,OXA,0.5,Functional,Functional,Unknown,-,-,-,OXA-48,OXA wt
+EuSCAPE_HR053,ST340,ST340,CG258,OXA,1,Functional,Functional,Unknown,-,-,-,OXA-48,OXA wt
+EuSCAPE_TR183,ST35,ST35,CG35,OXA,1,Functional,Functional,Sensitive,-,-,-,OXA-48,OXA wt
+EuSCAPE_TR070,ST35,ST35,CG35,OXA,0.06,Functional,Functional,Unknown,-,-,-,OXA-48,OXA wt
+EuSCAPE_FR011,ST3648,other,other,OXA,1,Functional,Functional,Sensitive,-,-,-,OXA-48,OXA wt
+EuSCAPE_MT001,ST37,ST37,CG37,OXA,1,Functional,Functional,Sensitive,-,-,-,OXA-48,OXA wt
+EuSCAPE_TR007,ST37,ST37,CG37,OXA,4,Functional,Functional,Sensitive,-,-,-,OXA-48,OXA wt
+EuSCAPE_TR163,ST37,ST37,CG37,OXA,4,Functional,Functional,Unknown,MgrB-53%,-,-,OXA-48,OXA wt
+EuSCAPE_DE043,ST377,other,other,OXA,1,Functional,Functional,Sensitive,-,-,-,OXA-48,OXA wt
+EuSCAPE_TR029,ST377,other,other,OXA,2,Functional,Functional,Sensitive,-,-,-,OXA-48,OXA wt
+EuSCAPE_LU005,ST392,ST392,CG147,OXA,0.5,Functional,Functional,Sensitive,-,-,-,OXA-48,OXA wt
+EuSCAPE_TR161,ST392,ST392,CG147,OXA,1,Functional,Functional,Unknown,-,-,-,OXA-48,OXA wt
+EuSCAPE_TR056,ST392,ST392,CG147,OXA,32,Functional,Functional,Resistant,MgrB-49%,-,-,OXA-48,OXA wt
+EuSCAPE_BE080,ST405,ST405,ST405,OXA,0.25,Functional,Functional,Unknown,-,-,-,OXA-48,OXA wt
+EuSCAPE_ES285,ST405,ST405,ST405,OXA,1,Functional,Functional,Sensitive,-,-,-,OXA-48,OXA wt
+EuSCAPE_TR139,ST405,ST405,ST405,OXA,1,Functional,Functional,Unknown,-,-,-,OXA-48,OXA wt
+EuSCAPE_FR028,ST405,ST405,ST405,OXA,2,Functional,Functional,Resistant,-,-,-,OXA-48,OXA wt
+EuSCAPE_BE099,ST405,ST405,ST405,OXA,2,Functional,Functional,Unknown,-,-,-,OXA-48,OXA wt
+EuSCAPE_BE110,ST405,ST405,ST405,OXA,2,Functional,Functional,Unknown,-,-,-,OXA-48,OXA wt
+EuSCAPE_ES104,ST405,ST405,ST405,OXA,4,Functional,Functional,Sensitive,-,-,-,OXA-48,OXA wt
+EuSCAPE_TR088,ST405,ST405,ST405,OXA,4,Functional,Functional,Unknown,-,-,-,OXA-48,OXA wt
+EuSCAPE_BE074,ST405,ST405,ST405,OXA,16,Functional,Functional,Unknown,-,-,-,OXA-48,OXA wt
+EuSCAPE_ES081,ST45,ST45,CG45,OXA,2,Functional,Functional,Sensitive,-,-,-,OXA-48,OXA wt
+EuSCAPE_FR007,ST45,ST45,CG45,OXA,8,Functional,Functional,Sensitive,-,-,-,OXA-48,OXA wt
+EuSCAPE_TR121,ST45,ST45,CG45,OXA,32,Functional,Functional,Sensitive,-,-,-,OXA-48,OXA wt
+EuSCAPE_DE032,ST45,ST45,CG45,OXA,1,Functional,Functional,Resistant,MgrB-0%,-,-,OXA-48,OXA wt
+EuSCAPE_CZ022,ST461,other,other,OXA,0.5,Functional,Functional,Sensitive,-,-,-,OXA-48,OXA wt
+EuSCAPE_TR098,ST48,other,other,OXA,1,Functional,Functional,Sensitive,-,-,-,OXA-48,OXA wt
+EuSCAPE_TR189,ST530,other,other,OXA,0.5,Functional,Functional,Unknown,-,-,-,OXA-48,OXA wt
+EuSCAPE_DE075,ST530,other,other,OXA,1,Functional,Functional,Sensitive,-,-,-,OXA-48,OXA wt
+EuSCAPE_ES069,ST661,other,other,OXA,2,Functional,Functional,Sensitive,-,-,-,OXA-48,OXA wt
+EuSCAPE_BE078,ST788,other,other,OXA,4,Functional,Functional,Unknown,-,-,-,OXA-48,OXA wt
+EuSCAPE_BE081,ST788,other,other,OXA,4,Functional,Functional,Unknown,-,-,-,OXA-48,OXA wt
+EuSCAPE_TR188,ST831,other,other,OXA,1,Functional,Functional,Unknown,-,-,-,OXA-48,OXA wt
+EuSCAPE_BE088,ST405,ST405,ST405,OXA,2,Non-functional,Functional,Unknown,-,OmpK35-0%,OmpK35-trunc,OXA-48,OXA mut
+EuSCAPE_RO118,ST101,ST101,CG43,OXA,1,Non-functional,Functional,Resistant,-,OmpK35-17%,OmpK35-trunc,OXA-48,OXA mut
+EuSCAPE_AT031,ST101,ST101,CG43,OXA,16,Non-functional,Functional,Sensitive,-,OmpK35-17%,OmpK35-trunc,OXA-48,OXA mut
+EuSCAPE_TR055,ST101,ST101,CG43,OXA,0.12,Non-functional,Functional,Sensitive,-,OmpK35-17%;OmpK36GD,OmpK35-trunc;OmpK36GD,OXA-48,OXA mut
+EuSCAPE_RO122,ST101,ST101,CG43,OXA,1,Non-functional,Functional,Resistant,-,OmpK35-17%;OmpK36GD,OmpK35-trunc;OmpK36GD,OXA-48,OXA mut
+EuSCAPE_TR280,ST101,ST101,CG43,OXA,4,Non-functional,Functional,Unknown,-,OmpK35-17%;OmpK36GD,OmpK35-trunc;OmpK36GD,OXA-48,OXA mut
+EuSCAPE_RO111,ST101,ST101,CG43,OXA,8,Non-functional,Functional,Resistant,-,OmpK35-17%;OmpK36GD,OmpK35-trunc;OmpK36GD,OXA-48,OXA mut
+EuSCAPE_FR003,ST101,ST101,CG43,OXA,16,Non-functional,Functional,Sensitive,-,OmpK35-17%;OmpK36GD,OmpK35-trunc;OmpK36GD,OXA-48,OXA mut
+EuSCAPE_RO105,ST101,ST101,CG43,OXA,16,Non-functional,Functional,Resistant,-,OmpK35-17%;OmpK36GD,OmpK35-trunc;OmpK36GD,OXA-48,OXA mut
+EuSCAPE_RO084,ST101,ST101,CG43,OXA,16,Non-functional,Functional,Resistant,-,OmpK35-17%;OmpK36GD,OmpK35-trunc;OmpK36GD,OXA-48,OXA mut
+EuSCAPE_RO014,ST101,ST101,CG43,OXA,16,Non-functional,Functional,Sensitive,-,OmpK35-17%;OmpK36GD,OmpK35-trunc;OmpK36GD,OXA-48,OXA mut
+EuSCAPE_RS086,ST101,ST101,CG43,OXA,16,Non-functional,Functional,Sensitive,-,OmpK35-17%;OmpK36GD,OmpK35-trunc;OmpK36GD,OXA-48,OXA mut
+EuSCAPE_RS092,ST101,ST101,CG43,OXA,16,Non-functional,Functional,Sensitive,-,OmpK35-17%;OmpK36GD,OmpK35-trunc;OmpK36GD,OXA-48,OXA mut
+EuSCAPE_RO107,ST101,ST101,CG43,OXA,16,Non-functional,Functional,Resistant,-,OmpK35-17%;OmpK36GD,OmpK35-trunc;OmpK36GD,OXA-48,OXA mut
+EuSCAPE_BE053,ST101,ST101,CG43,OXA,16,Non-functional,Functional,Unknown,-,OmpK35-17%;OmpK36GD,OmpK35-trunc;OmpK36GD,OXA-48,OXA mut
+EuSCAPE_TR290,ST101,ST101,CG43,OXA,16,Non-functional,Functional,Unknown,-,OmpK35-17%;OmpK36GD,OmpK35-trunc;OmpK36GD,OXA-48,OXA mut
+EuSCAPE_RO113,ST101,ST101,CG43,OXA,32,Non-functional,Functional,Resistant,-,OmpK35-17%;OmpK36GD,OmpK35-trunc;OmpK36GD,OXA-48,OXA mut
+EuSCAPE_RO010,ST101,ST101,CG43,OXA,32,Non-functional,Functional,Sensitive,-,OmpK35-17%;OmpK36GD,OmpK35-trunc;OmpK36GD,OXA-48,OXA mut
+EuSCAPE_RO061,ST101,ST101,CG43,OXA,32,Non-functional,Functional,Resistant,-,OmpK35-17%;OmpK36GD,OmpK35-trunc;OmpK36GD,OXA-48,OXA mut
+EuSCAPE_RO082,ST101,ST101,CG43,OXA,32,Non-functional,Functional,Resistant,-,OmpK35-17%;OmpK36GD,OmpK35-trunc;OmpK36GD,OXA-48,OXA mut
+EuSCAPE_RO089,ST101,ST101,CG43,OXA,32,Non-functional,Functional,Resistant,-,OmpK35-17%;OmpK36GD,OmpK35-trunc;OmpK36GD,OXA-48,OXA mut
+EuSCAPE_RO099,ST101,ST101,CG43,OXA,32,Non-functional,Functional,Resistant,-,OmpK35-17%;OmpK36GD,OmpK35-trunc;OmpK36GD,OXA-48,OXA mut
+EuSCAPE_RO026,ST101,ST101,CG43,OXA,32,Non-functional,Functional,Sensitive,-,OmpK35-17%;OmpK36GD,OmpK35-trunc;OmpK36GD,OXA-48,OXA mut
+EuSCAPE_RO115,ST101,ST101,CG43,OXA,32,Non-functional,Functional,Resistant,-,OmpK35-17%;OmpK36GD,OmpK35-trunc;OmpK36GD,OXA-48,OXA mut
+EuSCAPE_RS027,ST101,ST101,CG43,OXA,32,Non-functional,Functional,Sensitive,-,OmpK35-17%;OmpK36GD,OmpK35-trunc;OmpK36GD,OXA-48,OXA mut
+EuSCAPE_RS042,ST101,ST101,CG43,OXA,32,Non-functional,Functional,Sensitive,-,OmpK35-17%;OmpK36GD,OmpK35-trunc;OmpK36GD,OXA-48,OXA mut
+EuSCAPE_RO119,ST101,ST101,CG43,OXA,32,Non-functional,Functional,Resistant,-,OmpK35-17%;OmpK36GD,OmpK35-trunc;OmpK36GD,OXA-48,OXA mut
+EuSCAPE_RS085,ST101,ST101,CG43,OXA,32,Non-functional,Functional,Sensitive,-,OmpK35-17%;OmpK36GD,OmpK35-trunc;OmpK36GD,OXA-48,OXA mut
+EuSCAPE_RS088,ST101,ST101,CG43,OXA,32,Non-functional,Functional,Sensitive,-,OmpK35-17%;OmpK36GD,OmpK35-trunc;OmpK36GD,OXA-48,OXA mut
+EuSCAPE_RS108,ST101,ST101,CG43,OXA,32,Non-functional,Functional,Sensitive,-,OmpK35-17%;OmpK36GD,OmpK35-trunc;OmpK36GD,OXA-48,OXA mut
+EuSCAPE_TR001,ST101,ST101,CG43,OXA,32,Non-functional,Functional,Resistant,-,OmpK35-17%;OmpK36GD,OmpK35-trunc;OmpK36GD,OXA-48,OXA mut
+EuSCAPE_TR004,ST101,ST101,CG43,OXA,32,Non-functional,Functional,Unknown,-,OmpK35-17%;OmpK36GD,OmpK35-trunc;OmpK36GD,OXA-48,OXA mut
+EuSCAPE_TR057,ST101,ST101,CG43,OXA,32,Non-functional,Functional,Sensitive,-,OmpK35-17%;OmpK36GD,OmpK35-trunc;OmpK36GD,OXA-48,OXA mut
+EuSCAPE_TR186,ST101,ST101,CG43,OXA,32,Non-functional,Functional,Sensitive,-,OmpK35-17%;OmpK36GD,OmpK35-trunc;OmpK36GD,OXA-48,OXA mut
+EuSCAPE_TR230,ST101,ST101,CG43,OXA,32,Non-functional,Functional,Resistant,-,OmpK35-17%;OmpK36GD,OmpK35-trunc;OmpK36GD,OXA-48,OXA mut
+EuSCAPE_TR276,ST101,ST101,CG43,OXA,32,Non-functional,Functional,Sensitive,-,OmpK35-17%;OmpK36GD,OmpK35-trunc;OmpK36GD,OXA-48,OXA mut
+EuSCAPE_RO012,ST101,ST101,CG43,OXA,32,Non-functional,Functional,Resistant,-,OmpK35-17%;OmpK36GD,OmpK35-trunc;OmpK36GD,OXA-48,OXA mut
+EuSCAPE_RO067,ST101,ST101,CG43,OXA,32,Non-functional,Functional,Resistant,-,OmpK35-17%;OmpK36GD,OmpK35-trunc;OmpK36GD,OXA-48,OXA mut
+EuSCAPE_RO095,ST101,ST101,CG43,OXA,32,Non-functional,Functional,Resistant,-,OmpK35-17%;OmpK36GD,OmpK35-trunc;OmpK36GD,OXA-48,OXA mut
+EuSCAPE_RS026,ST101,ST101,CG43,OXA,32,Non-functional,Functional,Sensitive,-,OmpK35-17%;OmpK36GD,OmpK35-trunc;OmpK36GD,OXA-48,OXA mut
+EuSCAPE_RS043,ST101,ST101,CG43,OXA,32,Non-functional,Functional,Sensitive,-,OmpK35-17%;OmpK36GD,OmpK35-trunc;OmpK36GD,OXA-48,OXA mut
+EuSCAPE_TR044,ST101,ST101,CG43,OXA,32,Non-functional,Functional,Unknown,-,OmpK35-17%;OmpK36GD,OmpK35-trunc;OmpK36GD,OXA-48,OXA mut
+EuSCAPE_TR052,ST101,ST101,CG43,OXA,32,Non-functional,Functional,Unknown,-,OmpK35-17%;OmpK36GD,OmpK35-trunc;OmpK36GD,OXA-48,OXA mut
+EuSCAPE_TR277,ST101,ST101,CG43,OXA,32,Non-functional,Functional,Resistant,-,OmpK35-17%;OmpK36GD,OmpK35-trunc;OmpK36GD,OXA-48,OXA mut
+EuSCAPE_RS016,ST101,ST101,CG43,OXA,16,Non-functional,Functional,Sensitive,MgrB-0%,OmpK35-17%;OmpK36GD,OmpK35-trunc;OmpK36GD,OXA-48,OXA mut
+EuSCAPE_GR125,ST101,ST101,CG43,OXA,32,Non-functional,Functional,Unknown,MgrB-60%,OmpK35-17%;OmpK36GD,OmpK35-trunc;OmpK36GD,OXA-48,OXA mut
+EuSCAPE_DE010,ST101,ST101,CG43,OXA,16,Non-functional,Functional,Resistant,MgrB-62%,OmpK35-17%;OmpK36GD,OmpK35-trunc;OmpK36GD,OXA-48,OXA mut
+EuSCAPE_TR207,ST101,ST101,CG43,OXA,32,Non-functional,Functional,Resistant,MgrB-62%,OmpK35-17%;OmpK36GD,OmpK35-trunc;OmpK36GD,OXA-48,OXA mut
+EuSCAPE_TR224,ST101,ST101,CG43,OXA,32,Non-functional,Functional,Unknown,MgrB-87%,OmpK35-17%;OmpK36GD,OmpK35-trunc;OmpK36GD,OXA-48,OXA mut
+EuSCAPE_TR266,ST45,ST45,CG45,OXA,2,Non-functional,Functional,Unknown,-,OmpK35-21%,OmpK35-trunc,OXA-48,OXA mut
+EuSCAPE_DE013,ST17,ST17,CG17/20,OXA,32,Non-functional,Functional,Sensitive,-,OmpK35-27%,OmpK35-trunc,OXA-48,OXA mut
+EuSCAPE_DE069,ST11,ST11,CG258,OXA,0.5,Non-functional,Functional,Unknown,-,OmpK35-37%,OmpK35-trunc,OXA-48,OXA mut
+EuSCAPE_DE067,ST11,ST11,CG258,OXA,1,Non-functional,Functional,Sensitive,-,OmpK35-37%,OmpK35-trunc,OXA-48,OXA mut
+EuSCAPE_ES068,ST11,ST11,CG258,OXA,2,Non-functional,Functional,Sensitive,-,OmpK35-39%,OmpK35-trunc,OXA-48,OXA mut
+EuSCAPE_ES083,ST15,ST15,CG14/15,OXA,1,Non-functional,Functional,Sensitive,-,OmpK35-4%,OmpK35-trunc,OXA-48,OXA mut
+EuSCAPE_ES054,ST15,ST15,CG14/15,OXA,2,Non-functional,Functional,Sensitive,-,OmpK35-4%,OmpK35-trunc,OXA-48,OXA mut
+EuSCAPE_ES062,ST15,ST15,CG14/15,OXA,2,Non-functional,Functional,Sensitive,-,OmpK35-4%,OmpK35-trunc,OXA-48,OXA mut
+EuSCAPE_ES078,ST15,ST15,CG14/15,OXA,16,Non-functional,Functional,Sensitive,-,OmpK35-4%,OmpK35-trunc,OXA-48,OXA mut
+EuSCAPE_ES079,ST15,ST15,CG14/15,OXA,16,Non-functional,Functional,Sensitive,-,OmpK35-4%,OmpK35-trunc,OXA-48,OXA mut
+EuSCAPE_ES202,ST15,ST15,CG14/15,OXA,16,Non-functional,Functional,Sensitive,-,OmpK35-4%,OmpK35-trunc,OXA-48,OXA mut
+EuSCAPE_ES053,ST15,ST15,CG14/15,OXA,32,Non-functional,Functional,Sensitive,-,OmpK35-4%,OmpK35-trunc,OXA-48,OXA mut
+EuSCAPE_ES055,ST15,ST15,CG14/15,OXA,32,Non-functional,Non-functional,Sensitive,-,OmpK35-4%,OmpK35-trunc,OXA-48,OXA mut
+EuSCAPE_BE109,ST416,other,other,OXA,2,Non-functional,Functional,Unknown,-,OmpK35-4%,OmpK35-trunc,OXA-48,OXA mut
+EuSCAPE_TR156,ST17,ST17,CG17/20,OXA,1,Non-functional,Functional,Sensitive,-,OmpK35-45%,OmpK35-trunc,OXA-48,OXA mut
+EuSCAPE_TR158,ST17,ST17,CG17/20,OXA,1,Non-functional,Functional,Unknown,-,OmpK35-45%,OmpK35-trunc,OXA-48,OXA mut
+EuSCAPE_TR228,ST15,ST15,CG14/15,OXA,16,Non-functional,Functional,Unknown,-,OmpK35-49%,OmpK35-trunc,OXA-48,OXA mut
+EuSCAPE_TR240,ST15,ST15,CG14/15,OXA,16,Non-functional,Functional,Unknown,-,OmpK35-49%,OmpK35-trunc,OXA-48,OXA mut
+EuSCAPE_TR241,ST15,ST15,CG14/15,OXA,16,Non-functional,Functional,Sensitive,-,OmpK35-49%,OmpK35-trunc,OXA-48,OXA mut
+EuSCAPE_TR232,ST15,ST15,CG14/15,OXA,32,Non-functional,Functional,Resistant,-,OmpK35-49%,OmpK35-trunc,OXA-48,OXA mut
+EuSCAPE_TR236,ST15,ST15,CG14/15,OXA,32,Non-functional,Functional,Sensitive,-,OmpK35-49%,OmpK35-trunc,OXA-48,OXA mut
+EuSCAPE_RO109,ST15,ST15,CG14/15,OXA,0.5,Non-functional,Functional,Resistant,-,OmpK35-59%,OmpK35-trunc,OXA-48,OXA mut
+EuSCAPE_RO069,ST15,ST15,CG14/15,OXA,16,Non-functional,Functional,Resistant,-,OmpK35-59%;OmpK36GD,OmpK35-trunc;OmpK36GD,OXA-48,OXA mut
+EuSCAPE_RO051,ST15,ST15,CG14/15,OXA,32,Non-functional,Functional,Resistant,-,OmpK35-59%;OmpK36GD,OmpK35-trunc;OmpK36GD,OXA-48,OXA mut
+EuSCAPE_RO078,ST15,ST15,CG14/15,OXA,32,Non-functional,Functional,Resistant,-,OmpK35-59%;OmpK36GD,OmpK35-trunc;OmpK36GD,OXA-48,OXA mut
+EuSCAPE_RO080,ST15,ST15,CG14/15,OXA,32,Non-functional,Functional,Resistant,-,OmpK35-59%;OmpK36GD,OmpK35-trunc;OmpK36GD,OXA-48,OXA mut
+EuSCAPE_RO018,ST15,ST15,CG14/15,OXA,32,Non-functional,Functional,Resistant,-,OmpK35-59%;OmpK36GD,OmpK35-trunc;OmpK36GD,OXA-48,OXA mut
+EuSCAPE_RO033,ST15,ST15,CG14/15,OXA,32,Non-functional,Functional,Resistant,-,OmpK35-59%;OmpK36GD,OmpK35-trunc;OmpK36GD,OXA-48,OXA mut
+EuSCAPE_BE076,ST15,ST15,CG14/15,OXA,32,Non-functional,Functional,Unknown,-,OmpK35-59%;OmpK36GD,OmpK35-trunc;OmpK36GD,OXA-48,OXA mut
+EuSCAPE_RO064,ST15,ST15,CG14/15,OXA,32,Non-functional,Functional,Sensitive,-,OmpK35-59%;OmpK36GD,OmpK35-trunc;OmpK36GD,OXA-48,OXA mut
+EuSCAPE_RO065,ST15,ST15,CG14/15,OXA,32,Non-functional,Functional,Sensitive,-,OmpK35-59%;OmpK36GD,OmpK35-trunc;OmpK36GD,OXA-48,OXA mut
+EuSCAPE_RO016,ST15,ST15,CG14/15,OXA,32,Non-functional,Functional,Resistant,-,OmpK35-59%;OmpK36GD,OmpK35-trunc;OmpK36GD,OXA-48,OXA mut
+EuSCAPE_ES052,ST15,ST15,CG14/15,OXA,1,Non-functional,Functional,Sensitive,-,OmpK35-64%,OmpK35-trunc,OXA-48,OXA mut
+EuSCAPE_ES130,ST15,ST15,CG14/15,OXA,2,Non-functional,Functional,Sensitive,-,OmpK35-64%,OmpK35-trunc,OXA-48,OXA mut
+EuSCAPE_RO071,ST336,ST336,CG17/20,OXA,1,Non-functional,Functional,Sensitive,-,OmpK35-64%,OmpK35-trunc,OXA-48,OXA mut
+EuSCAPE_RO074,ST336,ST336,CG17/20,OXA,1,Non-functional,Functional,Sensitive,-,OmpK35-64%,OmpK35-trunc,OXA-48,OXA mut
+EuSCAPE_RO031,ST336,ST336,CG17/20,OXA,1,Non-functional,Functional,Sensitive,-,OmpK35-64%,OmpK35-trunc,OXA-48,OXA mut
+EuSCAPE_ES109,ST405,ST405,ST405,OXA,1,Non-functional,Functional,Sensitive,-,OmpK35-7%,OmpK35-trunc,OXA-48,OXA mut
+EuSCAPE_ES050,ST405,ST405,ST405,OXA,2,Non-functional,Functional,Sensitive,-,OmpK35-7%,OmpK35-trunc,OXA-48,OXA mut
+EuSCAPE_ES059,ST405,ST405,ST405,OXA,4,Non-functional,Functional,Sensitive,-,OmpK35-7%,OmpK35-trunc,OXA-48,OXA mut
+EuSCAPE_TR141,ST11,ST11,CG258,OXA,2,Non-functional,Functional,Unknown,-,OmpK35-70%,OmpK35-trunc,OXA-48,OXA mut
+EuSCAPE_TR148,ST11,ST11,CG258,OXA,32,Non-functional,Functional,Sensitive,MgrB-53%,OmpK35-70%,OmpK35-trunc,OXA-48,OXA mut
+EuSCAPE_ES210,ST405,ST405,ST405,OXA,2,Non-functional,Functional,Sensitive,-,OmpK35-70%,OmpK35-trunc,OXA-48,OXA mut
+EuSCAPE_ES105,ST405,ST405,ST405,OXA,4,Non-functional,Functional,Sensitive,-,OmpK35-70%,OmpK35-trunc,OXA-48,OXA mut
+EuSCAPE_ES211,ST405,ST405,ST405,OXA,8,Non-functional,Functional,Sensitive,-,OmpK35-70%,OmpK35-trunc,OXA-48,OXA mut
+EuSCAPE_ES043,ST15,ST15,CG14/15,OXA,2,Non-functional,Functional,Resistant,-,OmpK35-76%,OmpK35-trunc,OXA-48,OXA mut
+EuSCAPE_ES129,ST15,ST15,CG14/15,OXA,2,Non-functional,Functional,Sensitive,-,OmpK35-76%,OmpK35-trunc,OXA-48,OXA mut
+EuSCAPE_TR200,ST15,ST15,CG14/15,OXA,32,Functional,Non-functional,Sensitive,-,OmpK36-11%,OmpK36-trunc,OXA-48,OXA mut
+EuSCAPE_ES046,ST11,ST11,CG258,OXA,32,Functional,Non-functional,Sensitive,-,OmpK36-28%,OmpK36-trunc,OXA-48,OXA mut
+EuSCAPE_TR100,ST16,ST16,CG17/20,OXA,32,Functional,Non-functional,Sensitive,-,OmpK36-38%,OmpK36-trunc,OXA-48,OXA mut
+EuSCAPE_IE017,ST5,other,other,OXA,8,Functional,Non-functional,Sensitive,-,OmpK36-47%,OmpK36-trunc,OXA-48,OXA mut
+EuSCAPE_TR025,ST530,other,other,OXA,16,Functional,Non-functional,Sensitive,-,OmpK36-55%,OmpK36-trunc,OXA-48,OXA mut
+EuSCAPE_IT405,ST35,ST35,CG35,OXA,32,Functional,Non-functional,Sensitive,-,OmpK36-67%,OmpK36-trunc,OXA-48,OXA mut
+EuSCAPE_IL056,ST234,other,other,OXA,0.5,Functional,Functional,Sensitive,-,-,-,OXA-48;OXA-48,OXA wt
+EuSCAPE_TR203,ST525,other,other,OXA;VIM,32,Non-functional,Non-functional,Resistant,MgrB-0%,OmpK35-0%;OmpK36-34%,OmpK35-trunc;OmpK36-trunc,OXA-48;VIM-1,OXA mut
+EuSCAPE_RS098,ST340,ST340,CG258,OXA,0.5,Functional,Functional,Unknown,-,-,-,OXA-48?,OXA wt
+EuSCAPE_ES182,ST268,other,other,OXA,0.06,Functional,Functional,Sensitive,-,-,-,OXA-58,OXA wt
+EuSCAPE_ES174,ST45,ST45,CG45,OXA,0.06,Functional,Functional,Sensitive,-,-,-,OXA-58,OXA wt
+EuSCAPE_ES237,ST147,ST147,CG147,VIM,2,Functional,Functional,Sensitive,-,-,-,VIM-1,VIM wt
+EuSCAPE_ES229,ST147,ST147,CG147,VIM,4,Functional,Functional,Sensitive,-,-,-,VIM-1,VIM wt
+EuSCAPE_ES107,ST147,ST147,CG147,VIM,4,Functional,Functional,Resistant,-,-,-,VIM-1,VIM wt
+EuSCAPE_ES065,ST147,ST147,CG147,VIM,8,Functional,Functional,Sensitive,-,-,-,VIM-1,VIM wt
+EuSCAPE_ES225,ST147,ST147,CG147,VIM,8,Functional,Functional,Sensitive,-,-,-,VIM-1,VIM wt
+EuSCAPE_IT282,ST2217,other,other,VIM,4,Functional,Functional,Sensitive,-,-,-,VIM-1,VIM wt
+EuSCAPE_IT273,ST2217,other,other,VIM,8,Functional,Functional,Sensitive,-,-,-,VIM-1,VIM wt
+EuSCAPE_GR073,ST383,other,other,VIM,4,Functional,Functional,Unknown,-,-,-,VIM-1,VIM wt
+EuSCAPE_GR127,ST383,other,other,VIM,4,Functional,Functional,Unknown,-,-,-,VIM-1,VIM wt
+EuSCAPE_SI009,ST461,other,other,VIM,1,Functional,Functional,Sensitive,-,-,-,VIM-1,VIM wt
+EuSCAPE_ES220,ST483,other,other,VIM,2,Functional,Functional,Sensitive,-,-,-,VIM-1,VIM wt
+EuSCAPE_ES221,ST483,other,other,VIM,2,Functional,Functional,Sensitive,-,-,-,VIM-1,VIM wt
+EuSCAPE_LV006,ST86,ST86,hv,VIM,1,Functional,Functional,Unknown,MgrB-62%,-,-,VIM-1,VIM wt
+EuSCAPE_IT312,ST870,other,other,VIM,2,Functional,Functional,Sensitive,-,-,-,VIM-1,VIM wt
+EuSCAPE_TR205,ST525,other,other,VIM,1,Non-functional,Functional,Sensitive,MgrB-0%,OmpK35-0%,OmpK35-trunc,VIM-1,VIM mut
+EuSCAPE_TR201,ST525,other,other,VIM,32,Non-functional,Functional,Sensitive,MgrB-0%,OmpK35-0%,OmpK35-trunc,VIM-1,VIM mut
+EuSCAPE_TR204,ST525,other,other,VIM,32,Non-functional,Functional,Sensitive,MgrB-0%,OmpK35-0%,OmpK35-trunc,VIM-1,VIM mut
+EuSCAPE_TR202,ST525,other,other,VIM,32,Non-functional,Non-functional,Unknown,MgrB-0%,OmpK35-0%;OmpK36-34%,OmpK35-trunc;OmpK36-trunc,VIM-1,VIM mut
+EuSCAPE_HR060,ST15,ST15,CG14/15,VIM,2,Non-functional,Functional,Unknown,-,OmpK35-12%,OmpK35-trunc,VIM-1,VIM mut
+EuSCAPE_HR068,ST15,ST15,CG14/15,VIM,2,Non-functional,Functional,Unknown,-,OmpK35-12%,OmpK35-trunc,VIM-1,VIM mut
+EuSCAPE_HR104,ST15,ST15,CG14/15,VIM,4,Non-functional,Functional,Unknown,-,OmpK35-12%,OmpK35-trunc,VIM-1,VIM mut
+EuSCAPE_HR001,ST15,ST15,CG14/15,VIM,4,Non-functional,Functional,Unknown,-,OmpK35-12%,OmpK35-trunc,VIM-1,VIM mut
+EuSCAPE_HR092,ST15,ST15,CG14/15,VIM,8,Non-functional,Functional,Unknown,-,OmpK35-12%,OmpK35-trunc,VIM-1,VIM mut
+EuSCAPE_IT014,ST101,ST101,CG43,VIM,0.12,Non-functional,Functional,Resistant,MgrB-87%,OmpK35-17%,OmpK35-trunc,VIM-1,VIM mut
+EuSCAPE_IT062,ST147,ST147,CG147,VIM,8,Non-functional,Functional,Sensitive,-,OmpK35-30%,OmpK35-trunc,VIM-1,VIM mut
+EuSCAPE_ES080,ST15,ST15,CG14/15,VIM,2,Non-functional,Functional,Resistant,-,OmpK35-64%,OmpK35-trunc,VIM-1,VIM mut
+EuSCAPE_ES133,ST15,ST15,CG14/15,VIM,16,Non-functional,Functional,Resistant,-,OmpK35-64%,OmpK35-trunc,VIM-1,VIM mut
+EuSCAPE_ES094,ST147,ST147,CG147,VIM,32,Functional,Non-functional,Sensitive,-,OmpK36-54%,OmpK36-trunc,VIM-1,VIM mut
+EuSCAPE_HU005,ST15,ST15,CG14/15,VIM,0.25,Functional,Functional,Resistant,-,-,-,VIM-4,VIM wt
+EuSCAPE_HU011,ST15,ST15,CG14/15,VIM,0.25,Functional,Functional,Sensitive,-,-,-,VIM-4,VIM wt
+EuSCAPE_HU012,ST15,ST15,CG14/15,VIM,0.25,Functional,Functional,Sensitive,-,-,-,VIM-4,VIM wt
+EuSCAPE_HU021,ST15,ST15,CG14/15,VIM,0.25,Functional,Functional,Sensitive,-,-,-,VIM-4,VIM wt
+EuSCAPE_HU029,ST15,ST15,CG14/15,VIM,0.25,Functional,Functional,Sensitive,-,-,-,VIM-4,VIM wt
+EuSCAPE_HU006,ST15,ST15,CG14/15,VIM,0.5,Functional,Functional,Sensitive,-,-,-,VIM-4,VIM wt
+EuSCAPE_HU013,ST15,ST15,CG14/15,VIM,0.5,Functional,Functional,Sensitive,-,-,-,VIM-4,VIM wt
+EuSCAPE_HU025,ST15,ST15,CG14/15,VIM,0.5,Functional,Functional,Sensitive,-,-,-,VIM-4,VIM wt
+EuSCAPE_HU002,ST15,ST15,CG14/15,VIM,0.5,Functional,Functional,Sensitive,-,-,-,VIM-4,VIM wt
+EuSCAPE_HU003,ST15,ST15,CG14/15,VIM,0.5,Functional,Functional,Sensitive,-,-,-,VIM-4,VIM wt
+EuSCAPE_HU004,ST15,ST15,CG14/15,VIM,1,Functional,Functional,Sensitive,-,-,-,VIM-4,VIM wt
+EuSCAPE_HU007,ST15,ST15,CG14/15,VIM,1,Functional,Functional,Sensitive,-,-,-,VIM-4,VIM wt
+EuSCAPE_HU008,ST15,ST15,CG14/15,VIM,1,Functional,Functional,Sensitive,-,-,-,VIM-4,VIM wt
+EuSCAPE_HU010,ST15,ST15,CG14/15,VIM,1,Functional,Functional,Sensitive,-,-,-,VIM-4,VIM wt
+EuSCAPE_HU018,ST15,ST15,CG14/15,VIM,1,Functional,Functional,Sensitive,-,-,-,VIM-4,VIM wt
+EuSCAPE_HU019,ST15,ST15,CG14/15,VIM,1,Functional,Functional,Sensitive,-,-,-,VIM-4,VIM wt
+EuSCAPE_HU023,ST15,ST15,CG14/15,VIM,1,Functional,Functional,Sensitive,-,-,-,VIM-4,VIM wt
+EuSCAPE_HU028,ST15,ST15,CG14/15,VIM,1,Functional,Functional,Sensitive,-,-,-,VIM-4,VIM wt
+EuSCAPE_HU036,ST15,ST15,CG14/15,VIM,1,Functional,Functional,Sensitive,-,-,-,VIM-4,VIM wt
+EuSCAPE_HU009,ST15,ST15,CG14/15,VIM,2,Functional,Functional,Sensitive,-,-,-,VIM-4,VIM wt
+EuSCAPE_HU015,ST15,ST15,CG14/15,VIM,2,Functional,Functional,Sensitive,-,-,-,VIM-4,VIM wt
+EuSCAPE_HU026,ST15,ST15,CG14/15,VIM,2,Functional,Functional,Sensitive,-,-,-,VIM-4,VIM wt
+EuSCAPE_HU016,ST15,ST15,CG14/15,VIM,8,Functional,Functional,Sensitive,-,-,-,VIM-4,VIM wt
+EuSCAPE_RO094,ST22,other,other,VIM,1,Functional,Functional,Sensitive,-,-,-,VIM-4,VIM wt
+EuSCAPE_RO093,ST383,other,other,VIM,1,Functional,Functional,Sensitive,-,-,-,VIM-4,VIM wt
