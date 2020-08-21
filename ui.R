@@ -22,7 +22,7 @@ library(RColorBrewer)
 #                                            SHINY UI START                                                     #
 ######################## *******************************  ************************************** ################  
 ui <- fluidPage(
-    titlePanel(title=div(img(src="logo.png",height=100,width=200))),
+    titlePanel(title=div(img(src="logov2.png",height=100,width=200))),
 sidebarLayout(    
     sidebarPanel( position =c("left"),  style = "color:#337ab7", 
         fileInput("file", "Load Kleborate output file", 
@@ -51,97 +51,97 @@ sidebarLayout(
                      plotOutput("resScoreBarBySpecies", height="100px"),
                      br(),
                      plotOutput("virScoreBarBySpecies", height="200px"),
-                     br(),br(),br(),br(),
+                     br(),br(),br(),br(),br(),br(),br(),br(),br(),br(),br(),br(),br(),br(),
                      div(style = "position:absolute;left:2em;",downloadButton(outputId = "scoreBarBySpecies_plot_download", label = "Download plot"))
             ),
             tabPanel("ST distribution",
                    plotOutput("SThist"),
+                   br(),br(),br(),
                    column(6,selectInput("file", label="Colour bars by:", c("virulence_score", "resistance_score"))),
                    #c("virulence_score", "virulence_locus_columns", "resistance_score", "resistance_class_columns")),
                    br(),br(),br(),br(),
                    div(style = "position:absolute;left:2em;",downloadButton(outputId = "STdist_plot_download", label = "Download plot")),
                    br(),br(),br(),br(),
-                   column(6,wellPanel(uiOutput("numBars")))
+                   column(12,wellPanel(uiOutput("numBars")))
             ),
             tabPanel("Convergence heatmap", 
                    br(),
                    plotlyOutput("heatmap"),
-                   br(),br(),br(),br(),
+                   br(),br(),br(),br(),br(),br(),br(),br(),br(),br(),
                    div(style = "position:absolute;left:2em;",downloadButton(outputId = "CovergenceHeatmap_plot_download", label = "Download plot"))
             ),
             tabPanel("Convergence by ST",
                    plotlyOutput("st_scatter"),
-                   br(),br(),br(),br(),
+                   br(),br(),br(),br(),br(),br(),br(),br(),br(),br(),br(),br(),
                    div(style = "position:absolute;left:2em;",downloadButton(outputId = "ConvergenceST_plot_download", label = "Download plot")),
-                   br(),br(),br(),br(),
-                   column(6, plotlyOutput("st_virulence")
+                   br(),
+                   column(6, plotlyOutput("st_virulence"))
             ),
             tabPanel("F1",
                    plotlyOutput("st_scatter"),
-                   br(),br(),br(),br(),
+                   br(),br(),br(),br(),br(),br(),br(),br(),br(),br(),
                    div(style = "position:absolute;left:2em;",downloadButton(outputId = "F1_plot_download", label = "Download plot")),
                    br(),br(),br(),br(),
-                   column(6, plotlyOutput("f1")
+                   column(6, plotlyOutput("f1"))
             ),
             tabPanel("F2",
                    plotlyOutput("st_scatter"),
-                   br(),br(),br(),br(),
+                   br(),br(),br(),br(),br(),br(),br(),br(),br(),br(),
                    div(style = "position:absolute;left:2em;",downloadButton(outputId = "F2_plot_download", label = "Download plot")),
-                   br(),br(),br(),br(),
-                   column(6, plotlyOutput("f2")
+                   br(),br(),br(),br(),br(),br(),
+                   column(6, plotlyOutput("f2"))
             ),                     
             tabPanel("F3",
                    plotlyOutput("st_scatter"),
-                   br(),br(),br(),br(),
-                   div(style = "position:absolute;left:2em;",downloadButton(outputId = "F2_plot_download", label = "Download plot")),
-                   br(),br(),br(),br(),
-                   column(6, plotlyOutput("f2")
+                   br(),br(),br(),br(),br(),br(),br(),br(),br(),br(),
+                   div(style = "position:absolute;left:2em;",downloadButton(outputId = "F3_plot_download", label = "Download plot")),
+                   br(),br(),br(),br(),br(),br(),br(),br(),br(),br(),br(),br(),br(),br(),
+                   column(6, plotlyOutput("f3"))
             ),         
             tabPanel("F4",
                    plotlyOutput("st_scatter"),
+                   br(),br(),br(),br(),br(),br(),br(),br(),br(),br(),
+                   div(style = "position:absolute;left:2em;",downloadButton(outputId = "F4_plot_download", label = "Download plot")),
                    br(),br(),br(),br(),
-                   div(style = "position:absolute;left:2em;",downloadButton(outputId = "F2_plot_download", label = "Download plot")),
-                   br(),br(),br(),br(),
-                   column(6, plotlyOutput("f2")
+                   column(6, plotlyOutput("f4"))
             ),
             tabPanel("F5",
                    plotlyOutput("st_scatter"),
+                   br(),br(),br(),br(),br(),br(),br(),br(),br(),br(),
+                   div(style = "position:absolute;left:2em;",downloadButton(outputId = "F5_plot_download", label = "Download plot")),
                    br(),br(),br(),br(),
-                   div(style = "position:absolute;left:2em;",downloadButton(outputId = "F2_plot_download", label = "Download plot")),
-                   br(),br(),br(),br(),
-                   column(6, plotlyOutput("f2")
+                   column(6, plotlyOutput("f5"))
             ), 
             tabPanel("F6",
                    plotlyOutput("st_scatter"),
+                   br(),br(),br(),br(),br(),br(),br(),br(),br(),br(),
+                   div(style = "position:absolute;left:2em;",downloadButton(outputId = "F6_plot_download", label = "Download plot")),
                    br(),br(),br(),br(),
-                   div(style = "position:absolute;left:2em;",downloadButton(outputId = "F2_plot_download", label = "Download plot")),
-                   br(),br(),br(),br(),
-                   column(6, plotlyOutput("f2")
+                   column(6, plotlyOutput("f6"))
             ), 
             tabPanel("F7",
                    plotlyOutput("st_scatter"),
+                   br(),br(),br(),br(),br(),br(),br(),br(),br(),br(),
+                   div(style = "position:absolute;left:2em;",downloadButton(outputId = "F7_plot_download", label = "Download plot")),
                    br(),br(),br(),br(),
-                   div(style = "position:absolute;left:2em;",downloadButton(outputId = "F2_plot_download", label = "Download plot")),
-                   br(),br(),br(),br(),
-                   column(6, plotlyOutput("f2")
+                   column(6, plotlyOutput("f7"))
             ), 
                    tabPanel("F8",
                    plotlyOutput("st_scatter"),
+                   br(),br(),br(),br(),br(),br(),br(),br(),br(),br(),
+                   div(style = "position:absolute;left:2em;",downloadButton(outputId = "F8_plot_download", label = "Download plot")),
                    br(),br(),br(),br(),
-                   div(style = "position:absolute;left:2em;",downloadButton(outputId = "F2_plot_download", label = "Download plot")),
-                   br(),br(),br(),br(),
-                   column(6, plotlyOutput("f2")
+                   column(6, plotlyOutput("f8"))
             ), 
-                   tabPanel("F4",
+                   tabPanel("F9",
                    plotlyOutput("st_scatter"),
+                   br(),br(),br(),br(),br(),br(),br(),br(),br(),br(),
+                   div(style = "position:absolute;left:2em;",downloadButton(outputId = "F9_plot_download", label = "Download plot")),
                    br(),br(),br(),br(),
-                   div(style = "position:absolute;left:2em;",downloadButton(outputId = "F2_plot_download", label = "Download plot")),
-                   br(),br(),br(),br(),
-                   column(6, plotlyOutput("f2")
+                   column(6, plotlyOutput("f9"))
             ), 
-        #textOutput("selected_file")
-        ))))))))))
-      )
+        textOutput("selected_file")
+     )
     )
   )
 )
