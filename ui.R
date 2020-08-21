@@ -72,7 +72,7 @@ sidebarLayout(
             ),
             tabPanel("Convergence by ST",
                    plotlyOutput("st_scatter"),
-                   br(),br(),br(),br(),br(),br(),br(),br(),br(),br(),
+                   br(),br(),br(),br(),br(),br(),br(),br(),br(),br(),br(),br(),
                    div(style = "position:absolute;left:2em;",downloadButton(outputId = "ConvergenceST_plot_download", label = "Download plot")),
                    br(),
                    column(6, plotlyOutput("st_virulence"))
