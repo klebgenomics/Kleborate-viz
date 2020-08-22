@@ -17,6 +17,7 @@ library(ggrepel)
 library(shinythemes)
 library(RColorBrewer)
 
+source(server.R)
 
 ######################## *******************************  ************************************** ################
 #                                            SHINY UI START                                                     #
