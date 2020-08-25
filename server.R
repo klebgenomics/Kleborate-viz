@@ -21,16 +21,7 @@ library(RColorBrewer)
 #                                            SHINY SERVER START                                                 #
 ######################## *******************************  ************************************** ################ 
 
-column_decoder <- read.csv("column_decoder.txt",sep="\t")
-species_toggles = c("Klebsiella pneumoniae","Klebsiella quasipneumoniae","Klebsiella variicola","Klebsiella quasivariicola")
 
-#files to change - metadata or function
-year_vir_res <- read.csv("mean_vir_res_by_year_jun2020.csv")
-sample_vir_res <- read.csv("mean_vir_res_scores_sampletype_jun2020.csv")
-ST_data <- read.csv("Kleborate_ST_vir_res_heatmap_toplot_Dec2019.csv")
-bar <- read.csv("Kleborate_ST_meta_barchart_toplot_Dec2019_v2.csv")
-Eu_KO <- read.csv("EuSCAPE_K_O_analysis.csv")
-f7 <- read.csv("EuSCAPE-Kleborate-AMR_comparison_260819_forR.csv")
 
 server <- function(input, output){
   

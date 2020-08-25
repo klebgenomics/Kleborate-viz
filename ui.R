@@ -17,7 +17,25 @@ library(ggrepel)
 library(shinythemes)
 library(RColorBrewer)
 
-source(server.R)
+
+
+######################## *******************************  ************************************** ################
+#                                          upload files - fixed for now                                         #
+######################## *******************************  ************************************** ################  
+
+kleborate_data <- read.csv("kleborate_output.txt",sep="\t")
+column_decoder <- read.csv("column_decoder.txt",sep="\t")
+species_toggles = c("Klebsiella pneumoniae","Klebsiella quasipneumoniae","Klebsiella variicola","Klebsiella quasivariicola")
+year_vir_res <- read.csv("mean_vir_res_by_year_jun2020.csv")
+sample_vir_res <- read.csv("mean_vir_res_scores_sampletype_jun2020.csv")
+ST_data <- read.csv("Kleborate_ST_vir_res_heatmap_toplot_Dec2019.csv")
+bar <- read.csv("Kleborate_ST_meta_barchart_toplot_Dec2019_v2.csv")
+Eu_KO <- read.csv("EuSCAPE_K_O_analysis.csv")
+f7 <- read.csv("EuSCAPE-Kleborate-AMR_comparison_260819_forR.csv")
+
+resistance_class_columns <- as.character(column_decoder$column_name[column_decoder$type =="resistance_class"])
+virulence_locus_columns <- as.character(column_decoder$column_name[column_decoder$type =="virulence_locus"])
+
 
 ######################## *******************************  ************************************** ################
 #                                            SHINY UI START                                                     #
