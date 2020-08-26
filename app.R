@@ -23,6 +23,9 @@ library(RColorBrewer)
 ######################## ********************************************************************* ################
 #                                          LOAD FILES                                                         #
 ######################## ********************************************************************* ################  
+#
+# NOTE: use setwd(dir = "path Kleborate_viz workdir")
+#
 
 kleborate_data <- read.csv("data/kleborate_output.txt",sep="\t")
 column_decoder <- read.csv("data/column_decoder.txt",sep="\t")
@@ -51,7 +54,7 @@ sidebarLayout(
 
   # side bar is where we load data, show summary, and choose species 
 
-    sidebarPanel( position =c("left"),  style = "color:#337ab7", 
+  sidebarPanel( position =c("left"),  style = "color:#337ab7", 
         fileInput("file", "Load Kleborate output file",accept = c("text/csv","text/comma-separated-values,text/plain",".csv")),
         fluidRow(
           column(6,
@@ -68,25 +71,26 @@ sidebarLayout(
        br(),
        checkboxGroupInput("species_toggle", label = "Species", choices = c("Klebsiella pneumoniae" = "1",
        "Klebsiella quasipneumoniae" = "2","Klebsiella variicola" = "3","Klebsiella quasivariicola" = "4",
-       "Others" = "5"),selected = "" )
+       "Others" = "5"),selected = ""),
        h4("Subset for Analysis"),
 		   uiOutput("species_toggles_labelled_with_numbers"),
 		   sliderInput(inputId = "res_score_range_slider", label = "Resistance scores:",min = 0,max = 3,step =1,
                 value = c(0,3)),
 		   sliderInput(inputId = "vir_score_range_slider", label = "Virulence scores:",min = 0, max = 5,step =1,
                 value = c(0,5))
-    ),
-       ),
-      # main panel has a selection of tabsets to plot different analyses
-      mainPanel(
+      ),
+     
+     # main panel has a selection of tabsets to plot different analyses
+  
+    mainPanel(
         tabsetPanel(
             tabPanel("Summary by species",
                    br(),
-                     plotOutput("resScoreBarBySpecies", height="100px"),
-                     br(),
-                     plotOutput("virScoreBarBySpecies", height="200px"),
-                     br(),br(),br(),br(),br(),br(),br(),br(),br(),br(),br(),br(),br(),
-                     div(style = "position:absolute;left:2em;",downloadButton(outputId = "scoreBarBySpecies_plot_download", label = "Download plot"))
+                   plotOutput("resScoreBarBySpecies", height="100px"),
+                   br(),
+                   plotOutput("virScoreBarBySpecies", height="200px"),
+                   br(),br(),br(),br(),br(),br(),br(),br(),br(),br(),br(),br(),br(),
+                   div(style = "position:absolute;left:2em;",downloadButton(outputId = "scoreBarBySpecies_plot_download", label = "Download plot"))
             ),
             tabPanel("ST distribution",
                    plotOutput("SThist"),
@@ -160,14 +164,14 @@ sidebarLayout(
                    br(),br(),br(),br(),
                    column(6, plotlyOutput("f7"))
             ), 
-                   tabPanel("F8",
+            tabPanel("F8",
                    plotlyOutput("st_scatter"),
                    br(),br(),br(),br(),br(),br(),br(),br(),br(),br(),
                    div(style = "position:absolute;left:2em;",downloadButton(outputId = "F8_plot_download", label = "Download plot")),
                    br(),br(),br(),br(),
                    column(6, plotlyOutput("f8"))
             ), 
-                   tabPanel("F9",
+            tabPanel("F9",
                    plotlyOutput("st_scatter"),
                    br(),br(),br(),br(),br(),br(),br(),br(),br(),br(),
                    div(style = "position:absolute;left:2em;",downloadButton(outputId = "F9_plot_download", label = "Download plot")),
@@ -474,7 +478,7 @@ server <- function(input, output, session) {
 
   }) # end renderPlotly()
   
-  output$st_res_vir <- renderPlotly({
+  output$st_res_vir <- renderPlotly ({
   
   	data_by_species <- KleborateData()[row_filter$spp_exp,]
   	
@@ -528,16 +532,16 @@ server <- function(input, output, session) {
   # else{print_row_names=TRUE}    
 
   # plot with heatmaply
-	# heatmaply(st_data_matrix, Rowv=rowv, Colv=NULL, xlab = "genotypes", hide_colorbar=T,
-  #        fontsize_row = 6, fontsize_col = 7,  revC=F,
+	heatmaply(st_data_matrix, Rowv=rowv, Colv=NULL, xlab = "genotypes", hide_colorbar=T,
+          fontsize_row = 6, fontsize_col = 7,  revC=F,
   # col_side_colors=as.data.frame.matrix(cbind(gene_freq=genefreq)), col_side_palette = colorRampPalette(c("white","black")),
   # row_side_colors=as.data.frame.matrix(cbind(virload,resload)), 
   # row_side_colors=as.data.frame.matrix(data_matrix[,c("virulence_score","resistance_score","num_resistance_classes","num_resistance_genes")]),
   # row_side_palette = colorRampPalette(c("white","black")),
   # showticklabels = c(TRUE,print_row_names),
-  #        colors=c("white","#2171b5","#ef3b2c"), main = main_title
-	#)
-  #})
+          colors=c("white","#2171b5","#ef3b2c"), main = main_title
+	)
+  })
   
 	# K vs O scatter plot by ST, emits event data
 	# TO DO: carry over the species & res selections for these plots
