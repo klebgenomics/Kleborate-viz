@@ -27,15 +27,15 @@ library(RColorBrewer)
 # NOTE: use setwd(dir = "path Kleborate_viz workdir")
 #
 
-kleborate_data <- read.csv("data/kleborate_output.txt",sep="\t")
-column_decoder <- read.csv("data/column_decoder.txt",sep="\t")
+kleborate_data <- read.csv("kleborate_output.txt",sep="\t")
+column_decoder <- read.csv("column_decoder.txt",sep="\t")
 species_toggles = c("Klebsiella pneumoniae","Klebsiella quasipneumoniae","Klebsiella variicola","Klebsiella quasivariicola")
-year_vir_res <- read.csv("data/mean_vir_res_by_year_jun2020.csv")
-sample_vir_res <- read.csv("data/mean_vir_res_scores_sampletype_jun2020.csv")
-ST_data <- read.csv("data/Klveborate_ST_vir_res_heatmap_toplot_Dec2019.csv")
-bar <- read.csv("data/Kleborate_ST_meta_barchart_toplot_Dec2019_v2.csv")
-Eu_KO <- read.csv("data/EuSCAPE_K_O_analysis.csv")
-f7 <- read.csv("data/EuSCAPE-Kleborate-AMR_comparison_260819_forR.csv")
+year_vir_res <- read.csv("mean_vir_res_by_year.csv")
+sample_vir_res <- read.csv("mean_vir_res_scores_sampletype.csv")
+ST_data <- read.csv("Kleborate_ST_vir_res_heatmap_toplot.csv")
+bar <- read.csv("Kleborate_ST_meta_barchart_toplot.csv")
+Eu_KO <- read.csv("EuSCAPE_K_O_analysis.csv")
+f7 <- read.csv("EuSCAPE-Kleborate-AMR_comparison_forR.csv")
 
 resistance_class_columns <- as.character(column_decoder$column_name[column_decoder$type =="resistance_class"])
 virulence_locus_columns <- as.character(column_decoder$column_name[column_decoder$type =="virulence_locus"])
@@ -55,45 +55,39 @@ sidebarLayout(
   # side bar is where we load data, show summary, and choose species 
 
   sidebarPanel( position =c("left"),  style = "color:#337ab7", 
-        fileInput("file", "Load Kleborate output file",accept = c("text/csv","text/comma-separated-values,text/plain",".csv")),
-        fluidRow(
-          column(6,
-                 selectInput("select-input",label="Select country or region",choices=c("A","B","C")),
-                 sliderInput("slider-input",label="Numbers of resistance classes",value=5,min=1,max=10),
-                 dateRangeInput("date-range-input",label="Period"),
-                 hr(),
-                 submitButton(),
-          ),
-        ),
-       br(),
-       h4("Data Summary"),
-       tableOutput("summaryTable"),
-       br(),
-       checkboxGroupInput("species_toggle", label = "Species", choices = c("Klebsiella pneumoniae" = "1",
-       "Klebsiella quasipneumoniae" = "2","Klebsiella variicola" = "3","Klebsiella quasivariicola" = "4",
-       "Others" = "5"),selected = ""),
-       h4("Subset for Analysis"),
-		   uiOutput("species_toggles_labelled_with_numbers"),
-		   sliderInput(inputId = "res_score_range_slider", label = "Resistance scores:",min = 0,max = 3,step =1,
-                value = c(0,3)),
-		   sliderInput(inputId = "vir_score_range_slider", label = "Virulence scores:",min = 0, max = 5,step =1,
-                value = c(0,5))
-      ),
-     
+  fileInput("file", "Load Kleborate output file",accept = c("text/csv","text/comma-separated-values,text/plain",".csv")),
+       # fluidRow(
+        #  column(6,
+         #        selectInput("select-input",label="Select country or region",choices=c("A","B","C")),
+         #        sliderInput("slider-input",label="Numbers of resistance classes",value=5,min=1,max=10),
+        #         dateRangeInput("date-range-input",label="Period"),
+       #          hr(),
+      #           submitButton(),
+       #    ),
+       # ),
+   br(),
+   h4("Data Summary"),
+   tableOutput("summaryTable"),
+   br(),
+   checkboxGroupInput("species_toggle", label = "Species", choices = c("Klebsiella pneumoniae" = "1",
+   "Klebsiella quasipneumoniae" = "2","Klebsiella variicola" = "3","Klebsiella quasivariicola" = "4",
+   "Others" = "5"))
+    ),
+		
      # main panel has a selection of tabsets to plot different analyses
   
-    mainPanel(
-        tabsetPanel(
-            tabPanel("Summary by species",
+  mainPanel(
+    tabsetPanel(
+    tabPanel("Summary",
+                br(),
+                   plotOutput("resScoreBarBySpecies", height="260px"),
                    br(),
-                   plotOutput("resScoreBarBySpecies", height="100px"),
+                   plotOutput("virScoreBarBySpecies", height="260px"),
                    br(),
-                   plotOutput("virScoreBarBySpecies", height="200px"),
-                   br(),br(),br(),br(),br(),br(),br(),br(),br(),br(),br(),br(),br(),
-                   div(style = "position:absolute;left:2em;",downloadButton(outputId = "scoreBarBySpecies_plot_download", label = "Download plot"))
+                   div(style = "position:absolute;left:2em;",downloadButton(outputId = "scoreBarBySpecies_plot_download", label = "Download plot")),
             ),
             tabPanel("ST distribution",
-                   plotOutput("SThist"),
+                   plotOutput("SThist", height="300px"),
                    br(),br(),br(),
                    column(6,selectInput("file", label="Colour bars by:",
                    c("virulence_score", "virulence_locus_columns", "resistance_score", "resistance_class_columns")),
@@ -101,6 +95,19 @@ sidebarLayout(
                    div(style = "position:absolute;left:2em;",downloadButton(outputId = "STdist_plot_download", label = "Download plot")),
                    br(),br(),br(),
                    column(12,wellPanel(uiOutput("numBars")))),
+            ),
+            tabPanel("Genotypes by ST",
+                     plotOutput("SThist", height="300px"),
+                     column(6,selectInput("variable", label="Colour bars by:",
+                                          c("virulence_score", virulence_locus_columns, "resistance_score", resistance_class_columns)),
+                            downloadButton(outputId = "STdist_plot_download", label = "Download the plot"),
+                            downloadButton(outputId = "STdist_data_download", label = "Download the data")
+                     ),
+                     column(6,wellPanel(uiOutput("numBars"))),
+                     column(12,
+                            h4("Resistance vs virulence across all strains (click to select subset)"),
+                            plotlyOutput("heatmap", height="200px")
+                     )
             ),
             tabPanel("Convergence heatmap", 
                    br(),
@@ -298,12 +305,10 @@ server <- function(input, output, session) {
       xlab("Resistance score") + 
       labs(fill = "Species") + 
    	  ggtitle("Resistance scores by species")
-    
   })
   
   output$resScoreBarBySpecies <- renderPlot ({
  	print(resScoreBarBySpecies_reactive())
-  
   })
    
   # Virulence score plot - for summary page
