@@ -1,4 +1,4 @@
-# KleborateViz
+# Kleborate_viz
 
 ![Code Count](https://img.shields.io/github/languages/count/kelwyres/Kleborate_viz)
 ![Main Code Base](https://img.shields.io/github/languages/top/kelwyres/Kleborate_viz)
@@ -51,13 +51,11 @@ install.packages('dplyr')
 
 ## Installation
 
-
 ## Usage
-
 
 ## Demonstration
 
-[Video](link video).
+[Video](demo link video).
 
 ## Tests
 
@@ -65,7 +63,8 @@ N/A
 
 ## Contact
 
-Write me an E-Mail Kelly Wyres ([kelly.wyres@monash.edu](mailto:kelly.wyres@monash.edu))
+Kleborate_viz is under active development
 
----
-© 2020 Holtlab [Holtlab](https://holtlab.net/).
+Please get in touch via the GitHub issues tracker if you have any issues, questions or ideas.
+
+For more on our lab, including other software, see [Holtlab](https://holtlab.net/).
