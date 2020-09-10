@@ -25,6 +25,11 @@
 
 Visualization tool for Kleborate [Kleborate repository](https://github.com/katholt/Kleborate).
 
+## System Architecture
+
+
+
+
 ## Dependencies
 
 The following programs need to be available/installed for correct operation:
@@ -55,7 +60,7 @@ install.packages('dplyr')
 
 ## Demonstration
 
-[Video](demo link video).
+View a live demonstration [here](https://drive.google.com/file/d/1MtRZJfdQVVH1sDaFyLUiYJA-ZhsN-sut/view?usp=sharing).
 
 ## Tests
 

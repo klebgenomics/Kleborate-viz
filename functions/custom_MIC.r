@@ -16,9 +16,10 @@ suppressMessages(library(pheatmap))
 suppressMessages(library(ggrepel))
 suppressMessages(library(shinythemes))
 
-#Input = automatic 
-sample_vir_res <- read.csv("data/mean_vir_res_scores_sampletype.csv")
-ST_vir_res <- read.csv("data/mean_vir_res_scores_ST.csv")
+#Input = automatic
+data <- read.csv("/data/EuSCAPE-Kleborate-AMR_comparison_forR.csv")
+amr_df <- data.frame(data)
 
-ggplot(sample_vir_res, aes(x=sample_vir_res$mean_vir, y=sample_vir_res$mean_res)) + geom_point(aes(size=sample_vir_res$number.of.genomes)) + geom_text_repel(label=sample_vir_res$sample)
-ggplot(ST_vir_res, aes(x=ST_vir_res$mean_vir, y=ST_vir_res$mean_res)) + geom_point(aes(size=ST_vir_res$number.of.genomes)) + geom_text_repel(label=ST_vir_res$ST)
+ggplot(amr_df, aes(y=Meropenem_MIC, x=Bla_carb_simplified)) + geom_boxplot() +
+geom_jitter(aes(colour=Omp_simplified)) + scale_y_continuous(trans="log2") +
+scale_color_manual(values=c("#000000", "#E69F00", "#CC0011", "#D16E66", "#D16E66", "#CC0011","#D16E66")) + theme_classic()
