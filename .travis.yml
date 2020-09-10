@@ -1,0 +1,86 @@
+# R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
+
+# What distribution are we using?
+# 14.06 = trusty
+# 16.04 = xenial
+# 18.04 = bionic
+dist: xenial
+sudo: false
+latex: false
+
+# Define the language.
+language: r
+
+# Should warnings be treated as errors? The default value for this
+# is true. This needs to be set to false.
+warnings_are_errors: false
+
+# Which R version should be used?
+# release = Latest minor release version.
+r:
+  - release
+  - oldrel
+  - devel
+
+cache:
+  packages: true
+
+apt_packages:
+  - libgdal-dev
+  - libudunits2-dev
+
+git:
+  depth: false
+
+# Include all necessary R packages here.
+r_packages:
+  - gapminder
+  - ggthemes
+  - maps
+  - plotly
+  - RColorBrewer
+  - rgeos
+  - rsconnect
+  - shiny
+  - shinyAce
+  - shinyjs
+  - survminer
+  - survival
+  - tidyverse
+  - ggplot2
+  - heatmaply
+  - dplyr
+  - reshape2
+  - vegan
+  - ComplexHeatmap
+  - readxl
+  - pheatmap
+  - ggrepel
+  - shinythemes
+  - lintr
+  - formatR
+  - styler
+
+pandoc_version: 1.19.2.1
+
+# After the build, push any changes back to Github.
+after_success:
+  - git config --global user.name "Travis CI"
+  - git config --global user.email "travis@travis-ci.org"
+  - git remote add origin-token https://${github_token}@github.com/kelwyres/Kleborate_viz.git
+  - git add --all
+  - git commit --allow-empty -m "Travis CI build: ${TRAVIS_BUILD_NUMBER}"
+  - git push --set-upstream origin-token master
+
+install:
+  - R -e "0" --args --bootstrap-packrat
+  - R -e 'devtools::install_deps(dep = T)'
+
+script:
+- R CMD build .
+- R CMD check *tar.gz
+cache:
+  directories:
+    - $TRAVIS_BUILD_DIR/packrat/src
+    - $TRAVIS_BUILD_DIR/packrat/lib
+  packages: true
