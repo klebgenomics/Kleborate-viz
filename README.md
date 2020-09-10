@@ -14,7 +14,6 @@
   * [Dependencies](#Description)
   * [Demonstration](#Demonstration)
   * [Installation](#Installation)
-  * [Usage](#Usage)
   * [License](#License)
   * [Version](#Version)
   * [Tests](#Tests)
@@ -65,14 +64,14 @@ install.packages(styler)
 
 ## Installation
 
-## Usage
 
 ## Demonstration
 
-View a live demonstration [here](link google drive).
+Usage live demonstration [here](link google drive).
+![Alt text](assets/video/videos/video.mov?raw=true "Live demo")
 
 <video width="320" height="240" controls>
-  <source src="assets/video/videosvideo.mov" type="video/mp4">
+  <source src="assets/videos/video.mov" type="video/mp4">
 </video>
 
 ## Tests
