@@ -27,7 +27,7 @@ Visualization tool for Kleborate [Kleborate repository](https://github.com/katho
 
 ## System Architecture
 
-
+Link architecture [here](link google drive).
 
 
 ## Dependencies
@@ -60,7 +60,7 @@ install.packages('dplyr')
 
 ## Demonstration
 
-View a live demonstration [here](https://drive.google.com/file/d/1MtRZJfdQVVH1sDaFyLUiYJA-ZhsN-sut/view?usp=sharing).
+View a live demonstration [here](link google drive).
 
 ## Tests
 
