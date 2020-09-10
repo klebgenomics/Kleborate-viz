@@ -4,6 +4,7 @@
 # 14.06 = trusty
 # 16.04 = xenial
 # 18.04 = bionic
+
 os: linux
 dist: xenial
 latex: false

@@ -16,6 +16,7 @@
   * [Installation](#Installation)
   * [License](#License)
   * [Version](#Version)
+
   * [Questions](#Questions)
 
 
@@ -41,7 +42,6 @@ KleborateViz requires the following packages (and their dependencies) to be inst
 ```CRAN```
 
 ```
-
 install.packages('shiny')
 install.packages('heatmaply')
 install.packages('ggplot2')
@@ -66,7 +66,6 @@ install.packages(styler)
 ## Demonstration
 
 ![Kleborate_viz usage demo](assets/videos/video.gif)
-
 
 ## Contact
 
