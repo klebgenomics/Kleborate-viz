@@ -60,28 +60,29 @@ r_packages:
   - lintr
   - formatR
   - styler
+r_github_packages: https://github.com/kelwyres/Kleborate_viz.git
 
 pandoc_version: 1.19.2.1
 
-# After the build, push any changes back to Github.
-after_success:
-  - git config --global user.name "Travis CI"
-  - git config --global user.email "travis@travis-ci.org"
-  - git remote add origin-token https://${github_token}@github.com/kelwyres/Kleborate_viz.git
-  - git add --all
-  - git commit --allow-empty -m "Travis CI build: ${TRAVIS_BUILD_NUMBER}"
-  - git push --set-upstream origin-token master
+# # After the build, push any changes back to Github.
+# after_success:
+#   - git config --global user.name "Travis CI"
+#   - git config --global user.email "travis@travis-ci.org"
+#   - git remote add origin-token https://${github_token}@github.com/kelwyres/Kleborate_viz.git
+#   - git add --all
+#   - git commit --allow-empty -m "Travis CI build: "${TRAVIS_BUILD_NUMBER}"
+#   - git push --set-upstream origin-token master
 
-install:
-  - R -e "0" --args --bootstrap-packrat
-  - R -e "packrat::restore(restart = FALSE)"
-  - R -e 'devtools::install_deps(dep = T)'
+# install:
+#   - R -e "0" --args --bootstrap-packrat
+#   - R -e "packrat::restore(restart = FALSE)"
+#   - R -e 'devtools::install_deps(dep = T)'
 
-script:
-- R CMD build .
-- R CMD check *tar.gz
-cache:
-  directories:
-    - $TRAVIS_BUILD_DIR/packrat/src
-    - $TRAVIS_BUILD_DIR/packrat/lib
-  packages: true
+# script:
+# - R CMD build .
+# - R CMD check *tar.gz
+# cache:
+#   directories:
+#     - $TRAVIS_BUILD_DIR/packrat/src
+#     - $TRAVIS_BUILD_DIR/packrat/lib
+#   packages: true
