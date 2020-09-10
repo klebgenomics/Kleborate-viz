@@ -1,0 +1,26 @@
+library(ggplot2)
+library(heatmaply)
+library(dplyr)
+library(reshape2)
+library(plotly)
+library(vegan)
+library(ComplexHeatmap)
+library(readxl)
+library(pheatmap)
+library(ggrepel)
+library(shinythemes)
+library(RColorBrewer)
+library(shinydashboard)
+library(ggthemes)
+
+#Input = automatic 
+sample_vir_res <- read.csv("data/mean_vir_res_scores_sampletype.csv")
+ST_vir_res <- read.csv("data/mean_vir_res_scores_ST.csv")
+
+ggplot(sample_vir_res, aes(x=sample_vir_res$mean_vir, y=sample_vir_res$mean_res)) +
+geom_point(aes(size=sample_vir_res$number.of.genomes)) +
+geom_text_repel(label=sample_vir_res$sample)
+
+ggplot(ST_vir_res, aes(x=ST_vir_res$mean_vir, y=ST_vir_res$mean_res)) +
+geom_point(aes(size=ST_vir_res$number.of.genomes)) +
+geom_text_repel(label=ST_vir_res$ST)

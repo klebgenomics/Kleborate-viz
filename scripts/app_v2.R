@@ -1,3 +1,11 @@
+# This is the UI  for a Shiny web application.
+# You can find out more about building applications with Shiny here:
+#
+# http://shiny.rstudio.com
+#
+############ ***************************************************** #############
+#                                          R PACKAGES DEPENDENCE               #
+############ ***************************************************** #############
 library(shiny)
 library(ggplot2)
 library(heatmaply)
@@ -5,12 +13,29 @@ library(dplyr)
 library(reshape2)
 library(plotly)
 library(vegan)
+library(ComplexHeatmap)
+library(readxl)
+library(pheatmap)
+library(ggrepel)
 library(shinythemes)
+library(RColorBrewer)
+library(lintr)
+library(formatR)
+library(styler)
 
+####### ***************************************************** ################
+#                                          LOAD FILES                        #
+####### ***************************************************** ################
+#
+# NOTE0: use setwd(dir = "path Kleborate_viz workdir")
+#
+#
+#######*****************************************************################
+#                                            SHINY UI START                #
+#######*****************************************************################
 #Input data
-kleborate_data <- read.csv("kleborate_output.txt",sep="\t")
-
-column_decoder <- read.csv("column_decoder.txt",sep="\t")
+kleborate_data <- read.csv("data/kleborate_output.txt",sep="\t")
+column_decoder <- read.csv("data/column_decoder.txt",sep="\t")
 resistance_class_columns <- as.character(column_decoder$column_name[column_decoder$type =="resistance_class"])
 virulence_locus_columns <- as.character(column_decoder$column_name[column_decoder$type =="virulence_locus"])
 
