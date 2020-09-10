@@ -66,7 +66,7 @@ install.packages(styler)
 
 ## Demonstration
 
-![Kleborate_viz usage demo](videos/video.gif)
+![Kleborate_viz usage demo](assets/videos/video.gif)
 
 ## Tests
 
