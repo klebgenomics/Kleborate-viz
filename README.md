@@ -14,10 +14,8 @@
   * [Dependencies](#Description)
   * [Demonstration](#Demonstration)
   * [Installation](#Installation)
-  * [Usage](#Usage)
   * [License](#License)
   * [Version](#Version)
-  * [Tests](#Tests)
   * [Questions](#Questions)
 
 
@@ -27,13 +25,11 @@ Visualization tool for Kleborate [Kleborate repository](https://github.com/katho
 
 ## System Architecture
 
-Link architecture [here](link google drive).
-
+![Alt text](assets/images/Kleborate_viz.jpg?raw=true "Architecture behind")
 
 ## Dependencies
 
 The following programs need to be available/installed for correct operation:
-
 
 * [R](https://www.r-project.org/).
 * [Shiny Server](https://www.rstudio.com/products/shiny/shiny-server/).
@@ -51,20 +47,26 @@ install.packages('heatmaply')
 install.packages('ggplot2')
 install.packages('plotly')
 install.packages('dplyr')
+install.packages(reshape2)
+install.packages(vegan)
+install.packages(ComplexHeatmap)
+install.packages(readxl)
+install.packages(pheatmap)
+install.packages(ggrepel)
+install.packages(shinythemes)
+install.packages(RColorBrewer)
+install.packages(lintr)
+install.packages(formatR)
+install.packages(styler)
 
 ```
 
 ## Installation
 
-## Usage
-
 ## Demonstration
 
-View a live demonstration [here](link google drive).
+![Kleborate_viz usage demo](assets/videos/video.gif)
 
-## Tests
-
-N/A
 
 ## Contact
 
