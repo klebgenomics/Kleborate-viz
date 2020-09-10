@@ -16,7 +16,6 @@
   * [Installation](#Installation)
   * [License](#License)
   * [Version](#Version)
-  * [Tests](#Tests)
   * [Questions](#Questions)
 
 
@@ -68,9 +67,6 @@ install.packages(styler)
 
 ![Kleborate_viz usage demo](assets/videos/video.gif)
 
-## Tests
-
-N/A
 
 ## Contact
 
