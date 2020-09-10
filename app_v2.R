@@ -27,13 +27,21 @@ library(styler)
 #                                          LOAD FILES                        #
 ####### ***************************************************** ################
 #
-# NOTE0: use setwd(dir = "path Kleborate_viz workdir")
+# NOTE: use setwd(dir = "path Kleborate_viz workdir")
 #
 #
 #######*****************************************************################
 #                                            SHINY UI START                #
 #######*****************************************************################
 #Input data
+
+#Source external modules, if render problem comment
+source("functions/cumulativeKLO.R")
+source("functions/custom_MIC.r")
+source("functions/EuSCAPE.r")
+source("functions/mean_vir_by_year.R")
+source("functions/sample_vir_res.R")
+
 kleborate_data <- read.csv("data/kleborate_output.txt",sep="\t")
 column_decoder <- read.csv("data/column_decoder.txt",sep="\t")
 resistance_class_columns <- as.character(column_decoder$column_name[column_decoder$type =="resistance_class"])
