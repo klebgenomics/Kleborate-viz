@@ -64,15 +64,9 @@ install.packages(styler)
 
 ## Installation
 
-
 ## Demonstration
 
-Usage live demonstration [here](link google drive).
-![Alt text](assets/video/videos/video.mov?raw=true "Live demo")
-
-<video width="320" height="240" controls>
-  <source src="assets/videos/video.mov" type="video/mp4">
-</video>
+![Kleborate_viz usage demo](videos/video.gif)
 
 ## Tests
 
