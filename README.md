@@ -17,11 +17,9 @@
   * [Usage](#Usage)
   * [License](#License)
   * [Version](#Version)
-  * [Tests](#Tests)
   * [Questions](#Questions)
 
-
-## Description 
+## Description
 
 Visualization tool for Kleborate [Kleborate repository](https://github.com/katholt/Kleborate).
 
@@ -46,6 +44,18 @@ install.packages('heatmaply')
 install.packages('ggplot2')
 install.packages('plotly')
 install.packages('dplyr')
+install.packages(reshape2)
+install.packages(vegan)
+install.packages(ComplexHeatmap)
+install.packages(readxl)
+install.packages(pheatmap)
+install.packages(ggrepel)
+install.packages(shinythemes)
+install.packages(RColorBrewer)
+install.packages(lintr)
+install.packages(formatR)
+install.packages(styler)
+install.packages(shinyWidgets)
 
 ```
 
