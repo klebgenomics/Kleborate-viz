@@ -44,19 +44,58 @@ install.packages('heatmaply')
 install.packages('ggplot2')
 install.packages('plotly')
 install.packages('dplyr')
-install.packages(reshape2)
-install.packages(vegan)
-install.packages(ComplexHeatmap)
-install.packages(readxl)
-install.packages(pheatmap)
-install.packages(ggrepel)
-install.packages(shinythemes)
-install.packages(RColorBrewer)
-install.packages(lintr)
-install.packages(formatR)
-install.packages(styler)
-install.packages(shinyWidgets)
+install.packages('reshape2')
+install.packages('vegan')
+install.packages('ComplexHeatmap')
+install.packages('readxl')
+install.packages('pheatmap')
+install.packages('ggrepel')
+install.packages('shinythemes')
+install.packages('RColorBrewer')
+install.packages('lintr')
+install.packages('formatR')
+install.packages('styler')
+install.packages('shinyWidgets')
+install.packages('ggExtra')
+install.packages('shinyjs')
+install.packages('colourpicker')
+install.packages('bootstraplib')
+install.packages('gfonts')
+install.packages('thematic')
+install.packages('shinyBS')
+install.packages('gProfileR')
+install.packages('gtable')
+install.packages('Cairo') 
+install.packages('data.table')
+install.packages('ggridges')
+install.packages('qicharts2')
+install.packages('rintrojs')
+install.packages('shinycssloaders')
+install.packages('survival')
+install.packages('survminer')
 
+```
+
+## CRAN Package
+
+## Docker image
+
+To run Kleborate_viz locally, you can use a snapshot of Kleborate_viz [Docker image](https://hub.docker.com/r/lcerdeira/kleborateviz/) from Docker Hub. You can also try to build the image from the Dockerfile but Kleborate_viz code may not work correctly with the newest versions of the R packages if the changes have broken backward compatibility.
+
+To use the Docker image, you need to have [Docker](https://www.docker.com/) installed. Then use the following code:
+
+```
+sudo docker pull lcerdeira/kleborateviz
+mkdir ~/customKleborateviz/
+cd ~/customKleborateviz/
+wget https://github.com/kelwyres/Kleborate_viz/archive/master.zip
+unzip master.zip
+chmod -R go+rx ~/customKleborateviz/
+sudo docker run -d \
+	--name customKleborateviz \
+	-p <myPort>:3838 \
+    -v ~/customKleborateviz/Kleborateviz-master/:/srv/shiny-server/:ro \
+    lcerdeira/kleborateviz
 ```
 
 ## Installation
