@@ -3,3 +3,7 @@
 *.Rhistory
 .Rproj.user
 .travis.yml
+.Rprofile
+.Rhistory
+.lintr
+.Rbuildignore
