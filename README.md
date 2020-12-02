@@ -1,4 +1,5 @@
-# Welcome to Kleborate_viz <img src="assets/utils/wave.gif" width="30"/>
+# Welcome to Kleborate_viz <img src="assets/utils/wave.gif" width="30"/> 
+
 
 ![Code Count](https://img.shields.io/github/languages/count/kelwyres/Kleborate_viz)
 ![Main Code Base](https://img.shields.io/github/languages/top/kelwyres/Kleborate_viz)
@@ -10,6 +11,7 @@
 
 ![start](assets/utils/readme_header.png)
 
+### [Click here start using the app](http://kleborate.erc.monash.edu/shiny/)
 
 ### Description
 
