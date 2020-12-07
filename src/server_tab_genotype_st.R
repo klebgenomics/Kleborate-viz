@@ -1,0 +1,146 @@
+# ST distribution plot 
+genotype_st_dist_plot <- reactive({
+  # Return until input ui element renders and has a default value
+  if (is.null(input$genotype_st_count)) {
+    return()
+  }
+  # NOTE: must use defalt source of 'A' as heatmaply does not appear to expose the 'source' argument
+  ed <- event_data('plotly_click', source='A')
+  if(is.null(ed) == FALSE && ed$curveNumber == 0) {
+    data_selected$resistance_min <- data_selected$resistance_max <- ed$y - 1
+    data_selected$virulence_min <- data_selected$virulence_max <- ed$x - 1
+    data_selected$rows <- compute_row_selection()
+  }
+  # Get configuration for plot type
+  d <- kleborate_data()[data_selected$rows, ]
+  if (input$genotype_st_dist_plot_var=='virulence_score') {
+    # Determine colours and label names
+    v.virulence_score_labels <- paste0(names(v.virulence_score_names), ": ", v.virulence_score_names)
+    names(v.virulence_score_labels) <- names(v.virulence_score_names)
+    v.colours <- v.virulence_score_colours[names(v.virulence_score_labels)]
+    names(v.colours) <- v.virulence_score_labels
+    # Set annotation column
+    d$annotation <- v.virulence_score_labels[as.character(d$virulence_score)]
+  } else if (input$genotype_st_dist_plot_var=='resistance_score') {
+    # Determine colours and label names
+    v.resistance_score_labels <- paste0(names(v.resistance_score_names), ": ", v.resistance_score_names)
+    names(v.resistance_score_labels) <- names(v.resistance_score_names)
+    v.colours <- v.resistance_score_colours[names(v.resistance_score_labels)]
+    names(v.colours) <- v.resistance_score_labels
+    # Set annotation column
+    d$annotation <- v.resistance_score_labels[as.character(d$resistance_score)]
+  } else {
+    if (input$genotype_st_dist_plot_var %in% v.virulence_loci) {
+      v.colours <- c("grey", "#2171b5")
+    } else if (input$genotype_st_dist_plot_var %in% v.resistance_classes) { 
+      v.colours <- c("grey", "#ef3b2c") 
+    } else {
+      stop('Got bad annotation variable')
+    }
+    names(v.colours) <- c('absent', 'present')
+    # Set annotation column
+    d$annotation <- ifelse(d[[input$genotype_st_dist_plot_var]]=='-', 'absent', 'present')
+  }
+  # Order ST by group size
+  v.st_counts <- sort(table(d$ST), decreasing=TRUE)
+  v.st_order <- names(v.st_counts)
+  d$ST <- factor(d$ST, levels=v.st_order)
+  # Select first n STs
+  d <- d[d$ST %in% v.st_order[1:input$genotype_st_count], ]
+  # Create plot
+  g <- ggplot(data=d, aes(x=ST, fill=annotation))
+  g <- g + geom_bar()
+  g <- g + theme(
+    axis.text.x=element_text(colour='black', size=10, angle=45, hjust=1),
+    axis.text.y=element_text(colour='black', size=10),
+    panel.background=element_blank(),
+    panel.border=element_blank(),
+    axis.line=element_line(colour='black')
+  )
+  g <- g + ylab('Number of isolates') + xlab('ST')
+  g <- g + scale_y_continuous(expand=c(0,0))
+  g <- g + scale_fill_manual(values=v.colours, breaks=names(v.colours), name=input$genotype_st_dist_plot_var, drop=FALSE)
+  return(g)
+})
+output$genotype_st_dist_plot <- renderPlot ({ print(genotype_st_dist_plot()) })
+# ST number slider
+output$genotype_st_count <- renderUI({
+  sliderInput(
+    inputId='genotype_st_count',
+    label='Number of STs:',
+    min=1,
+    max=length(unique(kleborate_data()$ST)),
+    value=min(20,length(unique(kleborate_data()$ST)))
+  )
+})
+# Download plot button
+output$genotype_st_plot_download <- downloadHandler(
+  filename=function() {'genotype_st_dist.pdf'},
+  content=function(file) {
+    pdf(file, width=10, height=6)
+    print(genotype_st_dist_plot())
+    dev.off()
+  }
+)
+# Download data button
+output$genotype_st_data_download <- downloadHandler(
+  filename=function() {
+    paste0(
+      input$genotype_st_dist_plot_var, 
+      '_by_ST__res', 
+      input$res_score_range_slider[1],
+      '-',
+      input$res_score_range_slider[2],
+      '_vir',
+      input$vir_score_range_slider[1],
+      '-',
+      input$vir_score_range_slider[2],
+      '.csv'
+    )
+  },
+  content=function(s.filename) {
+    d <- table(
+      kleborate_data()[data_selected$rows,'ST'],
+      kleborate_data()[data_selected$rows,input$genotype_st_dist_plot_var]
+    )
+    # NOTE: ordering was done previously but I don't see how it would work...
+    # v.st_counts <- table(kleborate_data()$ST)
+    # v.st_order <- names(v.st_counts)[order(v.st_counts, decreasing=TRUE)]
+    # d <- d[order(factor(d$ST, levels=v.st_order)), ]
+    write.csv(d, s.filename, row.names=TRUE)
+  }
+)
+# Resistance v virulence heatmap plot
+output$res_vir_heatmap <- renderPlotly({ 
+  # Colours
+  v.colours <- colorRampPalette(c('#f5ecd1', '#f1c280', '#e67d77'))(100)
+  v.colours <- c('#ffffff', v.colours)
+  # Tranform data
+  vir_res <- table(
+    factor(kleborate_data()[data_selected$rows, ]$resistance_score,c(0,1,2,3)),
+    factor(kleborate_data()[data_selected$rows, ]$virulence_score,c(0,1,2,3,4,5))
+  )
+  # Create matrix for heatmaply, sort rows (descending)
+  vir_res_heatmaply <- as.data.frame.matrix(vir_res)
+  vir_res_heatmaply <- vir_res_heatmaply[order(-as.numeric(row.names(vir_res_heatmaply))), ]
+  # Create plot
+  heatmaply(
+    vir_res_heatmaply,
+    Rowv=NULL,
+    Colv=NULL,
+    ylab='Resistance Score',
+    xlab='Virulence Score',
+    fontsize_row=10,
+    fontsize_col=10,
+    subplot_margin=3,
+    colors=v.colours, 
+    margins=c(40,40),
+    revR=TRUE,
+    key.title='# genomes',
+    column_text_angle=0,
+    plot_method='ggplot',
+    node_type='scatter',
+    grid_size=10,
+    source='res_vir_heatmap'
+  )
+})
