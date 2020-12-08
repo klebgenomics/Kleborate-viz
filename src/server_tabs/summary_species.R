@@ -7,7 +7,7 @@ species_resistance_plot <- reactive({
   v.colours <- c(v.kpsc_colours, species_other_colours())
   d <- kleborate_data()[data_selected$rows, ]
   g <- ggplot(data=d, aes(x=resistance_score, fill=species)) + geom_bar()
-  g <- g + scale_x_continuous(breaks=0:3) + scale_y_continuous(expand=c(0,0))
+  g <- g + scale_x_continuous(breaks=0:3) + scale_y_continuous(expand=c(0, 0))
   g <- g + scale_fill_manual(values=v.colours)
   g <- g + coord_flip()
   g <- g + theme(
@@ -28,9 +28,9 @@ species_virluence_plot <- reactive({
     return()
   }
   v.colours <- c(v.kpsc_colours, species_other_colours())
-  d <- kleborate_data()[data_selected$rows,]
+  d <- kleborate_data()[data_selected$rows, ]
   g <- ggplot(data=d, aes(x=virulence_score, fill=species)) + geom_bar()
-  g <- g + scale_x_continuous(breaks=0:5) + scale_y_continuous(expand=c(0,0))
+  g <- g + scale_x_continuous(breaks=0:5) + scale_y_continuous(expand=c(0, 0))
   g <- g + scale_fill_manual(values=v.colours)
   g <- g + coord_flip()
   g <- g + theme(

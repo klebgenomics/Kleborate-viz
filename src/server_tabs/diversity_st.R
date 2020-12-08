@@ -1,8 +1,8 @@
 # K vs O scatter plot by ST
 output$ko_diversity_st_scatter <- renderPlotly({
   # Create dataframe with simpson diversity and total number of genomes per ST
-  st_vs_k <- table(kleborate_data()[data_selected$rows, ]$ST, kleborate_data()[data_selected$rows,]$K_locus)
-  st_vs_o <- table(kleborate_data()[data_selected$rows, ]$ST, kleborate_data()[data_selected$rows,]$O_locus)
+  st_vs_k <- table(kleborate_data()[data_selected$rows, ]$ST, kleborate_data()[data_selected$rows, ]$K_locus)
+  st_vs_o <- table(kleborate_data()[data_selected$rows, ]$ST, kleborate_data()[data_selected$rows, ]$O_locus)
   div_k <- as.data.frame(diversity(st_vs_k, index='simpson'))
   div_o <- as.data.frame(diversity(st_vs_o, index='simpson'))
   div_combined <- merge(div_k, div_o, by=0)
@@ -39,7 +39,7 @@ output$ko_diversity_st_heatmap <- renderPlotly({
   main_title=paste('Selected strains:', st_name)
   # Format data for plotting
   # NOTE: converting as done below is required to handle corner cases where nrow = 1 or ncol=1
-  k_vs_o <- table(data_matrix$K_locus,data_matrix$O_locus)
+  k_vs_o <- table(data_matrix$K_locus, data_matrix$O_locus)
   k_vs_o <- k_vs_o[rowSums(k_vs_o)>0,colSums(k_vs_o)>0,drop=FALSE]
   k_vs_o <- matrix(k_vs_o, byrow=TRUE, ncol=ncol(k_vs_o), dimnames=list(rownames(k_vs_o), colnames(k_vs_o)))
   # Create heatmap
@@ -53,6 +53,6 @@ output$ko_diversity_st_heatmap <- renderPlotly({
     hide_colorbar=F,
     revC=F,
     showticklabels=c(TRUE, FALSE),
-    colors=c('white',colorRampPalette(colors=c('blue', 'red'))(max(k_vs_o)))
+    colors=c('white', colorRampPalette(colors=c('blue', 'red'))(max(k_vs_o)))
   )
 })

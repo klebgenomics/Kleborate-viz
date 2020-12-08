@@ -12,17 +12,17 @@ ui <- fluidPage(
       fileInput(
         'kleborate_file',
         'Load Kleborate Output File (txt)',
-        accept=c('text/csv', 'text/comma-separated-values,text/plain','.csv')
+        accept=c('text/csv', 'text/comma-separated-values,text/plain', '.csv')
       ),
       fileInput(
         'metadata_file',
         'Load Metadata file (csv)',
-        accept=c('text/csv', 'text/comma-separated-values,text/plain','.csv')
+        accept=c('text/csv', 'text/comma-separated-values,text/plain', '.csv')
       ),
       fileInput(
         'mic_file',
         'Load MIC table (csv)',
-        accept=c('text/csv', 'text/comma-separated-values,text/plain','.csv')
+        accept=c('text/csv', 'text/comma-separated-values,text/plain', '.csv')
       ),
       # Data summary
       h4('Data Summary'),
@@ -35,12 +35,12 @@ ui <- fluidPage(
       sliderInput(
         inputId='res_score_range_slider',
         label='Resistance scores:',
-        min=0,max=3, step=1, value=c(0,3)
+        min=0, max=3, step=1, value=c(0, 3)
       ),
       sliderInput(
         inputId='vir_score_range_slider',
         label='Virulence scores:',
-        min=0, max=5,step=1, value=c(0,5)
+        min=0, max=5, step=1, value=c(0, 5)
       ),
     ),
     # Tab navigator and main display

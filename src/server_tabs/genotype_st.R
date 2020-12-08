@@ -4,7 +4,7 @@ genotype_st_dist_plot <- reactive({
   if (is.null(input$genotype_st_count)) {
     return()
   }
-  # NOTE: must use defalt source of 'A' as heatmaply does not appear to expose the 'source' argument
+  # NOTE: must use default source of 'A' as heatmaply does not appear to expose the 'source' argument
   ed <- event_data('plotly_click', source='A')
   if(is.null(ed) == FALSE && ed$curveNumber == 0) {
     data_selected$resistance_min <- data_selected$resistance_max <- ed$y - 1
@@ -63,7 +63,7 @@ genotype_st_dist_plot <- reactive({
     axis.line=element_line(colour='black')
   )
   g <- g + ylab('Number of isolates') + xlab('ST')
-  g <- g + scale_y_continuous(expand=c(0,0))
+  g <- g + scale_y_continuous(expand=c(0, 0))
   g <- g + scale_fill_manual(values=v.colours, breaks=names(v.colours), name=input$genotype_st_dist_plot_var, drop=FALSE)
   return(g)
 })
@@ -75,7 +75,7 @@ output$genotype_st_count <- renderUI({
     label='Number of STs:',
     min=1,
     max=length(unique(kleborate_data()$ST)),
-    value=min(20,length(unique(kleborate_data()$ST)))
+    value=min(20, length(unique(kleborate_data()$ST)))
   )
 })
 # Download plot button
@@ -122,8 +122,8 @@ output$res_vir_heatmap <- renderPlotly({
   v.colours <- c('#ffffff', v.colours)
   # Tranform data
   vir_res <- table(
-    factor(kleborate_data()[data_selected$rows, ]$resistance_score,c(0,1,2,3)),
-    factor(kleborate_data()[data_selected$rows, ]$virulence_score,c(0,1,2,3,4,5))
+    factor(kleborate_data()[data_selected$rows, ]$resistance_score, c(0, 1, 2, 3)),
+    factor(kleborate_data()[data_selected$rows, ]$virulence_score, c(0, 1, 2, 3, 4, 5))
   )
   # Create matrix for heatmaply, sort rows (descending)
   vir_res_heatmaply <- as.data.frame.matrix(vir_res)
@@ -139,7 +139,7 @@ output$res_vir_heatmap <- renderPlotly({
     fontsize_col=10,
     subplot_margin=3,
     colors=v.colours, 
-    margins=c(40,40),
+    margins=c(40, 40),
     revR=TRUE,
     key.title='# genomes',
     column_text_angle=0,
