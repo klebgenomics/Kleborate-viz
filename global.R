@@ -12,9 +12,9 @@ library(plotly)
 options(shiny.maxRequestSize=20*1024^2)
 
 # Default dataset
-kleborate_data_default <- read.csv("assets/kleborate_output/kleborate_output.txt",sep="\t", stringsAsFactors=FALSE)
-metadata_default <- read.csv("assets/metadata/kleborate_metadata.csv", stringsAsFactors=FALSE)
-mic_data_default <- read.csv("assets/metadata/euscape_amr_metadata.csv", stringsAsFactors=FALSE)
+kleborate_data_default <- read.csv("data/kleborate_output.tsv", sep="\t", stringsAsFactors=FALSE)
+metadata_default <- read.csv("data/kleborate_metadata.csv", stringsAsFactors=FALSE)
+mic_data_default <- NULL
 
 # Colours and variables names
 v.kpsc_names <- c(
@@ -116,8 +116,8 @@ v.resistance_score_colours <- c(
 
 
 # Precomputed data, delete asap
-sample_vir_res <- read.csv("assets/temp/mean_vir_res_scores_sampletype.csv")
-year_vir_res <- read.csv("assets/temp/mean_vir_res_by_year.csv")
-cumulative_K_data <- read.csv("assets/temp/K_region_prevalence_by_region_cumulativeplot.csv")
-cumulative_O_data <- read.csv("assets/temp/O_types_prevalence_by_region_cumulativeplot.csv")
-data_AMRSimpli <- read.csv("assets/temp/EuSCAPE-Kleborate-AMR_comparison_forR_simpli.csv", stringsAsFactors=FALSE)
+sample_vir_res <- read.csv("testing/precomp/mean_vir_res_scores_sampletype.csv")
+year_vir_res <- read.csv("testing/precomp/mean_vir_res_by_year.csv")
+cumulative_K_data <- read.csv("testing/precomp/K_region_prevalence_by_region_cumulativeplot.csv")
+cumulative_O_data <- read.csv("testing/precomp/O_types_prevalence_by_region_cumulativeplot.csv")
+data_AMRSimpli <- read.csv("testing/precomp/EuSCAPE-Kleborate-AMR_comparison_forR_simpli.csv", stringsAsFactors=FALSE)
