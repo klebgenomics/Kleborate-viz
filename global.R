@@ -2,10 +2,9 @@
 library(shiny)
 require(shinyjs)
 # Misc
-library(dplyr, warn.conflicts = FALSE)
+library(tidyverse)
 library(vegan)  # diversity measurements
 # Plotting
-library(ggplot2, warn.conflicts = FALSE)
 library(heatmaply)
 library(plotly)
 
