@@ -86,8 +86,8 @@ output$convergence_st_heatmap <- renderPlotly({
   }
   # Convert to binary matrix, format for heatmaply
   rownames(data_matrix) <- data_matrix[ ,1]
-  vir_data_matrix <- (data_matrix[ ,c(virulence_locus_columns)]!='-')*1
-  res_data_matrix <- (data_matrix[ ,c(resistance_class_columns)]!='-')*2
+  vir_data_matrix <- (data_matrix[ ,as.character(v.virulence_loci)]!='-')*1
+  res_data_matrix <- (data_matrix[ ,as.character(v.resistance_classes)]!='-')*2
   st_data_matrix <- as.data.frame.matrix(cbind(vir_data_matrix, res_data_matrix))
   # Ensure we have data to plot
   if (nrow(st_data_matrix) < 1) {

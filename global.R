@@ -15,7 +15,6 @@ options(shiny.maxRequestSize=20*1024^2)
 kleborate_data_default <- read.csv("assets/kleborate_output/kleborate_output.txt",sep="\t", stringsAsFactors=FALSE)
 metadata_default <- read.csv("assets/metadata/kleborate_metadata.csv", stringsAsFactors=FALSE)
 mic_data_default <- read.csv("assets/metadata/euscape_amr_metadata.csv", stringsAsFactors=FALSE)
-column_decoder <- read.csv("assets/data_handle/column_decoder.txt",sep="\t", stringsAsFactors=FALSE)
 
 # Colours and variables names
 v.kpsc_names <- c(
@@ -116,21 +115,9 @@ v.resistance_score_colours <- c(
 )
 
 
-# TODO: delete this ASAP
-# Temp write results folder test
+# Precomputed data, delete asap
 sample_vir_res <- read.csv("assets/temp/mean_vir_res_scores_sampletype.csv")
-year_vir_res <- read.csv("assets/temp/mean_vir_res_by_year.csv", stringsAsFactors=FALSE)
-ST_vir_res <- read.csv("assets/temp/mean_vir_res_scores_ST.csv")
-ST_data <- read.csv("assets/temp/Kleborate_ST_vir_res_heatmap_toplot.csv")
-bar <- read.csv("assets/temp/Kleborate_ST_meta_barchart_toplot.csv", stringsAsFactors=TRUE)
+year_vir_res <- read.csv("assets/temp/mean_vir_res_by_year.csv")
 cumulative_K_data <- read.csv("assets/temp/K_region_prevalence_by_region_cumulativeplot.csv")
 cumulative_O_data <- read.csv("assets/temp/O_types_prevalence_by_region_cumulativeplot.csv")
-data_AMR <- read.csv("assets/temp/EuSCAPE-Kleborate-AMR_comparison_forR.csv", stringsAsFactors=FALSE)
 data_AMRSimpli <- read.csv("assets/temp/EuSCAPE-Kleborate-AMR_comparison_forR_simpli.csv", stringsAsFactors=FALSE)
-BSAC <- read.csv("assets/temp/BSAC_MIC_kleborate_interpretation.csv", stringsAsFactors=FALSE)
-
-# Handle data
-resistance_class_columns <- as.character(column_decoder$column_name[column_decoder$type == "resistance_class"])
-virulence_locus_columns <- as.character(column_decoder$column_name[column_decoder$type == "virulence_locus"])
-# varcountry <- as.character(kleborate_metadata$column_name[kleborate_metadata$Country ==  "Country"])
-# varsource <- as.character(kleborate_metadata$column_name[kleborate_metadata$Source == "Source"])
