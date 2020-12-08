@@ -7,6 +7,8 @@ metadata_summary_year <- reactive({
       n=n(), 
       mean_virulence_score = mean(virulence_score), 
       mean_resistance_score = mean(resistance_score), 
+      mean_resistance_genes = mean(num_resistance_genes), 
+      mean_resistance_classes = mean(num_resistance_classes), 
       ybt_prevalence = 1-(sum(Yersiniabactin == "-")/n()), 
       clb_prevalence = 1-(sum(Colibactin == "-")/n()), 
       iuc_prevalence = 1-(sum(Aerobactin == "-")/n()), 
@@ -17,7 +19,10 @@ metadata_summary_year <- reactive({
       col_gene_prevalence = 1-(sum(Col_acquired == "-")/n()), 
       col_mut_prevalence = 1-(sum(Col_mutations == "-")/n()), 
       carb_prevalence = 1-(sum(Bla_Carb_acquired == "-")/n())
-    )
+    ) %>%
+    filter(Year != "unknown") -> d
+  d$Year <- as.numeric(d$Year)
+  return(d)
 })
 # Mean virulence score
 output$prevalence_year_virulence_bar <- renderPlotly({
@@ -39,12 +44,12 @@ output$prevalence_year_resistance_bar <- renderPlotly({
 })
 # Prevalence AMR classes and genes by year
 output$prevalence_year_resistance_line <- renderPlotly({ 
-  # TODO: variables to count virulence and resistance each year
-  # g <- ggplot(year_vir_res, aes(x=Year)) +
-  #   geom_line(aes(y=num_resistance_genes), color='red') +
-  #   geom_line(aes(y=num_resistance_classes), color='black') +
-  #   xlab('Year') +
-  #   ylab('Mean AMR classes and genes') + theme_bw()
-  # g <- ggplotly(g)
-  # print(g)
+  g <- ggplot(metadata_summary_year()) + 
+    geom_line(aes(x=Year, y=mean_resistance_genes), colour='red') +
+    geom_line(aes(x=Year, y=mean_resistance_classes), colour='black') +
+    xlab('Year') +
+    ylab('Mean AMR classes and acquired genes') + 
+    theme_bw()
+  g <- ggplotly(g)
+  print(g)
 })
