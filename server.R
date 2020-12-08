@@ -8,11 +8,11 @@ server <- function(input, output, session) {
     virulence_min=0,
     virulence_max=5
   )
+  # Variable to hold loaded data
   data_loaded <- reactiveValues(
     kleborate=kleborate_data_default,
     metadata=metadata_default,
-    mic_data=mic_data_default,
-    merged_data=NULL
+    mic_data=mic_data_default
   )
   
   # Set colours of other species in plots
