@@ -1,5 +1,6 @@
 # Packages
 library(shiny)
+require(shinyjs)
 # Misc
 # vegan - diversity measurements
 library(dplyr, warn.conflicts = FALSE)

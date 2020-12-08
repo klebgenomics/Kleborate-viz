@@ -10,6 +10,11 @@ genotype_st_dist_plot <- reactive({
     data_selected$resistance_min <- data_selected$resistance_max <- ed$y - 1
     data_selected$virulence_min <- data_selected$virulence_max <- ed$x - 1
     data_selected$rows <- compute_row_selection()
+    # Update input widgets
+    updateSliderInput(session, 'res_score_range_slider', value=c(data_selected$resistance_min, data_selected$resistance_max))
+    updateSliderInput(session, 'vir_score_range_slider', value=c(data_selected$virulence_min, data_selected$virulence_min))
+    # Immediately clear click event (otherwise it prevents any changes to data_selected res/vir values)
+    runjs("Shiny.onInputChange('plotly_click-A', 'null');")
   }
   # Get configuration for plot type
   d <- kleborate_data()[data_selected$rows, ]
