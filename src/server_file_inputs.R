@@ -1,4 +1,4 @@
-# File inputs
+# Determine file format and read data
 read_file <- function(fp) {
   if (grepl('.csv$', fp)) {
     d <- read.csv(fp, stringsAsFactors=FALSE)
@@ -9,7 +9,7 @@ read_file <- function(fp) {
   }
   return(d)
 }
-
+# Process kleborate input
 observeEvent(
   input$kleborate_file,
   {
@@ -39,6 +39,7 @@ observeEvent(
     reset('mic_data')
   }
 )
+# Process metadata input
 observeEvent(
   input$metadata_file,
   {
@@ -57,6 +58,7 @@ observeEvent(
     }
   }
 )
+# Process mic input
 observeEvent(
   input$mic_file,
   {
