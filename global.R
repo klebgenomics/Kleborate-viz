@@ -3,6 +3,7 @@ library(shiny)
 require(shinyjs)
 # Misc
 library(tidyverse)
+require(reshape2)
 library(vegan)  # diversity measurements
 # Plotting
 library(heatmaply)

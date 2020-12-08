@@ -116,9 +116,11 @@ ui <- fluidPage(
         ),
         tabPanel(
           'Cumulative K/O locus',
-          plotlyOutput('cumulative_k_line', height='400px'),
+          plotlyOutput('cumulative_k_line_combined', height='200px'),
+          plotlyOutput('cumulative_k_line_each', height='400px'),
           br(),
-          plotlyOutput('cumulative_o_line', height='400px')
+          plotlyOutput('cumulative_o_line_combined', height='200px'),
+          plotlyOutput('cumulative_o_line_each', height='400px')
         ),
         tabPanel(
           'AMR profile by AMR classes',
