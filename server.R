@@ -8,10 +8,16 @@ server <- function(input, output, session) {
     virulence_min=0,
     virulence_max=5
   )
+  data_loaded <- reactiveValues(
+    kleborate=kleborate_data_default,
+    metadata=metadata_default,
+    mic_data=mic_data_default,
+    merged_data=NULL
+  )
   
   # Set colours of other species in plots
   species_other_colours <- reactive({
-    v.other_species <- kleborate_data()$species[! kleborate_data()$species %in% v.kpsc_names]
+    v.other_species <- data_loaded$kleborate$species[! data_loaded$kleborate$species %in% v.kpsc_names]
     v.colours <- v.other_species_colour_palette(length(v.other_species))
     names(v.colours) <- v.other_species
     return(v.colours)
@@ -20,17 +26,17 @@ server <- function(input, output, session) {
   # Update row selection after user input/selection event
   compute_row_selection <- reactive({
     # Species
-    v.species_selector <- kleborate_data()$species %in% data_selected$species
+    v.species_selector <- data_loaded$kleborate$species %in% data_selected$species
     if ('others' %in% input$species_selector) {
-      v.species_selector <- v.species_selector | (! kleborate_data()$species %in% v.kpsc_names)
+      v.species_selector <- v.species_selector | (! data_loaded$kleborate$species %in% v.kpsc_names)
     }
     # Resistance
-    v.res_selector_min <- kleborate_data()$resistance_score >= data_selected$resistance_min
-    v.res_selector_max <- kleborate_data()$resistance_score <= data_selected$resistance_max
+    v.res_selector_min <- data_loaded$kleborate$resistance_score >= data_selected$resistance_min
+    v.res_selector_max <- data_loaded$kleborate$resistance_score <= data_selected$resistance_max
     v.res_selector <- v.res_selector_min & v.res_selector_max
     # Virulence
-    v.vir_selector_min <- kleborate_data()$virulence_score >= data_selected$virulence_min
-    v.vir_selector_max <- kleborate_data()$virulence_score <= data_selected$virulence_max
+    v.vir_selector_min <- data_loaded$kleborate$virulence_score >= data_selected$virulence_min
+    v.vir_selector_max <- data_loaded$kleborate$virulence_score <= data_selected$virulence_max
     v.vir_selector <- v.vir_selector_min & v.vir_selector_max
     # Combined
     return(v.species_selector & v.res_selector & v.vir_selector)

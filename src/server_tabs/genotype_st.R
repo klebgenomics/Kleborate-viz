@@ -17,7 +17,7 @@ genotype_st_dist_plot <- reactive({
     runjs("Shiny.onInputChange('plotly_click-A', 'null');")
   }
   # Get configuration for plot type
-  d <- kleborate_data()[data_selected$rows, ]
+  d <- data_loaded$kleborate[data_selected$rows, ]
   if (input$genotype_st_dist_plot_var=='virulence_score') {
     # Determine colours and label names
     v.virulence_score_labels <- paste0(names(v.virulence_score_names), ": ", v.virulence_score_names)
@@ -74,8 +74,8 @@ output$genotype_st_count <- renderUI({
     inputId='genotype_st_count',
     label='Number of STs:',
     min=1,
-    max=length(unique(kleborate_data()$ST)),
-    value=min(20, length(unique(kleborate_data()$ST)))
+    max=length(unique(data_loaded$kleborate$ST)),
+    value=min(20, length(unique(data_loaded$kleborate$ST)))
   )
 })
 # Download plot button
@@ -105,11 +105,11 @@ output$genotype_st_data_download <- downloadHandler(
   },
   content=function(s.filename) {
     d <- table(
-      kleborate_data()[data_selected$rows,'ST'],
-      kleborate_data()[data_selected$rows,input$genotype_st_dist_plot_var]
+      data_loaded$kleborate[data_selected$rows,'ST'],
+      data_loaded$kleborate[data_selected$rows,input$genotype_st_dist_plot_var]
     )
     # NOTE: ordering was done previously but I don't see how it would work...
-    # v.st_counts <- table(kleborate_data()$ST)
+    # v.st_counts <- table(data_loaded$kleborate$ST)
     # v.st_order <- names(v.st_counts)[order(v.st_counts, decreasing=TRUE)]
     # d <- d[order(factor(d$ST, levels=v.st_order)), ]
     write.csv(d, s.filename, row.names=TRUE)
@@ -122,8 +122,8 @@ output$res_vir_heatmap <- renderPlotly({
   v.colours <- c('#ffffff', v.colours)
   # Tranform data
   vir_res <- table(
-    factor(kleborate_data()[data_selected$rows, ]$resistance_score, c(0, 1, 2, 3)),
-    factor(kleborate_data()[data_selected$rows, ]$virulence_score, c(0, 1, 2, 3, 4, 5))
+    factor(data_loaded$kleborate[data_selected$rows, ]$resistance_score, c(0, 1, 2, 3)),
+    factor(data_loaded$kleborate[data_selected$rows, ]$virulence_score, c(0, 1, 2, 3, 4, 5))
   )
   # Create matrix for heatmaply, sort rows (descending)
   vir_res_heatmaply <- as.data.frame.matrix(vir_res)

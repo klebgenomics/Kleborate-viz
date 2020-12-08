@@ -1,31 +1,77 @@
 # File inputs
-kleborate_data <- reactive({
-  if (is.null(input$kleborate_file)) {
-    d <- kleborate_data_default
+read_file <- function(fp) {
+  if (grepl('.csv$', fp)) {
+    d <- read.csv(fp, stringsAsFactors=FALSE)
+  } else if (grepl('.tsv$', fp)) {
+    d <- read.csv(fp, sep='\t', stringsAsFactors=FALSE)
   } else {
-    d <- read.csv(input$kleborate_file$datapath, sep='\t', stringsAsFactors=FALSE)
+    return(NULL)
   }
-  # Set row selection to all data
-  v.species <- unique(d$species)
-  data_selected$rows <- rep(TRUE, nrow(d))
-  data_selected$species <- c(v.species[v.species %in% v.kpsc_names], 'others')
-  # Order species such that KpSC appears first in plots
-  d$species <- factor(d$species, levels=c(v.kpsc_names, v.species[! v.species %in% v.kpsc_names]))
   return(d)
-})
-metadata <- reactive({
-  if (is.null(input$metadata_file)) {
-    return(metadata_default)
-  } else {
-    d <- read.csv(input$metadata_file$datapath, sep='\t')
-    return(d)
+}
+
+observeEvent(
+  input$kleborate_file,
+  {
+    d <- read_file(input$kleborate_file$datapath)
+    if (is.null(d)) {
+      showNotification('Input kleborate file must be in tsv or csv format and have the correct extension', type='error', duration=NULL)
+      reset('kleborate_file')
+      reset('metadata_file')
+      reset('mic_data')
+      data_loaded$kleborate <- NULL
+      data_loaded$metadata <- NULL
+      data_loaded$mic_data <- NULL
+      return()
+    }
+    # Set row selection to all data
+    v.species <- unique(d$species)
+    data_selected$rows <- rep(TRUE, nrow(d))
+    data_selected$species <- c(v.species[v.species %in% v.kpsc_names], 'others')
+    # Order species such that KpSC appears first in plots
+    d$species <- factor(d$species, levels=c(v.kpsc_names, v.species[! v.species %in% v.kpsc_names]))
+    data_loaded$kleborate <- d
+    # Reset metadata and mic data inputs
+    data_loaded$metadata <- NULL
+    data_loaded$mic_data <- NULL
+    # Reset file input ui
+    reset('metadata_file')
+    reset('mic_data')
   }
-})
-mic_data <- reactive({
-  if (is.null(input$mic_file)) {
-    return(mic_data_default)
-  } else {
-    d <- read.csv(input$mic_file$datapath, sep='\t')
-    return(d)
+)
+observeEvent(
+  input$metadata_file,
+  {
+    d <- read_file(input$metadata_file$datapath)
+    if (is.null(d)) {
+      showNotification('Input metadata file must be in tsv or csv format and have the correct extension', type='error', duration=NULL)
+      reset('metadata_file')
+      return()
+    }
+    if (! 'strain' %in% colnames(d)) {
+      showNotification('Metadata file must contain a "strain" column', type='error', duration=NULL)
+      data_loaded$metadata <- NULL
+      reset('metadata_file')
+    } else {
+      data_loaded$metadata <- d
+    }
   }
-})
+)
+observeEvent(
+  input$mic_file,
+  {
+    d <- read_file(input$mic_file$datapath)
+    if (is.null(d)) {
+      showNotification('Input MIC file must be in tsv or csv format and have the correct extension', type='error', duration=NULL)
+      reset('mic_file')
+      return()
+    }
+    if (! 'strain' %in% colnames(d)) {
+      showNotification('MIC file must contain a "strain" column', type='error', duration=NULL)
+      data_loaded$mic_data <- NULL
+      reset('mic_file')
+    } else {
+      data_loaded$mic_data <- d
+    }
+  }
+)

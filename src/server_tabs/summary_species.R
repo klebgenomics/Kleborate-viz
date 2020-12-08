@@ -1,11 +1,11 @@
 # Resistance plot
 species_resistance_plot <- reactive({
-  # Return until input ui element renders and has a default value
-  if (is.null(input$species_selector)) {
+  # Return until input ui element renders and has a default value have we have data
+  if (is.null(input$species_selector) | is.null(data_loaded$kleborate)) {
     return()
   }
   v.colours <- c(v.kpsc_colours, species_other_colours())
-  d <- kleborate_data()[data_selected$rows, ]
+  d <- data_loaded$kleborate[data_selected$rows, ]
   d$resistance_score <- factor(d$resistance_score, levels=0:3)
   g <- ggplot(data=d, aes(x=resistance_score, fill=species)) + geom_bar()
   g <- g + scale_x_discrete(breaks=0:3, drop=FALSE) + scale_y_continuous(expand=c(0, 0))
@@ -24,12 +24,12 @@ species_resistance_plot <- reactive({
 output$species_resistance_plot <- renderPlot({ print(species_resistance_plot()) })
 # Virulence plot
 species_virluence_plot <- reactive({
-  # Return until input ui element renders and has a default value
-  if (is.null(input$species_selector)) {
+  # Return until input ui element renders and has a default value have we have data
+  if (is.null(input$species_selector) | is.null(data_loaded$kleborate)) {
     return()
   }
   v.colours <- c(v.kpsc_colours, species_other_colours())
-  d <- kleborate_data()[data_selected$rows, ]
+  d <- data_loaded$kleborate[data_selected$rows, ]
   d$virulence_score <- factor(d$virulence_score, levels=0:5)
   g <- ggplot(data=d, aes(x=virulence_score, fill=species)) + geom_bar()
   g <- g + scale_x_discrete(breaks=0:5, drop=FALSE) + scale_y_continuous(expand=c(0, 0))

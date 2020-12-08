@@ -1,10 +1,10 @@
 # Dynamic misc. content
 # Data summary in side bar
 summary_data <- reactive({
-  n.vs <- c('Mean virulence score', round(mean(kleborate_data()$virulence_score), 2))
-  n.vr <- c('Mean resistance score', round(mean(kleborate_data()$resistance_score), 2))
-  n.us <- c('Total unique species', length(unique(kleborate_data()$species)))
-  n.st <- c('Total STs', length(unique(kleborate_data()$ST)))
+  n.vs <- c('Mean virulence score', round(mean(data_loaded$kleborate$virulence_score), 2))
+  n.vr <- c('Mean resistance score', round(mean(data_loaded$kleborate$resistance_score), 2))
+  n.us <- c('Total unique species', length(unique(data_loaded$kleborate$species)))
+  n.st <- c('Total STs', length(unique(data_loaded$kleborate$ST)))
   d <- t(data.frame(n.us, n.st, n.vs, n.vr))
   return(d)
 })
@@ -12,9 +12,9 @@ output$summary_data <- renderTable(summary_data(), colnames=F)
 # List of species for sidebar list
 output$species_display_radio_list <- renderUI({
   v.labels <- lapply(v.kpsc_names, function(s.species) {
-    paste0(s.species, ' (', sum(kleborate_data()$species==s.species), ')')
+    paste0(s.species, ' (', sum(data_loaded$kleborate$species==s.species), ')')
   })
-  s.others <- paste0('Others (', sum(! kleborate_data()$species %in% v.kpsc_names), ')')
+  s.others <- paste0('Others (', sum(! data_loaded$kleborate$species %in% v.kpsc_names), ')')
   v.labels_all <- c(v.labels, s.others)
   checkboxGroupInput(
     inputId='species_selector',

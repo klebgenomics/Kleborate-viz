@@ -1,6 +1,6 @@
 # Scatter plot
 output$convergence_st_scatter <- renderPlotly({
-  d <- kleborate_data()[data_selected$rows, ] %>% 
+  d <- data_loaded$kleborate[data_selected$rows, ] %>% 
     group_by(ST) %>%
     summarise(
       mean_vir=mean(virulence_score),
@@ -8,7 +8,7 @@ output$convergence_st_scatter <- renderPlotly({
       total=n()
     )
   marker_function <- function(total) {
-    if (nrow(kleborate_data()[data_selected$rows, ])>100) {
+    if (nrow(data_loaded$kleborate[data_selected$rows, ])>100) {
       return(log(total, 2) * 4)
     } else {
       return (total * 10)
@@ -51,7 +51,7 @@ output$convergence_st_scatter <- renderPlotly({
 })
 # Clustered heatmap
 output$convergence_st_heatmap <- renderPlotly({
-  data_by_species <- kleborate_data()[data_selected$rows, ]
+  data_by_species <- data_loaded$kleborate[data_selected$rows, ]
   ed <- event_data('plotly_click', source='st_scatter')
   if(is.null(ed) == FALSE && ed$curveNumber == 0) {
     selected_st <- levels(as.factor(as.character(data_by_species$ST)))[ed$pointNumber+1]

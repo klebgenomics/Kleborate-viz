@@ -1,8 +1,8 @@
 # K vs O scatter plot by ST
 output$ko_diversity_st_scatter <- renderPlotly({
   # Create dataframe with simpson diversity and total number of genomes per ST
-  st_vs_k <- table(kleborate_data()[data_selected$rows, ]$ST, kleborate_data()[data_selected$rows, ]$K_locus)
-  st_vs_o <- table(kleborate_data()[data_selected$rows, ]$ST, kleborate_data()[data_selected$rows, ]$O_locus)
+  st_vs_k <- table(data_loaded$kleborate[data_selected$rows, ]$ST, data_loaded$kleborate[data_selected$rows, ]$K_locus)
+  st_vs_o <- table(data_loaded$kleborate[data_selected$rows, ]$ST, data_loaded$kleborate[data_selected$rows, ]$O_locus)
   div_k <- as.data.frame(diversity(st_vs_k, index='simpson'))
   div_o <- as.data.frame(diversity(st_vs_o, index='simpson'))
   div_combined <- merge(div_k, div_o, by=0)
@@ -29,12 +29,12 @@ output$ko_diversity_st_scatter <- renderPlotly({
 # Heatmap
 output$ko_diversity_st_heatmap <- renderPlotly({
   # Get data
-  selected_st <- unique(kleborate_data()$ST)
+  selected_st <- unique(data_loaded$kleborate$ST)
   ed <- event_data('plotly_click', source='ko_diversity_st_scatter')
   if(is.null(ed) == FALSE && ed$curveNumber == 0) {
-    selected_st <- levels(as.factor(as.character(kleborate_data()$ST)))[ed$pointNumber+1]
+    selected_st <- levels(as.factor(as.character(data_loaded$kleborate$ST)))[ed$pointNumber+1]
   }
-  data_matrix <- kleborate_data()[kleborate_data()$ST==selected_st, ]
+  data_matrix <- data_loaded$kleborate[data_loaded$kleborate$ST==selected_st, ]
   st_name <- paste(as.character(selected_st))
   main_title=paste('Selected strains:', st_name)
   # Format data for plotting
