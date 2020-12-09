@@ -1,4 +1,5 @@
 ui <- fluidPage(
+  title='Kleborate-viz',
   # Initialise shinyjs to allow runjs calls in server code
   # This is required specifically to clear plotly event data
   useShinyjs(),
@@ -7,7 +8,7 @@ ui <- fluidPage(
     sidebarPanel(
       # Logo
       div(img(src='logo.png', height=100, width=200)),
-      br(),
+      hr(),
       # Builtin datasets
       h4('Built in datasets'),
       actionButton("dataset_global", "Global dataset"),
@@ -30,14 +31,14 @@ ui <- fluidPage(
         'Load MIC table (csv)',
         accept=c('text/csv', 'text/comma-separated-values,text/plain', '.csv')
       ),
+      hr(),
       # Data summary
       h4('Data Summary'),
       tableOutput('summary_data'),
+      hr(),
       h4('Subset for Analysis'),
-      br(),
       # Species, resistance, virulence selectors
       uiOutput('species_display_radio_list'),
-      br(),
       sliderInput(
         inputId='res_score_range_slider',
         label='Resistance scores:',
