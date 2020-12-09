@@ -10,9 +10,9 @@ server <- function(input, output, session) {
   )
   # Variable to hold loaded data
   data_loaded <- reactiveValues(
-    kleborate=kleborate_data_default,
-    metadata=metadata_default,
-    mic_data=mic_data_default
+    kleborate=global_kleborate,
+    metadata=global_metadata,
+    mic_data=global_mic
   )
   
   # Set colours of other species in plots

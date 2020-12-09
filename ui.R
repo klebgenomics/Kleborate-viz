@@ -8,7 +8,13 @@ ui <- fluidPage(
       # Logo
       div(img(src='logo.png', height=100, width=200)),
       br(),
+      # Builtin datasets
+      h4('Builtin datasets'),
+      actionButton("dataset_global", "Global Dataset"),
+      actionButton("dataset_euscape", "EUSCAPE dataset"),
+      hr(),
       # Input files
+      h4('Upload data'),
       fileInput(
         'kleborate_file',
         'Load Kleborate Output File (txt)',

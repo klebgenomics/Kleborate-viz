@@ -12,10 +12,15 @@ library(plotly)
 # Set maximum upload file size
 options(shiny.maxRequestSize=20*1024^2)
 
-# Default dataset
-kleborate_data_default <- read.csv("data/kleborate_output.tsv", sep="\t", stringsAsFactors=FALSE)
-metadata_default <- read.csv("data/kleborate_metadata.csv", stringsAsFactors=FALSE)
-mic_data_default <- NULL
+# Builtin datasets, preloading
+# Global
+global_kleborate <- read.csv('data/global_kleborate.tsv', sep='\t', stringsAsFactors=FALSE)
+global_metadata <- read.csv('data/global_metadata.csv', stringsAsFactors=FALSE)
+global_mic <- NULL
+# EUSCAPE
+euscape_kleborate <- read.csv('data/euscape_kleborate.tsv', sep='\t', stringsAsFactors=FALSE)
+euscape_metadata <- read.csv('data/euscape_metadata.csv', stringsAsFactors=FALSE)
+euscape_mic <- read.csv('data/euscape_mic.csv', stringsAsFactors=FALSE)
 
 # Colours and variables names
 v.kpsc_names <- c(

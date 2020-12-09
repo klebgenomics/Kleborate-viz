@@ -1,3 +1,42 @@
+# Load builtin datasets
+observeEvent(
+  input$dataset_global,
+  {
+    data_loaded$kleborate <- global_kleborate
+    data_loaded$metadata <- global_metadata
+    data_loaded$mic_data <- global_mic
+    prepare_data_selector(data_loaded$kleborate)
+    reset('kleborate_file')
+    reset('metadata_file')
+    reset('mic_file')
+  }
+)
+observeEvent(
+  input$dataset_euscape,
+  {
+    data_loaded$kleborate <- euscape_kleborate
+    data_loaded$metadata <- euscape_metadata
+    data_loaded$mic_data <- euscape_mic
+    prepare_data_selector(data_loaded$kleborate)
+    reset('kleborate_file')
+    reset('metadata_file')
+    reset('mic_file')
+  }
+)
+# Set up data selection
+prepare_data_selector  <- function(d) {
+  # Set defaults
+  data_selected$resistance_min <- 0
+  data_selected$resistance_max <- 3
+  data_selected$virulence_min <- 0
+  data_selected$virulence_max <- 5
+  # Set row selection to all data
+  v.species <- unique(d$species)
+  data_selected$rows <- rep(TRUE, nrow(d))
+  data_selected$species <- c(v.species[v.species %in% v.kpsc_names], 'others')
+  # Order species such that KpSC appears first in plots
+  d$species <- factor(d$species, levels=c(v.kpsc_names, v.species[! v.species %in% v.kpsc_names]))
+}
 # Determine file format and read data
 read_file <- function(fp) {
   if (grepl('.csv$', fp)) {
@@ -24,12 +63,7 @@ observeEvent(
       data_loaded$mic_data <- NULL
       return()
     }
-    # Set row selection to all data
-    v.species <- unique(d$species)
-    data_selected$rows <- rep(TRUE, nrow(d))
-    data_selected$species <- c(v.species[v.species %in% v.kpsc_names], 'others')
-    # Order species such that KpSC appears first in plots
-    d$species <- factor(d$species, levels=c(v.kpsc_names, v.species[! v.species %in% v.kpsc_names]))
+    prepare_data_selector(d)
     data_loaded$kleborate <- d
     # Reset metadata and mic data inputs
     data_loaded$metadata <- NULL
