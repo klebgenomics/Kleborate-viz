@@ -34,9 +34,15 @@ output$amr_profile_dist <- renderPlotly({
   d$y <- as.numeric(d$y)
   g <- ggplot(d, aes(x=carbapenemase_omp_combination, y=y)) +
     geom_jitter(aes(colour = Omp_mutations_simplified), width=0.25, height=0.5, alpha = 0.5) +
-    geom_boxplot(aes(outlier.shape = NA)) +
+    geom_boxplot(outlier.shape = NA) +
     scale_x_discrete(limits=c("- wt", "- mut", "IMP wt", "IMP mut", "KPC wt", "KPC mut", "NDM wt", "NDM mut", "OXA wt", "OXA mut", "VIM wt", "VIM mut", "other wt", "other mut", "multiple wt", "multiple mut")) +
     theme(axis.text.x = element_text(angle = 45, hjust =1))
   g <- ggplotly(g)
+  # Remove outliers
+  i <- length(g$x$data)
+  g$x$data[i] <- lapply(g$x$data[i], FUN = function(x){
+    x$marker = list(opacity = 0)
+    return(x)
+  })
   print(g)
 })
