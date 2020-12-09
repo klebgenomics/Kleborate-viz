@@ -130,7 +130,7 @@ ui <- fluidPage(
           plotlyOutput('cumulative_o_line_each', height='400px')
         ),
         tabPanel(
-          'AMR profile by AMR classes',
+          'MICs by AMR genotype',
           br(),
           plotlyOutput('amr_profile_dist', height='400px'),
           selectInput(

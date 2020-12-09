@@ -28,15 +28,18 @@ output$amr_profile_dist <- renderPlotly({
     return()
   }
   d <- amr_profile_data()
-  d$y <- d[[input$amr_profile_var]]
-  d <- d[! d$y %in% c(NA, 'NA', 'Not tested'), ]
-  d$y <- sub('[<>≤≥=]', '', d$y)
-  d$y <- as.numeric(d$y)
-  g <- ggplot(d, aes(x=carbapenemase_omp_combination, y=y)) +
-    geom_jitter(aes(colour = Omp_mutations_simplified), width=0.25, height=0.5, alpha = 0.5) +
+  d$MIC <- d[[input$amr_profile_var]]
+  d <- d[! d$MIC %in% c(NA, 'NA', 'Not tested'), ]
+  d$MIC <- sub('[<>≤≥=]', '', d$MIC)
+  d$MIC <- as.numeric(d$MIC)
+  g <- ggplot(d, aes(x=carbapenemase_omp_combination, y=MIC)) +
+    geom_jitter(aes(colour = Omp_mutations_simplified), width=0.25, height=0.5, alpha = 0.7) +
     geom_boxplot(outlier.shape = NA) +
     scale_x_discrete(limits=c("- wt", "- mut", "IMP wt", "IMP mut", "KPC wt", "KPC mut", "NDM wt", "NDM mut", "OXA wt", "OXA mut", "VIM wt", "VIM mut", "other wt", "other mut", "multiple wt", "multiple mut")) +
-    theme(axis.text.x = element_text(angle = 45, hjust =1))
+    scale_colour_manual("Omp mutations", breaks=c("-", "OmpK35-trunc", "OmpK36-trunc", "OmpK36GD", "OmpK36TD", "OmpK35-trunc;OmpK36-trunc", "OmpK35-trunc;OmpK36GD", "OmpK35-trunc;OmpK36TD"), values=c("#000000", "#ffffb2", "#fed976", "#feb24c", "#fd8d3c", "#fc4e2a", "#e31a1c", "#b10026")) +
+    theme_bw() + theme(axis.text.x = element_text(angle = 45, hjust =1)) +
+    xlab("AMR genotype") +
+    ylab("MIC")
   g <- ggplotly(g)
   # Remove outliers
   i <- length(g$x$data)
