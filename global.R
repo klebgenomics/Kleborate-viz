@@ -14,11 +14,11 @@ options(shiny.maxRequestSize=20*1024^2)
 
 # Builtin datasets, preloading
 # Global
-global_kleborate <- read.csv('data/global_kleborate.tsv', sep='\t', stringsAsFactors=FALSE)
+global_kleborate <- read.csv('data/global_kleborate.txt', sep='\t', stringsAsFactors=FALSE)
 global_metadata <- read.csv('data/global_metadata.csv', stringsAsFactors=FALSE)
 global_mic <- NULL
 # EUSCAPE
-euscape_kleborate <- read.csv('data/euscape_kleborate.tsv', sep='\t', stringsAsFactors=FALSE)
+euscape_kleborate <- read.csv('data/euscape_kleborate.txt', sep='\t', stringsAsFactors=FALSE)
 euscape_metadata <- read.csv('data/euscape_metadata.csv', stringsAsFactors=FALSE)
 euscape_mic <- read.csv('data/euscape_mic.csv', stringsAsFactors=FALSE)
 

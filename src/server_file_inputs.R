@@ -38,8 +38,10 @@ prepare_data_selector  <- function(d) {
   d$species <- factor(d$species, levels=c(v.kpsc_names, v.species[! v.species %in% v.kpsc_names]))
 }
 # Determine file format and read data
-read_file <- function(fp) {
-  if (grepl('.csv$', fp)) {
+read_file <- function(fp, kleborate=FALSE) {
+  if (kleborate) {
+    d <- read.csv(fp, sep='\t', stringsAsFactors=FALSE)
+  } else if (grepl('.csv$', fp)) {
     d <- read.csv(fp, stringsAsFactors=FALSE)
   } else if (grepl('.tsv$', fp)) {
     d <- read.csv(fp, sep='\t', stringsAsFactors=FALSE)
@@ -52,7 +54,7 @@ read_file <- function(fp) {
 observeEvent(
   input$kleborate_file,
   {
-    d <- read_file(input$kleborate_file$datapath)
+    d <- read_file(input$kleborate_file$datapath, kleborate=TRUE)
     if (is.null(d)) {
       showNotification('Input kleborate file must be in tsv or csv format and have the correct extension', type='error', duration=NULL)
       reset('kleborate_file')
