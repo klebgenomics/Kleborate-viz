@@ -9,20 +9,20 @@ ui <- fluidPage(
       div(img(src='logo.png', height=100, width=200)),
       br(),
       # Builtin datasets
-      h4('Builtin datasets'),
-      actionButton("dataset_global", "Global Dataset"),
-      actionButton("dataset_euscape", "EUSCAPE dataset"),
+      h4('Built in datasets'),
+      actionButton("dataset_global", "Global dataset"),
+      actionButton("dataset_euscape", "EuSCAPE dataset"),
       hr(),
       # Input files
       h4('Upload data'),
       fileInput(
         'kleborate_file',
-        'Load Kleborate Output File (txt)',
+        'Load Kleborate output file (txt)',
         accept=c('text/csv', 'text/comma-separated-values,text/plain', '.csv')
       ),
       fileInput(
         'metadata_file',
-        'Load Metadata file (csv)',
+        'Load Metadata table (csv)',
         accept=c('text/csv', 'text/comma-separated-values,text/plain', '.csv')
       ),
       fileInput(
@@ -100,14 +100,14 @@ ui <- fluidPage(
           plotlyOutput('convergence_st_heatmap', height='400px')
         ),
         tabPanel(
-          'Diversity by ST',
+          'K/O diversity by ST',
           br(),
           plotlyOutput('ko_diversity_st_scatter', height='400px'),
           br(),
           plotlyOutput('ko_diversity_st_heatmap', height='400px')
         ),
         tabPanel(
-          'Prevalence by Year',
+          'Temporal trends',
           br(),
           plotlyOutput('prevalence_year_virulence_bar', height='400px'),
           br(),
@@ -116,12 +116,12 @@ ui <- fluidPage(
           plotlyOutput('prevalence_year_resistance_line', height='400px')
         ),
         tabPanel(
-          'Prevalence by Sample',
+          'Sample trends',
           br(),
           plotlyOutput('prevalence_sample_scatter', height='400px'),
         ),
         tabPanel(
-          'Cumulative K/O locus',
+          'Cumulative K/O prevalence',
           plotlyOutput('cumulative_k_line_combined', height='200px'),
           plotlyOutput('cumulative_k_line_each', height='400px'),
           br(),
