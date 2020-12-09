@@ -117,8 +117,4 @@ v.resistance_score_colours <- c(
 
 
 # Precomputed data, delete asap
-sample_vir_res <- read.csv("testing/precomp/mean_vir_res_scores_sampletype.csv")
-year_vir_res <- read.csv("testing/precomp/mean_vir_res_by_year.csv")
-cumulative_K_data <- read.csv("testing/precomp/K_region_prevalence_by_region_cumulativeplot.csv")
-cumulative_O_data <- read.csv("testing/precomp/O_types_prevalence_by_region_cumulativeplot.csv")
 data_AMRSimpli <- read.csv("testing/precomp/EuSCAPE-Kleborate-AMR_comparison_forR_simpli.csv", stringsAsFactors=FALSE)
