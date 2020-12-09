@@ -119,7 +119,3 @@ v.resistance_score_colours <- c(
   '2'='#f7786b',
   '3'='#c94c4c'
 )
-
-
-# Precomputed data, delete asap
-data_AMRSimpli <- read.csv("testing/precomp/EuSCAPE-Kleborate-AMR_comparison_forR_simpli.csv", stringsAsFactors=FALSE)
