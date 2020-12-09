@@ -1,7 +1,7 @@
 # Summarise data
 amr_profile_data <- reactive({
-  left_join(data_loaded$metadata, data_loaded$mic_data) %>%
-    left_join(., data_loaded$kleborate[data_selected$rows, ]) %>%
+  inner_join(data_loaded$metadata, data_loaded$mic_data) %>%
+    inner_join(., data_loaded$kleborate[data_selected$rows, ]) %>%
     mutate(Omp_mutations_simplified = str_replace_all(Omp_mutations, "-[0-9]+%", "-trunc"), Omp_simple = if_else(Omp_mutations == "-", "wt", "mut")) %>%
     mutate(Bla_Carb_simplified = if_else(str_detect(Bla_Carb_acquired, "[A-Z]+"), "other", "-")) %>%
     mutate(Bla_Carb_simplified = if_else(str_detect(Bla_Carb_acquired, "IMP"), "IMP", Bla_Carb_simplified)) %>%

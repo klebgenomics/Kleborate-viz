@@ -1,6 +1,6 @@
 # Get summary data
 metadata_summary_year <- reactive({
-  left_join(data_loaded$metadata, data_loaded$kleborate[data_selected$rows, ]) %>%
+  inner_join(data_loaded$metadata, data_loaded$kleborate[data_selected$rows, ]) %>%
     mutate(Bla_ESBL_combined = if_else(Bla_ESBL_acquired == "-" & Bla_ESBL_inhR_acquired == "-", "-", "esbl")) %>%
     group_by(Year) %>%
     summarise(

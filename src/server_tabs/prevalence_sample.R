@@ -1,6 +1,6 @@
 # Get summary data
 metadata_summary_sample <- reactive({
-  left_join(data_loaded$metadata, data_loaded$kleborate[data_selected$rows, ]) %>%
+  inner_join(data_loaded$metadata, data_loaded$kleborate[data_selected$rows, ]) %>%
     group_by(Source, Classification) %>%
     summarise(
       n=n(), 
