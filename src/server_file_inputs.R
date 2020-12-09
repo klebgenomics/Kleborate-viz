@@ -30,6 +30,9 @@ prepare_data_selector  <- function(d) {
   data_selected$resistance_max <- 3
   data_selected$virulence_min <- 0
   data_selected$virulence_max <- 5
+  # Update input sliders
+  updateSliderInput(session, 'res_score_range_slider', value=c(data_selected$resistance_min, data_selected$resistance_max))
+  updateSliderInput(session, 'vir_score_range_slider', value=c(data_selected$virulence_min, data_selected$virulence_max))
   # Set row selection to all data
   v.species <- unique(d$species)
   data_selected$rows <- rep(TRUE, nrow(d))
