@@ -131,7 +131,12 @@ ui <- fluidPage(
         tabPanel(
           'AMR profile by AMR classes',
           br(),
-          plotlyOutput('amr_profile_dist', height='400px')
+          plotlyOutput('amr_profile_dist', height='400px'),
+          selectInput(
+            inputId='amr_profile_var',
+            label='MIC variable',
+            choices=NULL
+          )
         )
       )
     )
