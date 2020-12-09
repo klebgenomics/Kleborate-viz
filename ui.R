@@ -6,6 +6,8 @@ ui <- fluidPage(
   # Side bar
   sidebarLayout(
     sidebarPanel(
+      # Set width
+      width=12/4,
       # Logo
       div(img(src='logo.png', height=100, width=200)),
       hr(),
