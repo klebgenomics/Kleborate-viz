@@ -62,7 +62,7 @@ genotype_st_dist_plot <- reactive({
     panel.border=element_blank(),
     axis.line=element_line(colour='black')
   )
-  g <- g + ylab('Number of isolates') + xlab('ST')
+  g <- g + ylab('Number of genomes') + xlab('ST')
   g <- g + scale_y_continuous(expand=c(0, 0))
   g <- g + scale_fill_manual(values=v.colours, breaks=names(v.colours), name=input$genotype_st_dist_plot_var, drop=FALSE)
   return(g)
