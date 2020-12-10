@@ -112,11 +112,13 @@ ui <- fluidPage(
         tabPanel(
           'Temporal trends',
           br(),
-          plotlyOutput('prevalence_year_virulence_bar', height='400px'),
+          plotlyOutput('year_mean_scores_line', height='400px'),
           br(),
-          plotlyOutput('prevalence_year_resistance_bar', height='400px'),
+          plotlyOutput('year_mean_resistance_line', height='400px'),
           br(),
-          plotlyOutput('prevalence_year_resistance_line', height='400px')
+          plotlyOutput('virulence_prevalence_year_line', height='400px'),
+          br(),
+          plotlyOutput('AMR_prevalence_year_line', height='400px')
         ),
         tabPanel(
           'Sample trends',
@@ -126,9 +128,9 @@ ui <- fluidPage(
         tabPanel(
           'Cumulative K/O prevalence',
           plotlyOutput('cumulative_k_line_combined', height='200px'),
-          plotlyOutput('cumulative_k_line_each', height='400px'),
-          br(),
           plotlyOutput('cumulative_o_line_combined', height='200px'),
+          br(),
+          plotlyOutput('cumulative_k_line_each', height='400px'),
           plotlyOutput('cumulative_o_line_each', height='400px')
         ),
         tabPanel(

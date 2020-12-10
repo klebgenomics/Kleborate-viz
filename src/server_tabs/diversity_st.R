@@ -20,7 +20,7 @@ output$ko_diversity_st_scatter <- renderPlotly({
       text=~paste('ST: ', div_combined$ST)
     ) %>% 
     layout(
-      title='K and O diversity (click to show details)',
+      title=list(text='K and O diversity by ST (click to show details)', xanchor = "right"),
       xaxis=list(title='K locus'),
       yaxis=list(title='O locus')
     )
@@ -36,7 +36,7 @@ output$ko_diversity_st_heatmap <- renderPlotly({
   }
   data_matrix <- data_loaded$kleborate[data_loaded$kleborate$ST==selected_st, ]
   st_name <- paste(as.character(selected_st))
-  main_title=paste('Selected strains:', st_name)
+  main_title=paste('K and O loci of selected strains:', st_name)
   # Format data for plotting
   # NOTE: converting as done below is required to handle corner cases where nrow = 1 or ncol=1
   k_vs_o <- table(data_matrix$K_locus, data_matrix$O_locus)

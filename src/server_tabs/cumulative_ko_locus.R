@@ -40,7 +40,8 @@ output$cumulative_k_line_each <- renderPlotly({
   g <- ggplot(metadata_summary_k_locus_each(), aes(x=id, y=value)) + geom_step(aes(colour=variable)) +
     xlab('Number of K-loci') +
     ylab('Cumulative prevalence') +
-    theme_bw()
+    theme_bw() +
+    coord_cartesian(ylim=c(0, 1))
   g <- ggplotly(g, dynamicTicks=TRUE)
   print(g)
 })
@@ -48,7 +49,8 @@ output$cumulative_k_line_combined <- renderPlotly({
   g <- ggplot(metadata_summary_k_locus_combined(), aes(x=id, y=cumsum(prop))) + geom_step() +
     xlab('Number of K-loci') +
     ylab('Cumulative prevalence') +
-    theme_bw()
+    theme_bw()+
+    coord_cartesian(ylim=c(0, 1))
   g <- ggplotly(g, dynamicTicks=TRUE)
   print(g)
 })
@@ -96,7 +98,8 @@ output$cumulative_o_line_each <- renderPlotly({
   g <- ggplot(metadata_summary_o_locus_each(), aes(x=id, y=value)) + geom_step(aes(colour=variable)) +
     xlab('Number of O-loci') +
     ylab('Cumulative prevalence') +
-    theme_bw()
+    theme_bw()+
+    coord_cartesian(ylim=c(0, 1))
   g <- ggplotly(g, dynamicTicks=TRUE)
   print(g)
 })
@@ -104,7 +107,8 @@ output$cumulative_o_line_combined <- renderPlotly({
   g <- ggplot(metadata_summary_o_locus_combined(), aes(x=id, y=cumsum(prop))) + geom_step() +
     xlab('Number of O-loci') +
     ylab('Cumulative prevalence') +
-    theme_bw()
+    theme_bw()+
+    coord_cartesian(ylim=c(0, 1))
   g <- ggplotly(g, dynamicTicks=TRUE)
   print(g)
 })

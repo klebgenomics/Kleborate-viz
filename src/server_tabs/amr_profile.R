@@ -1,16 +1,15 @@
 # Summarise data
 amr_profile_data <- reactive({
-  inner_join(data_loaded$metadata, data_loaded$mic_data) %>%
-    inner_join(., data_loaded$kleborate[data_selected$rows, ]) %>%
-    mutate(Omp_mutations_simplified = str_replace_all(Omp_mutations, "-[0-9]+%", "-trunc"), Omp_simple = if_else(Omp_mutations == "-", "wt", "mut")) %>%
-    mutate(Bla_Carb_simplified = if_else(str_detect(Bla_Carb_acquired, "[A-Z]+"), "other", "-")) %>%
-    mutate(Bla_Carb_simplified = if_else(str_detect(Bla_Carb_acquired, "IMP"), "IMP", Bla_Carb_simplified)) %>%
-    mutate(Bla_Carb_simplified = if_else(str_detect(Bla_Carb_acquired, "KPC"), "KPC", Bla_Carb_simplified)) %>%
-    mutate(Bla_Carb_simplified = if_else(str_detect(Bla_Carb_acquired, "OXA"), "OXA", Bla_Carb_simplified)) %>%
-    mutate(Bla_Carb_simplified = if_else(str_detect(Bla_Carb_acquired, "NDM"), "NDM", Bla_Carb_simplified)) %>%
-    mutate(Bla_Carb_simplified = if_else(str_detect(Bla_Carb_acquired, "VIM"), "VIM", Bla_Carb_simplified)) %>%
-    mutate(Bla_Carb_simplified = if_else(str_detect(Bla_Carb_acquired, ";"), "multiple", Bla_Carb_simplified)) %>%
-    mutate(carbapenemase_omp_combination = paste(Bla_Carb_simplified, Omp_simple, sep = " "))
+  inner_join(data_loaded$mic_data, data_loaded$kleborate[data_selected$rows, ]) %>%
+  mutate(Omp_mutations_simplified = str_replace_all(Omp_mutations, "-[0-9]+%", "-trunc"), Omp_simple = if_else(Omp_mutations == "-", "wt", "mut")) %>%
+  mutate(Bla_Carb_simplified = if_else(str_detect(Bla_Carb_acquired, "[A-Z]+"), "other", "-")) %>%
+  mutate(Bla_Carb_simplified = if_else(str_detect(Bla_Carb_acquired, "IMP"), "IMP", Bla_Carb_simplified)) %>%
+  mutate(Bla_Carb_simplified = if_else(str_detect(Bla_Carb_acquired, "KPC"), "KPC", Bla_Carb_simplified)) %>%
+  mutate(Bla_Carb_simplified = if_else(str_detect(Bla_Carb_acquired, "OXA"), "OXA", Bla_Carb_simplified)) %>%
+  mutate(Bla_Carb_simplified = if_else(str_detect(Bla_Carb_acquired, "NDM"), "NDM", Bla_Carb_simplified)) %>%
+  mutate(Bla_Carb_simplified = if_else(str_detect(Bla_Carb_acquired, "VIM"), "VIM", Bla_Carb_simplified)) %>%
+  mutate(Bla_Carb_simplified = if_else(str_detect(Bla_Carb_acquired, ";"), "multiple", Bla_Carb_simplified)) %>%
+  mutate(carbapenemase_omp_combination = paste(Bla_Carb_simplified, Omp_simple, sep = " "))
 })
 observeEvent(
   data_loaded$mic_data,
