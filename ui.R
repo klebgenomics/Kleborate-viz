@@ -91,7 +91,7 @@ ui <- fluidPage(
           ),
           column(
             12,
-            h4('Resistance vs virulence across all strains (click to select a subset)'),
+            h4('Virulence and resistance scores (click to select a subset)'),
             plotlyOutput('res_vir_heatmap', width ='500px', height='400px')
           )
         ),

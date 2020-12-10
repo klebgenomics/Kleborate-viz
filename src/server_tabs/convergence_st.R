@@ -27,7 +27,7 @@ output$convergence_st_scatter <- renderPlotly({
       name=' '
     ) %>%
     layout(
-      title='Mean virulence and resistance score (click to show details)',
+      title=list(text='Mean virulence and resistance scores (click to show details)', xanchor='right'),
       showlegend=FALSE,
       xaxis=list(title='mean virulence score'),
       yaxis=list(title='mean resistance score')
@@ -57,7 +57,7 @@ output$convergence_st_heatmap <- renderPlotly({
     selected_st <- levels(as.factor(as.character(data_by_species$ST)))[ed$pointNumber+1]
     data_matrix <- data_by_species[data_by_species$ST %in% selected_st, ]
     st_name <- as.character(selected_st)
-    main_title <- paste('Selected strains:', st_name)
+    main_title <- paste('Virulence and resistance determinants in selected strains:', st_name)
   } else {
     if (nrow(data_by_species) <= 30) {
       # Display all STs
