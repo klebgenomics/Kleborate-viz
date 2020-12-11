@@ -127,8 +127,12 @@ ui <- fluidPage(
         ),
         tabPanel(
           'Cumulative K/O prevalence',
+          h4('Overall prevalence'),
+          br(),
           plotlyOutput('cumulative_k_line_combined', height='200px'),
           plotlyOutput('cumulative_o_line_combined', height='200px'),
+          br(),
+          h4('Prevalence by group'),
           br(),
           plotlyOutput('cumulative_k_line_each', height='400px'),
           plotlyOutput('cumulative_o_line_each', height='400px')
