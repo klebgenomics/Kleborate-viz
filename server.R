@@ -52,8 +52,8 @@ server <- function(input, output, session) {
   source('src/server_tabs/genotype_st.R', local=TRUE)
   source('src/server_tabs/convergence_st.R', local=TRUE)
   source('src/server_tabs/diversity_st.R', local=TRUE)
-  source('src/server_tabs/prevalence_year.R', local=TRUE)
-  source('src/server_tabs/prevalence_sample.R', local=TRUE)
+  source('src/server_tabs/temporal_trends.R', local=TRUE)
+  source('src/server_tabs/sample_trends.R', local=TRUE)
   source('src/server_tabs/cumulative_ko_locus.R', local=TRUE)
-  source('src/server_tabs/amr_profile.R', local=TRUE)
+  source('src/server_tabs/mic_vs_genotypes.R', local=TRUE)
 }
