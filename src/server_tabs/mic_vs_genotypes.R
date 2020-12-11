@@ -1,7 +1,11 @@
 # Summarise data
 amr_profile_data <- reactive({
   inner_join(data_loaded$mic_data, data_loaded$kleborate[data_selected$rows, ]) %>%
+ 
+  # simplify omp
   mutate(Omp_mutations_simplified = str_replace_all(Omp_mutations, "-[0-9]+%", "-trunc"), Omp_simple = if_else(Omp_mutations == "-", "wt", "mut")) %>%
+  
+  # simplify carbapenemases and combine with omp
   mutate(Bla_Carb_simplified = if_else(str_detect(Bla_Carb_acquired, "[A-Z]+"), "other", "-")) %>%
   mutate(Bla_Carb_simplified = if_else(str_detect(Bla_Carb_acquired, "IMP"), "IMP", Bla_Carb_simplified)) %>%
   mutate(Bla_Carb_simplified = if_else(str_detect(Bla_Carb_acquired, "KPC"), "KPC", Bla_Carb_simplified)) %>%
@@ -9,7 +13,27 @@ amr_profile_data <- reactive({
   mutate(Bla_Carb_simplified = if_else(str_detect(Bla_Carb_acquired, "NDM"), "NDM", Bla_Carb_simplified)) %>%
   mutate(Bla_Carb_simplified = if_else(str_detect(Bla_Carb_acquired, "VIM"), "VIM", Bla_Carb_simplified)) %>%
   mutate(Bla_Carb_simplified = if_else(str_detect(Bla_Carb_acquired, ";"), "multiple", Bla_Carb_simplified)) %>%
-  mutate(carbapenemase_omp_combination = paste(Bla_Carb_simplified, Omp_simple, sep = " "))
+  mutate(carbapenemase_omp_combination = paste(Bla_Carb_simplified, Omp_simple, sep = " ")) %>%
+  
+  # simplify ESBLs and combine with omp
+  mutate(Bla_ESBL_simplified = if_else(str_detect(Bla_ESBL_acquired, "[A-Z]+"), "other", "-")) %>%
+  mutate(Bla_ESBL_simplified = if_else(str_detect(Bla_ESBL_acquired, "CTX-M"), "CTX-M-other", Bla_ESBL_simplified)) %>%
+  mutate(Bla_ESBL_simplified = if_else(Bla_ESBL_acquired == "CTX-M-14", "CTX-M-14", Bla_ESBL_simplified)) %>%
+  mutate(Bla_ESBL_simplified = if_else(Bla_ESBL_acquired == "CTX-M-15", "CTX-M-15", Bla_ESBL_simplified)) %>%
+  mutate(Bla_ESBL_simplified = if_else(Bla_ESBL_acquired == "CTX-M-65", "CTX-M-65", Bla_ESBL_simplified)) %>%
+  mutate(Bla_ESBL_simplified = if_else(str_detect(Bla_ESBL_acquired, "SHV"), "SHV", Bla_ESBL_simplified)) %>%
+  mutate(Bla_ESBL_simplified = if_else(str_detect(Bla_ESBL_acquired, "TEM"), "TEM", Bla_ESBL_simplified)) %>%
+  mutate(Bla_ESBL_simplified = if_else(str_detect(Bla_ESBL_acquired, ";"), "multiple", Bla_ESBL_simplified)) %>%
+  mutate(ESBL_omp_combination = paste(Bla_ESBL_simplified, Omp_simple, sep = " ")) %>% 
+  
+  # simplify bla acquired and combine with omp
+  mutate(Bla_acq_simplified = if_else(str_detect(Bla_acquired, "[A-Z]+"), "other", "-")) %>%
+  mutate(Bla_acq_simplified = if_else(str_detect(Bla_acquired, "TEM"), "TEM", Bla_acq_simplified)) %>%
+  mutate(Bla_acq_simplified = if_else(str_detect(Bla_acquired, "OXA"), "OXA", Bla_acq_simplified)) %>%
+  mutate(Bla_acq_simplified = if_else(str_detect(Bla_acquired, "LAP"), "LAP", Bla_acq_simplified)) %>%
+  mutate(Bla_acq_simplified = if_else(str_detect(Bla_acquired, "DHA"), "DHA", Bla_acq_simplified)) %>%
+  mutate(Bla_acq_simplified = if_else(str_detect(Bla_acquired, ";"), "multiple", Bla_acq_simplified)) %>%
+  mutate(Bla_acquired_omp_combination = paste(Bla_acq_simplified, Omp_simple, sep = " "))
 })
 observeEvent(
   data_loaded$mic_data,
