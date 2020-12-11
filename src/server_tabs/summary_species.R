@@ -12,13 +12,17 @@ species_resistance_plot <- reactive({
   g <- g + scale_fill_manual(values=v.colours)
   g <- g + coord_flip()
   g <- g + theme(
-    axis.text.x=element_text(colour='black', size=10),
-    axis.text.y=element_text(colour='black', size=10),
+    axis.text.x=element_text(colour='black', size=12),
+    axis.text.y=element_text(colour='black', size=12),
+    axis.title.y = element_blank(),
+    axis.title.x = element_text(colour = 'black', size = 16),
+    legend.text = element_text(colour = 'black', size = 12),
+    legend.title = element_text(colour = 'black', size = 16),
     panel.background=element_blank(),
     panel.border=element_blank(),
     axis.line=element_line(colour='black')
   )
-  g <- g + ylab('Number of isolates') + xlab('Resistance score') + labs(fill='Species')
+  g <- g + ylab('Number of isolates') + labs(fill='Species')
   return(g)
 })
 output$species_resistance_plot <- renderPlot({ print(species_resistance_plot()) })
@@ -36,8 +40,12 @@ species_virluence_plot <- reactive({
   g <- g + scale_fill_manual(values=v.colours)
   g <- g + coord_flip()
   g <- g + theme(
-    axis.text.x=element_text(colour='black', size=10),
-    axis.text.y=element_text(colour='black', size=10),
+    axis.text.x=element_text(colour='black', size=12),
+    axis.text.y=element_text(colour='black', size=12),
+    axis.title.y = element_blank(),
+    axis.title.x = element_text(colour = 'black', size = 16),
+    legend.text = element_text(colour = 'black', size = 12),
+    legend.title = element_text(colour = 'black', size = 16),
     panel.background=element_blank(),
     panel.border=element_blank(),
     axis.line=element_line(colour='black')

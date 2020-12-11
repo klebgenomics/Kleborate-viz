@@ -29,7 +29,6 @@ output$year_mean_scores_line <- renderPlotly({
   g <- ggplot(metadata_summary_year()) +
     geom_line(aes(x=Year, y = mean_virulence_score), colour='#1855b7') +
     geom_line(aes(x=Year, y = mean_resistance_score), colour='#bb363c') +
-    ggtitle("Virulence and resistance scores") +
     xlab('Year') +
     ylab('Mean score') + theme_bw()
   g <- ggplotly(g)
@@ -40,7 +39,6 @@ output$year_mean_resistance_line <- renderPlotly({
   g <- ggplot(metadata_summary_year()) + 
     geom_line(aes(x=Year, y=mean_resistance_genes), colour='#bb363c') +
     geom_line(aes(x=Year, y=mean_resistance_classes), colour='black') +
-    ggtitle("Acquired AMR classes and genes") +
     xlab('Year') +
     ylab('Mean acquired AMR classes and genes') + 
     theme_bw()
@@ -57,7 +55,6 @@ output$virulence_prevalence_year_line <- renderPlotly({
     geom_line(aes(x=Year, y=iro_prevalence), colour='#6676f3') +
     geom_line(aes(x=Year, y=rmpADC_prevalence), colour='#1855b7') +
     geom_line(aes(x=Year, y=rmpA2_prevalence), colour='#4292c6') +
-    ggtitle("Virulence determinant prevalence") +
     xlab('Year') +
     ylab('Prevalence') + theme_bw()
   g <- ggplotly(g)
@@ -71,7 +68,6 @@ output$AMR_prevalence_year_line <- renderPlotly({
     geom_line(aes(x=Year, y=carbapenemase_prevalence), colour='#f26158') +
     geom_line(aes(x=Year, y=colistin_resistance_mutation_prevalence), colour='#bb363c') +
     geom_line(aes(x=Year, y=colistin_resistance_gene_prevalence), colour='black') +
-    ggtitle("AMR determinant prevalence") +
     xlab('Year') +
     ylab('Prevalence') + theme_bw()
   g <- ggplotly(g)

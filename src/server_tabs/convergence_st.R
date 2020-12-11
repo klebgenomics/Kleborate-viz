@@ -26,11 +26,9 @@ output$convergence_st_scatter <- renderPlotly({
       marker=list(size=~marker_function(total), opacity=0.5),
       name=' '
     ) %>%
-    layout(
-      title=list(text='Mean virulence and resistance scores (click to show details)', xanchor='right'),
-      showlegend=FALSE,
-      xaxis=list(title='mean virulence score'),
-      yaxis=list(title='mean resistance score')
+    layout(showlegend=FALSE,
+      xaxis=list(title='Mean virulence score', color = '#000000'),
+      yaxis=list(title='Mean resistance score', color = '#000000')
     )
   # Add new trace with colored point if there is event data
   ed <- event_data('plotly_click', source='st_scatter')
@@ -57,7 +55,7 @@ output$convergence_st_heatmap <- renderPlotly({
     selected_st <- levels(as.factor(as.character(data_by_species$ST)))[ed$pointNumber+1]
     data_matrix <- data_by_species[data_by_species$ST %in% selected_st, ]
     st_name <- as.character(selected_st)
-    main_title <- paste('Virulence and resistance determinants in selected strains:', st_name)
+    main_title <- paste(st_name)
   } else {
     if (nrow(data_by_species) <= 30) {
       # Display all STs
@@ -76,11 +74,11 @@ output$convergence_st_heatmap <- renderPlotly({
         selected_st <- kd$ST[kd$mean_vir*kd$mean_res==max(kd$mean_vir*kd$mean_res)][1]
         data_matrix <- data_by_species[data_by_species$ST %in% selected_st, ]
         st_name <- as.character(selected_st)
-        main_title=paste('Most convergent ST:', st_name)
+        main_title=paste(st_name)
       } else {
         # If there are strains with aerobactin and clinically significant resistance, report them
         data_matrix <- data_by_species[data_by_species$virulence_score>=3 & data_by_species$resistance_score>=1, ]
-        main_title <- 'Convergent strains'
+        main_title <- ''
       }
     }
   }
@@ -98,13 +96,14 @@ output$convergence_st_heatmap <- renderPlotly({
     st_data_matrix,
     Rowv=nrow(st_data_matrix) >= 3,
     Colv=FALSE,
-    hide_colorbar=FALSE,
+    show_dendrogram = c(FALSE, FALSE),
+    hide_colorbar=TRUE,
     labRow=NULL,
-    fontsize_row=6,
-    fontsize_col=7,
+    fontsize_row=10,
+    fontsize_col=10,
     revC=F,
-    colors=c('white', '#2171b5', '#ef3b2c'),
+    colors=c('white', '#1855b7', '#bb363c'),
     showticklabels=c(TRUE, FALSE),
-    main=main_title
+    main=list(text=main_title, color='#000000', size = 8)
   )
 })

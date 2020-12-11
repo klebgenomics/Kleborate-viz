@@ -56,8 +56,13 @@ genotype_st_dist_plot <- reactive({
   g <- ggplot(data=d, aes(x=ST, fill=annotation))
   g <- g + geom_bar()
   g <- g + theme(
-    axis.text.x=element_text(colour='black', size=10, angle=45, hjust=1),
-    axis.text.y=element_text(colour='black', size=10),
+    axis.text.x=element_text(colour='black', size=12, angle=45, hjust=1),
+    axis.text.y=element_text(colour='black', size=12),
+    axis.title.y = element_blank(),
+    axis.title.x = element_text(colour = 'black', size = 16),
+    legend.text = element_text(colour = 'black', size = 12),
+    legend.title = element_text(colour = 'black', size = 16),
+
     panel.background=element_blank(),
     panel.border=element_blank(),
     axis.line=element_line(colour='black')

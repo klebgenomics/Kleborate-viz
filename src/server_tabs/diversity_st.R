@@ -1,8 +1,11 @@
 # K vs O scatter plot by ST
 output$ko_diversity_st_scatter <- renderPlotly({
   # Create dataframe with simpson diversity and total number of genomes per ST
-  st_vs_k <- table(data_loaded$kleborate[data_selected$rows, ]$ST, data_loaded$kleborate[data_selected$rows, ]$K_locus)
-  st_vs_o <- table(data_loaded$kleborate[data_selected$rows, ]$ST, data_loaded$kleborate[data_selected$rows, ]$O_locus)
+  data_loaded$kleborate[data_selected$rows, ] %>% 
+  mutate(K_locus = if_else(K_locus_confidence %in% c('Low', 'None'), 'unknown', K_locus)) %>%
+  mutate(O_locus = if_else(O_locus_confidence %in% c('Low', 'None'), 'unknown', O_locus)) -> high_confidence_loci
+  st_vs_k <- table(high_confidence_loci$ST, high_confidence_loci$K_locus)
+  st_vs_o <- table(high_confidence_loci$ST, high_confidence_loci$O_locus)
   div_k <- as.data.frame(diversity(st_vs_k, index='simpson'))
   div_o <- as.data.frame(diversity(st_vs_o, index='simpson'))
   div_combined <- merge(div_k, div_o, by=0)
@@ -19,13 +22,13 @@ output$ko_diversity_st_scatter <- renderPlotly({
       size=~div_combined$total*2,
       text=~paste('ST: ', div_combined$ST)
     ) %>% 
-    layout(
-      title=list(text='K and O diversity by ST (click to show details)', xanchor = "right"),
-      xaxis=list(title='K locus'),
-      yaxis=list(title='O locus')
+    layout(xaxis=list(title="K locus diversity (effective Simpson's)", color = "#000000"),
+      yaxis=list(title="O locus diversity (effective Simpson's)", color = "#000000")
     )
   return(k_vs_o)
 })
+
+
 # Heatmap
 output$ko_diversity_st_heatmap <- renderPlotly({
   # Get data
@@ -36,7 +39,7 @@ output$ko_diversity_st_heatmap <- renderPlotly({
   }
   data_matrix <- data_loaded$kleborate[data_loaded$kleborate$ST==selected_st, ]
   st_name <- paste(as.character(selected_st))
-  main_title=paste('K and O loci of selected strains:', st_name)
+  main_title=paste(st_name)
   # Format data for plotting
   # NOTE: converting as done below is required to handle corner cases where nrow = 1 or ncol=1
   k_vs_o <- table(data_matrix$K_locus, data_matrix$O_locus)
@@ -45,14 +48,16 @@ output$ko_diversity_st_heatmap <- renderPlotly({
   # Create heatmap
   heatmaply(
     k_vs_o,
-    main=main_title,
+    main=list(text=main_title, color = "#000000"),
     Rowv=NULL,
     Colv=NULL,
-    fontsize_row=6,
-    fontsize_col=6,
+    fontsize_row=10,
+    fontsize_col=10,
     hide_colorbar=F,
     revC=F,
-    showticklabels=c(TRUE, FALSE),
-    colors=c('white', colorRampPalette(colors=c('blue', 'red'))(max(k_vs_o)))
+    key.title = "# genomes",
+    showticklabels=c(TRUE, TRUE),
+    plot_method='ggplot',
+    colors=c('white', colorRampPalette(colors=c('#f1c280', '#e67d77', '#ED6060'))(max(k_vs_o)))
   )
 })

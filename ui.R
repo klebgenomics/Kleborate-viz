@@ -59,8 +59,10 @@ ui <- fluidPage(
         tabPanel(
           'Summary by species',
           br(),
+          h4('Resistance scores'),
           plotOutput('species_resistance_plot', height='400'),
           br(),
+          h4('Virulence scores'),
           plotOutput('species_virluence_plot', height='400'),
           br(),
           div(
@@ -70,6 +72,8 @@ ui <- fluidPage(
         ),
         tabPanel(
           'Genotypes by ST',
+          br(),
+          h4('Count of genomes for common STs'),
           plotOutput('genotype_st_dist_plot', height='400px'),
           br(),
           selectInput(
@@ -98,48 +102,62 @@ ui <- fluidPage(
         tabPanel(
           'Convergence by ST',
           br(),
+          h4('Mean virulence and resistance scores by ST (click to select genomes)'),
           plotlyOutput('convergence_st_scatter', height='400px'),
           br(),
+          br(),
+          h4('Genotypes of selected genomes'),
           plotlyOutput('convergence_st_heatmap', height='400px')
         ),
         tabPanel(
           'K/O diversity by ST',
           br(),
+          h4('K and O locus diversity by ST (click to select subset)'),
           plotlyOutput('ko_diversity_st_scatter', height='400px'),
           br(),
-          plotlyOutput('ko_diversity_st_heatmap', height='400px')
+          h4('Genotypes of selected genomes'),
+          plotlyOutput('ko_diversity_st_heatmap', height='600px')
         ),
         tabPanel(
           'Temporal trends',
           br(),
+          h4('Virulence and resistance scores'),
           plotlyOutput('year_mean_scores_line', height='400px'),
           br(),
+          h4('Acquired AMR classes and genes'),
           plotlyOutput('year_mean_resistance_line', height='400px'),
           br(),
+          h4('Virulence determinant prevalence'),
           plotlyOutput('virulence_prevalence_year_line', height='400px'),
           br(),
+          h4('AMR determinant prevalence'),
           plotlyOutput('AMR_prevalence_year_line', height='400px')
         ),
         tabPanel(
           'Sample trends',
           br(),
+         #h4('Mean virulence and resistance scores'),
           plotlyOutput('prevalence_sample_scatter', height='400px'),
         ),
         tabPanel(
           'Cumulative K/O prevalence',
-          h4('Overall prevalence'),
           br(),
-          plotlyOutput('cumulative_k_line_combined', height='200px'),
-          plotlyOutput('cumulative_o_line_combined', height='200px'),
+          h4('K locus overall prevalence'),
+          plotlyOutput('cumulative_k_line_combined', height='300px'),
           br(),
-          h4('Prevalence by group'),
+          h4('O locus overall prevalence'),
+          plotlyOutput('cumulative_o_line_combined', height='300px'),
           br(),
+          h4('K locus prevalence by group'),
           plotlyOutput('cumulative_k_line_each', height='400px'),
+          br(),
+          h4('O locus prevalence by group'),
           plotlyOutput('cumulative_o_line_each', height='400px')
         ),
         tabPanel(
           'MICs by AMR genotype',
           br(),
+          #h4('MIC by genotype'),
           plotlyOutput('amr_profile_dist', height='400px'),
           selectInput(
             inputId='amr_profile_var',
