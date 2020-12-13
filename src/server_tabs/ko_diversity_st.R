@@ -30,19 +30,32 @@ output$ko_diversity_st_scatter <- renderPlotly({
 
 
 # Heatmap
+selected_st <- reactiveVal()
+observeEvent(
+  data_loaded$kleborate,
+  {
+    selected_st(NULL)
+  }
+)
 output$ko_diversity_st_heatmap <- renderPlotly({
   # Get data
-  selected_st <- unique(data_loaded$kleborate$ST)
   ed <- event_data('plotly_click', source='ko_diversity_st_scatter')
   if(is.null(ed) == FALSE && ed$curveNumber == 0) {
-    selected_st <- levels(as.factor(as.character(data_loaded$kleborate$ST)))[ed$pointNumber+1]
+    click_st <- levels(as.factor(as.character(data_loaded$kleborate$ST)))[ed$pointNumber+1]
+    selected_st(click_st)
+    # Immediately clear click event (otherwise it prevents any changes to data_selected res/vir values)
+    runjs("Shiny.onInputChange('plotly_click-ko_diversity_st_scatter', 'null');")
   }
-  data_matrix <- data_loaded$kleborate[data_loaded$kleborate$ST==selected_st, ]
-  st_name <- paste(as.character(selected_st))
-  main_title=paste(st_name)
+  d <- data_loaded$kleborate[data_selected$rows, ]
+  if (is.null(selected_st())) {
+    main_title <- NULL
+  } else {
+    d <- d[d$ST==selected_st(), ]
+    main_title <- selected_st()
+  }
   # Format data for plotting
   # NOTE: converting as done below is required to handle corner cases where nrow = 1 or ncol=1
-  k_vs_o <- table(data_matrix$K_locus, data_matrix$O_locus)
+  k_vs_o <- table(d$K_locus, d$O_locus)
   k_vs_o <- k_vs_o[rowSums(k_vs_o)>0,colSums(k_vs_o)>0,drop=FALSE]
   k_vs_o <- matrix(k_vs_o, byrow=TRUE, ncol=ncol(k_vs_o), dimnames=list(rownames(k_vs_o), colnames(k_vs_o)))
   # Create heatmap
