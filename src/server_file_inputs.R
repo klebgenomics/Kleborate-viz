@@ -62,7 +62,7 @@ observeEvent(
       showNotification('Input kleborate file must be in tsv or csv format and have the correct extension', type='error', duration=NULL)
       reset('kleborate_file')
       reset('metadata_file')
-      reset('mic_data')
+      reset('mic_file')
       data_loaded$kleborate <- NULL
       data_loaded$metadata <- NULL
       data_loaded$mic_data <- NULL
@@ -75,7 +75,7 @@ observeEvent(
     data_loaded$mic_data <- NULL
     # Reset file input ui
     reset('metadata_file')
-    reset('mic_data')
+    reset('mic_file')
   }
 )
 # Process metadata input
