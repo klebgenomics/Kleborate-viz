@@ -26,6 +26,7 @@ genotype_st_dist_plot <- reactive({
     names(v.colours) <- v.virulence_score_labels
     # Set annotation column
     d$annotation <- v.virulence_score_labels[as.character(d$virulence_score)]
+    s.anno_name <- 'Virulence Score'
   } else if (input$genotype_st_dist_plot_var=='resistance_score') {
     # Determine colours and label names
     v.resistance_score_labels <- paste0(names(v.resistance_score_names), ": ", v.resistance_score_names)
@@ -34,11 +35,14 @@ genotype_st_dist_plot <- reactive({
     names(v.colours) <- v.resistance_score_labels
     # Set annotation column
     d$annotation <- v.resistance_score_labels[as.character(d$resistance_score)]
+    s.anno_name <- 'Resistance Score'
   } else {
     if (input$genotype_st_dist_plot_var %in% v.virulence_loci) {
       v.colours <- c("grey", "#2171b5")
-    } else if (input$genotype_st_dist_plot_var %in% v.resistance_classes) { 
-      v.colours <- c("grey", "#ef3b2c") 
+      s.anno_name <- names(v.virulence_loci)[v.virulence_loci==input$genotype_st_dist_plot_var]
+    } else if (input$genotype_st_dist_plot_var %in% v.resistance_classes) {
+      v.colours <- c("grey", "#ef3b2c")
+      s.anno_name <- names(v.resistance_classes)[v.resistance_classes==input$genotype_st_dist_plot_var]
     } else {
       stop('Got bad annotation variable')
     }
@@ -69,7 +73,7 @@ genotype_st_dist_plot <- reactive({
   )
   g <- g + ylab('Number of genomes') + xlab('ST')
   g <- g + scale_y_continuous(expand=c(0, 0))
-  g <- g + scale_fill_manual(values=v.colours, breaks=names(v.colours), name=input$genotype_st_dist_plot_var, drop=FALSE)
+  g <- g + scale_fill_manual(values=v.colours, breaks=names(v.colours), name=s.anno_name, drop=FALSE)
   return(g)
 })
 output$genotype_st_dist_plot <- renderPlot ({ print(genotype_st_dist_plot()) })
