@@ -38,11 +38,8 @@ amr_profile_data <- reactive({
 observeEvent(
   data_loaded$mic_data,
   {
-    updateSelectInput(
-      session,
-      'amr_profile_var',
-      choices=colnames(data_loaded$mic_data)[colnames(data_loaded$mic_data)!='strain']
-    )
+    v.cols <- colnames(data_loaded$mic_data)[colnames(data_loaded$mic_data)!='strain']
+    updateSelectInput(session, 'amr_profile_var', choices=v.cols, selected=v.cols[1])
   }
 )
 # Plot
