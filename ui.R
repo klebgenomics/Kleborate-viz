@@ -178,9 +178,18 @@ ui <- fluidPage(
           #h4('MIC by genotype'),
           plotlyOutput('amr_profile_dist', height='400px'),
           selectInput(
-            inputId='amr_profile_var',
+            inputId='amr_profile_mic',
             label='MIC variable',
             choices=NULL
+          ),
+          selectInput(
+            inputId='amr_profile_geno',
+            label='AMR genotype',
+            choices=c(
+              'Bla Carb',
+              'Bla ESBL',
+              'Bla acquired'
+            )
           )
         )
       )
