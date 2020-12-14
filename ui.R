@@ -3,6 +3,7 @@ ui <- fluidPage(
   # Initialise shinyjs to allow runjs calls in server code
   # This is required specifically to clear plotly event data
   useShinyjs(),
+  extendShinyjs(script='shiny.js', functions=c()),
   # Side bar
   sidebarLayout(
     sidebarPanel(
