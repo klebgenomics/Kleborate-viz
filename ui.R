@@ -86,9 +86,9 @@ ui <- fluidPage(
           plotOutput('genotype_st_dist_plot', height='400px'),
           br(),
           selectInput(
-            inputId='genotype_st_dist_plot_var',
+            inputId='genotype_st_dist_plot_anno',
             label='Annotation variable',
-            choices=v.genotype_st_var_choices
+            choices=v.genotype_var_choices
           ),
           downloadButton(
             outputId='genotype_st_plot_download',
@@ -107,6 +107,23 @@ ui <- fluidPage(
             h4('Virulence and resistance scores (click to select a subset)'),
             plotlyOutput('res_vir_heatmap', width ='500px', height='400px')
           )
+        ),
+        tabPanel(
+          'Genotypes by metadata',
+          br(),
+          h4('Genome distributions across metadata'),
+          plotOutput('genotype_metadata_dist_plot', height='400px'),
+          br(),
+          selectInput(
+            inputId='genotype_metadata_dist_plot_anno',
+            label='Annotation variable',
+            choices=v.genotype_var_choices
+          ),
+          selectInput(
+            inputId='genotype_metadata_dist_plot_group',
+            label='Group variable',
+            choices=NULL
+          ),
         ),
         tabPanel(
           'Convergence by ST',

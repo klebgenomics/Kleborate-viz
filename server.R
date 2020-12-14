@@ -41,6 +41,7 @@ server <- function(input, output, session) {
   source('src/server_tab_misc.R', local=TRUE)
   source('src/server_tabs/summary_species.R', local=TRUE)
   source('src/server_tabs/genotype_st.R', local=TRUE)
+  source('src/server_tabs/genotype_metadata.R', local=TRUE)
   source('src/server_tabs/convergence_st.R', local=TRUE)
   source('src/server_tabs/ko_diversity_st.R', local=TRUE)
   source('src/server_tabs/temporal_trends.R', local=TRUE)

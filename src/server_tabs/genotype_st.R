@@ -18,7 +18,7 @@ genotype_st_dist_plot <- reactive({
   }
   # Get configuration for plot type
   d <- data_loaded$kleborate[data_selected$rows, ]
-  if (input$genotype_st_dist_plot_var=='virulence_score') {
+  if (input$genotype_st_dist_plot_anno=='virulence_score') {
     # Determine colours and label names
     v.virulence_score_labels <- paste0(names(v.virulence_score_names), ": ", v.virulence_score_names)
     names(v.virulence_score_labels) <- names(v.virulence_score_names)
@@ -27,7 +27,7 @@ genotype_st_dist_plot <- reactive({
     # Set annotation column
     d$annotation <- v.virulence_score_labels[as.character(d$virulence_score)]
     s.anno_name <- 'Virulence Score'
-  } else if (input$genotype_st_dist_plot_var=='resistance_score') {
+  } else if (input$genotype_st_dist_plot_anno=='resistance_score') {
     # Determine colours and label names
     v.resistance_score_labels <- paste0(names(v.resistance_score_names), ": ", v.resistance_score_names)
     names(v.resistance_score_labels) <- names(v.resistance_score_names)
@@ -36,32 +36,32 @@ genotype_st_dist_plot <- reactive({
     # Set annotation column
     d$annotation <- v.resistance_score_labels[as.character(d$resistance_score)]
     s.anno_name <- 'Resistance Score'
-  } else if (input$genotype_st_dist_plot_var=='Bla_ESBL_simplified') {
+  } else if (input$genotype_st_dist_plot_anno=='Bla_ESBL_simplified') {
     d$annotation <- d$Bla_ESBL_simplified
     # NOTE: placeholder for colours
     n <- length(unique(d$annotation))
     v.colours <- hcl(h=seq(15, 375, length=n+1), l=65, c=100)[1:n]
     names(v.colours) <- unique(d$annotation)
     s.anno_name <- 'Bla ESBL'
-  } else if (input$genotype_st_dist_plot_var=='Bla_Carb_simplified') {
+  } else if (input$genotype_st_dist_plot_anno=='Bla_Carb_simplified') {
     d$annotation <- d$Bla_Carb_simplified
     n <- length(unique(d$annotation))
     v.colours <- hcl(h=seq(15, 375, length=n+1), l=65, c=100)[1:n]
     names(v.colours) <- unique(d$annotation)
     s.anno_name <- 'Bla Carb'
   } else {
-    if (input$genotype_st_dist_plot_var %in% v.virulence_loci) {
+    if (input$genotype_st_dist_plot_anno %in% v.virulence_loci) {
       v.colours <- c("grey", "#2171b5")
-      s.anno_name <- names(v.virulence_loci)[v.virulence_loci==input$genotype_st_dist_plot_var]
-    } else if (input$genotype_st_dist_plot_var %in% v.resistance_classes) {
+      s.anno_name <- names(v.virulence_loci)[v.virulence_loci==input$genotype_st_dist_plot_anno]
+    } else if (input$genotype_st_dist_plot_anno %in% v.resistance_classes) {
       v.colours <- c("grey", "#ef3b2c")
-      s.anno_name <- names(v.resistance_classes)[v.resistance_classes==input$genotype_st_dist_plot_var]
+      s.anno_name <- names(v.resistance_classes)[v.resistance_classes==input$genotype_st_dist_plot_anno]
     } else {
       stop('Got bad annotation variable')
     }
     names(v.colours) <- c('absent', 'present')
     # Set annotation column
-    d$annotation <- ifelse(d[[input$genotype_st_dist_plot_var]]=='-', 'absent', 'present')
+    d$annotation <- ifelse(d[[input$genotype_st_dist_plot_anno]]=='-', 'absent', 'present')
   }
   # Order ST by group size
   v.st_counts <- sort(table(d$ST), decreasing=TRUE)
@@ -113,7 +113,7 @@ output$genotype_st_plot_download <- downloadHandler(
 output$genotype_st_data_download <- downloadHandler(
   filename=function() {
     paste0(
-      input$genotype_st_dist_plot_var, 
+      input$genotype_st_dist_plot_anno, 
       '_by_ST__res', 
       input$res_score_range_slider[1],
       '-',
@@ -128,7 +128,7 @@ output$genotype_st_data_download <- downloadHandler(
   content=function(s.filename) {
     d <- table(
       data_loaded$kleborate[data_selected$rows,'ST'],
-      data_loaded$kleborate[data_selected$rows,input$genotype_st_dist_plot_var]
+      data_loaded$kleborate[data_selected$rows,input$genotype_st_dist_plot_anno]
     )
     # NOTE: ordering was done previously but I don't see how it would work...
     # v.st_counts <- table(data_loaded$kleborate$ST)

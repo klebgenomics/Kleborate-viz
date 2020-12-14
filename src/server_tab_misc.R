@@ -1,9 +1,10 @@
 observe({
-  # Hide all tabs unless we have data
+  # Kleborate data required
   # NOTE: probably a better way to access all tabs except 'Welcome'
   if (is.null(data_loaded$kleborate)) {
     hideTab(inputId="primary", target="Summary by species")
     hideTab(inputId="primary", target="Genotypes by ST")
+    hideTab(inputId="primary", target="Genotypes by metadata")
     hideTab(inputId="primary", target="Convergence by ST")
     hideTab(inputId="primary", target="K/O diversity by ST")
     hideTab(inputId="primary", target="Temporal trends")
@@ -13,6 +14,7 @@ observe({
   } else {
     showTab(inputId="primary", target="Summary by species")
     showTab(inputId="primary", target="Genotypes by ST")
+    showTab(inputId="primary", target="Genotypes by metadata")
     showTab(inputId="primary", target="Convergence by ST")
     showTab(inputId="primary", target="K/O diversity by ST")
     showTab(inputId="primary", target="Temporal trends")
@@ -20,16 +22,17 @@ observe({
     showTab(inputId="primary", target="Cumulative K/O prevalence")
     showTab(inputId="primary", target="MICs by AMR genotype")
   }
-  # Metadata required for Sample, Temporal trends
+  # Metadata required
   if (is.null(data_loaded$metadata)) {
+    hideTab(inputId="primary", target="Genotypes by metadata")
     hideTab(inputId="primary", target="Sample trends")
     hideTab(inputId="primary", target="Temporal trends")
   } else {
+    showTab(inputId="primary", target="Genotypes by metadata")
     showTab(inputId="primary", target="Sample trends")
     showTab(inputId="primary", target="Temporal trends")
   }
-  # Cumulative KO: K/O info in kleborate output and metadata
-  # KO diversity: K/O info in kleborate output
+  # Kleborate data +/- metadata required
   if (all(! c('K_locus', 'O_locus') %in% colnames(data_loaded$kleborate))) {
     hideTab(inputId="primary", target="Cumulative K/O prevalence")
     hideTab(inputId="primary", target="K/O diversity by ST")
@@ -37,7 +40,7 @@ observe({
     showTab(inputId="primary", target="Cumulative K/O prevalence")
     showTab(inputId="primary", target="K/O diversity by ST")
   }
-  # MIC data required for MIC by AMR genotype
+  # MIC data required
   if (is.null(data_loaded$mic_data)) {
     hideTab(inputId="primary", target="MICs by AMR genotype")
   } else {

@@ -95,7 +95,7 @@ v.resistance_classes <- list(
   'Bla Carb'='Bla_Carb_acquired',
   'Bla ESBL inhR'='Bla_ESBL_inhR_acquired'
 )
-v.genotype_st_var_choices <- list(
+v.genotype_var_choices <- list(
   'Summary'=list(
     'Resistance score'='resistance_score',
     'Virulence score'='virulence_score',
