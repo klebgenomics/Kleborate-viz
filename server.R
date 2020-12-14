@@ -1,9 +1,9 @@
 server <- function(input, output, session) {
   # Variable to hold loaded data
   data_loaded <- reactiveValues(
-    kleborate=global_kleborate,
-    metadata=global_metadata,
-    mic_data=global_mic
+    kleborate=NULL,
+    metadata=NULL,
+    mic_data=NULL
   )
   # Variable to hold selection info
   data_selected <- reactiveValues(

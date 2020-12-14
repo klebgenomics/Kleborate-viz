@@ -36,6 +36,19 @@ genotype_st_dist_plot <- reactive({
     # Set annotation column
     d$annotation <- v.resistance_score_labels[as.character(d$resistance_score)]
     s.anno_name <- 'Resistance Score'
+  } else if (input$genotype_st_dist_plot_var=='Bla_ESBL_simplified') {
+    d$annotation <- d$Bla_ESBL_simplified
+    # NOTE: placeholder for colours
+    n <- length(unique(d$annotation))
+    v.colours <- hcl(h=seq(15, 375, length=n+1), l=65, c=100)[1:n]
+    names(v.colours) <- unique(d$annotation)
+    s.anno_name <- 'Bla ESBL'
+  } else if (input$genotype_st_dist_plot_var=='Bla_Carb_simplified') {
+    d$annotation <- d$Bla_Carb_simplified
+    n <- length(unique(d$annotation))
+    v.colours <- hcl(h=seq(15, 375, length=n+1), l=65, c=100)[1:n]
+    names(v.colours) <- unique(d$annotation)
+    s.anno_name <- 'Bla Carb'
   } else {
     if (input$genotype_st_dist_plot_var %in% v.virulence_loci) {
       v.colours <- c("grey", "#2171b5")
