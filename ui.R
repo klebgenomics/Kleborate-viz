@@ -159,6 +159,14 @@ ui <- fluidPage(
           plotlyOutput('cumulative_o_line_combined', height='300px'),
           br(),
           h4('K locus prevalence by group'),
+          fluidRow(
+            align='center',
+            selectInput(
+              inputId='ko_cumulative_var',
+              label='Group variable',
+              choices=NULL
+            )
+          ),
           plotlyOutput('cumulative_k_line_each', height='400px'),
           br(),
           h4('O locus prevalence by group'),

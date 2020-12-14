@@ -1,3 +1,12 @@
+# Group selector
+observeEvent(
+  data_loaded$metadata,
+  {
+    v.cols <- colnames(data_loaded$metadata)[colnames(data_loaded$metadata)!='strain']
+    updateSelectInput(session, 'ko_cumulative_var', choices=v.cols, selected=v.cols[1])
+  }
+)
+
 # Get summary data for K locus
 metadata_summary_k_locus_combined <- reactive({
   inner_join(data_loaded$metadata, data_loaded$kleborate[data_selected$rows, ]) %>%
@@ -13,8 +22,8 @@ metadata_summary_k_locus_each <- reactive({
   # Mark low confidence loci
   inner_join(data_loaded$metadata, data_loaded$kleborate[data_selected$rows, ]) %>%
   mutate(K_locus = if_else(K_locus_confidence %in% c("Low", "None"), "unknown", K_locus)) -> k_high_confidence
-  # Get proprotions by region
-  as.data.frame(prop.table(table(k_high_confidence$K_locus, k_high_confidence$Region), margin = 2)) %>%
+  # Get proprotions by variable
+  as.data.frame(prop.table(table(k_high_confidence$K_locus, k_high_confidence[[input$ko_cumulative_var]]), margin = 2)) %>%
   dcast(Var1 ~ Var2) %>%
   rename(K_locus = Var1) %>%
   mutate(mean_prev = rowMeans(.[2:ncol(.)])) %>%
@@ -62,8 +71,8 @@ metadata_summary_o_locus_each <- reactive({
   # Mark low confidnce loci
   inner_join(data_loaded$metadata, data_loaded$kleborate[data_selected$rows, ]) %>%
   mutate(K_locus = if_else(O_locus_confidence %in% c("Low", "None"), "unknown", O_locus)) -> o_high_confidence
-  # Get proprotions by region
-  as.data.frame(prop.table(table(o_high_confidence$O_locus, o_high_confidence$Region), margin = 2)) %>%
+  # Get proprotions by variable
+  as.data.frame(prop.table(table(o_high_confidence$O_locus, o_high_confidence[[input$ko_cumulative_var]]), margin = 2)) %>%
   dcast(Var1 ~ Var2) %>%
   rename(O_locus = Var1) %>%
   mutate(mean_prev = rowMeans(.[2:ncol(.)])) %>%
