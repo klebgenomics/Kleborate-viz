@@ -122,7 +122,7 @@ ui <- fluidPage(
           'Temporal trends',
           h4('Year selector'),
           fluidRow(
-            align = "center",
+            align='center',
             sliderInput(
               inputId='year_range_slider',
               label='',
