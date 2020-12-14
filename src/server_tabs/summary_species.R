@@ -1,3 +1,12 @@
+# Set colours of other species in plots
+species_other_colours <- reactive({
+  v.other_species <- unique(data_loaded$kleborate$species[! data_loaded$kleborate$species %in% v.kpsc_names])
+  v.other_species <- sort(v.other_species)
+  v.colours <- other_species_colour_palette(length(v.other_species))
+  names(v.colours) <- v.other_species
+  return(v.colours)
+})
+
 # Resistance plot
 species_resistance_plot <- reactive({
   # Return until input ui element renders and has a default value have we have data

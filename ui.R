@@ -146,7 +146,6 @@ ui <- fluidPage(
         tabPanel(
           'Sample trends',
           br(),
-         #h4('Mean virulence and resistance scores'),
           plotlyOutput('prevalence_sample_scatter', height='400px'),
         ),
         tabPanel(
@@ -175,7 +174,6 @@ ui <- fluidPage(
         tabPanel(
           'MICs by AMR genotype',
           br(),
-          #h4('MIC by genotype'),
           plotlyOutput('amr_profile_dist', height='400px'),
           selectInput(
             inputId='amr_profile_mic',

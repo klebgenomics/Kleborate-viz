@@ -10,7 +10,7 @@ observeEvent(
 ko_cumulative_group_colours <- reactive({
   v.groups <- unique(data_loaded$metadata[[input$ko_cumulative_var]])
   v.groups <- sort(v.groups)
-  v.colours <- v.misc_colour_palette(length(v.groups))
+  v.colours <- misc_colour_palette(length(v.groups))
   names(v.colours) <- v.groups
   return(v.colours)
 })
