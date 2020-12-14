@@ -96,7 +96,12 @@ v.resistance_classes <- list(
   'Bla ESBL inhR'='Bla_ESBL_inhR_acquired'
 )
 v.genotype_st_var_choices <- list(
-  'Summary'=list('Resistance score'='resistance_score', 'Virulence score'='virulence_score'),
+  'Summary'=list(
+    'Resistance score'='resistance_score',
+    'Virulence score'='virulence_score',
+    'Bla ESBL'='Bla_ESBL_simplified',
+    'Bla Carb'='Bla_Carb_simplified'
+  ),
   'Virulence'=v.virulence_loci,
   'Resistance'=v.resistance_classes
 )
