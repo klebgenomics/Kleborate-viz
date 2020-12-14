@@ -22,6 +22,42 @@ euscape_kleborate <- read.csv('data/euscape_kleborate.txt', sep='\t', stringsAsF
 euscape_metadata <- read.csv('data/euscape_metadata.csv', stringsAsFactors=FALSE)
 euscape_mic <- read.csv('data/euscape_mic.csv', stringsAsFactors=FALSE)
 
+# Kleborate require columns
+v.kleborate_columns_required_base <- c(
+  'virulence_score',
+  'Yersiniabactin',
+  'Colibactin',
+  'Aerobactin',
+  'Salmochelin',
+  'RmpADC',
+  'rmpA2'
+)
+v.kleborate_columns_required_res <- c(
+  'resistance_score',
+  'num_resistance_genes',
+  'num_resistance_classes',
+  'AGly_acquired',
+  'Col_acquired',
+  'Fcyn_acquired',
+  'Flq_acquired',
+  'Gly_acquired',
+  'MLS_acquired',
+  'Phe_acquired',
+  'Rif_acquired',
+  'Sul_acquired',
+  'Tet_acquired',
+  'Tgc_acquired',
+  'Tmt_acquired',
+  'Bla_acquired',
+  'Bla_inhR_acquired',
+  'Bla_ESBL_acquired',
+  'Bla_ESBL_inhR_acquired',
+  'Bla_Carb_acquired',
+  'Bla_chr',
+  'Omp_mutations',
+  'Col_mutations'
+)
+
 # Colours and variables names
 v.kpsc_names <- c(
   "Klebsiella pneumoniae",

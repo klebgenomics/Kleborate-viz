@@ -41,33 +41,89 @@ prepare_data_selector  <- function(d) {
   d$species <- factor(d$species, levels=c(v.kpsc_names, v.species[! v.species %in% v.kpsc_names]))
 }
 # Determine file format and read data
-read_file <- function(fp, kleborate=FALSE) {
-  if (kleborate) {
+read_file <- function(fp, input_name) {
+  if (file.info(fp)$size < 1) {
+    showNotification(
+      paste('Input', input_name, 'file does not contain any data'),
+      type='error',
+      duration=NULL
+    )
+    return(NULL)
+  }
+  if (input_name=='Kleborate' & grepl('.txt$', fp)) {
     d <- read.csv(fp, sep='\t', stringsAsFactors=FALSE)
   } else if (grepl('.csv$', fp)) {
     d <- read.csv(fp, stringsAsFactors=FALSE)
   } else if (grepl('.tsv$', fp)) {
     d <- read.csv(fp, sep='\t', stringsAsFactors=FALSE)
   } else {
+    showNotification(
+      paste('Input', input_name, 'file must be in tsv or csv format and have the correct extension'),
+      type='error', duration=NULL
+    )
+    return(NULL)
+  }
+  # Require some data, any data
+  if (nrow(d) < 1) {
+    showNotification(
+      paste('Input', input_name, 'file did not have any rows'),
+      type='error',
+      duration=NULL
+    )
+    kleborate_reset()
+    return(NULL)
+  }
+  if (ncol(d) < 1) {
+    showNotification(
+      paste('Input', input_name, 'file did not have any columns'),
+      type='error',
+      duration=NULL
+    )
     return(NULL)
   }
   return(d)
 }
 # Process kleborate input
+kleborate_reset <- function() {
+  data_loaded$kleborate <- NULL
+  data_loaded$metadata <- NULL
+  data_loaded$mic_data <- NULL
+  reset('kleborate_file')
+  reset('metadata_file')
+  reset('mic_file')
+}
+kleborate_validate <- function(d) {
+  if (! all(v.kleborate_columns_required_base %in% colnames(d))) {
+    # First check presence of default columns
+    showNotification('Input Kleborate file did not contain required columns', type='error', duration=NULL)
+    return(FALSE)
+  } else if (! 'resistance_score' %in% colnames(d)) {
+    # Resistance info
+    showNotification('Kleborate-viz requires that the input Kleborate file contains resistance info', type='error', duration=NULL)
+    return(FALSE)
+  } else if (! all(v.kleborate_columns_required_res %in% colnames(d))) {
+    # Second check for presence of resistance columns
+    showNotification('Input Kleborate file did not contain required columns', type='error', duration=NULL)
+    return(FALSE)
+  } else {
+    return(TRUE)
+  }
+}
 observeEvent(
   input$kleborate_file,
   {
-    d <- read_file(input$kleborate_file$datapath, kleborate=TRUE)
-    if (is.null(d)) {
-      showNotification('Input kleborate file must be in tsv or csv format and have the correct extension', type='error', duration=NULL)
-      reset('kleborate_file')
-      reset('metadata_file')
-      reset('mic_file')
-      data_loaded$kleborate <- NULL
-      data_loaded$metadata <- NULL
-      data_loaded$mic_data <- NULL
+    # Read in file and perform validation
+    d <- read_file(input$kleborate_file$datapath, 'Kleborate')
+    # Short circuit eval
+    if (is.null(d) || ! kleborate_validate(d)) {
+      kleborate_reset()
       return()
     }
+    # Rename strain column if input from pathogenwatch
+    if (any(grepl('Genome.Name', colnames(d)))) {
+      colnames(d)[grepl('Genome.Name', colnames(d))] <- 'strain'
+    }
+    # Set as loaded data
     prepare_data_selector(d)
     data_loaded$kleborate <- d
     # Reset metadata and mic data inputs
@@ -82,28 +138,30 @@ observeEvent(
 observeEvent(
   input$metadata_file,
   {
-    d <- read_file(input$metadata_file$datapath)
+    # Read in file and perform basic validation
+    d <- read_file(input$metadata_file$datapath, 'metadata')
     if (is.null(d)) {
-      showNotification('Input metadata file must be in tsv or csv format and have the correct extension', type='error', duration=NULL)
-      reset('metadata_file')
+      data_loaded$metadata <- NULL
+      reset('metadata_file') 
       return()
-    }
+    } 
     if (! 'strain' %in% colnames(d)) {
       showNotification('Metadata file must contain a "strain" column', type='error', duration=NULL)
       data_loaded$metadata <- NULL
       reset('metadata_file')
-    } else {
-      data_loaded$metadata <- d
+      return()
     }
+    data_loaded$metadata <- d
   }
 )
 # Process mic input
 observeEvent(
   input$mic_file,
   {
-    d <- read_file(input$mic_file$datapath)
+    # Read in file and perform basic validation
+    d <- read_file(input$mic_file$datapath, 'MIC')
     if (is.null(d)) {
-      showNotification('Input MIC file must be in tsv or csv format and have the correct extension', type='error', duration=NULL)
+      data_loaded$mic_data <- NULL
       reset('mic_file')
       return()
     }
@@ -111,8 +169,8 @@ observeEvent(
       showNotification('MIC file must contain a "strain" column', type='error', duration=NULL)
       data_loaded$mic_data <- NULL
       reset('mic_file')
-    } else {
-      data_loaded$mic_data <- d
-    }
+      return()
+    } 
+    data_loaded$mic_data <- d
   }
 )
