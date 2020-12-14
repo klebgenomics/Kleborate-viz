@@ -1,13 +1,13 @@
 # Packages
 library(shiny)
-require(shinyjs)
+library(shinyjs)
 # Misc
 library(tidyverse)
-require(reshape2)
+library(reshape2)
 library(vegan)  # diversity measurements
 # Plotting
-library(heatmaply)
 library(plotly)
+library(heatmaply)
 
 # Set maximum upload file size
 options(shiny.maxRequestSize=20*1024^2)
