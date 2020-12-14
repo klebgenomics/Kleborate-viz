@@ -1,4 +1,16 @@
 # Get summary data
+dload_listen <- reactive({
+  list(data_loaded$kleborate, data_loaded$metadata)
+})
+
+observeEvent(
+  dload_listen(),
+  {
+    v.years <- as.numeric(data_loaded$metadata$Year)
+    v.years <- v.years[!is.na(v.years)]
+    updateSliderInput(session, 'year_range_slider', min=min(v.years), max=max(v.years), value=c(min(v.years), max(v.years)))
+  }
+)
 metadata_summary_year <- reactive({
   inner_join(data_loaded$metadata, data_loaded$kleborate[data_selected$rows, ]) %>%
     mutate(Bla_ESBL_combined = if_else(Bla_ESBL_acquired == "-" & Bla_ESBL_inhR_acquired == "-", "-", "esbl")) %>%
@@ -22,6 +34,8 @@ metadata_summary_year <- reactive({
     ) %>%
     filter(Year != "unknown") -> d
   d$Year <- as.numeric(d$Year)
+  # Apply filter
+  d <- d[d$Year>=input$year_range_slider[1] & d$Year<=input$year_range_slider[2], ]
   return(d)
 })
 # Mean virulence and resistance scores

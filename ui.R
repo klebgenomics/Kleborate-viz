@@ -120,6 +120,16 @@ ui <- fluidPage(
         ),
         tabPanel(
           'Temporal trends',
+          h4('Year selector'),
+          fluidRow(
+            align = "center",
+            sliderInput(
+              inputId='year_range_slider',
+              label='',
+              sep='',
+              min=0, max=50, step=1, value=c(0, 50)
+            ),
+          ),
           br(),
           h4('Virulence and resistance scores'),
           plotlyOutput('year_mean_scores_line', height='400px'),
