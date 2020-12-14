@@ -17,7 +17,7 @@ server <- function(input, output, session) {
   
   # Set colours of other species in plots
   species_other_colours <- reactive({
-    v.other_species <- data_loaded$kleborate$species[! data_loaded$kleborate$species %in% v.kpsc_names]
+    v.other_species <- unique(data_loaded$kleborate$species[! data_loaded$kleborate$species %in% v.kpsc_names])
     v.colours <- v.other_species_colour_palette(length(v.other_species))
     names(v.colours) <- v.other_species
     return(v.colours)
