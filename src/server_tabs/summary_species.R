@@ -6,7 +6,10 @@ species_resistance_plot <- reactive({
   }
   v.colours <- c(v.kpsc_colours, species_other_colours())
   d <- data_loaded$kleborate[data_selected$rows, ]
+  # Order data
   d$resistance_score <- factor(d$resistance_score, levels=0:3)
+  d$species <- factor(d$species, levels=names(v.colours))
+  # Plot
   g <- ggplot(data=d, aes(x=resistance_score, fill=species)) + geom_bar()
   g <- g + scale_x_discrete(breaks=0:3, drop=FALSE) + scale_y_continuous(expand=c(0, 0))
   g <- g + scale_fill_manual(values=v.colours)
