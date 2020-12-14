@@ -95,6 +95,17 @@ v.other_species_colour_palette <- colorRampPalette(
     "#f6fa7d"
   )
 )
+v.misc_colour_palette <- colorRampPalette(
+  c(
+    "#E67E78",
+    "#EF9D45",
+    "#E9DD50",
+    "#79BEA8",
+    "#3F57A7",
+    "#885F9A",
+    "#757C82"
+  )
+)
 v.virulence_loci <- list(
   'Yersiniabactin'='Yersiniabactin',
   'Colibactin'='Colibactin',
