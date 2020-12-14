@@ -14,13 +14,7 @@ observe({
   } else {
     showTab(inputId="primary", target="Summary by species")
     showTab(inputId="primary", target="Genotypes by ST")
-    showTab(inputId="primary", target="Genotypes by metadata")
     showTab(inputId="primary", target="Convergence by ST")
-    showTab(inputId="primary", target="K/O diversity by ST")
-    showTab(inputId="primary", target="Temporal trends")
-    showTab(inputId="primary", target="Sample trends")
-    showTab(inputId="primary", target="Cumulative K/O prevalence")
-    showTab(inputId="primary", target="MICs by AMR genotype")
   }
   # Metadata required
   if (is.null(data_loaded$metadata)) {
@@ -33,12 +27,16 @@ observe({
     showTab(inputId="primary", target="Temporal trends")
   }
   # Kleborate data +/- metadata required
-  if (all(! c('K_locus', 'O_locus') %in% colnames(data_loaded$kleborate))) {
-    hideTab(inputId="primary", target="Cumulative K/O prevalence")
+  v.has_ko_locus_info <- all(c('K_locus', 'O_locus') %in% colnames(data_loaded$kleborate))
+  if (! v.has_ko_locus_info) {
     hideTab(inputId="primary", target="K/O diversity by ST")
   } else {
-    showTab(inputId="primary", target="Cumulative K/O prevalence")
     showTab(inputId="primary", target="K/O diversity by ST")
+  }
+  if (! v.has_ko_locus_info | is.null(data_loaded$metadata)) {
+    hideTab(inputId="primary", target="Cumulative K/O prevalence")
+  } else {
+    showTab(inputId="primary", target="Cumulative K/O prevalence")
   }
   # MIC data required
   if (is.null(data_loaded$mic_data)) {
