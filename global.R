@@ -122,32 +122,39 @@ v.resistance_score_names <- c(
 
 # Colours
 v.kpsc_colours <- c(
-  'Klebsiella pneumoniae'='#875F9A',
-  'Klebsiella quasipneumoniae subsp. quasipneumoniae'='#EDA483',
-  'Klebsiella quasipneumoniae subsp. similipneumoniae'='#56c8f5',
-  'Klebsiella variicola subsp. variicola'='#8CBDB2',
-  'Klebsiella variicola subsp. tropica'='#205c38',
-  'Klebsiella quasivariicola'='#F0B663',
-  'Klebsiella africana'='#ED6060'
+  'Klebsiella pneumoniae'='#E67E78',
+  'Klebsiella quasipneumoniae subsp. quasipneumoniae'='#EF9D45',
+  'Klebsiella quasipneumoniae subsp. similipneumoniae'='#E9DD50',
+  'Klebsiella variicola subsp. variicola'='#79BEA8',
+  'Klebsiella variicola subsp. tropica'='#1c8563',
+  'Klebsiella quasivariicola'='#607fe6',
+  'Klebsiella africana'='#875F9A'
 )
 other_species_colour_palette <- colorRampPalette(
   c(
-    '#e85a5a',
-    '#ffffbf',
-    '#5B6894',
-    '#5B6899',
-    '#fdae61',
-    '#66bd63',
-    '#fee08b',
-    '#5B6896',
-    '#875F9A',
-    '#5B6893',
-    '#876738',
-    '#c2bebe',
-    '#a6d96a',
-    '#f6fa7d'
+  '#f7f7f7',
+  '#d9d9d9',
+  '#bdbdbd',
+  '#969696',
+  '#636363',
+  '#252525',
+  '#000000'        
   )
 )
+#    '#e85a5a',
+#    '#ffffbf',
+#    '#5B6894',
+#    '#5B6899',
+#   '#fdae61',
+#    '#66bd63',
+#    '#fee08b',
+#    '#5B6896',
+#    '#875F9A',
+#    '#5B6893',
+#    '#876738',
+#    '#c2bebe',
+#    '#a6d96a',
+#    '#f6fa7d',
 misc_colour_palette <- colorRampPalette(
   c(
     '#E67E78',
