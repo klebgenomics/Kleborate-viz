@@ -57,6 +57,15 @@ ui <- fluidPage(
       tabsetPanel(
         id='primary',
         tabPanel(
+          'Home',
+          h4('Welcome'),
+          'Some text descibing usage, link out to github wiki for further info',
+          br(),
+          'Describe available dataset, link to preprint/publication',
+          br(),
+          'Make clear daatset must be selected or uploaded to access plot tabs',
+        ),
+        tabPanel(
           'Summary by species',
           br(),
           h4('Resistance scores'),

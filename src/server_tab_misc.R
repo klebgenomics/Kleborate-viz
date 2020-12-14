@@ -1,4 +1,25 @@
 observe({
+  # Hide all tabs unless we have data
+  # NOTE: probably a better way to access all tabs except 'Welcome'
+  if (is.null(data_loaded$kleborate)) {
+    hideTab(inputId="primary", target="Summary by species")
+    hideTab(inputId="primary", target="Genotypes by ST")
+    hideTab(inputId="primary", target="Convergence by ST")
+    hideTab(inputId="primary", target="K/O diversity by ST")
+    hideTab(inputId="primary", target="Temporal trends")
+    hideTab(inputId="primary", target="Sample trends")
+    hideTab(inputId="primary", target="Cumulative K/O prevalence")
+    hideTab(inputId="primary", target="MICs by AMR genotype")
+  } else {
+    showTab(inputId="primary", target="Summary by species")
+    showTab(inputId="primary", target="Genotypes by ST")
+    showTab(inputId="primary", target="Convergence by ST")
+    showTab(inputId="primary", target="K/O diversity by ST")
+    showTab(inputId="primary", target="Temporal trends")
+    showTab(inputId="primary", target="Sample trends")
+    showTab(inputId="primary", target="Cumulative K/O prevalence")
+    showTab(inputId="primary", target="MICs by AMR genotype")
+  }
   # Metadata required for Sample, Temporal trends
   if (is.null(data_loaded$metadata)) {
     hideTab(inputId="primary", target="Sample trends")
