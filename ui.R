@@ -160,6 +160,22 @@ ui <- fluidPage(
         tabPanel(
           'Sample trends',
           br(),
+          fluidRow(
+            align='center',
+            selectInput(
+              inputId='sample_trends_var',
+              label='Group variable',
+              choices=NULL
+            )
+          ),      
+          fluidRow(
+            align='center',
+            selectInput(
+              inputId='sample_trends_col',
+              label='Colour variable',
+              choices=NULL
+            )
+          ),                        
           plotlyOutput('prevalence_sample_scatter', height='400px'),
         ),
         tabPanel(
