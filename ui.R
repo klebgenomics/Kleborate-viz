@@ -190,13 +190,13 @@ ui <- fluidPage(
         tabPanel(
           'Cumulative K/O prevalence',
           br(),
-          h4('K locus overall prevalence'),
-          plotlyOutput('cumulative_k_line_combined', height='300px'),
+          h4('Overall prevalence'),
+          fluidRow(
+          	column(width = 8, offset = 0, plotlyOutput('cumulative_k_line_combined', height='300px')),
+          	column(width = 4, offset = 0, plotlyOutput('cumulative_o_line_combined', height='300px')),
+           ),
           br(),
-          h4('O locus overall prevalence'),
-          plotlyOutput('cumulative_o_line_combined', height='300px'),
-          br(),
-          h4('K locus prevalence by group'),
+          fluidRow(h4('K locus prevalence by group')),
           fluidRow(
             align='center',
             selectInput(
