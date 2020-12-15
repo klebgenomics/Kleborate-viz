@@ -118,23 +118,6 @@ ui <- fluidPage(
           )
         ),
         tabPanel(
-          'Genotypes by metadata',
-          br(),
-          h4('Genome distributions across metadata'),
-          plotOutput('genotype_metadata_dist_plot', height='400px'),
-          br(),
-          selectInput(
-            inputId='genotype_metadata_dist_plot_anno',
-            label='Annotation variable',
-            choices=v.genotype_var_choices
-          ),
-          selectInput(
-            inputId='genotype_metadata_dist_plot_group',
-            label='Group variable',
-            choices=NULL
-          ),
-        ),
-        tabPanel(
           'Convergence by ST',
           br(),
           h4('Mean virulence and resistance scores by ST (click to select genomes)'),
@@ -152,6 +135,32 @@ ui <- fluidPage(
           br(),
           h4('Genotypes of selected genomes'),
           plotlyOutput('ko_diversity_st_heatmap', height='600px')
+        ),
+        tabPanel(
+          'Genotypes by metadata',
+          br(),
+          h4('Genome distributions across metadata'),
+          plotOutput('genotype_metadata_dist_plot', height='400px'),
+          br(),
+          selectInput(
+            inputId='genotype_metadata_dist_plot_anno',
+            label='Annotation variable',
+            choices=v.genotype_var_choices
+          ),
+          selectInput(
+            inputId='genotype_metadata_dist_plot_group',
+            label='Group variable',
+            choices=NULL
+          ),
+#          column(
+#            8,
+#            wellPanel(uiOutput('genotype_group_count'))
+#          ),          
+        ),
+        tabPanel(
+          'Sample trends',
+          br(),
+          plotlyOutput('prevalence_sample_scatter', height='400px'),
         ),
         tabPanel(
           'Temporal trends',
@@ -177,11 +186,6 @@ ui <- fluidPage(
           br(),
           h4('AMR determinant prevalence'),
           plotlyOutput('AMR_prevalence_year_line', height='400px')
-        ),
-        tabPanel(
-          'Sample trends',
-          br(),
-          plotlyOutput('prevalence_sample_scatter', height='400px'),
         ),
         tabPanel(
           'Cumulative K/O prevalence',

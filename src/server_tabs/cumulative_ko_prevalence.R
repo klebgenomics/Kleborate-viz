@@ -2,7 +2,7 @@
 observeEvent(
   data_loaded$metadata,
   {
-    v.cols <- colnames(data_loaded$metadata)[colnames(data_loaded$metadata)!='strain']
+    v.cols <- colnames(data_loaded$metadata)[!colnames(data_loaded$metadata) %in% c('strain', 'Strain', 'Year', 'year')]
     updateSelectInput(session, 'ko_cumulative_var', choices=v.cols, selected=v.cols[1])
   }
 )

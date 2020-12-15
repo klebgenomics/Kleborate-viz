@@ -2,7 +2,7 @@
 observeEvent(
   data_loaded$metadata,
   {
-    v.cols <- colnames(data_loaded$metadata)[colnames(data_loaded$metadata)!='strain']
+    v.cols <- colnames(data_loaded$metadata)[!colnames(data_loaded$metadata)%in% c('strain', 'Strain', 'Year', 'year')]
     updateSelectInput(session, 'genotype_metadata_dist_plot_group', choices=v.cols, selected=v.cols[1])
   }
 )
@@ -59,6 +59,20 @@ genotype_metadata_dist_plot <- reactive({
     # Set annotation column
     d$annotation <- ifelse(d[[input$genotype_metadata_dist_plot_anno]]=='-', 'absent', 'present')
   }
+  
+#  # ST number slider
+#output$genotype_group_count <- renderUI({
+#  sliderInput(
+#    inputId='genotype_group_count',
+#    label='Number of groups:',
+#    min=1,
+#    max=length(unique(input$genotype_metadata_dist_plot_group)),
+#    value=min(5, length(unique(input$genotype_metadata_dist_plot_group)))
+#  )
+#})
+
+  
+  
   # Order by group size
   d <<- d
   
@@ -66,6 +80,11 @@ genotype_metadata_dist_plot <- reactive({
   v.group_counts <- sort(table(d$group), decreasing=TRUE)
   v.group_order <- names(v.group_counts)
   d$group <- factor(d$group, levels=v.group_order)
+  
+    
+  # Select first n STs
+ # d <- d[d$group %in% v.group_order[1:input$genotype_group_count], ]
+  
   # Create plot
   g <- ggplot(data=d, aes(x=group, fill=annotation))
   g <- g + geom_bar()
