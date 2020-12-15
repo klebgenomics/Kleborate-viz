@@ -36,20 +36,20 @@ genotype_metadata_dist_plot <- reactive({
     d$annotation <- d$Bla_ESBL_simplified
     # NOTE: placeholder for colours
     n <- length(unique(d$annotation))
-    v.colours <- hcl(h=seq(15, 375, length=n+1), l=65, c=100)[1:n]
+    v.colours <- v.ESBL_allele_colours
     names(v.colours) <- unique(d$annotation)
     s.anno_name <- 'Bla ESBL'
   } else if (input$genotype_metadata_dist_plot_anno=='Bla_Carb_simplified') {
     d$annotation <- d$Bla_Carb_simplified
     n <- length(unique(d$annotation))
-    v.colours <- hcl(h=seq(15, 375, length=n+1), l=65, c=100)[1:n]
+    v.colours <- v.carb_allele_colours
     names(v.colours) <- unique(d$annotation)
     s.anno_name <- 'Bla Carb'
   } else {
     if (input$genotype_metadata_dist_plot_anno %in% v.virulence_loci) {
       v.colours <- c("grey", "#2171b5")
       s.anno_name <- names(v.virulence_loci)[v.virulence_loci==input$genotype_metadata_dist_plot_anno]
-    } else if (input$genotype_metadata_dist_plot_anno %in% v.resistance_classes) {
+    } else if (input$genotype_metadata_dist_plot_anno %in% v.resistance_classes & !input$genotype_st_dist_plot_anno %in% c('Bla_ESBL_simplified', 'Bla_Carb_simplified')) {
       v.colours <- c("grey", "#ef3b2c")
       s.anno_name <- names(v.resistance_classes)[v.resistance_classes==input$genotype_metadata_dist_plot_anno]
     } else {

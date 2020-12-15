@@ -78,9 +78,11 @@ v.virulence_loci <- list(
 )
 v.resistance_classes <- list(
   'AGly'='AGly_acquired',
-  'Col'='Col_acquired',
+  'Col (genes)'='Col_acquired',
+  'Col (mutations)' = 'Col_mutations',
   'Fcyn'='Fcyn_acquired',
-  'Flq'='Flq_acquired',
+  'Flq (genes)'='Flq_acquired',
+  'Flq (mutations)' = 'Flq_mutations',
   'Gly'='Gly_acquired',
   'MLS'='MLS_acquired',
   'Phe'='Phe_acquired',
@@ -93,14 +95,14 @@ v.resistance_classes <- list(
   'Bla inhR'='Bla_inhR_acquired',
   'Bla ESBL'='Bla_ESBL_acquired',
   'Bla Carb'='Bla_Carb_acquired',
-  'Bla ESBL inhR'='Bla_ESBL_inhR_acquired'
+  'Bla ESBL inhR'='Bla_ESBL_inhR_acquired',
+  'Bla ESBL alleles'='Bla_ESBL_simplified',
+  'Bla Carb alleles'='Bla_Carb_simplified'
 )
 v.genotype_var_choices <- list(
   'Summary'=list(
     'Resistance score'='resistance_score',
-    'Virulence score'='virulence_score',
-    'Bla ESBL'='Bla_ESBL_simplified',
-    'Bla Carb'='Bla_Carb_simplified'
+    'Virulence score'='virulence_score'    
   ),
   'Virulence'=v.virulence_loci,
   'Resistance'=v.resistance_classes
@@ -155,6 +157,7 @@ other_species_colour_palette <- colorRampPalette(
 #    '#c2bebe',
 #    '#a6d96a',
 #    '#f6fa7d',
+
 misc_colour_palette <- colorRampPalette(
   c(
     '#E67E78',
@@ -180,3 +183,25 @@ v.resistance_score_colours <- c(
   '2'='#f7786b',
   '3'='#c94c4c'
 )
+v.ESBL_allele_colours <- c(
+  '-'='#BCBCBC',
+  'CTX-M-14'='#E56EAF',
+  'CTX-M-15'='#056658',
+  'CTX-M-65'='#341F75',
+  'CTX-M-other'='#E7298A',
+  'SHV'='#71B9D8',
+  'TEM'='#E89400',
+  'multiple'='#093F7A',
+  'other'='#EAC800'
+)
+v.carb_allele_colours <- c(
+  '-' = '#BCBCBC',
+  'IMP'='#E56EAF',
+  'KPC'='#056658',
+  'NDM'='#341F75',
+  'OXA'='#E7298A',
+  'VIM'='#71B9D8',
+  'multiple'='#093F7A',
+  'other'='#EAC800'
+)
+

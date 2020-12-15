@@ -1,13 +1,13 @@
 # Colours
 v.omp_mutations_colours <- c(
-  '-'='#000000',
-  'OmpK35-trunc'='#ffffb2',
-  'OmpK36-trunc'='#fed976',
-  'OmpK36GD'='#feb24c',
-  'OmpK36TD'='#fd8d3c',
-  'OmpK35-trunc;OmpK36-trunc'='#fc4e2a',
-  'OmpK35-trunc;OmpK36GD'='#e31a1c',
-  'OmpK35-trunc;OmpK36TD'='#b10026'
+  '-'='#BABABA',
+  'OmpK35-trunc'='#80B1D3',
+  'OmpK36-trunc'='#B793CC',
+  'OmpK36GD'='#000000',
+  'OmpK36TD'='#E81CCB',
+  'OmpK35-trunc;OmpK36-trunc'='#41AB5D',
+  'OmpK35-trunc;OmpK36GD'='#CE2820',
+  'OmpK35-trunc;OmpK36TD'='#FDB462'
 )
 # Ordering
 v.amr_gt_order_start <- c(
