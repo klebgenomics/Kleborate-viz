@@ -1,78 +1,99 @@
 ui <- fluidPage(
-  title='Kleborate-viz',
   # Initialise shinyjs to allow runjs calls in server code
   # This is required specifically to clear plotly event data
   useShinyjs(),
   extendShinyjs(script='shiny.js', functions=c()),
-  # Side bar
-  sidebarLayout(
-    sidebarPanel(
-      # Set width
-      width=12/4,
-      # Logo
-      div(img(src='logo.png', height=100, width=200)),
-      hr(),
-      # Builtin datasets
-      h4('Built in datasets'),
-      actionButton("dataset_global", "Global dataset"),
-      actionButton("dataset_euscape", "EuSCAPE dataset"),
-      hr(),
-      # Input files
-      h4('Upload data'),
-      fileInput(
-        'kleborate_file',
-        'Load Kleborate output file (txt)',
-        accept=c('text/csv', 'text/comma-separated-values,text/plain', '.csv')
+  # Title panel
+  title='Kleborate-viz',
+  fluidRow(
+    style='margin-top: 20px',
+    column(
+      3,
+      div(
+        align='center',
+        h2(
+          style='margin-top: 0px; margin-bottom: 20px',
+          'Kleborate-viz'),
       ),
-      fileInput(
-        'metadata_file',
-        'Load Metadata table (csv)',
-        accept=c('text/csv', 'text/comma-separated-values,text/plain', '.csv')
+      # Side bar
+      wellPanel(
+        # Input files
+        h4('Upload data'),
+        fileInput(
+          'kleborate_file',
+          'Load Kleborate output file (txt)',
+          accept=c('text/csv', 'text/comma-separated-values,text/plain', '.csv')
+        ),
+        fileInput(
+          'metadata_file',
+          'Load Metadata table (csv)',
+          accept=c('text/csv', 'text/comma-separated-values,text/plain', '.csv')
+        ),
+        fileInput(
+          'mic_file',
+          'Load MIC table (csv)',
+          accept=c('text/csv', 'text/comma-separated-values,text/plain', '.csv')
+        ),
+        hr(),
+        # Builtin datasets
+        h4('Built in datasets'),
+        div(
+          align='center',
+          actionButton("dataset_global", "Global dataset"),
+          actionButton("dataset_euscape", "EuSCAPE dataset"),
+        ),
       ),
-      fileInput(
-        'mic_file',
-        'Load MIC table (csv)',
-        accept=c('text/csv', 'text/comma-separated-values,text/plain', '.csv')
+      wellPanel(
+        # Data summary
+        h4('Data Summary'),
+        tableOutput('summary_data')
       ),
-      hr(),
-      # Data summary
-      h4('Data Summary'),
-      tableOutput('summary_data'),
-      hr(),
-      h4('Subset for Analysis'),
-      # Species, resistance, virulence selectors
-      uiOutput('species_display_radio_list'),
-      sliderInput(
-        inputId='res_score_range_slider',
-        label='Resistance scores:',
-        min=0, max=3, step=1, value=c(0, 3)
-      ),
-      sliderInput(
-        inputId='vir_score_range_slider',
-        label='Virulence scores:',
-        min=0, max=5, step=1, value=c(0, 5)
+      wellPanel(
+        h4('Subset for Analysis'),
+        # Species, resistance, virulence selectors
+        uiOutput('species_display_radio_list'),
+        sliderInput(
+          inputId='res_score_range_slider',
+          label='Resistance scores:',
+          min=0, max=3, step=1, value=c(0, 3)
+        ),
+        sliderInput(
+          inputId='vir_score_range_slider',
+          label='Virulence scores:',
+          min=0, max=5, step=1, value=c(0, 5)
+        ),
       ),
     ),
-    # Tab navigator and main display
-    mainPanel(
+    column(
+      9,
+      style='margin-top: 5px',
+      # Tab navigator and main display
       tabsetPanel(
         id='primary',
         tabPanel(
           'Home',
-          h4('Welcome'),
-          HTML('Kleborate-viz is a visualisation app for the output of <a href="https://github.com/katholt/Kleborate">Kleborate</a>-'),
-          br(),
-          HTML('a genotyping tool for <i>Klebsiella pneumoniae</i> and its related species complex.'),
-          br(), 
-          br(),
-          HTML('You can upload your own data via the control panel on the left'),
-          br(),
-          HTML('or view the built in datasets by clicking the <b>Global dataset</b>'),
-          br(),
-          HTML('or <b>EuSCAPE dataset</b> buttons and selecting one of the plot tabs.'),
-          br(),
-          br(),
-          HTML('For more information visit the <a href="https://github.com/kelwyres/Kleborate-viz/wiki/1.-Kleborate-viz-home">Kleborate-viz wiki</a>.'),
+          div(
+            align='center',
+            style='margin-top: 20px',
+            img(src='logo.png', height=200)
+          ),
+          div(
+            align='center',
+            style='margin-top: 40px',
+            HTML('Kleborate-viz is a visualisation app for the output of <a href="https://github.com/katholt/Kleborate">Kleborate</a>-'),
+            br(),
+            HTML('a genotyping tool for <i>Klebsiella pneumoniae</i> and its related species complex.'),
+            br(),
+            br(),
+            HTML('You can upload your own data via the control panel on the left'),
+            br(),
+            HTML('or view the built in datasets by clicking the <b>Global dataset</b>'),
+            br(),
+            HTML('or <b>EuSCAPE dataset</b> buttons and selecting one of the plot tabs.'),
+            br(),
+            br(),
+            HTML('For more information visit the <a href="https://github.com/kelwyres/Kleborate-viz/wiki/1.-Kleborate-viz-home">Kleborate-viz wiki</a>.'),
+          )
         ),
         tabPanel(
           'Summary by species',
@@ -152,10 +173,10 @@ ui <- fluidPage(
             label='Group variable',
             choices=NULL
           ),
-#          column(
-#            8,
-#            wellPanel(uiOutput('genotype_group_count'))
-#          ),          
+          #          column(
+          #            8,
+          #            wellPanel(uiOutput('genotype_group_count'))
+          #          ),
         ),
         tabPanel(
           'Sample trends',
@@ -167,7 +188,7 @@ ui <- fluidPage(
               label='Group variable',
               choices=NULL
             )
-          ),      
+          ),
           fluidRow(
             align='center',
             selectInput(
@@ -175,7 +196,7 @@ ui <- fluidPage(
               label='Colour variable',
               choices=NULL
             )
-          ),                        
+          ),
           plotlyOutput('prevalence_sample_scatter', height='400px'),
         ),
         tabPanel(
@@ -208,9 +229,9 @@ ui <- fluidPage(
           br(),
           h4('Overall prevalence'),
           fluidRow(
-          	column(width = 8, offset = 0, plotlyOutput('cumulative_k_line_combined', height='300px')),
-          	column(width = 4, offset = 0, plotlyOutput('cumulative_o_line_combined', height='300px')),
-           ),
+            column(width = 8, offset = 0, plotlyOutput('cumulative_k_line_combined', height='300px')),
+            column(width = 4, offset = 0, plotlyOutput('cumulative_o_line_combined', height='300px')),
+          ),
           br(),
           fluidRow(h4('K locus prevalence by group')),
           fluidRow(
