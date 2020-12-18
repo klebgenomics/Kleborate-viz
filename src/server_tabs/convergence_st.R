@@ -66,59 +66,57 @@ output$convergence_st_scatter <- renderPlotly({
 })
 # Clustered heatmap
 output$convergence_st_heatmap <- renderPlotly({
-  data_by_species <- data_loaded$kleborate[data_selected$rows, ]
-  ed <- event_data('plotly_click', source='st_scatter')
-  if(! is.null(convergence_st_selected())) {
-    data_matrix <- data_by_species[data_by_species$ST %in% convergence_st_selected(), ]
-    main_title <- convergence_st_selected()
+  # Determine display data
+  d <- data_loaded$kleborate[data_selected$rows, ]
+  if (! is.null(convergence_st_selected())) {
+    # Display user selected
+    d <- d[d$ST==convergence_st_selected(), ]
+    s.title <- convergence_st_selected()
+  } else if (nrow(d) <= 30) {
+    # Display all
+    s.title <- 'All STs'
+  } else if (sum(d$virulence_score>=3 & d$resistance_score >=1)==0) {
+    # Too many to display all; select most convergent
+    d.con <- d %>%
+      group_by(ST) %>%
+      summarise(
+        mean_vir=mean(virulence_score),
+        mean_res=mean(resistance_score),
+        total=n()
+      )
+    v.score_multi <- d.con$mean_vir * d.con$mean_res
+    s.st <- d.con$ST[which.max(v.score_multi)]
+    d <- d[d$ST==s.st, ]
+    s.title <- paste('Auto selected:', s.st)
   } else {
-    if (nrow(data_by_species) <= 30) {
-      # Display all STs
-      data_matrix <- data_by_species
-      main_title <- 'All STs'
-    } else {
-      # Display most convergent ST
-      if (sum(data_by_species$virulence_score>=3 & data_by_species$resistance_score >=1)==0) {
-        kd <- data_by_species %>% 
-          group_by(ST) %>% 
-          summarise(
-            mean_vir=mean(virulence_score),
-            mean_res=mean(resistance_score),
-            total=n()
-          )
-        selected_st <- kd$ST[kd$mean_vir*kd$mean_res==max(kd$mean_vir*kd$mean_res)][1]
-        data_matrix <- data_by_species[data_by_species$ST %in% selected_st, ]
-        st_name <- as.character(selected_st)
-        main_title=paste(st_name)
-      } else {
-        # If there are strains with aerobactin and clinically significant resistance, report them
-        data_matrix <- data_by_species[data_by_species$virulence_score>=3 & data_by_species$resistance_score>=1, ]
-        main_title <- ''
-      }
-    }
+    # Otherwise display strains with aerobactin and clinically significant resistance
+    d <- d[d$virulence_score>=3 & d$resistance_score>=1, ]
+    s.title <- 'Auto selected: multiple'
   }
-  # Convert to binary matrix, format for heatmaply
-  rownames(data_matrix) <- data_matrix[ ,1]
-  vir_data_matrix <- (data_matrix[ ,as.character(v.virulence_loci)]!='-')*1
-  res_data_matrix <- (data_matrix[ ,as.character(v.resistance_classes)]!='-')*2
-  st_data_matrix <- as.data.frame.matrix(cbind(vir_data_matrix, res_data_matrix))
-  # Ensure we have data to plot
-  if (nrow(st_data_matrix) < 1) {
-    return(NULL)
-  }
-  # Create heatmap
+  # Select columns
+  v.columns <- c('strain', v.virulence_loci, v.resistance_classes)
+  d <- d[ ,colnames(d) %in% v.columns]
+  # Move strain names to rownames
+  rownames(d) <- d$strain
+  d <- d[ ,-1]
+  # Convert to binary matrix
+  v.col_vir <- colnames(d) %in% v.virulence_loci
+  v.col_res <- colnames(d) %in% v.resistance_classes
+  d[ ,v.col_vir] <- ifelse(d[ ,v.col_vir]=='-', 0, 1)
+  d[ ,v.col_res] <- ifelse(d[ ,v.col_res]=='-', 0, 2)
+  # Set nice names for display
+  v.name_map <- c(v.virulence_loci, v.resistance_classes)
+  colnames(d) <- names(v.name_map)[match(colnames(d), v.name_map)]
+  # Render
   heatmaply(
-    st_data_matrix,
-    Rowv=nrow(st_data_matrix) >= 3,
+    d,
+    main=s.title,
+    limits=c(0, 2),
+    colors=c('white', '#1855b7', '#bb363c'),
+    Rowv=nrow(d)>=3,
     Colv=FALSE,
     show_dendrogram = c(FALSE, FALSE),
     hide_colorbar=TRUE,
-    labRow=NULL,
-    fontsize_row=10,
-    fontsize_col=10,
-    revC=F,
-    colors=c('white', '#1855b7', '#bb363c'),
-    showticklabels=c(TRUE, FALSE),
-    main=list(text=main_title, color='#000000', size = 8)
+    showticklabels=c(TRUE, FALSE)
   )
 })
