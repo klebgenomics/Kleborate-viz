@@ -4,6 +4,7 @@ observeEvent(
   data_loaded$kleborate,
   {
     convergence_st_selected(NULL)
+    updateTextInput(session, 'convergence_st_text', value='')
   }
 )
 observeEvent(
@@ -24,7 +25,7 @@ observeEvent(
 )
 # Scatter plot
 output$convergence_st_scatter <- renderPlotly({
-  d <- global_kleborate %>% 
+  d <- data_loaded$kleborate[data_selected$rows, ] %>% 
     group_by(ST) %>%
     summarise(
       mean_vir=mean(virulence_score),
