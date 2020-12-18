@@ -96,7 +96,8 @@ output$genotype_st_count <- renderUI({
     label='Number of STs:',
     min=1,
     max=length(unique(data_loaded$kleborate$ST)),
-    value=min(20, length(unique(data_loaded$kleborate$ST)))
+    value=min(20, length(unique(data_loaded$kleborate$ST))),
+    step=1
   )
 })
 # Download data button
