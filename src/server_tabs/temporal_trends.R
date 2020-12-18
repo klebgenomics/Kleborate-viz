@@ -33,56 +33,99 @@ metadata_summary_year <- reactive({
     ) %>%
     filter(Year != "unknown") -> d
   d$Year <- as.numeric(d$Year)
-  # Apply filter
-  d <- d[d$Year>=input$year_range_slider[1] & d$Year<=input$year_range_slider[2], ]
+  # Apply filter and melt data for plotting
+  d <- d[d$Year>=input$temporal_trends_year_slider[1] & d$Year<=input$temporal_trends_year_slider[2], ]
+  d <- melt(d, id.vars=c('Year', 'n'))
   return(d)
 })
+
+# User input
+output$temporal_trends_year_slider <- renderUI({
+  sliderInput(
+    inputId='temporal_trends_year_slider',
+    label='',
+    sep='',
+    min=min(data_loaded$metadata$Year),
+    max=max(data_loaded$metadata$Year),
+    value=c(min(data_loaded$metadata$Year), max(data_loaded$metadata$Year)),
+    step=1
+  )
+})
+
+# Generalised plot function
+temporal_trend_plot <- function(v.name_map, v.colours, s.ylab) {
+  # Get and select data
+  d <- metadata_summary_year()
+  d <- d[d$variable %in% names(v.name_map), ]
+  # Rename variables and plot
+  d$variable <- v.name_map[as.character(d$variable)]
+  g <- ggplot(d, aes(x=Year, y=value, colour=variable)) + geom_line()
+  g <- g + xlab('Year') + ylab(s.ylab) 
+  g <- g + theme_bw()
+  g <- g + scale_colour_manual(values=v.colours, breaks=names(v.colours), name='Legend')
+  ggplotly(g)
+}
+
 # Mean virulence and resistance scores
 output$year_mean_scores_line <- renderPlotly({
-  g <- ggplot(metadata_summary_year()) +
-    geom_line(aes(x=Year, y = mean_virulence_score), colour='#1855b7') +
-    geom_line(aes(x=Year, y = mean_resistance_score), colour='#bb363c') +
-    xlab('Year') +
-    ylab('Mean score') + theme_bw()
-  g <- ggplotly(g)
-  print(g)
+  v.name_map <- c(
+    'mean_resistance_score'='Mean resistance score',
+    'mean_virulence_score'='Mean virulence score'
+  )
+  v.colours <- c(
+    'Mean resistance score'='#bb363c', 
+    'Mean virulence score'='#1855b7'
+  )
+  temporal_trend_plot(v.name_map, v.colours, 'Mean score')
 })
+
 # Prevalence AMR classes and genes by year
 output$year_mean_resistance_line <- renderPlotly({ 
-  g <- ggplot(metadata_summary_year()) + 
-    geom_line(aes(x=Year, y=mean_resistance_genes), colour='#bb363c') +
-    geom_line(aes(x=Year, y=mean_resistance_classes), colour='black') +
-    xlab('Year') +
-    ylab('Mean acquired AMR classes and genes') + 
-    theme_bw()
-  g <- ggplotly(g)
-  print(g)
+  v.name_map <- c(
+    'mean_resistance_genes'='Mean resistance genes',
+    'mean_resistance_classes'='Mean resistance classes'
+  )
+  v.colours <- c(
+    'Mean resistance genes'='#bb363c', 
+    'Mean resistance classes'='black'
+  )
+  temporal_trend_plot(v.name_map, v.colours, 'Mean acquired AMR classes and genes')
 })
 
 # Prevalence of virulence determinants
 output$virulence_prevalence_year_line <- renderPlotly({
-  g <- ggplot(metadata_summary_year(), aes(x=Year)) +
-    geom_line(aes(x=Year, y=ybt_prevalence), colour='#68b297') +
-    geom_line(aes(x=Year, y=clb_prevalence), colour='#377c63') +
-    geom_line(aes(x=Year, y=iuc_prevalence), colour='#0a1027') +
-    geom_line(aes(x=Year, y=iro_prevalence), colour='#6676f3') +
-    geom_line(aes(x=Year, y=rmpADC_prevalence), colour='#1855b7') +
-    geom_line(aes(x=Year, y=rmpA2_prevalence), colour='#4292c6') +
-    xlab('Year') +
-    ylab('Prevalence') + theme_bw()
-  g <- ggplotly(g)
-  print(g)
+  v.name_map <- c(
+    'ybt_prevalence'='YBT prevalance',
+    'clb_prevalence'='CLB prevalance',
+    'iuc_prevalence'='IUC prevalance',
+    'iro_prevalence'='IRO prevalance',
+    'rmpADC_prevalence'='rmpADC prevalance',
+    'rmpA2_prevalence'='rmpA2 prevalance'
+  )
+  v.colours <- c(
+    'YBT prevalance'='#68b297',
+    'CLB prevalance'='#377c63',
+    'IUC prevalance'='#0a1027',
+    'IRO prevalance'='#6676f3',
+    'rmpADC prevalance'='#1855b7',
+    'rmpA2 prevalance'='#4292c6'
+  )
+  temporal_trend_plot(v.name_map, v.colours, 'Prevalance')
 })
 
 # Prevalence of AMR determinants
 output$AMR_prevalence_year_line <- renderPlotly({
-  g <- ggplot(metadata_summary_year(), aes(x=Year)) +
-    geom_line(aes(x=Year, y=ESBL_prevalence), colour='#f4bdbd') +
-    geom_line(aes(x=Year, y=carbapenemase_prevalence), colour='#f26158') +
-    geom_line(aes(x=Year, y=colistin_resistance_mutation_prevalence), colour='#bb363c') +
-    geom_line(aes(x=Year, y=colistin_resistance_gene_prevalence), colour='black') +
-    xlab('Year') +
-    ylab('Prevalence') + theme_bw()
-  g <- ggplotly(g)
-  print(g)
+  v.name_map <- c(
+    'ESBL_prevalence'='ESBL prevalance',
+    'carbapenemase_prevalence'='Carbapenemase prevalance',
+    'colistin_resistance_mutation_prevalence'='Colistin mutation prevalance',
+    'colistin_resistance_gene_prevalence'='Colistin gene prevalance'
+  )
+  v.colours <- c(
+    'ESBL prevalance'='#f4bdbd',
+    'Carbapenemase prevalance'='#f26158',
+    'Colistin mutation prevalance'='#bb363c',
+    'Colistin gene prevalance'='black'
+  )
+  temporal_trend_plot(v.name_map, v.colours, 'Prevalance')
 })
