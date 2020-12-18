@@ -33,11 +33,11 @@ output$convergence_st_scatter <- renderPlotly({
     )
   d <- d[!is.na(d$ST), ]
   # Handle click events
-  ed <- event_data('plotly_click', source='st_scatter')
+  ed <- event_data('plotly_click', source='convergence_st_scatter')
   if(is.null(ed) == FALSE && ed$curveNumber == 0) {
     convergence_st_selected(ed$key)
     # Immediately clear click event and text input
-    runjs("Shiny.onInputChange('plotly_click-st_scatter', 'null');")
+    runjs("Shiny.onInputChange('plotly_click-convergence_st_scatter', 'null');")
     updateTextInput(session, 'convergence_st_text', value='')
   }
   # Annotate selected ST
@@ -53,7 +53,7 @@ output$convergence_st_scatter <- renderPlotly({
   g <- g + scale_colour_manual(values=v.colours, breaks=names(v.colours))
   g <- g + xlim(c(0, 5)) + ylim(c(0, 3))
   g <- g + xlab('Mean virulence score') + ylab('Mean resistance score')
-  ggplotly(g, source='st_scatter')
+  ggplotly(g, source='convergence_st_scatter')
 })
 # Clustered heatmap
 output$convergence_st_heatmap <- renderPlotly({
