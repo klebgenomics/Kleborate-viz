@@ -90,20 +90,20 @@ output$amr_profile_dist <- renderPlotly({
   v.order <- c(v.amr_gt_order_start, v.amr_gt_order_x, v.amr_gt_order_end)
   d$x <- factor(d$x, levels=v.order)
   # Plot
-  g <- ggplot(d, aes(x=x, y=y)) +
+  g <- ggplot(d, aes(x=x, y=log10(y))) +
     geom_jitter(aes(colour = Omp_mutations_simplified), width=0.25, height=0.5, alpha = 0.7) +
     geom_boxplot(outlier.shape = NA) +
     scale_x_discrete(breaks=unique(v.order), drop=FALSE) +
-    scale_colour_manual("Omp mutations", breaks=names(v.omp_mutations_colours), values=v.omp_mutations_colours) +
+    scale_colour_manual('Omp mutations', breaks=names(v.omp_mutations_colours), values=v.omp_mutations_colours) +
     theme_bw() + theme(axis.text.x = element_text(angle = 45, hjust =1)) +
-    xlab("AMR genotype") +
-    ylab("MIC")
+    xlab('AMR genotype') +
+    ylab('MIC (log10)')
   g <- ggplotly(g)
   # Remove outliers
   i <- length(g$x$data)
-  g$x$data[i] <- lapply(g$x$data[i], FUN = function(x){
-    x$marker = list(opacity = 0)
-    return(x)
+  g$x$data[i] <- lapply(g$x$data[i], function(d) {
+    d$marker = list(opacity = 0)
+    return(d)
   })
-  print(g)
+  g
 })
