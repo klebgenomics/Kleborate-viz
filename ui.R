@@ -152,6 +152,17 @@ ui <- fluidPage(
           h4('K and O locus diversity by ST (click to select subset)'),
           plotlyOutput('ko_diversity_st_scatter', height='400px'),
           br(),
+          div(
+            style='display: inline-block',
+            textInput('ko_diversity_st_text', 'Select ST:', placeholder='e.g. ST512'),
+          ),
+          div(
+            style='display: inline-block',
+            actionButton(
+              style='margin-bottom: 5px',
+              'ko_diversity_st_text_button', 'Select'
+            ),
+          ),br(),
           h4('Genotypes of selected genomes'),
           plotlyOutput('ko_diversity_st_heatmap', height='600px')
         ),
