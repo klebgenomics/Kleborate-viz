@@ -60,11 +60,9 @@ output$convergence_st_scatter <- renderPlotly({
 output$convergence_st_heatmap <- renderPlotly({
   data_by_species <- data_loaded$kleborate[data_selected$rows, ]
   ed <- event_data('plotly_click', source='st_scatter')
-  if(is.null(ed) == FALSE && ed$curveNumber == 0) {
-    selected_st <- levels(as.factor(as.character(data_by_species$ST)))[ed$pointNumber+1]
-    data_matrix <- data_by_species[data_by_species$ST %in% selected_st, ]
-    st_name <- as.character(selected_st)
-    main_title <- paste(st_name)
+  if(! is.null(convergence_st_selected())) {
+    data_matrix <- data_by_species[data_by_species$ST %in% convergence_st_selected(), ]
+    main_title <- convergence_st_selected()
   } else {
     if (nrow(data_by_species) <= 30) {
       # Display all STs
