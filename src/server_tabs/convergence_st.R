@@ -23,6 +23,14 @@ observeEvent(
     }
   }
 )
+observeEvent(
+  input$convergence_st_reset_button,
+  {
+    convergence_st_selected(NULL)
+    updateTextInput(session, 'convergence_st_text', value='')
+  }
+)
+
 # Scatter plot
 output$convergence_st_scatter <- renderPlotly({
   d <- data_loaded$kleborate[data_selected$rows, ] %>% 

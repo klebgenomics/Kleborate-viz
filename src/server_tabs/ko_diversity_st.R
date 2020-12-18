@@ -23,6 +23,13 @@ observeEvent(
     }
   }
 )
+observeEvent(
+  input$ko_diversity_st_reset_button,
+  {
+    ko_diversity_st_selected(NULL)
+    updateTextInput(session, 'ko_diversity_st_text', value='')
+  }
+)
 
 # K vs O scatter plot by ST
 scatter_plot_data <- reactive({

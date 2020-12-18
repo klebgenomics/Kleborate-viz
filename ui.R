@@ -141,6 +141,10 @@ ui <- fluidPage(
               style='margin-bottom: 5px',
               'convergence_st_text_button', 'Select'
             ),
+            actionButton(
+              style='margin-bottom: 5px',
+              'convergence_st_reset_button', 'Reset'
+            ),
           ),
           br(),
           h4('Genotypes of selected genomes'),
@@ -161,6 +165,10 @@ ui <- fluidPage(
             actionButton(
               style='margin-bottom: 5px',
               'ko_diversity_st_text_button', 'Select'
+            ),
+            actionButton(
+              style='margin-bottom: 5px',
+              'ko_diversity_st_reset_button', 'Reset'
             ),
           ),br(),
           h4('Genotypes of selected genomes'),
