@@ -2,7 +2,7 @@ observe({
   # Kleborate data required
   # NOTE: probably a better way to access all tabs except 'Welcome'
   if (is.null(data_loaded$kleborate)) {
-    hideTab(inputId="primary", target="Summary by species")
+    hideTab(inputId="primary", target="Summary")
     hideTab(inputId="primary", target="Genotypes by ST")
     hideTab(inputId="primary", target="Genotypes by metadata")
     hideTab(inputId="primary", target="Convergence by ST")
@@ -12,7 +12,7 @@ observe({
     hideTab(inputId="primary", target="Cumulative K/O prevalence")
     hideTab(inputId="primary", target="MICs by AMR genotype")
   } else {
-    showTab(inputId="primary", target="Summary by species")
+    showTab(inputId="primary", target="Summary")
     showTab(inputId="primary", target="Genotypes by ST")
     showTab(inputId="primary", target="Convergence by ST")
   }

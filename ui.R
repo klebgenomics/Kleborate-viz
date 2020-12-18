@@ -44,11 +44,6 @@ ui <- fluidPage(
         ),
       ),
       wellPanel(
-        # Data summary
-        h4('Data Summary'),
-        tableOutput('summary_data')
-      ),
-      wellPanel(
         h4('Subset for Analysis'),
         # Species, resistance, virulence selectors
         uiOutput('species_display_radio_list'),
@@ -96,18 +91,34 @@ ui <- fluidPage(
           )
         ),
         tabPanel(
-          'Summary by species',
-          br(),
-          h4('Resistance scores'),
-          plotOutput('species_resistance_plot', height='400'),
-          br(),
-          h4('Virulence scores'),
-          plotOutput('species_virluence_plot', height='400'),
+          'Summary',
+          # Data summary
           br(),
           div(
-            style='position:absolute;right:1em;',
-            downloadButton(outputId='summary_species_plots_download', label='Download plots')
-          )
+            align='center',
+            h4('Data Summary'),
+            tableOutput('summary_data')
+          ),
+          h4('Resistance virulence scores'),
+          fluidRow(
+            column(
+              6,
+              align='center',
+              plotlyOutput('res_vir_heatmap', height='300px', width='400px')
+            ),
+            column(
+              6,
+              align='center',
+              plotlyOutput('res_vir_st_barplot', height='300px'),
+              br(),
+              uiOutput('summary_st_count')
+            )
+          ),
+          br(),
+          div(
+            align='center',
+            plotlyOutput('res_vir_barplot', height='700px')
+          ),
         ),
         tabPanel(
           'Genotypes by ST',
@@ -120,23 +131,10 @@ ui <- fluidPage(
             label='Annotation variable',
             choices=v.genotype_var_choices
           ),
-          downloadButton(
-            outputId='genotype_st_plot_download',
-            label='Download the plot'
-          ),
-          downloadButton(
-            outputId='genotype_st_data_download',
-            label='Download the data'
-          ),
           column(
             8,
             wellPanel(uiOutput('genotype_st_count'))
           ),
-          column(
-            12,
-            h4('Virulence and resistance scores (click to select a subset)'),
-            plotlyOutput('res_vir_heatmap', width ='500px', height='400px')
-          )
         ),
         tabPanel(
           'Convergence by ST',

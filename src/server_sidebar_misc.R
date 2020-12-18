@@ -1,14 +1,4 @@
 # Dynamic misc. content
-# Data summary in side bar
-summary_data <- reactive({
-  n.vs <- c('Mean virulence score', round(mean(data_loaded$kleborate$virulence_score), 2))
-  n.vr <- c('Mean resistance score', round(mean(data_loaded$kleborate$resistance_score), 2))
-  n.us <- c('Total unique species', length(unique(data_loaded$kleborate$species)))
-  n.st <- c('Total STs', length(unique(data_loaded$kleborate$ST)))
-  d <- t(data.frame(n.us, n.st, n.vs, n.vr))
-  return(d)
-})
-output$summary_data <- renderTable(summary_data(), colnames=F)
 # List of species for sidebar list
 output$species_display_radio_list <- renderUI({
   v.labels <- lapply(v.kpsc_names, function(s.species) {
