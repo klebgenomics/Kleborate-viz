@@ -1,6 +1,12 @@
 # User ST selection
 convergence_st_selected <- reactiveVal()
 observeEvent(
+  data_loaded$kleborate,
+  {
+    convergence_st_selected(NULL)
+  }
+)
+observeEvent(
   input$convergence_st_text_button,
   {
     v.sts <- unique(data_loaded$kleborate$ST)
