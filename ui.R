@@ -218,12 +218,7 @@ ui <- fluidPage(
           h4('Year selector'),
           fluidRow(
             align='center',
-            sliderInput(
-              inputId='year_range_slider',
-              label='',
-              sep='',
-              min=0, max=50, step=1, value=c(0, 50)
-            ),
+            uiOutput('temporal_trends_year_slider'),
           ),
           br(),
           h4('Virulence and resistance scores'),

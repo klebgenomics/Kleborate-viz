@@ -2,13 +2,12 @@
 dload_listen <- reactive({
   list(data_loaded$kleborate, data_loaded$metadata)
 })
-
 observeEvent(
   dload_listen(),
   {
     v.years <- as.numeric(data_loaded$metadata$Year)
     v.years <- v.years[!is.na(v.years)]
-    updateSliderInput(session, 'year_range_slider', min=min(v.years), max=max(v.years), value=c(min(v.years), max(v.years)))
+    updateSliderInput(session, 'temporal_trends_year_slider', min=min(v.years), max=max(v.years), value=c(min(v.years), max(v.years)))
   }
 )
 metadata_summary_year <- reactive({
