@@ -85,6 +85,10 @@ output$ko_diversity_st_heatmap <- renderPlotly({
   k_vs_o <- table(d$K_locus, d$O_locus)
   k_vs_o <- k_vs_o[rowSums(k_vs_o)>0,colSums(k_vs_o)>0,drop=FALSE]
   k_vs_o <- matrix(k_vs_o, byrow=TRUE, ncol=ncol(k_vs_o), dimnames=list(rownames(k_vs_o), colnames(k_vs_o)))
+  # Ensure we have some data
+  if (nrow(k_vs_o) < 1){
+    return(NULL)
+  }
   # Create heatmap
   heatmaply(
     k_vs_o,
