@@ -59,10 +59,11 @@ output$genotype_metadata_dist_plot <- renderPlotly({
     # Set annotation column
     d$annotation <- ifelse(d[[input$genotype_metadata_dist_plot_anno]]=='-', 'absent', 'present')
   }
-  # Order by group size
+  # Order by group size and select
   d$group <- d[[input$genotype_metadata_dist_plot_group]]
   v.group_counts <- sort(table(d$group), decreasing=TRUE)
   v.group_order <- names(v.group_counts)
+  v.group_order <- v.group_order[1:input$genotype_metadata_group_count]
   d$group <- factor(d$group, levels=v.group_order)
   # Create plot
   g <- ggplot(data=d, aes(x=group, fill=annotation))
@@ -83,4 +84,17 @@ output$genotype_metadata_dist_plot <- renderPlotly({
   g <- g + scale_y_continuous(expand=c(0, 0))
   g <- g + scale_fill_manual(values=v.colours, breaks=names(v.colours), name=s.anno_name, drop=FALSE)
   ggplotly(g)
+})
+# Group number slider
+output$genotype_metadata_group_count <- renderUI({
+  d <- inner_join(data_loaded$metadata, data_loaded$kleborate[data_selected$rows, ])
+  v.groups <- unique(d[[input$genotype_metadata_dist_plot_group]])
+  sliderInput(
+    inputId='genotype_metadata_group_count',
+    label='Number of groups:',
+    min=1,
+    max=length(v.groups),
+    value=min(20, length(v.groups)),
+    step=1
+  )
 })

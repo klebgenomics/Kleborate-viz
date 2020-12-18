@@ -155,15 +155,20 @@ ui <- fluidPage(
             label='Annotation variable',
             choices=v.genotype_var_choices
           ),
-          selectInput(
-            inputId='genotype_metadata_dist_plot_group',
-            label='Group variable',
-            choices=NULL
+          fluidRow(
+            column(
+              6,
+              selectInput(
+                inputId='genotype_metadata_dist_plot_group',
+                label='Group variable',
+                choices=NULL
+              ),
+            ),
+            column(
+              6,
+              uiOutput('genotype_metadata_group_count')
+            ),
           ),
-          #          column(
-          #            8,
-          #            wellPanel(uiOutput('genotype_group_count'))
-          #          ),
         ),
         tabPanel(
           'Sample trends',
