@@ -1,51 +1,53 @@
+# User ST selection
+convergence_st_selected <- reactiveVal()
+observeEvent(
+  input$convergence_st_text_button,
+  {
+    v.sts <- unique(data_loaded$kleborate$ST)
+    if (! tolower(input$convergence_st_text) %in% tolower(v.sts)) {
+      showNotification(
+        paste('Could not find', input$convergence_st_text, 'in provided dataset'),
+        type='error',
+        duration=NULL
+      )
+    } else {
+      v.selector <- which(tolower(v.sts) %in% tolower(input$convergence_st_text))
+      convergence_st_selected(v.sts[v.selector])
+    }
+  }
+)
 # Scatter plot
 output$convergence_st_scatter <- renderPlotly({
-  d <- data_loaded$kleborate[data_selected$rows, ] %>% 
+  d <- global_kleborate %>% 
     group_by(ST) %>%
     summarise(
       mean_vir=mean(virulence_score),
       mean_res=mean(resistance_score),
       total=n()
     )
-  marker_function <- function(total) {
-    if (nrow(data_loaded$kleborate[data_selected$rows, ])>100) {
-      return(log(total, 2) * 4)
-    } else {
-      return (total * 10)
-    }
-  }
-  # Create scatterplot
-  p <- plot_ly(source='st_scatter') %>% 
-    add_trace(
-      data=d,
-      x=~mean_vir,
-      y=~mean_res,
-      text=~ST, 
-      type='scatter',
-      mode='markers',
-      marker=list(size=~marker_function(total), opacity=0.5),
-      name=' '
-    ) %>%
-    layout(showlegend=FALSE,
-      xaxis=list(title='Mean virulence score', color = '#000000'),
-      yaxis=list(title='Mean resistance score', color = '#000000')
-    )
-  # Add new trace with colored point if there is event data
+  d <- d[!is.na(d$ST), ]
+  # Handle click events
   ed <- event_data('plotly_click', source='st_scatter')
   if(is.null(ed) == FALSE && ed$curveNumber == 0) {
-    selected_st <- d[ed$pointNumber+1, ]
-    p <- p %>% add_trace(
-      data=selected_st,
-      x=~mean_vir,
-      y=~mean_res,
-      text=~ST,
-      type='scatter',
-      mode='markers',
-      marker=list(size=~marker_function(total), opacity=0.5),
-      name=' '
-    )
+    convergence_st_selected(ed$key)
+    # Immediately clear click event and text input
+    runjs("Shiny.onInputChange('plotly_click-st_scatter', 'null');")
+    updateTextInput(session, 'convergence_st_text', value='')
   }
-  return(p)
+  # Annotate selected ST
+  if (!is.null(convergence_st_selected())) {
+    d$annotation <- ifelse(d$ST==convergence_st_selected(), 'selected', 'notselected')
+  } else {
+    d$annotation <- 'notselected'
+  }
+  v.colours <- c('selected'='red', 'notselected'='black')
+  # Render
+  g <- ggplot(d, aes(x=mean_vir, y=mean_res, size=total, colour=annotation, key=ST)) + geom_point(alpha=0.5)
+  g <- g + theme_bw() + theme(legend.position='none')
+  g <- g + scale_colour_manual(values=v.colours, breaks=names(v.colours))
+  g <- g + xlim(c(0, 5)) + ylim(c(0, 3))
+  g <- g + xlab('Mean virulence score') + ylab('Mean resistance score')
+  ggplotly(g, source='st_scatter')
 })
 # Clustered heatmap
 output$convergence_st_heatmap <- renderPlotly({

@@ -131,6 +131,17 @@ ui <- fluidPage(
           h4('Mean virulence and resistance scores by ST (click to select genomes)'),
           plotlyOutput('convergence_st_scatter', height='400px'),
           br(),
+          div(
+            style='display: inline-block',
+            textInput('convergence_st_text', 'Select ST:', placeholder='e.g. ST512'),
+          ),
+          div(
+            style='display: inline-block',
+            actionButton(
+              style='margin-bottom: 5px',
+              'convergence_st_text_button', 'Select'
+            ),
+          ),
           br(),
           h4('Genotypes of selected genomes'),
           plotlyOutput('convergence_st_heatmap', height='400px')
