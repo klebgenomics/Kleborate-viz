@@ -34,21 +34,56 @@ observeEvent(
     data_selected$rows <- compute_row_selection()
   }
 )
-# Resistance score slider
-observeEvent(
-  input$res_score_range_slider,
-  {
-    data_selected$resistance_min <- input$res_score_range_slider[1]
-    data_selected$resistance_max <- input$res_score_range_slider[2]
+# Resistance, virulence selector
+output$res_var_heatmap <- renderPlotly({
+  # Check for events
+  ed <- event_data('plotly_click', source='res_vir_heatmap')
+  if(is.null(ed) == FALSE) {
+    selected_st <- d[ed$pointNumber+1, ]
+    data_selected$resistance_min <- data_selected$resistance_max <- ed$y
+    data_selected$virulence_min <- data_selected$virulence_max <- ed$x
+    # Immediately clear click event (otherwise it prevents any changes to data_selected res/vir values)
+    runjs("Shiny.onInputChange('plotly_click-res_vir_heatmap', 'null');")
     data_selected$rows <- compute_row_selection()
   }
-)
-# Resistance score slider
-observeEvent(
-  input$vir_score_range_slider,
-  {
-    data_selected$virulence_min <- input$vir_score_range_slider[1]
-    data_selected$virulence_max <- input$vir_score_range_slider[2]
+  ed <- event_data('plotly_selected', source='res_vir_heatmap')
+  if(is.null(ed) == FALSE && length(ed) > 0 && nrow(ed) > 0) {
+    data_selected$resistance_min <- min(ed$y)
+    data_selected$resistance_max <- max(ed$y)
+    data_selected$virulence_min <- min(ed$x)
+    data_selected$virulence_max <- max(ed$x)
+    # Immediately clear click event (otherwise it prevents any changes to data_selected res/vir values)
+    runjs("Shiny.onInputChange('plotly_selected-res_vir_heatmap', 'null');")
     data_selected$rows <- compute_row_selection()
   }
-)
+  
+  # Count scores
+  d <- table(
+    data_loaded$kleborate$resistance_score, 
+    data_loaded$kleborate$virulence
+  )
+  d <- melt(d)
+  colnames(d) <- c('Resistance Score', 'Virulence Score', 'Count')
+  # Set selected and stroke
+  v.selector_res <- d$`Resistance Score` >= data_selected$resistance_min & d$`Resistance Score` <= data_selected$resistance_max
+  v.selector_vir <- d$`Virulence Score` >= data_selected$virulence_min & d$`Virulence Score` <= data_selected$virulence_max
+  d$selected <- v.selector_res & v.selector_vir
+  d$stroke <- ifelse(d$selected, 1, 0)
+  # Render plot
+  v.colours <- colorRampPalette(c('#05668d', '#028090', '#00a896', '#02c39a'))(100)
+  # NOTE: ggplotly does not honor fill for pch=21 points, had to add separate layers for point and outline
+  g <- ggplot(d, aes(x=`Virulence Score`, y=`Resistance Score`))
+  g <- g + geom_point(aes(stroke=stroke), pch=21, size=6.2)
+  g <- g + geom_point(aes(colour=Count), size=5.5)
+  g <- g + theme_bw() + theme(legend.position='none', panel.background=element_rect(fill='#f5f5f5'),
+                              plot.background=element_rect(fill='#f5f5f5'))
+  g <- g + scale_x_continuous(breaks=0:5)
+  g <- g + scale_colour_gradientn(colours=v.colours, limits=c(0, max(d$Count)))
+  g <- g + expand_limits(x=c(-0.5, 5.5), y=c(-0.5, 3.5))
+  g <- ggplotly(g, source='res_vir_heatmap') %>%   
+    layout(xaxis=list(fixedrange=TRUE), yaxis=list(fixedrange=TRUE), dragmode='select') %>% 
+    config(displayModeBar=FALSE)
+  g$x$data[[1]]$hoverinfo <- 'none'
+  g$x$data[[2]]$hoverinfo <- 'none'
+  g
+})
