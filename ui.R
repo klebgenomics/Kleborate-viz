@@ -98,31 +98,18 @@ ui <- fluidPage(
         tabPanel(
           'Summary by species',
           br(),
-          h4('Resistance scores'),
-          plotOutput('species_resistance_plot', height='400'),
-          br(),
-          h4('Virulence scores'),
-          plotOutput('species_virluence_plot', height='400'),
-          br(),
-          div(
-            style='position:absolute;right:1em;',
-            downloadButton(outputId='summary_species_plots_download', label='Download plots')
-          )
+          plotlyOutput('res_vir_barplot', height='700px'),
         ),
         tabPanel(
           'Genotypes by ST',
           br(),
           h4('Count of genomes for common STs'),
-          plotOutput('genotype_st_dist_plot', height='400px'),
+          plotlyOutput('genotype_st_dist_plot', height='400px'),
           br(),
           selectInput(
             inputId='genotype_st_dist_plot_anno',
             label='Annotation variable',
             choices=v.genotype_var_choices
-          ),
-          downloadButton(
-            outputId='genotype_st_plot_download',
-            label='Download the plot'
           ),
           downloadButton(
             outputId='genotype_st_data_download',
@@ -161,7 +148,7 @@ ui <- fluidPage(
           'Genotypes by metadata',
           br(),
           h4('Genome distributions across metadata'),
-          plotOutput('genotype_metadata_dist_plot', height='400px'),
+          plotlyOutput('genotype_metadata_dist_plot', height='400px'),
           br(),
           selectInput(
             inputId='genotype_metadata_dist_plot_anno',

@@ -1,5 +1,5 @@
 # ST distribution plot 
-genotype_st_dist_plot <- reactive({
+output$genotype_st_dist_plot <- renderPlotly({
   # Return until input ui element renders and has a default value
   if (is.null(input$genotype_st_count)) {
     return()
@@ -87,9 +87,8 @@ genotype_st_dist_plot <- reactive({
   g <- g + ylab('Number of genomes') + xlab('ST')
   g <- g + scale_y_continuous(expand=c(0, 0))
   g <- g + scale_fill_manual(values=v.colours, breaks=names(v.colours), name=s.anno_name, drop=FALSE)
-  return(g)
+  ggplotly(g)
 })
-output$genotype_st_dist_plot <- renderPlot ({ print(genotype_st_dist_plot()) })
 # ST number slider
 output$genotype_st_count <- renderUI({
   sliderInput(
@@ -100,15 +99,6 @@ output$genotype_st_count <- renderUI({
     value=min(20, length(unique(data_loaded$kleborate$ST)))
   )
 })
-# Download plot button
-output$genotype_st_plot_download <- downloadHandler(
-  filename=function() {'genotype_st_dist.pdf'},
-  content=function(file) {
-    pdf(file, width=10, height=6)
-    print(genotype_st_dist_plot())
-    dev.off()
-  }
-)
 # Download data button
 output$genotype_st_data_download <- downloadHandler(
   filename=function() {

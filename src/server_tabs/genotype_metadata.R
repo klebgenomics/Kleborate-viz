@@ -7,7 +7,7 @@ observeEvent(
   }
 )
 # Genome distribution by metadata plot
-genotype_metadata_dist_plot <- reactive({
+output$genotype_metadata_dist_plot <- renderPlotly({
   # Return until input ui element renders and has a default value
   if (is.null(input$genotype_metadata_dist_plot_anno)) {
     return()
@@ -82,6 +82,5 @@ genotype_metadata_dist_plot <- reactive({
   g <- g + ylab('Number of genomes') + xlab(input$genotype_metadata_dist_plot_group)
   g <- g + scale_y_continuous(expand=c(0, 0))
   g <- g + scale_fill_manual(values=v.colours, breaks=names(v.colours), name=s.anno_name, drop=FALSE)
-  return(g)
+  ggplotly(g)
 })
-output$genotype_metadata_dist_plot <- renderPlot ({ print(genotype_metadata_dist_plot()) })
