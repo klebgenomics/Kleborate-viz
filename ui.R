@@ -52,16 +52,7 @@ ui <- fluidPage(
         h4('Subset for Analysis'),
         # Species, resistance, virulence selectors
         uiOutput('species_display_radio_list'),
-        sliderInput(
-          inputId='res_score_range_slider',
-          label='Resistance scores:',
-          min=0, max=3, step=1, value=c(0, 3)
-        ),
-        sliderInput(
-          inputId='vir_score_range_slider',
-          label='Virulence scores:',
-          min=0, max=5, step=1, value=c(0, 5)
-        ),
+        plotlyOutput('res_var_heatmap', height='300px'),
       ),
     ),
     column(
