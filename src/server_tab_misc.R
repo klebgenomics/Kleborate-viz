@@ -20,10 +20,14 @@ observe({
   if (is.null(data_loaded$metadata)) {
     hideTab(inputId="primary", target="Genotypes by metadata")
     hideTab(inputId="primary", target="Sample trends")
-    hideTab(inputId="primary", target="Temporal trends")
   } else {
     showTab(inputId="primary", target="Genotypes by metadata")
     showTab(inputId="primary", target="Sample trends")
+  }
+  # Metadata required with 'Year' column
+  if (! 'Year' %in% colnames(data_loaded$metadata)) {
+    hideTab(inputId="primary", target="Temporal trends")
+  } else {
     showTab(inputId="primary", target="Temporal trends")
   }
   # Kleborate data +/- metadata required

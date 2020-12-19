@@ -187,6 +187,11 @@ observeEvent(
       reset('metadata_file')
       return()
     }
+    # Set standard year column name
+    if ('year' %in% tolower(colnames(d))) {
+      v.selector <- which(tolower(colnames(d))=='year')
+      colnames(d)[v.selector] <- 'Year'
+    }
     data_loaded$metadata <- d
   }
 )
