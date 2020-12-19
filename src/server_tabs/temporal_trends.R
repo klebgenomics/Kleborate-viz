@@ -30,9 +30,10 @@ metadata_summary_year <- reactive({
       colistin_resistance_gene_prevalence = 1-(sum(Col_acquired == "-")/n()), 
       colistin_resistance_mutation_prevalence = 1-(sum(Col_mutations == "-")/n()), 
       carbapenemase_prevalence = 1-(sum(Bla_Carb_acquired == "-")/n())
-    ) %>%
-    filter(Year != "unknown") -> d
+    ) -> d
+  # Cast to numeric and filter non-numerics
   d$Year <- as.numeric(d$Year)
+  d <- d[!is.na(d$Year), ]
   # Apply filter and melt data for plotting
   d <- d[d$Year>=input$temporal_trends_year_slider[1] & d$Year<=input$temporal_trends_year_slider[2], ]
   d <- melt(d, id.vars=c('Year', 'n'))
@@ -41,13 +42,15 @@ metadata_summary_year <- reactive({
 
 # User input
 output$temporal_trends_year_slider <- renderUI({
+  v.years <- as.numeric(data_loaded$metadata$Year)
+  v.years <- v.years[!is.na(v.years)]
   sliderInput(
     inputId='temporal_trends_year_slider',
     label='',
     sep='',
-    min=min(data_loaded$metadata$Year),
-    max=max(data_loaded$metadata$Year),
-    value=c(min(data_loaded$metadata$Year), max(data_loaded$metadata$Year)),
+    min=min(v.years),
+    max=max(v.years),
+    value=c(min(v.years), max(v.years)),
     step=1
   )
 })
