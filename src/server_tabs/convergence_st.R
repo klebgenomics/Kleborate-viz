@@ -66,8 +66,9 @@ output$convergence_st_scatter <- renderPlotly({
 })
 # Clustered heatmap
 output$convergence_st_heatmap <- renderPlotly({
-  # Determine display data
+  #  Set NA ST to string and determine display data
   d <- data_loaded$kleborate[data_selected$rows, ]
+  d$ST[is.na(d$ST)] <- 'NA'
   if (! is.null(convergence_st_selected())) {
     # Display user selected
     d <- d[d$ST==convergence_st_selected(), ]
