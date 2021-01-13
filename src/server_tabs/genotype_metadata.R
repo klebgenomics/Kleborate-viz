@@ -63,8 +63,8 @@ output$genotype_metadata_dist_plot <- renderPlotly({
   d$group <- d[[input$genotype_metadata_dist_plot_group]]
   v.group_counts <- sort(table(d$group), decreasing=TRUE)
   v.group_order <- names(v.group_counts)
-  v.group_order <- v.group_order[1:input$genotype_metadata_group_count]
   d$group <- factor(d$group, levels=v.group_order)
+  d <- d[d$group %in% v.group_order[1:input$genotype_metadata_group_count], ]
   # Create plot
   g <- ggplot(data=d, aes(x=group, fill=annotation))
   g <- g + geom_bar()
