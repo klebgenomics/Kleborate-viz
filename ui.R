@@ -154,7 +154,9 @@ ui <- fluidPage(
           'K/O diversity by ST',
           br(),
           h4('K and O locus diversity by ST (click to select subset)'),
-          plotlyOutput('ko_diversity_st_scatter', height='400px'),
+          plotlyOutput('k_locus_barplot', height='400px'),
+          br(),
+          plotlyOutput('o_locus_barplot', height='400px'),
           br(),
           div(
             style='display: inline-block',
@@ -170,7 +172,22 @@ ui <- fluidPage(
               style='margin-bottom: 5px',
               'ko_diversity_st_reset_button', 'Reset'
             ),
-          ),br(),
+          ),
+          fluidRow(
+            column(
+              6,
+              selectInput(
+                inputId='ko_dist_plot_anno',
+                label='Annotation variable',
+                choices=v.genotype_var_choices
+              ),
+            ),
+            column(
+              6,
+              uiOutput('ko_diversity_locus_count')
+            ),
+          ),
+          br(),
           h4('Genotypes of selected genomes'),
           plotlyOutput('ko_diversity_st_heatmap', height='600px')
         ),

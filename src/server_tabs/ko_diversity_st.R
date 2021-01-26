@@ -30,53 +30,139 @@ observeEvent(
     updateTextInput(session, 'ko_diversity_st_text', value='')
   }
 )
-
-# K vs O scatter plot by ST
-scatter_plot_data <- reactive({
-  data_loaded$kleborate[data_selected$rows, ] %>%
-    mutate(K_locus = if_else(K_locus_confidence %in% c('Low', 'None'), 'unknown', K_locus)) %>%
-    mutate(O_locus = if_else(O_locus_confidence %in% c('Low', 'None'), 'unknown', O_locus)) -> high_confidence_loci
-  # Get diversity
-  v.st_k <- table(high_confidence_loci$ST, high_confidence_loci$K_locus)
-  v.st_o <- table(high_confidence_loci$ST, high_confidence_loci$O_locus)
-  v.div_k <- unlist(diversity(v.st_k, index='simpson'))
-  v.div_o <- unlist(diversity(v.st_o, index='simpson'))
-  # Filter shared STs and order by ST
-  v.st <- unique(c(names(v.div_k), names(v.div_o)))
-  v.div_k <- v.div_k[match(names(v.div_k), v.st)]
-  v.div_o <- v.div_o[match(names(v.div_o), v.st)]
-  # Get coefficients
-  d <- data.frame(ST=v.st, div_k=v.div_k, div_o=v.div_o)
-  d$eff_k <- 1/(1-d$div_k)
-  d$eff_o <- 1/(1-d$div_o)
-  d$total <- rowSums(v.st_k)
-  return(d)
+output$ko_diversity_locus_count <- renderUI({
+  v.k_loci <- length(unique(data_loaded$kleborate$K_locus))
+  v.o_loci <- length(unique(data_loaded$kleborate$o_locus))
+  v.ko_loci_max <- max(v.k_loci, v.o_loci)
+  sliderInput(
+    inputId='ko_diversity_locus_count',
+    label='Number of loci:',
+    min=1,
+    max=v.ko_loci_max,
+    value=min(20, v.ko_loci_max),
+    step=1
+  )
 })
-output$ko_diversity_st_scatter <- renderPlotly({
-  # Handle click events
-  ed <- event_data('plotly_click', source='ko_diversity_scatter')
-  if(is.null(ed) == FALSE && ed$curveNumber == 0) {
-    ko_diversity_st_selected(ed$key)
-    # Immediately clear click event and text input
-    runjs("Shiny.onInputChange('plotly_click-ko_diversity_scatter', 'null');")
-    updateTextInput(session, 'ko_diversity_scatter', value='')
-  }
-  # Annotate selected ST
-  d <- scatter_plot_data()
-  if (!is.null(ko_diversity_st_selected())) {
-    d$annotation <- ifelse(d$ST==ko_diversity_st_selected(), 'selected', 'notselected')
+get_plot_metadata_annotation <- function(d, s.annotation_name) {
+  # Get configuration for plot type
+  if (s.annotation_name=='virulence_score') {
+    # Determine colours and label names
+    v.virulence_score_labels <- paste0(names(v.virulence_score_names), ": ", v.virulence_score_names)
+    names(v.virulence_score_labels) <- names(v.virulence_score_names)
+    v.colours <- v.virulence_score_colours[names(v.virulence_score_labels)]
+    names(v.colours) <- v.virulence_score_labels
+    # Set annotation column
+    d$annotation <- v.virulence_score_labels[as.character(d$virulence_score)]
+    s.anno_name <- 'Virulence Score'
+  } else if (s.annotation_name=='resistance_score') {
+    # Determine colours and label names
+    v.resistance_score_labels <- paste0(names(v.resistance_score_names), ": ", v.resistance_score_names)
+    names(v.resistance_score_labels) <- names(v.resistance_score_names)
+    v.colours <- v.resistance_score_colours[names(v.resistance_score_labels)]
+    names(v.colours) <- v.resistance_score_labels
+    # Set annotation column
+    d$annotation <- v.resistance_score_labels[as.character(d$resistance_score)]
+    s.anno_name <- 'Resistance Score'
+  } else if (s.annotation_name=='Bla_ESBL_simplified') {
+    d$annotation <- d$Bla_ESBL_simplified
+    # NOTE: placeholder for colours
+    n <- length(unique(d$annotation))
+    v.colours <- v.ESBL_allele_colours
+    names(v.colours) <- unique(d$annotation)
+    s.anno_name <- 'Bla ESBL'
+  } else if (s.annotation_name=='Bla_Carb_simplified') {
+    d$annotation <- d$Bla_Carb_simplified
+    n <- length(unique(d$annotation))
+    v.colours <- v.carb_allele_colours #hcl(h=seq(15, 375, length=n+1), l=65, c=100)[1:n]
+    names(v.colours) <- unique(d$annotation)
+    s.anno_name <- 'Bla Carb'
   } else {
-    d$annotation <- 'notselected'
+    if (s.annotation_name %in% v.virulence_loci) {
+      v.colours <- c("grey", "#2171b5")
+      s.anno_name <- names(v.virulence_loci)[v.virulence_loci==s.annotation_name]
+    } else if (s.annotation_name %in% v.resistance_classes & !s.annotation_name %in% c('Bla_ESBL_simplified', 'Bla_Carb_simplified')) {
+      v.colours <- c("grey", "#ef3b2c")
+      s.anno_name <- names(v.resistance_classes)[v.resistance_classes==s.annotation_name]
+    } else {
+      stop('Got bad annotation variable')
+    }
+    names(v.colours) <- c('absent', 'present')
+    # Set annotation column
+    d$annotation <- ifelse(d[[s.annotation_name]]=='-', 'absent', 'present')
   }
-  v.colours <- c('selected'='red', 'notselected'='black')
-  # Render
-  g <- ggplot(d, aes(x=eff_k, y=eff_o, size=total*2, colour=annotation, key=ST)) + geom_point(alpha=0.5)
-  g <- g + theme_bw() + theme(legend.position='none')
-  g <- g + scale_colour_manual(values=v.colours, breaks=names(v.colours))
-  g <- g + xlab('K locus diversity (effective Simpson\'s)') + ylab('O locus diversity (effective Simpson\'s')
-  ggplotly(g, source='ko_diversity_scatter')
+  return(list(d=d, colours=v.colours, anno_name=s.anno_name))
+}
+create_locus_barplot <- function(d, s.locus, s.anno_name, v.colours) {
+  if (! s.locus %in% c('K_locus', 'O_locus')) {
+    stop('Got bad locus')
+  }
+  d$locus <- d[[s.locus]]
+  # Order locus by group size
+  v.loci_counts <- sort(table(d$locus), decreasing=TRUE)
+  v.loci_order <- names(v.loci_counts)
+  d$locus <- factor(d$locus, levels=v.loci_order)
+  # Select first n loci
+  d <- d[d$locus %in% v.loci_order[1:input$ko_diversity_locus_count], ]
+  # Create plot
+  g <- ggplot(data=d, aes(x=locus, fill=annotation))
+  g <- g + geom_bar()
+  g <- g + theme(
+    axis.text.x=element_text(colour='black', size=12, angle=45, hjust=1),
+    axis.text.y=element_text(colour='black', size=12),
+    axis.title.y = element_blank(),
+    axis.title.x = element_text(colour = 'black', size = 16),
+    legend.text = element_text(colour = 'black', size= 12),
+    legend.title = element_text(colour = 'black', size = 16),
+    panel.background=element_blank(),
+    panel.border=element_blank(),
+    axis.line=element_line(colour='black')
+  )
+  g <- g + ylab('Number of genomes') + xlab(s.locus)
+  g <- g + scale_y_continuous(expand=c(0, 0))
+  g <- g + scale_fill_manual(values=v.colours, breaks=names(v.colours), name=s.anno_name, drop=FALSE)
+  ggplotly(g)
+}
+output$k_locus_barplot <- renderPlotly({
+  # Return until input ui element renders and has a default value
+  if (is.null(input$ko_diversity_locus_count)) {
+    return()
+  }
+  # Prepare data
+  if (!is.null(ko_diversity_st_selected())) {
+    d <- d[d$ST==ko_diversity_st_selected(), ]
+    d <- d[!is.na(d$strain), ]
+  }
+  d$K_locus_low_filter <- ifelse(d$K_locus_confidence %in% c('None', 'Low'), 'Unknown', d$K_locus_confidence)
+  d$O_locus_low_filter <- ifelse(d$K_locus_confidence %in% c('None', 'Low'), 'Unknown', d$O_locus_confidence)
+  v.prep <- get_plot_metadata_annotation(d, input$ko_dist_plot_anno)
+  d <- v.prep$d
+  v.colours <- v.prep$colours
+  s.anno_name <- v.prep$anno_name
+  # Create plot
+  g <- create_locus_barplot(d, 'K_locus', s.anno_name, v.colours)
+  return(g)
 })
-
+output$o_locus_barplot <- renderPlotly({
+  # Return until input ui element renders and has a default value
+  if (is.null(input$ko_diversity_locus_count)) {
+    return()
+  }
+  # Prepare data
+  d <- data_loaded$kleborate[data_selected$rows, ]
+  if (!is.null(ko_diversity_st_selected())) {
+    d <- d[d$ST==ko_diversity_st_selected(), ]
+    d <- d[!is.na(d$strain), ]
+  }
+  d$K_locus_low_filter <- ifelse(d$K_locus_confidence %in% c('None', 'Low'), 'Unknown', d$K_locus_confidence)
+  d$O_locus_low_filter <- ifelse(d$K_locus_confidence %in% c('None', 'Low'), 'Unknown', d$O_locus_confidence)
+  v.prep <- get_plot_metadata_annotation(d, input$ko_dist_plot_anno)
+  d <- v.prep$d
+  v.colours <- v.prep$colours
+  s.anno_name <- v.prep$anno_name
+  # Create plot
+  g <- create_locus_barplot(d, 'O_locus', s.anno_name, v.colours)
+  return(g)
+})
 # Heatmap
 output$ko_diversity_st_heatmap <- renderPlotly({
   # Get data
