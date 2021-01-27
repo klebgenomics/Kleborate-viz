@@ -111,6 +111,7 @@ v.resistance_classes <- list(
 )
 v.genotype_var_choices <- list(
   'Summary'=list(
+    'Clone type'='clone_type',
     'Resistance score'='resistance_score',
     'Virulence score'='virulence_score'    
   ),
