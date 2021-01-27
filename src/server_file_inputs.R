@@ -114,8 +114,8 @@ kleborate_validate <- function(d) {
 kleborate_summaries <- function(d) {
   d %>%
     # assign clone types
-    mutate(clone_type = if_else(ST %in% MDR_clones_list, "MDR", "unassigned")) %>%
-    mutate(clone_type = if_else(ST %in% hv_clones_list, "Hv", clone_type)) %>%
+    mutate(clone_type = if_else(ST %in% v.MDR_clones_list, "MDR", "unassigned")) %>%
+    mutate(clone_type = if_else(ST %in% v.hv_clones_list, "Hv", clone_type)) %>%
     # simplify omp
     mutate(Omp_mutations_simplified = str_replace_all(Omp_mutations, "-[0-9]+%", "-trunc"), Omp_simple = if_else(Omp_mutations == "-", "wt", "mut")) %>%
     # simplify carbapenemases and combine with omp

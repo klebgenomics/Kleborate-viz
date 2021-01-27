@@ -132,6 +132,30 @@ v.resistance_score_names <- c(
   '3'='Carb+, Col+'
 )
 
+# Clone type definitions
+v.MDR_clones_list = c(
+  "ST11",
+  "ST258",
+  "ST512",
+  "ST14",
+  "ST15",
+  "ST17",
+  "ST20",
+  "ST29",
+  "ST37",
+  "ST101",
+  "ST147",
+  "ST307"
+)
+v.hv_clones_list = c(
+  "ST23",
+  "ST86",
+  "ST66",
+  "ST380",
+  "ST25",
+  "ST65"
+)
+
 # Colours
 v.kpsc_colours <- c(
   'Klebsiella pneumoniae'='#E67E78',
@@ -193,14 +217,11 @@ v.resistance_score_colours <- c(
   '2'='#f7786b',
   '3'='#c94c4c'
 )
-
-clone_type_colours <- c(
+v.clone_type_colours <- c(
   'MDR'='#f7786b',
   'Hv'='#798EF6',
   'unassigned'='#c1bfbf'
 )
-
-
 v.ESBL_allele_colours <- c(
   '-'='#BCBCBC',
   'CTX-M-14'='#E56EAF',
@@ -222,8 +243,7 @@ v.carb_allele_colours <- c(
   'multiple'='#093F7A',
   'other'='#EAC800'
 )
-
-ybt_lineage_colours <- c(
+v.ybt_lineage_colours <- c(
   '-'='#EAEAEA',
   'ybt 0'='#c1bfbf',
   'ybt 1'='#b27f91',
@@ -245,16 +265,14 @@ ybt_lineage_colours <- c(
   'ybt 17'='#e25065',
   'ybt unknown'='#c1bfbf'
 )
-
-clb_lineage_colours <- c(
+v.clb_lineage_colours <- c(
   '-'='#EAEAEA',
   'clb 1'='#6aa3c6',
   'clb 2'='#b27f91',
   'clb 3'='#e25065',
   'clb unknown'='#c1bfbf'
 )
-  
-iro_lineage_colours <- c(
+v.iro_lineage_colours <- c(
   '-'='#EAEAEA',
   'iro 1'='#e31a1c',
   'iro 2'='#1f78b4',
@@ -264,8 +282,7 @@ iro_lineage_colours <- c(
   'iro  unknown'='#c1bfbf',
   'multiple iro'='#000000'
 )
-
-iuc_lineage_Colours <- c(
+v.iuc_lineage_colours <- c(
   '-'='#EAEAEA',
   'iuc 1'='#e31a1c',
   'iuc 2'='#1f78b4',
@@ -276,8 +293,7 @@ iuc_lineage_Colours <- c(
   'iuc unkown'='#c1bfbf',
   'multiple iuc'='#000000'
 )
-
-rmpADC_lineage_colours <- c(
+v.rmpADC_lineage_colours <- c(
   '-'='#EAEAEA',
   'rmp 1'='#e31a1c',
   'rmp 2'='#1f78b4',
@@ -286,37 +302,9 @@ rmpADC_lineage_colours <- c(
   'rmp unknown'='#c1bfbf',
   'multiple rmp'='#000000'
 )
-
-
-rmpADC_presence_absence_colours <- c(
+v.rmpADC_presence_absence_colours <- c(
   '-'='#EAEAEA',
   'intact'='#9e1c4e',
   'truncated'='#fdb0c0'
 )
-
-rmpA2_presence_absence_colours <- rmpADC_presence_absence_colours
-
-# Clone type definitions
-MDR_clones_list = c(
-  "ST11", 
-  "ST258",
-  "ST512", 
-  "ST14",
-  "ST15",
-  "ST17",
-  "ST20",
-  "ST29",
-  "ST37",
-  "ST101",
-  "ST147",
-  "ST307"
-)
-
-hv_clones_list = c(
-  "ST23",
-  "ST86",
-  "ST66",
-  "ST380",
-  "ST25",
-  "ST65"
-)
+v.rmpA2_presence_absence_colours <- v.rmpADC_presence_absence_colours
