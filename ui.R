@@ -37,6 +37,7 @@ ui <- fluidPage(
         hr(),
         # Builtin datasets
         h4('Built in datasets'),
+        h5('(click to view)'),
         div(
           align='center',
           actionButton("dataset_global", "Global dataset"),
@@ -49,9 +50,12 @@ ui <- fluidPage(
         tableOutput('summary_data')
       ),
       wellPanel(
-        h4('Subset for Analysis'),
+        h4('Select species to plot'),
         # Species, resistance, virulence selectors
         uiOutput('species_display_radio_list'),
+        br(),
+        h4('Select scores to plot'),
+        h5('(click and drag)'),
         plotlyOutput('res_var_heatmap', height='300px'),
       ),
     ),

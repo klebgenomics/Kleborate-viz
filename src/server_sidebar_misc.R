@@ -18,7 +18,7 @@ output$species_display_radio_list <- renderUI({
   v.labels_all <- c(v.labels, s.others)
   checkboxGroupInput(
     inputId='species_selector',
-    label='Select species',
+    label=' ',
     selected=c(v.kpsc_names, 'others'),
     choiceNames=v.labels_all,
     choiceValues=c(v.kpsc_names, 'others')
@@ -61,7 +61,7 @@ output$res_var_heatmap <- renderPlotly({
   d$selected <- v.selector_res & v.selector_vir
   d$stroke <- ifelse(d$selected, 1, 0)
   # Render plot
-  v.colours <- colorRampPalette(c('#05668d', '#028090', '#00a896', '#02c39a'))(100)
+  v.colours <- colorRampPalette(c('#f0e9bf', '#f1c280', '#e67d77', '#ED6060'))(100)
   # NOTE: ggplotly does not honor fill for pch=21 points, had to add separate layers for point and outline
   g <- ggplot(d, aes(x=`Virulence Score`, y=`Resistance Score`))
   g <- g + geom_point(aes(stroke=stroke), pch=21, size=6.2)
