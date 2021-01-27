@@ -110,11 +110,6 @@ ui <- fluidPage(
             8,
             wellPanel(uiOutput('genotype_st_count'))
           ),
-          column(
-            12,
-            h4('Virulence and resistance scores (click to select a subset)'),
-            plotlyOutput('res_vir_heatmap', width ='500px', height='400px')
-          )
         ),
         tabPanel(
           'Convergence by ST',

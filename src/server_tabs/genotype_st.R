@@ -87,37 +87,3 @@ output$genotype_st_data_download <- downloadHandler(
     write.csv(d, s.filename, row.names=TRUE)
   }
 )
-# Resistance v virulence heatmap plot
-output$res_vir_heatmap <- renderPlotly({ 
-  # Colours
-  v.colours <- colorRampPalette(c('#f5ecd1', '#f1c280', '#e67d77'))(100)
-  v.colours <- c('#ffffff', v.colours)
-  # Tranform data
-  vir_res <- table(
-    factor(data_loaded$kleborate[data_selected$rows, ]$resistance_score, c(0, 1, 2, 3)),
-    factor(data_loaded$kleborate[data_selected$rows, ]$virulence_score, c(0, 1, 2, 3, 4, 5))
-  )
-  # Create matrix for heatmaply, sort rows (descending)
-  vir_res_heatmaply <- as.data.frame.matrix(vir_res)
-  vir_res_heatmaply <- vir_res_heatmaply[order(-as.numeric(row.names(vir_res_heatmaply))), ]
-  # Create plot
-  heatmaply(
-    vir_res_heatmaply,
-    Rowv=NULL,
-    Colv=NULL,
-    ylab='Resistance score',
-    xlab='Virulence score',
-    fontsize_row=10,
-    fontsize_col=10,
-    subplot_margin=3,
-    colors=v.colours, 
-    margins=c(40, 40),
-    revR=TRUE,
-    key.title='# genomes',
-    column_text_angle=0,
-    plot_method='ggplot',
-    node_type='scatter',
-    grid_size=10,
-    source='res_vir_heatmap'
-  )
-})
