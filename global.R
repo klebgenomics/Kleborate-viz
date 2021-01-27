@@ -257,7 +257,7 @@ iro_lineage_colours <- c(
   'iro 4'='#ff7f00',
   'iro 5'='#fb9a99',
   'iro  unknown'='#c1bfbf',
-  'multiple iro'='##000000'
+  'multiple iro'='#000000'
 )
 
 iuc_lineage_Colours <- c(
