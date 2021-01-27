@@ -57,6 +57,9 @@ output$temporal_trends_year_slider <- renderUI({
 
 # Generalised plot function
 temporal_trend_plot <- function(v.name_map, v.colours, s.ylab) {
+  if (is.null(input$temporal_trends_year_slider)) {
+    return()
+  }
   # Get and select data
   d <- metadata_summary_year()
   d <- d[d$variable %in% names(v.name_map), ]

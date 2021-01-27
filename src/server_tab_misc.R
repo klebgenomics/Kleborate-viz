@@ -110,6 +110,7 @@ get_plot_metadata_annotation <- function(d, s.annotation_name) {
       # TODO: check if this is needed ay completion of implementation
       d$annotation <- ifelse(d[[s.annotation_var]]=='-', 'absent', 'present')
       names(v.colours) <- c('absent', 'present')
+      
     } else if (is.na(s.annotation_type)) {
       stop('Got bad annotation type')
     }
