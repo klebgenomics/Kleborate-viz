@@ -9,7 +9,9 @@ observeEvent(
 # Genome distribution by metadata plot
 output$genotype_metadata_dist_plot <- renderPlotly({
   # Return until input ui element renders and has a default value
-  if (is.null(input$genotype_metadata_dist_plot_anno)) {
+  if (is.null(input$genotype_metadata_dist_plot_anno) ||
+      is.null(input$genotype_metadata_group_count) ||
+      is.null(input$genotype_metadata_dist_plot_group)) {
     return()
   }
   # Get configuration for plot type
