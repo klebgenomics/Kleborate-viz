@@ -37,15 +37,6 @@ observeEvent(
 # Resistance, virulence selector
 output$res_var_heatmap <- renderPlotly({
   # Check for events
-  ed <- event_data('plotly_click', source='res_vir_heatmap')
-  if(is.null(ed) == FALSE) {
-    selected_st <- d[ed$pointNumber+1, ]
-    data_selected$resistance_min <- data_selected$resistance_max <- ed$y
-    data_selected$virulence_min <- data_selected$virulence_max <- ed$x
-    # Immediately clear click event (otherwise it prevents any changes to data_selected res/vir values)
-    runjs("Shiny.onInputChange('plotly_click-res_vir_heatmap', 'null');")
-    data_selected$rows <- compute_row_selection()
-  }
   ed <- event_data('plotly_selected', source='res_vir_heatmap')
   if(is.null(ed) == FALSE && length(ed) > 0 && nrow(ed) > 0) {
     data_selected$resistance_min <- min(ed$y)
