@@ -144,7 +144,7 @@ ui <- fluidPage(
         tabPanel(
           'K/O diversity by ST',
           br(),
-          h4('K and O locus diversity by ST (click to select subset)'),
+          h4('K and O locus diversity by ST'),
           plotlyOutput('k_locus_barplot', height='400px'),
           br(),
           plotlyOutput('o_locus_barplot', height='400px'),

@@ -43,55 +43,6 @@ output$ko_diversity_locus_count <- renderUI({
     step=1
   )
 })
-get_plot_metadata_annotation <- function(d, s.annotation_name) {
-  # Get configuration for plot type
-  if (s.annotation_name=='virulence_score') {
-    # Determine colours and label names
-    v.virulence_score_labels <- paste0(names(v.virulence_score_names), ": ", v.virulence_score_names)
-    names(v.virulence_score_labels) <- names(v.virulence_score_names)
-    v.colours <- v.virulence_score_colours[names(v.virulence_score_labels)]
-    names(v.colours) <- v.virulence_score_labels
-    # Set annotation column
-    d$annotation <- v.virulence_score_labels[as.character(d$virulence_score)]
-    s.anno_name <- 'Virulence Score'
-  } else if (s.annotation_name=='resistance_score') {
-    # Determine colours and label names
-    v.resistance_score_labels <- paste0(names(v.resistance_score_names), ": ", v.resistance_score_names)
-    names(v.resistance_score_labels) <- names(v.resistance_score_names)
-    v.colours <- v.resistance_score_colours[names(v.resistance_score_labels)]
-    names(v.colours) <- v.resistance_score_labels
-    # Set annotation column
-    d$annotation <- v.resistance_score_labels[as.character(d$resistance_score)]
-    s.anno_name <- 'Resistance Score'
-  } else if (s.annotation_name=='Bla_ESBL_simplified') {
-    d$annotation <- d$Bla_ESBL_simplified
-    # NOTE: placeholder for colours
-    n <- length(unique(d$annotation))
-    v.colours <- v.ESBL_allele_colours
-    names(v.colours) <- unique(d$annotation)
-    s.anno_name <- 'Bla ESBL'
-  } else if (s.annotation_name=='Bla_Carb_simplified') {
-    d$annotation <- d$Bla_Carb_simplified
-    n <- length(unique(d$annotation))
-    v.colours <- v.carb_allele_colours #hcl(h=seq(15, 375, length=n+1), l=65, c=100)[1:n]
-    names(v.colours) <- unique(d$annotation)
-    s.anno_name <- 'Bla Carb'
-  } else {
-    if (s.annotation_name %in% v.virulence_loci) {
-      v.colours <- c("grey", "#2171b5")
-      s.anno_name <- names(v.virulence_loci)[v.virulence_loci==s.annotation_name]
-    } else if (s.annotation_name %in% v.resistance_classes & !s.annotation_name %in% c('Bla_ESBL_simplified', 'Bla_Carb_simplified')) {
-      v.colours <- c("grey", "#ef3b2c")
-      s.anno_name <- names(v.resistance_classes)[v.resistance_classes==s.annotation_name]
-    } else {
-      stop('Got bad annotation variable')
-    }
-    names(v.colours) <- c('absent', 'present')
-    # Set annotation column
-    d$annotation <- ifelse(d[[s.annotation_name]]=='-', 'absent', 'present')
-  }
-  return(list(d=d, colours=v.colours, anno_name=s.anno_name))
-}
 create_locus_barplot <- function(d, s.locus, s.anno_name, v.colours) {
   if (! s.locus %in% c('K_locus', 'O_locus')) {
     stop('Got bad locus')
