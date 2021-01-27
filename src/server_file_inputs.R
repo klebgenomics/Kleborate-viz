@@ -113,6 +113,9 @@ kleborate_validate <- function(d) {
 }
 kleborate_summaries <- function(d) {
   d %>%
+    # assign clone types
+    mutate(clone_type = if_else(ST %in% MDR_clones_list, "MDR", "unassigned")) %>%
+    mutate(clone_type = if_else(ST %in% hv_clones_list, "Hv", clone_type)) %>%
     # simplify omp
     mutate(Omp_mutations_simplified = str_replace_all(Omp_mutations, "-[0-9]+%", "-trunc"), Omp_simple = if_else(Omp_mutations == "-", "wt", "mut")) %>%
     # simplify carbapenemases and combine with omp
@@ -142,6 +145,32 @@ kleborate_summaries <- function(d) {
     mutate(Bla_acq_simplified = if_else(str_detect(Bla_acquired, "DHA"), "DHA", Bla_acq_simplified)) %>%
     mutate(Bla_acq_simplified = if_else(str_detect(Bla_acquired, ";"), "multiple", Bla_acq_simplified)) %>%
     mutate(Bla_acquired_omp_combination = paste(Bla_acq_simplified, Omp_simple, sep = " "))
+    # ybt lineage simplification
+    mutate(ybt_simplified = if_else(str_detect(Yersiniabactin, "ybt"), str_extract(Yersiniabactin, "ybt [0-9]+"), "-")) %>% 
+    mutate(ybt_simplified = if_else(str_detect(Yersiniabactin, "ybt unknown"), "ybt unknown", ybt_simplified)) %>% 
+    # clb lineage simplification
+    mutate(clb_simplified = if_else(str_detect(Colibactin, "clb"), str_extract(Colibactin, "clb [0-9]+"), "-")) %>% 
+    mutate(clb_simplified = if_else(str_detect(Colibactin, "clb unknown"), "clb unknown", clb_simplified)) %>%
+    # iro lineage simplification
+    mutate(iro_simplified = if_else(str_detect(Salmochelin, "iro"), str_extract(Salmochelin, "iro [0-9]+"), "-")) %>% 
+    mutate(iro_simplified = if_else(str_detect(Salmochelin, "iro unknown"), "iro unknown", iro_simplified)) %>%
+    mutate(iro_simplified = if_else(str_detect(Salmochelin, ",") & str_detect(Salmochelin, "iro"), "multiple iro", iro_simplified)) %>%
+    # iuc lineage simplification
+    mutate(iuc_simplified = if_else(str_detect(Aerobactin, "iuc"), str_extract(Aerobactin, "iuc [0-9]+"), "-")) %>% 
+    mutate(iuc_simplified = if_else(str_detect(Aerobactin, "iuc unknown"), "iuc unknown", iuc_simplified)) %>%
+    mutate(iuc_simplified = if_else(str_detect(Aerobactin, "iuc 2A"), "iuc 2A", iuc_simplified)) %>%
+    mutate(iuc_simplified = if_else(str_detect(Aerobactin, ",") & str_detect(Aerobactin, "iuc"), "multiple iuc", iuc_simplified)) %>% 
+    # rmpADC lineage simplification
+    mutate(rmpADC_simplified = if_else(str_detect(RmpADC, "rmp"), str_extract(RmpADC, "rmp [0-9]+"), "-")) %>% 
+    mutate(rmpADC_simplified = if_else(str_detect(RmpADC, "rmp unknown"), "rmp unknown", rmpADC_simplified)) %>%
+    mutate(rmpADC_simplified = if_else(str_detect(RmpADC, "rmp 2A"), "rmp 2A", rmpADC_simplified)) %>%
+    mutate(rmpADC_simplified = if_else(str_detect(RmpADC, ",") & str_detect(RmpADC, "rmp"), "multiple rmp", rmpADC_simplified)) %>%
+    # rmpADC truncations
+    mutate(rmpADC_trunc = if_else(str_detect(RmpADC, "rmp"), "intact", "-")) %>%
+    mutate(rmpADC_trunc = if_else(str_detect(RmpADC, "incomplete"), "truncated", rmpADC_trunc)) %>%  
+    # rmpA2 truncations
+    mutate(rmpA2_trunc = if_else(str_detect(rmpA2, "rmp"), "intact", "-")) %>%
+    mutate(rmpA2_trunc = if_else(str_detect(rmpA2, "%"), "truncated", rmpA2_trunc))
 }
 observeEvent(
   input$kleborate_file,
