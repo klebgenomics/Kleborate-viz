@@ -92,7 +92,7 @@ get_plot_metadata_annotation <- function(d, s.annotation_name) {
     if (s.annotation_name %in% v.virulence_loci) {
       v.colours <- c("grey", "#2171b5")
       s.anno_name <- names(v.virulence_loci)[v.virulence_loci==s.annotation_name]
-    } else if (s.annotation_name %in% v.resistance_classes & !v.virulence_loci %in% c('Bla_ESBL_simplified', 'Bla_Carb_simplified')) {
+    } else if (s.annotation_name %in% v.resistance_classes & !s.annotation_name %in% c('Bla_ESBL_simplified', 'Bla_Carb_simplified')) {
       v.colours <- c("grey", "#ef3b2c")
       s.anno_name <- names(v.resistance_classes)[v.resistance_classes==s.annotation_name]
     } else {
