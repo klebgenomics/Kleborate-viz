@@ -94,20 +94,24 @@ output$convergence_st_heatmap <- renderPlotly({
     d <- d[d$virulence_score>=3 & d$resistance_score>=1, ]
     s.title <- 'Auto selected: multiple'
   }
+  # Select only presence/absence columns to display; also get nice display names
+  v.vir_pa <- v.virulence_loci[grepl('_pa$', v.virulence_loci)]
+  v.res_pa <- v.resistance_classes[grepl('_pa$', v.resistance_classes)]
+  v.vir_pa_col_names <- sub('_pa$', '', v.vir_pa)
+  v.res_pa_col_names <- sub('_pa$', '', v.res_pa)
+  v.columns <- setNames(c(v.vir_pa_col_names, v.res_pa_col_names), c(names(v.vir_pa), names(v.res_pa)))
   # Select columns
-  v.columns <- c('strain', v.virulence_loci, v.resistance_classes)
-  d <- d[ ,colnames(d) %in% v.columns]
+  d <- d[ ,colnames(d) %in% c('strain', v.columns)]
   # Move strain names to rownames
   rownames(d) <- d$strain
   d <- d[ ,-1]
   # Convert to binary matrix
-  v.col_vir <- colnames(d) %in% v.virulence_loci
-  v.col_res <- colnames(d) %in% v.resistance_classes
+  v.col_vir <- colnames(d) %in% v.vir_pa_col_names
+  v.col_res <- colnames(d) %in% v.res_pa_col_names
   d[ ,v.col_vir] <- ifelse(d[ ,v.col_vir]=='-', 0, 1)
   d[ ,v.col_res] <- ifelse(d[ ,v.col_res]=='-', 0, 2)
   # Set nice names for display
-  v.name_map <- c(v.virulence_loci, v.resistance_classes)
-  colnames(d) <- names(v.name_map)[match(colnames(d), v.name_map)]
+  colnames(d) <- names(v.columns)[match(colnames(d), v.columns)]
   # Render
   heatmaply(
     d,
