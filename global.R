@@ -188,6 +188,14 @@ v.resistance_score_colours <- c(
   '2'='#f7786b',
   '3'='#c94c4c'
 )
+
+clone_type_colours <- c(
+  'MDR'='#f7786b',
+  'Hv'='#798EF6',
+  'unassigned'='#c1bfbf'
+)
+
+
 v.ESBL_allele_colours <- c(
   '-'='#BCBCBC',
   'CTX-M-14'='#E56EAF',
