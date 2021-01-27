@@ -63,7 +63,7 @@ get_plot_metadata_annotation <- function(d, s.annotation_name) {
     names(v.colours) <- v.virulence_score_labels
     # Set annotation column
     d$annotation <- v.virulence_score_labels[as.character(d$virulence_score)]
-    s.anno_name <- 'Virulence Score'
+    s.display_name <- 'Virulence Score'
   } else if (s.annotation_name=='resistance_score') {
     # Determine colours and label names
     v.resistance_score_labels <- paste0(names(v.resistance_score_names), ": ", v.resistance_score_names)
@@ -72,48 +72,61 @@ get_plot_metadata_annotation <- function(d, s.annotation_name) {
     names(v.colours) <- v.resistance_score_labels
     # Set annotation column
     d$annotation <- v.resistance_score_labels[as.character(d$resistance_score)]
-    s.anno_name <- 'Resistance Score'
-  } else if (s.annotation_name=='Bla_ESBL_simplified') {
-    d$annotation <- d$Bla_ESBL_simplified
-    # NOTE: placeholder for colours
-    n <- length(unique(d$annotation))
-    v.colours <- v.ESBL_allele_colours
-    names(v.colours) <- unique(d$annotation)
-    s.anno_name <- 'Bla ESBL'
-  } else if (s.annotation_name=='Bla_Carb_simplified') {
-    d$annotation <- d$Bla_Carb_simplified
-    n <- length(unique(d$annotation))
-    v.colours <- v.carb_allele_colours #hcl(h=seq(15, 375, length=n+1), l=65, c=100)[1:n]
-    names(v.colours) <- unique(d$annotation)
-    s.anno_name <- 'Bla Carb'
+    s.display_name <- 'Resistance Score'
+  } else if (s.annotation_name=='clone_type') {
+    v.colours <- v.clone_type_colours
+    d$annotation <- d$clone_type
+    s.display_name <- 'Clone type'
   } else {
-    s.annotation_var <- sub('_(presenceabsence|lineages)', '', s.annotation_name)
-    s.annotation_type <- str_extract(s.annotation_name, '(presenceabsence|lineages|)$')
-    if (s.annotation_name %in% v.virulence_loci) {
-      v.colours <- c("grey", "#2171b5")
-      s.anno_name <- names(v.virulence_loci)[v.virulence_loci==s.annotation_name]
-    } else if (s.annotation_name %in% v.resistance_classes & !s.annotation_name %in% c('Bla_ESBL_simplified', 'Bla_Carb_simplified')) {
-      v.colours <- c("grey", "#ef3b2c")
-      s.anno_name <- names(v.resistance_classes)[v.resistance_classes==s.annotation_name]
+    # Here we handle virulence loci and resistance classes annotations; done collectively as they have been 
+    # systematically defined
+    # Set annotation column
+    if (grepl('_pa', s.annotation_name)) {
+      s.annotation_var <- sub('_pa$', '', s.annotation_name)
+      d$annotation <- ifelse(d[[s.annotation_var]]=='-', 'absent', 'present')
+    } else if (grepl('_(simplified|trunc)$', s.annotation_name)) {
+      d$annotation <- d[[s.annotation_name]]
     } else {
       stop('Got bad annotation variable')
     }
-    # Set annotation column
-    if (s.annotation_type == 'presenceabsence') {
-      d$annotation <- ifelse(d[[s.annotation_var]]=='-', 'absent', 'present')
-      names(v.colours) <- c('absent', 'present')
-    } else if (s.annotation_type == 'lineages') {
-      # TODO: fix colour usage
-      d$annotation <- d[[s.annotation_var]]
-      v.colours <- setNames(misc_colour_palette(length(unique(d$annotation))), unique(d$annotation))
-    } else if (s.annotation_type == '') {
-      # TODO: check if this is needed ay completion of implementation
-      d$annotation <- ifelse(d[[s.annotation_var]]=='-', 'absent', 'present')
-      names(v.colours) <- c('absent', 'present')
-      
-    } else if (is.na(s.annotation_type)) {
-      stop('Got bad annotation type')
+    # Get annotation colour
+    if(s.annotation_name=='ybt_simplified') {
+      v.colours <- v.ybt_lineage_colours
+    } else if(s.annotation_name=='clb_simplified') {
+      v.colours <- v.clb_lineage_colours
+    } else if(s.annotation_name=='iuc_simplified') {
+      v.colours <- v.iuc_lineage_colours
+    } else if(s.annotation_name=='iro_simplified') {
+      v.colours <- v.iro_lineage_colours
+    } else if(s.annotation_name=='rmpADC_simplified') {
+      v.colours <- v.rmpADC_lineage_colours
+    } else if (s.annotation_name=='rmpADC_trunc') {
+      v.colours <- v.rmpADC_presence_absence_colours
+    } else if(s.annotation_name=='rmpA2_trunc') {
+      v.colours <- v.rmpA2_presence_absence_colours
+    } else if(s.annotation_name=='Bla_ESBL_simplified') {
+      v.colours <- v.ESBL_allele_colours
+    } else if(s.annotation_name=='Bla_Carb_simplified') {
+      v.colours <- v.carb_allele_colours
+    } else if (grepl('_pa$', s.annotation_name)) {
+      if (s.annotation_name %in% v.virulence_loci) {
+        v.colours <- c("grey", "#2171b5")
+      } else if (s.annotation_name %in% v.resistance_classes) {
+        v.colours <- c("grey", "#ef3b2c")
+      } else {
+        stop('Got bad annotation var')
+      }
+    } else {
+      stop('Got bad annotation var')
+    }
+    # Get display name
+    if (s.annotation_name %in% v.virulence_loci) {
+      s.display_name <- names(v.virulence_loci)[v.virulence_loci==s.annotation_name]
+    } else if (s.annotation_name %in% v.resistance_classes) {
+      s.display_name <- names(v.resistance_classes)[v.resistance_classes==s.annotation_name]
+    } else {
+      stop('Got bad annotation var')
     }
   }
-  return(list(d=d, colours=v.colours, anno_name=s.anno_name))
+  return(list(d=d, colours=v.colours, anno_name=s.display_name))
 }
