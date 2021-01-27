@@ -128,6 +128,7 @@ output$k_locus_barplot <- renderPlotly({
     return()
   }
   # Prepare data
+  d <- data_loaded$kleborate[data_selected$rows, ]
   if (!is.null(ko_diversity_st_selected())) {
     d <- d[d$ST==ko_diversity_st_selected(), ]
     d <- d[!is.na(d$strain), ]
