@@ -69,12 +69,18 @@ v.kpsc_names <- c(
   'Klebsiella africana'
 )
 v.virulence_loci <- list(
-  'Yersiniabactin'='Yersiniabactin',
-  'Colibactin'='Colibactin',
-  'Aerobactin'='Aerobactin',
-  'Salmochelin'='Salmochelin',
-  'RmpADC'='RmpADC',
-  'rmpA2'='rmpA2'
+  'Yersiniabactin (presence/absence)'='Yersiniabactin_presenceabsence',
+  'Yersiniabactin (lineages)'='Yersiniabactin_lineages',
+  'Colibactin (presence/absence)'='Colibactin_presenceabsence',
+  'Colibactin (lineages)'='Colibactin_lineages',
+  'Aerobactin (presence/absence)'='Aerobactin_presenceabsence',
+  'Aerobactin (lineages)'='Aerobactin_lineages',
+  'Salmochelin (presence/absence)'='Salmochelin_presenceabsence',
+  'Salmochelin (lineages)'='Salmochelin_lineages',
+  'RmpADC (presence/absence)'='RmpADC_presenceabsence',
+  'RmpADC (lineages)'='RmpADC_lineages',
+  'rmpA2 (presence/absence)'='rmpA2_presenceabsence',
+  'rmpA2 (lineages)'='rmpA2_lineages'
 )
 v.resistance_classes <- list(
   'AGly'='AGly_acquired',

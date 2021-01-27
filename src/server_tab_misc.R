@@ -87,18 +87,32 @@ get_plot_metadata_annotation <- function(d, s.annotation_name) {
     names(v.colours) <- unique(d$annotation)
     s.anno_name <- 'Bla Carb'
   } else {
+    s.annotation_var <- sub('_(presenceabsence|lineages)', '', s.annotation_name)
+    s.annotation_type <- str_extract(s.annotation_name, '(presenceabsence|lineages|)$')
     if (s.annotation_name %in% v.virulence_loci) {
       v.colours <- c("grey", "#2171b5")
       s.anno_name <- names(v.virulence_loci)[v.virulence_loci==s.annotation_name]
-    } else if (s.annotation_name %in% v.resistance_classes & !s.annotation_name %in% c('Bla_ESBL_simplified', 'Bla_Carb_simplified')) {
+    } else if (s.annotation_name %in% v.resistance_classes & !v.virulence_loci %in% c('Bla_ESBL_simplified', 'Bla_Carb_simplified')) {
       v.colours <- c("grey", "#ef3b2c")
       s.anno_name <- names(v.resistance_classes)[v.resistance_classes==s.annotation_name]
     } else {
       stop('Got bad annotation variable')
     }
-    names(v.colours) <- c('absent', 'present')
     # Set annotation column
-    d$annotation <- ifelse(d[[s.annotation_name]]=='-', 'absent', 'present')
+    if (s.annotation_type == 'presenceabsence') {
+      d$annotation <- ifelse(d[[s.annotation_var]]=='-', 'absent', 'present')
+      names(v.colours) <- c('absent', 'present')
+    } else if (s.annotation_type == 'lineages') {
+      # TODO: fix colour usage
+      d$annotation <- d[[s.annotation_var]]
+      v.colours <- setNames(misc_colour_palette(length(unique(d$annotation))), unique(d$annotation))
+    } else if (s.annotation_type == '') {
+      # TODO: check if this is needed ay completion of implementation
+      d$annotation <- ifelse(d[[s.annotation_var]]=='-', 'absent', 'present')
+      names(v.colours) <- c('absent', 'present')
+    } else if (is.na(s.annotation_type)) {
+      stop('Got bad annotation type')
+    }
   }
   return(list(d=d, colours=v.colours, anno_name=s.anno_name))
 }
