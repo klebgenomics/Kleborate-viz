@@ -144,7 +144,7 @@ kleborate_summaries <- function(d) {
     mutate(Bla_acq_simplified = if_else(str_detect(Bla_acquired, "LAP"), "LAP", Bla_acq_simplified)) %>%
     mutate(Bla_acq_simplified = if_else(str_detect(Bla_acquired, "DHA"), "DHA", Bla_acq_simplified)) %>%
     mutate(Bla_acq_simplified = if_else(str_detect(Bla_acquired, ";"), "multiple", Bla_acq_simplified)) %>%
-    mutate(Bla_acquired_omp_combination = paste(Bla_acq_simplified, Omp_simple, sep = " "))
+    mutate(Bla_acquired_omp_combination = paste(Bla_acq_simplified, Omp_simple, sep = " ")) %>%
     # ybt lineage simplification
     mutate(ybt_simplified = if_else(str_detect(Yersiniabactin, "ybt"), str_extract(Yersiniabactin, "ybt [0-9]+"), "-")) %>% 
     mutate(ybt_simplified = if_else(str_detect(Yersiniabactin, "ybt unknown"), "ybt unknown", ybt_simplified)) %>% 
