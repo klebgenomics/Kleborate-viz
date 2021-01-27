@@ -80,7 +80,6 @@ v.virulence_loci <- list(
   'RmpADC (presence/absence)'='RmpADC_presenceabsence',
   'RmpADC (lineages)'='RmpADC_lineages',
   'rmpA2 (presence/absence)'='rmpA2_presenceabsence',
-  'rmpA2 (lineages)'='rmpA2_lineages'
 )
 v.resistance_classes <- list(
   'AGly'='AGly_acquired',
@@ -211,3 +210,100 @@ v.carb_allele_colours <- c(
   'other'='#EAC800'
 )
 
+ybt_lineage_colours <- c(
+  '-'='#EAEAEA',
+  'ybt 0'='#c1bfbf',
+  'ybt 1'='#b27f91',
+  'ybt 2'='#cda12c',
+  'ybt 3'='#56a354',
+  'ybt 4'='#f28fa2',
+  'ybt 5'='#db7723',
+  'ybt 6'='#93539d',
+  'ybt 7'='#3a85a8',
+  'ybt 8'='#7b75cc',
+  'ybt 9'='#d9c5ef',
+  'ybt 10'='#449d72',
+  'ybt 11'='#ebd930',
+  'ybt 12'='#6aa3c6',
+  'ybt 13'='#a39f93',
+  'ybt 14'='#93539d',
+  'ybt 15'='#edc59a',
+  'ybt 16'='#840639',
+  'ybt 17'='#e25065',
+  'ybt unknown'='#c1bfbf'
+)
+
+clb_lineage_colours <- c(
+  '-'='#EAEAEA',
+  'clb 1'='#6aa3c6',
+  'clb 2'='#b27f91',
+  'clb 3'='#e25065',
+  'clb unknown'='#c1bfbf'
+)
+  
+iro_lineage_colours <- c(
+  '-'='#EAEAEA',
+  'iro 1'='#e31a1c',
+  'iro 2'='#1f78b4',
+  'iro 3'='#984ea3',
+  'iro 4'='#ff7f00',
+  'iro 5'='#fb9a99',
+  'iro  unknown'='#c1bfbf',
+  'multiple iro'='##000000'
+)
+
+iuc_lineage_Colours <- c(
+  '-'='#EAEAEA',
+  'iuc 1'='#e31a1c',
+  'iuc 2'='#1f78b4',
+  'iuc 3'='#33a02c',
+  'iuc 4'='#cab2d6',
+  'iuc 5'='#fb9a99',
+  'iuc 2A'='#a6cee3',
+  'iuc unkown'='#c1bfbf',
+  'multiple iuc'='#000000'
+)
+
+rmpADC_lineage_colours <- c(
+  '-'='#EAEAEA',
+  'rmp 1'='#e31a1c',
+  'rmp 2'='#1f78b4',
+  'rmp 3'='#984ea3',
+  'rmp 2A'='#a6cee3',
+  'rmp unknown'='#c1bfbf',
+  'multiple rmp'='#000000'
+)
+
+
+rmpADC_presence_absence_colours <- c(
+  '-'='#EAEAEA',
+  'intact'='#9e1c4e',
+  'truncated'='#fdb0c0'
+)
+
+rmpA2_presence_absence_colours <- rmpADC_presence_absence_colours
+
+# Clone type definitions
+MDR_clones_list = c(
+  "ST11", 
+  "ST258",
+  "ST512", 
+  "ST14",
+  "ST15",
+  "ST17",
+  "ST20",
+  "ST29",
+  "ST37",
+  "ST101",
+  "ST147",
+  "ST307"
+)
+
+hv_clones_list = c(
+  "ST23",
+  "ST86",
+  "ST66",
+  "ST380",
+  "ST25",
+  "ST65"
+)
