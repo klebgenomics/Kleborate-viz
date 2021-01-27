@@ -68,41 +68,46 @@ v.kpsc_names <- c(
   'Klebsiella quasivariicola',
   'Klebsiella africana'
 )
+# NOTE: value format for virulence loci and resistance classes vectors is:
+#   <column_name> or <column_name>_<annotation_type>
+# Some column names implicitly encode <annotation_type> and thus it is not required
 v.virulence_loci <- list(
-  'Yersiniabactin (presence/absence)'='Yersiniabactin_presenceabsence',
-  'Yersiniabactin (lineages)'='Yersiniabactin_lineages',
-  'Colibactin (presence/absence)'='Colibactin_presenceabsence',
-  'Colibactin (lineages)'='Colibactin_lineages',
-  'Aerobactin (presence/absence)'='Aerobactin_presenceabsence',
-  'Aerobactin (lineages)'='Aerobactin_lineages',
-  'Salmochelin (presence/absence)'='Salmochelin_presenceabsence',
-  'Salmochelin (lineages)'='Salmochelin_lineages',
-  'RmpADC (presence/absence)'='RmpADC_presenceabsence',
-  'RmpADC (lineages)'='RmpADC_lineages',
-  'rmpA2 (presence/absence)'='rmpA2_presenceabsence',
+  'Yersiniabactin'='Yersiniabactin_pa',
+  'Yersiniabactin (lineages)'='ybt_simplified',
+  'Colibactin'='Colibactin_pa',
+  'Colibactin (lineages)'='clb_simplified',
+  'Aerobactin'='Aerobactin_pa',
+  'Aerobactin (lineages)'='iuc_simplified',
+  'Salmochelin'='Salmochelin_pa',
+  'Salmochelin (lineages)'='iro_simplified',
+  'RmpADC'='RmpADC_pa',
+  'RmpADC (lineages)'='rmpADC_simplified',
+  'RmpADC (truncations)'='rmpADC_trunc',
+  'rmpA2'='rmpA2_pa',
+  'rmpA2 (truncations)'='rmpA2_trunc'
 )
 v.resistance_classes <- list(
-  'AGly'='AGly_acquired',
-  'Col (genes)'='Col_acquired',
-  'Col (mutations)' = 'Col_mutations',
-  'Fcyn'='Fcyn_acquired',
-  'Flq (genes)'='Flq_acquired',
-  'Flq (mutations)' = 'Flq_mutations',
-  'Gly'='Gly_acquired',
-  'MLS'='MLS_acquired',
-  'Phe'='Phe_acquired',
-  'Rif'='Rif_acquired',
-  'Sul'='Sul_acquired',
-  'Tet'='Tet_acquired',
-  'Tmt'='Tmt_acquired',
-  'Tgc'='Tgc_acquired',
-  'Bla'='Bla_acquired',
-  'Bla inhR'='Bla_inhR_acquired',
-  'Bla ESBL'='Bla_ESBL_acquired',
-  'Bla Carb'='Bla_Carb_acquired',
-  'Bla ESBL inhR'='Bla_ESBL_inhR_acquired',
-  'Bla ESBL alleles'='Bla_ESBL_simplified',
-  'Bla Carb alleles'='Bla_Carb_simplified'
+  'AGly'='AGly_acquired_pa',
+  'Col (genes)'='Col_acquired_pa',
+  'Col (mutations)' = 'Col_mutations_pa',
+  'Fcyn'='Fcyn_acquired_pa',
+  'Flq (genes)'='Flq_acquired_pa',
+  'Flq (mutations)' = 'Flq_mutations_pa',
+  'Gly'='Gly_acquired_pa',
+  'MLS'='MLS_acquired_pa',
+  'Phe'='Phe_acquired_pa',
+  'Rif'='Rif_acquired_pa',
+  'Sul'='Sul_acquired_pa',
+  'Tet'='Tet_acquired_pa',
+  'Tmt'='Tmt_acquired_pa',
+  'Tgc'='Tgc_acquired_pa',
+  'Bla'='Bla_acquired_pa',
+  'Bla inhR'='Bla_inhR_acquired_pa',
+  'Bla ESBL'='Bla_ESBL_acquired_pa',
+  'Bla Carb'='Bla_Carb_acquired_pa',
+  'Bla ESBL inhR'='Bla_ESBL_inhR_acquired_pa',
+  'Bla ESBL (alleles)'='Bla_ESBL_simplified',
+  'Bla Carb (alleles)'='Bla_Carb_simplified'
 )
 v.genotype_var_choices <- list(
   'Summary'=list(
