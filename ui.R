@@ -141,11 +141,12 @@ ui <- fluidPage(
           plotlyOutput('convergence_st_heatmap', height='400px')
         ),
         tabPanel(
-          'K/O diversity by ST',
+          'K/O diversity',
           br(),
-          h4('K and O locus diversity by ST'),
+          h4('Count of genomes for common K loci'),
           plotlyOutput('k_locus_barplot', height='400px'),
           br(),
+          h4('Count of genomes for common O loci'),
           plotlyOutput('o_locus_barplot', height='400px'),
           br(),
           div(

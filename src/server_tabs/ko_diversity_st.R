@@ -68,7 +68,7 @@ create_locus_barplot <- function(d, s.locus, s.anno_name, v.colours) {
     panel.border=element_blank(),
     axis.line=element_line(colour='black')
   )
-  g <- g + ylab('Number of genomes') + xlab(s.locus)
+  g <- g + ylab('Number of genomes') + xlab(str_replace(s.locus, '_', ' '))
   g <- g + scale_y_continuous(expand=c(0, 0))
   g <- g + scale_fill_manual(values=v.colours, breaks=names(v.colours), name=s.anno_name, drop=FALSE)
   ggplotly(g)
@@ -145,8 +145,12 @@ output$ko_diversity_st_heatmap <- renderPlotly({
     hide_colorbar=F,
     revC=F,
     key.title = "# genomes",
-    showticklabels=c(TRUE, TRUE),
+    showticklabels=c(FALSE, FALSE),
     plot_method='ggplot',
-    colors=c('white', colorRampPalette(colors=c('#f1c280', '#e67d77', '#ED6060'))(max(k_vs_o)))
+    colors=c('white', colorRampPalette(colors=c('#f1c280', '#e67d77', '#ED6060'))(max(k_vs_o))),
+    xlab='O loci',
+    ylab='K loci',
+    margin = c(10, 10, 10, 10),
+
   )
 })

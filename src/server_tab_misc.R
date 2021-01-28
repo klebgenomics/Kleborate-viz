@@ -6,7 +6,7 @@ observe({
     hideTab(inputId="primary", target="Genotypes by ST")
     hideTab(inputId="primary", target="Genotypes by metadata")
     hideTab(inputId="primary", target="Convergence by ST")
-    hideTab(inputId="primary", target="K/O diversity by ST")
+    hideTab(inputId="primary", target="K/O diversity")
     hideTab(inputId="primary", target="Temporal trends")
     hideTab(inputId="primary", target="Sample trends")
     hideTab(inputId="primary", target="Cumulative K/O prevalence")
@@ -33,9 +33,9 @@ observe({
   # Kleborate data +/- metadata required
   v.has_ko_locus_info <- all(c('K_locus', 'O_locus') %in% colnames(data_loaded$kleborate))
   if (! v.has_ko_locus_info) {
-    hideTab(inputId="primary", target="K/O diversity by ST")
+    hideTab(inputId="primary", target="K/O diversity")
   } else {
-    showTab(inputId="primary", target="K/O diversity by ST")
+    showTab(inputId="primary", target="K/O diversity")
   }
   if (! v.has_ko_locus_info | is.null(data_loaded$metadata)) {
     hideTab(inputId="primary", target="Cumulative K/O prevalence")
