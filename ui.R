@@ -275,13 +275,29 @@ ui <- fluidPage(
         tabPanel(
           'Cumulative K/O prevalence',
           br(),
-          h4('Overall prevalence'),
+          h4('Overall prevalence (K locus', style='display: inline-block;'),
+          div(
+            style='display: inline-block;',
+            IconButton('cumulative_k_line_combined_plot_download_show', 'graph_modal'),
+            IconButton('cumulative_k_line_combined_data_download', 'data_dl'),
+            h4(' and  O-locus', style='display: inline-block;'),
+            IconButton('cumulative_o_line_combined_plot_download_show', 'graph_modal'),
+            IconButton('cumulative_o_line_combined_data_download', 'data_dl'),
+            h4(')', style='display: inline-block;')
+          ),
           fluidRow(
-            column(width = 8, offset = 0, plotlyOutput('cumulative_k_line_combined', height='300px')),
-            column(width = 4, offset = 0, plotlyOutput('cumulative_o_line_combined', height='300px')),
+            column(width = 8, offset = 0, plotlyOutput('cumulative_k_line_combined_plot', height='300px')),
+            column(width = 4, offset = 0, plotlyOutput('cumulative_o_line_combined_plot', height='300px')),
           ),
           br(),
-          fluidRow(h4('K locus prevalence by group')),
+          fluidRow(
+            h4('K locus prevalence by group', style='display: inline-block;'),
+            div(
+              style='display: inline-block;',
+              IconButton('cumulative_k_line_each_plot_download_show', 'graph_modal'),
+              IconButton('cumulative_k_line_each_data_download', 'data_dl'),
+            ),
+          ),
           fluidRow(
             align='center',
             selectInput(
@@ -290,10 +306,15 @@ ui <- fluidPage(
               choices=NULL
             )
           ),
-          plotlyOutput('cumulative_k_line_each', height='400px'),
+          plotlyOutput('cumulative_k_line_each_plot', height='400px'),
           br(),
-          h4('O locus prevalence by group'),
-          plotlyOutput('cumulative_o_line_each', height='400px')
+          h4('O locus prevalence by group', style='display: inline-block;'),
+          div(
+            style='display: inline-block;',
+            IconButton('cumulative_o_line_each_plot_download_show', 'graph_modal'),
+            IconButton('cumulative_o_line_each_data_download', 'data_dl'),
+          ),
+          plotlyOutput('cumulative_o_line_each_plot', height='400px')
         ),
         tabPanel(
           'MICs by AMR genotype',

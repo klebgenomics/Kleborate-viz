@@ -6,6 +6,7 @@ observeEvent(
     updateSelectInput(session, 'ko_cumulative_var', choices=v.cols, selected=v.cols[1])
   }
 )
+
 # Colour generator
 ko_cumulative_group_colours <- reactive({
   v.groups <- unique(data_loaded$metadata[[input$ko_cumulative_var]])
@@ -24,7 +25,8 @@ metadata_summary_k_locus_combined <- reactive({
     filter(K_locus != 'unknown') %>%
     arrange(-prop) %>%
     mutate(cumulative_prevalence = cumsum(prop)) %>% 
-    mutate(K_locus_number = row_number())
+    mutate(K_locus_number = row_number()) %>%
+    select(K_locus_number, cumulative_prevalence)
 })
 metadata_summary_k_locus_each <- reactive({
   # Mark low confidence loci
@@ -41,29 +43,30 @@ metadata_summary_k_locus_each <- reactive({
     mutate_at(vars(-K_locus, -mean_prev, -K_locus_number), cumsum) %>%
     melt(id.vars = c("K_locus", "K_locus_number")) %>% 
     filter(!variable %in% c("NA", "mean_prev")) %>%
-    mutate(cumulative_prevalence = value)
+    mutate(cumulative_prevalence = value) %>%
+    select(K_locus_number, cumulative_prevalence, variable)
 })
+
 # K locus plots
-output$cumulative_k_line_each <- renderPlotly({
+output$cumulative_k_line_each_plot <- renderPlotly(cumulative_k_line_each_plot())
+cumulative_k_line_each_plot <- reactive({
   v.colours <- ko_cumulative_group_colours()
   g <- ggplot(metadata_summary_k_locus_each(), aes(x=K_locus_number, y=cumulative_prevalence)) + geom_step(aes(colour=variable)) +
     xlab('Number of K-loci') +
     ylab('Cumulative prevalence') +
     theme_bw() + scale_colour_manual(values=v.colours, breaks=names(v.colours)) +
     coord_cartesian(ylim=c(0, 1))
-  g <- ggplotly(g, dynamicTicks=TRUE)
-  print(g)
+  ggplotly(g)
 })
-output$cumulative_k_line_combined <- renderPlotly({
+output$cumulative_k_line_combined_plot <- renderPlotly(cumulative_k_line_combined_plot())
+cumulative_k_line_combined_plot <- reactive({
   g <- ggplot(metadata_summary_k_locus_combined(), aes(x=K_locus_number, y=cumulative_prevalence)) + geom_step() +
     xlab('Number of K-loci') +
     ylab('Cumulative prevalence') +
     theme_bw() +
     coord_cartesian(ylim=c(0, 1))
-  g <- ggplotly(g, dynamicTicks=TRUE)
-  print(g)
+  ggplotly(g)
 })
-
 
 # Get summary data for O locus
 metadata_summary_o_locus_combined <- reactive({
@@ -74,7 +77,8 @@ metadata_summary_o_locus_combined <- reactive({
     filter(O_locus != 'unknown') %>% 
     arrange(-prop) %>%
     mutate(cumulative_prevalence = cumsum(prop)) %>%  
-    mutate(O_locus_number = row_number())
+    mutate(O_locus_number = row_number()) %>%
+    select(O_locus_number, cumulative_prevalence)
 })
 metadata_summary_o_locus_each <- reactive({
   # Mark low confidnce loci
@@ -91,25 +95,78 @@ metadata_summary_o_locus_each <- reactive({
     mutate_at(vars(-O_locus, -mean_prev, -O_locus_number), cumsum) %>%
     melt(id.vars = c("O_locus", "O_locus_number")) %>% 
     filter(!variable %in% c("NA", "mean_prev")) %>%
-    mutate(cumulative_prevalence = value)
+    mutate(cumulative_prevalence = value) %>%
+    select(O_locus_number, cumulative_prevalence, variable)
 })
+
 # O locus plots
-output$cumulative_o_line_each <- renderPlotly({
+output$cumulative_o_line_each_plot <- renderPlotly(cumulative_o_line_each_plot())
+cumulative_o_line_each_plot <- reactive({
   v.colours <- ko_cumulative_group_colours()
   g <- ggplot(metadata_summary_o_locus_each(), aes(x=O_locus_number, y=cumulative_prevalence)) + geom_step(aes(colour=variable)) +
     xlab('Number of O-loci') +
     ylab('Cumulative prevalence') +
     theme_bw() + scale_colour_manual(values=v.colours, breaks=names(v.colours)) +
     coord_cartesian(ylim=c(0, 1))
-  g <- ggplotly(g, dynamicTicks=TRUE)
-  print(g)
+  ggplotly(g)
 })
-output$cumulative_o_line_combined <- renderPlotly({
+output$cumulative_o_line_combined_plot <- renderPlotly(cumulative_o_line_combined_plot())
+cumulative_o_line_combined_plot <- reactive({
   g <- ggplot(metadata_summary_o_locus_combined(), aes(x=O_locus_number, y=cumulative_prevalence)) + geom_step() +
     xlab('Number of O-loci') +
     ylab('Cumulative prevalence') +
     theme_bw() +
     coord_cartesian(ylim=c(0, 1))
-  g <- ggplotly(g, dynamicTicks=TRUE)
-  print(g)
+  ggplotly(g)
+})
+
+# Download plot/data
+# Overall K prevalence
+download_filename <- function(s.prefix, s.suffix) { paste0(s.prefix, download_filename_suffix(s.suffix)) }
+output$cumulative_k_line_each_data_download <- downloadHandler(
+  filename=reactive(download_filename('k_locus_prevalence_overall__', '.csv')),
+  content=function(s.filename) { write.csv(metadata_summary_k_locus_combined(), s.filename, row.names=FALSE) }
+)
+output$cumulative_k_line_each_plot_download <- downloadHandler(
+  filename=reactive(download_filename('k_locus_prevalence_overall__', 'pdf')),
+  content=function(s.filename) { download_plot(cumulative_k_line_each_plot, s.filename) }
+)
+observeEvent(input$cumulative_k_line_each_plot_download_show, {
+  download_modal(downloadButton('cumulative_k_line_each_plot_download', class='btn-primary'))
+})
+# Individual K prevalence
+output$cumulative_k_line_combined_data_download <- downloadHandler(
+  filename=reactive(download_filename('k_locus_prevalence_overall__', '.csv')),
+  content=function(s.filename) { write.csv(metadata_summary_k_locus_combined(), s.filename, row.names=FALSE) }
+)
+output$cumulative_k_line_combined_plot_download <- downloadHandler(
+  filename=reactive(download_filename('k_locus_prevalence_overall__', 'pdf')),
+  content=function(s.filename) { download_plot(cumulative_k_line_combined_plot, s.filename) }
+)
+observeEvent(input$cumulative_k_line_combined_plot_download_show, {
+  download_modal(downloadButton('cumulative_k_line_combined_plot_download', class='btn-primary'))
+})
+# Overall O prevalence
+output$cumulative_o_line_each_data_download <- downloadHandler(
+  filename=reactive(download_filename('k_locus_prevalence_overall__', '.csv')),
+  content=function(s.filename) { write.csv(metadata_summary_o_locus_combined(), s.filename, row.names=FALSE) }
+)
+output$cumulative_o_line_each_plot_download <- downloadHandler(
+  filename=reactive(download_filename('k_locus_prevalence_overall__', 'pdf')),
+  content=function(s.filename) { download_plot(cumulative_o_line_each_plot, s.filename) }
+)
+observeEvent(input$cumulative_o_line_each_plot_download_show, {
+  download_modal(downloadButton('cumulative_o_line_each_plot_download', class='btn-primary'))
+})
+# Individual O prevalence
+output$cumulative_o_line_combined_data_download <- downloadHandler(
+  filename=reactive(download_filename('k_locus_prevalence_overall__', '.csv')),
+  content=function(s.filename) { write.csv(metadata_summary_o_locus_combined(), s.filename, row.names=FALSE) }
+)
+output$cumulative_o_line_combined_plot_download <- downloadHandler(
+  filename=reactive(download_filename('k_locus_prevalence_overall__', 'pdf')),
+  content=function(s.filename) { download_plot(cumulative_o_line_combined_plot, s.filename) }
+)
+observeEvent(input$cumulative_o_line_combined_plot_download_show, {
+  download_modal(downloadButton('cumulative_o_line_combined_plot_download', class='btn-primary'))
 })
