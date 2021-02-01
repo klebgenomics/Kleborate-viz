@@ -1,6 +1,5 @@
 # ST distribution plot 
-output$genotype_st_dist_plot <- renderPlotly({ genotype_st_dist_plot() })
-
+output$genotype_st_dist_plot <- renderPlotly(genotype_st_dist_plot())
 genotype_st_dist_data <- reactive({
   # NOTE: must use default source of 'A' as heatmaply does not appear to expose the 'source' argument
   ed <- event_data('plotly_click', source='A')
@@ -30,7 +29,6 @@ genotype_st_dist_data <- reactive({
   d <- d[ ,c('strain', 'ST', 'annotation')]
   return(list(d=d, colours=v.colours, anno_name=s.anno_name))
 })
-
 genotype_st_dist_plot <- reactive({
   # Return until input ui element renders and has a default value
   if (is.null(input$genotype_st_count)) {
@@ -75,27 +73,13 @@ output$genotype_st_count <- renderUI({
 })
 
 # Download plot/data
-get_download_fn <- function(suffix) {
-  paste0(
-    input$genotype_st_dist_plot_anno,
-    '_by_ST__res_',
-    data_selected$resistance_min,
-    '-',
-    data_selected$resistance_max,
-    '_vir_',
-    data_selected$virulence_min,
-    '-',
-    data_selected$virulence_max,
-    '.',
-    suffix
-  )
-}
+download_filename <- function(s.suffix) { paste0(input$genotype_st_dist_plot_anno, '_by_ST__res_', download_filename_suffix(s.suffix)) }
 output$genotype_st_data_download <- downloadHandler(
-  filename=reactive(get_download_fn('.csv')),
+  filename=reactive(download_filename('.csv')),
   content=function(s.filename) { write.csv(genotype_st_dist_data()$d, s.filename, row.names=FALSE) }
 )
 output$genotype_st_plot_download <- downloadHandler(
-  filename=reactive(get_download_fn('pdf')),
+  filename=reactive(download_filename('pdf')),
   content=function(s.filename) { download_plot(genotype_st_dist_plot, s.filename) }
 )
 observeEvent(input$genotype_st_plot_download_show, {
