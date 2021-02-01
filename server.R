@@ -64,7 +64,7 @@ server <- function(input, output, session) {
   download_filename <- function(s.prefix, s.suffix) {
     paste0(
       s.prefix,
-      '__',
+      '__res_',
       data_selected$resistance_min,
       '-',
       data_selected$resistance_max,
