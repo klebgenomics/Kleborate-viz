@@ -91,11 +91,11 @@ get_download_fn <- function(suffix) {
   )
 }
 output$genotype_st_data_download <- downloadHandler(
-  filename=get_download_fn('.csv'),
+  filename=reactive(get_download_fn('.csv')),
   content=function(s.filename) { write.csv(genotype_st_dist_data()$d, s.filename, row.names=FALSE) }
 )
 output$genotype_st_plot_download <- downloadHandler(
-  filename=get_download_fn('pdf'),
+  filename=reactive(get_download_fn('pdf')),
   content=function(s.filename) { download_plot(genotype_st_dist_plot, s.filename) }
 )
 observeEvent(input$genotype_st_plot_download_show, {
