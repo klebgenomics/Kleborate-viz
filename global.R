@@ -83,8 +83,8 @@ v.virulence_loci <- list(
   'RmpADC'='RmpADC_pa',
   'RmpADC (lineages)'='rmpADC_simplified',
   'RmpADC (truncations)'='rmpADC_trunc',
-  'rmpA2'='rmpA2_pa',
-  'rmpA2 (truncations)'='rmpA2_trunc'
+  'RmpA2'='rmpA2_pa',
+  'RmpA2 (truncations)'='rmpA2_trunc'
 )
 v.resistance_classes <- list(
   'AGly'='AGly_acquired_pa',
