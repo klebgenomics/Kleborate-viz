@@ -102,7 +102,13 @@ ui <- fluidPage(
         tabPanel(
           'Summary by species',
           br(),
-          plotlyOutput('res_vir_barplot', height='700px'),
+          h4('Summary by species', style='display: inline-block;'),
+          div(
+            style='display: inline-block;',
+            IconButton('res_vir_bar_plot_download_show', 'graph_modal'),
+            IconButton('res_vir_bar_data_download', 'data_dl'),
+          ),
+          plotlyOutput('res_vir_bar_plot', height='700px'),
         ),
         tabPanel(
           'Genotypes by ST',
