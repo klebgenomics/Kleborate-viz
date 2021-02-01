@@ -147,7 +147,6 @@ convergence_st_heatmap_plot <- reactive({
 
 # Download plot/data
 # Scatter
-download_filename <- function(s.prefix, s.suffix) { paste0(s.prefix, download_filename_suffix(s.suffix)) }
 output$convergence_st_scatter_data_download <- downloadHandler(
   filename=reactive(download_filename('convergence_scatter__', '.csv')),
   content=function(s.filename) { write.csv(convergence_st_scatter_data()$d, s.filename, row.names=FALSE) }
@@ -160,7 +159,6 @@ observeEvent(input$convergence_st_scatter_plot_download_show, {
   download_modal(downloadButton('convergence_st_scatter_plot_download', class='btn-primary'))
 })
 # Heatmap
-download_filename <- function(s.prefix, s.suffix) { paste0(s.prefix, download_filename_suffix(s.suffix)) }
 output$convergence_st_heatmap_data_download <- downloadHandler(
   filename=reactive(download_filename('convergence_heatmap__', '.csv')),
   content=function(s.filename) { write.csv(convergence_st_heatmap_data()$d, s.filename, row.names=FALSE) }

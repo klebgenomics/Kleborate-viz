@@ -61,8 +61,10 @@ server <- function(input, output, session) {
     # NOTE: orca requires dir change to root on macOS dev and Linux deploy
     withr::with_dir('/', orca(plot(), width=input$plot_dl_width, height=input$plot_dl_height, file=s.filename))
   }
-  download_filename_suffix <- function(suffix) {
+  download_filename <- function(s.prefix, s.suffix) {
     paste0(
+      s.prefix,
+      '__',
       data_selected$resistance_min,
       '-',
       data_selected$resistance_max,
@@ -71,7 +73,7 @@ server <- function(input, output, session) {
       '-',
       data_selected$virulence_max,
       '.',
-      suffix
+      s.suffix
     )
   }
   

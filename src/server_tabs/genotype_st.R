@@ -73,13 +73,12 @@ output$genotype_st_count <- renderUI({
 })
 
 # Download plot/data
-download_filename <- function(s.suffix) { paste0(input$genotype_st_dist_plot_anno, '_by_ST__res_', download_filename_suffix(s.suffix)) }
 output$genotype_st_data_download <- downloadHandler(
-  filename=reactive(download_filename('.csv')),
+  filename=reactive(download_filename(paste0(input$genotype_st_dist_plot_anno, '_by_ST__res_'), '.csv')),
   content=function(s.filename) { write.csv(genotype_st_dist_data()$d, s.filename, row.names=FALSE) }
 )
 output$genotype_st_plot_download <- downloadHandler(
-  filename=reactive(download_filename('pdf')),
+  filename=reactive(download_filename(paste0(input$genotype_st_dist_plot_anno, '_by_ST__res_'), 'pdf')),
   content=function(s.filename) { download_plot(genotype_st_dist_plot, s.filename) }
 )
 observeEvent(input$genotype_st_plot_download_show, {

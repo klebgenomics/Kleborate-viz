@@ -122,7 +122,6 @@ cumulative_o_line_combined_plot <- reactive({
 
 # Download plot/data
 # Overall K prevalence
-download_filename <- function(s.prefix, s.suffix) { paste0(s.prefix, download_filename_suffix(s.suffix)) }
 output$cumulative_k_line_each_data_download <- downloadHandler(
   filename=reactive(download_filename('k_locus_prevalence_overall__', '.csv')),
   content=function(s.filename) { write.csv(metadata_summary_k_locus_combined(), s.filename, row.names=FALSE) }
