@@ -75,11 +75,11 @@ output$genotype_metadata_group_count <- renderUI({
 
 # Download plot/data
 output$genotype_metadata_dist_data_download <- downloadHandler(
-  filename=reactive(download_filename(paste0(input$genotype_metadata_dist_plot_anno, '__', input$genotype_metadata_dist_plot_group), '.csv')),
+  filename=reactive(download_filename(paste0(input$genotype_metadata_dist_plot_anno, '__', input$genotype_metadata_dist_plot_group), 'csv')),
   content=function(s.filename) { write.csv(genotype_metadata_dist_data()$d, s.filename, row.names=FALSE) }
 )
 output$genotype_metadata_dist_plot_download <- downloadHandler(
-  filename=reactive(download_filename(paste0(input$genotype_metadata_dist_plot_anno, '__', input$genotype_metadata_dist_plot_group), '.pdf')),
+  filename=reactive(download_filename(paste0(input$genotype_metadata_dist_plot_anno, '__', input$genotype_metadata_dist_plot_group), 'pdf')),
   content=function(s.filename) { download_plot(genotype_metadata_dist_plot, s.filename) }
 )
 observeEvent(input$genotype_metadata_dist_plot_download_show, {

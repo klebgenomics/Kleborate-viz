@@ -74,7 +74,7 @@ output$genotype_st_count <- renderUI({
 
 # Download plot/data
 output$genotype_st_data_download <- downloadHandler(
-  filename=reactive(download_filename(paste0(input$genotype_st_dist_plot_anno, '_by_ST'), '.csv')),
+  filename=reactive(download_filename(paste0(input$genotype_st_dist_plot_anno, '_by_ST'), 'csv')),
   content=function(s.filename) { write.csv(genotype_st_dist_data()$d, s.filename, row.names=FALSE) }
 )
 output$genotype_st_plot_download <- downloadHandler(
