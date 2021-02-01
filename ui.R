@@ -131,8 +131,16 @@ ui <- fluidPage(
         tabPanel(
           'Convergence by ST',
           br(),
-          h4('Mean virulence and resistance scores by ST (click to select genomes)'),
-          plotlyOutput('convergence_st_scatter', height='400px'),
+          div(
+            style='display: inline-block;',
+            h4('Mean virulence and resistance scores by ST (click to select genomes)'),
+          ),
+          div(
+            style='display: inline-block;',
+            IconButton('convergence_st_scatter_plot_download_show', 'graph_modal'),
+            IconButton('convergence_st_scatter_data_download', 'data_dl'),
+          ),
+          plotlyOutput('convergence_st_scatter_plot', height='400px'),
           br(),
           div(
             style='display: inline-block',
@@ -150,8 +158,16 @@ ui <- fluidPage(
             ),
           ),
           br(),
-          h4('Genotypes of selected genomes'),
-          plotlyOutput('convergence_st_heatmap', height='400px')
+          div(
+            style='display: inline-block;',
+            h4('Genotypes of selected genomes'),
+          ),
+          div(
+            style='display: inline-block;',
+            IconButton('convergence_st_heatmap_plot_download_show', 'graph_modal'),
+            IconButton('convergence_st_heatmap_data_download', 'data_dl'),
+          ),
+          plotlyOutput('convergence_st_heatmap_plot', height='400px')
         ),
         tabPanel(
           'K/O diversity',

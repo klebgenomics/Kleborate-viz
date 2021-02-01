@@ -32,7 +32,8 @@ observeEvent(
 )
 
 # Scatter plot
-output$convergence_st_scatter <- renderPlotly({
+output$convergence_st_scatter_plot <- renderPlotly(convergence_st_scatter_plot())
+convergence_st_scatter_data <- reactive({
   d <- data_loaded$kleborate[data_selected$rows, ] %>% 
     group_by(ST) %>%
     summarise(
@@ -56,6 +57,15 @@ output$convergence_st_scatter <- renderPlotly({
     d$annotation <- 'notselected'
   }
   v.colours <- c('selected'='red', 'notselected'='black')
+  # Subset specific columns for plotting
+  d <- d[ ,c('mean_vir', 'mean_res', 'total', 'ST', 'annotation')]
+  return(list(d=d, colours=v.colours))
+})
+convergence_st_scatter_plot <- reactive({
+  # Get data
+  v.data <- convergence_st_scatter_data()
+  d <- v.data$d
+  v.colours <- v.data$colours
   # Render
   g <- ggplot(d, aes(x=mean_vir, y=mean_res, size=total, colour=annotation, key=ST)) + geom_point(alpha=0.5)
   g <- g + theme_bw() + theme(legend.position='none')
@@ -64,8 +74,10 @@ output$convergence_st_scatter <- renderPlotly({
   g <- g + xlab('Mean virulence score') + ylab('Mean resistance score')
   ggplotly(g, source='convergence_st_scatter')
 })
+
 # Clustered heatmap
-output$convergence_st_heatmap <- renderPlotly({
+output$convergence_st_heatmap_plot <- renderPlotly(convergence_st_heatmap_plot())
+convergence_st_heatmap_data <- reactive({
   #  Set NA ST to string and determine display data
   d <- data_loaded$kleborate[data_selected$rows, ]
   d$ST[is.na(d$ST)] <- 'NA'
@@ -112,6 +124,13 @@ output$convergence_st_heatmap <- renderPlotly({
   d[ ,v.col_res] <- ifelse(d[ ,v.col_res]=='-', 0, 2)
   # Set nice names for display
   colnames(d) <- names(v.columns)[match(colnames(d), v.columns)]
+  return(list(d=d, title=s.title))
+})
+convergence_st_heatmap_plot <- reactive({
+  # Get data
+  v.data <- convergence_st_heatmap_data()
+  d <- v.data$d
+  s.title <- v.data$title
   # Render
   heatmaply(
     d,
@@ -124,4 +143,32 @@ output$convergence_st_heatmap <- renderPlotly({
     hide_colorbar=TRUE,
     showticklabels=c(TRUE, FALSE)
   )
+})
+
+# Download plot/data
+# Scatter
+download_filename <- function(s.prefix, s.suffix) { paste0(s.prefix, download_filename_suffix(s.suffix)) }
+output$convergence_st_scatter_data_download <- downloadHandler(
+  filename=reactive(download_filename('convergence_scatter__', '.csv')),
+  content=function(s.filename) { write.csv(convergence_st_scatter_data()$d, s.filename, row.names=FALSE) }
+)
+output$convergence_st_scatter_plot_download <- downloadHandler(
+  filename=reactive(download_filename('convergence_scatter__', '.pdf')),
+  content=function(s.filename) { download_plot(convergence_st_scatter_plot, s.filename) }
+)
+observeEvent(input$convergence_st_scatter_plot_download_show, {
+  download_modal(downloadButton('convergence_st_scatter_plot_download', class='btn-primary'))
+})
+# Heatmap
+download_filename <- function(s.prefix, s.suffix) { paste0(s.prefix, download_filename_suffix(s.suffix)) }
+output$convergence_st_heatmap_data_download <- downloadHandler(
+  filename=reactive(download_filename('convergence_heatmap__', '.csv')),
+  content=function(s.filename) { write.csv(convergence_st_heatmap_data()$d, s.filename, row.names=FALSE) }
+)
+output$convergence_st_heatmap_plot_download <- downloadHandler(
+  filename=reactive(download_filename('convergence_heatmap__', '.pdf')),
+  content=function(s.filename) { download_plot(convergence_st_heatmap_plot, s.filename) }
+)
+observeEvent(input$convergence_st_heatmap_plot_download_show, {
+  download_modal(downloadButton('convergence_st_heatmap_plot_download', class='btn-primary'))
 })
