@@ -58,7 +58,7 @@ server <- function(input, output, session) {
     )
   }
   download_plot <- function(plot, s.filename) {
-    # NOTE: orca requires dir change to root on at least macOS when executed from code dir else results in an error
+    # NOTE: orca requires dir change to root on macOS dev and Linux deploy
     withr::with_dir('/', orca(plot(), width=input$plot_dl_width, height=input$plot_dl_height, file=s.filename))
   }
   
