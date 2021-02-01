@@ -1,9 +1,7 @@
 # ST distribution plot 
-output$genotype_st_dist_plot <- renderPlotly({
-  # Return until input ui element renders and has a default value
-  if (is.null(input$genotype_st_count)) {
-    return()
-  }
+output$genotype_st_dist_plot <- renderPlotly({ genotype_st_dist_plot() })
+
+genotype_st_dist_data <- reactive({
   # NOTE: must use default source of 'A' as heatmaply does not appear to expose the 'source' argument
   ed <- event_data('plotly_click', source='A')
   if(is.null(ed) == FALSE && ed$curveNumber == 0) {
@@ -28,6 +26,21 @@ output$genotype_st_dist_plot <- renderPlotly({
   d$ST <- factor(d$ST, levels=v.st_order)
   # Select first n STs
   d <- d[d$ST %in% v.st_order[1:input$genotype_st_count], ]
+  # Subset specific columns for plotting
+  d <- d[ ,c('strain', 'ST', 'annotation')]
+  return(list(d=d, colours=v.colours, anno_name=s.anno_name))
+})
+
+genotype_st_dist_plot <- reactive({
+  # Return until input ui element renders and has a default value
+  if (is.null(input$genotype_st_count)) {
+    return()
+  }
+  # Get data to plot
+  v.data <- genotype_st_dist_data()
+  d <- v.data$d
+  v.colours <- v.data$colours
+  s.anno_name <- v.data$anno_Name
   # Create plot
   g <- ggplot(data=d, aes(x=ST, fill=annotation))
   g <- g + geom_bar()
@@ -48,6 +61,7 @@ output$genotype_st_dist_plot <- renderPlotly({
   g <- g + scale_fill_manual(values=v.colours, breaks=names(v.colours), name=s.anno_name, drop=FALSE)
   ggplotly(g)
 })
+
 # ST number slider
 output$genotype_st_count <- renderUI({
   sliderInput(
@@ -59,31 +73,31 @@ output$genotype_st_count <- renderUI({
     step=1
   )
 })
-# Download data button
+
+# Download plot/data
+get_download_fn <- function(suffix) {
+  paste0(
+    input$genotype_st_dist_plot_anno,
+    '_by_ST__res_',
+    data_selected$resistance_min,
+    '-',
+    data_selected$resistance_max,
+    '_vir_',
+    data_selected$virulence_min,
+    '-',
+    data_selected$virulence_max,
+    '.',
+    suffix
+  )
+}
 output$genotype_st_data_download <- downloadHandler(
-  filename=function() {
-    paste0(
-      input$genotype_st_dist_plot_anno, 
-      '_by_ST__res', 
-      input$res_score_range_slider[1],
-      '-',
-      input$res_score_range_slider[2],
-      '_vir',
-      input$vir_score_range_slider[1],
-      '-',
-      input$vir_score_range_slider[2],
-      '.csv'
-    )
-  },
-  content=function(s.filename) {
-    d <- table(
-      data_loaded$kleborate[data_selected$rows,'ST'],
-      data_loaded$kleborate[data_selected$rows,input$genotype_st_dist_plot_anno]
-    )
-    # NOTE: ordering was done previously but I don't see how it would work...
-    # v.st_counts <- table(data_loaded$kleborate$ST)
-    # v.st_order <- names(v.st_counts)[order(v.st_counts, decreasing=TRUE)]
-    # d <- d[order(factor(d$ST, levels=v.st_order)), ]
-    write.csv(d, s.filename, row.names=TRUE)
-  }
+  filename=get_download_fn('.csv'),
+  content=function(s.filename) { write.csv(genotype_st_dist_data()$d, s.filename, row.names=FALSE) }
 )
+output$genotype_st_plot_download <- downloadHandler(
+  filename=get_download_fn('pdf'),
+  content=function(s.filename) { download_plot(genotype_st_dist_plot, s.filename) }
+)
+observeEvent(input$genotype_st_plot_download_show, {
+  download_modal(downloadButton('genotype_st_plot_download', class='btn-primary'))
+})

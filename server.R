@@ -32,6 +32,35 @@ server <- function(input, output, session) {
     # Combined
     return(v.species_selector & v.res_selector & v.vir_selector)
   })
+  # Plot download UI/code
+  download_modal <- function(download_button) {
+    showModal(
+      modalDialog(
+        title='Plot download',
+        fluidRow(
+          column(
+            6,
+            numericInput('plot_dl_width', 'Width (px)', 1200),
+          ),
+          column(
+            6,
+            numericInput('plot_dl_height', 'Height (px)', 400),
+          ),
+        ),
+        size='s',
+        easyClose=TRUE,
+        footer=div(
+          style='margin-top: 15px',
+          div(style='float: left', modalButton('Close')),
+          div(style='float: right', download_button),
+        ),
+      )
+    )
+  }
+  download_plot <- function(plot, s.filename) {
+    # NOTE: orca requires dir change to root on at least macOS when executed from code dir else results in an error
+    withr::with_dir('/', orca(plot(), width=input$plot_dl_width, height=input$plot_dl_height, file=s.filename))
+  }
   
   # Source sidebar code
   source('src/server_file_inputs.R', local=TRUE)

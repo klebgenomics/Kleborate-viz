@@ -107,17 +107,21 @@ ui <- fluidPage(
         tabPanel(
           'Genotypes by ST',
           br(),
-          h4('Count of genomes for common STs'),
+          div(
+            style='display: inline-block;',
+            h4('Count of genomes for common STs'),
+          ),
+          div(
+            style='display: inline-block;',
+            IconButton('genotype_st_plot_download_show', 'graph_modal'),
+            IconButton('genotype_st_data_download', 'data_dl'),
+          ),
           plotlyOutput('genotype_st_dist_plot', height='400px'),
           br(),
           selectInput(
             inputId='genotype_st_dist_plot_anno',
             label='Annotation variable',
             choices=v.genotype_var_choices
-          ),
-          downloadButton(
-            outputId='genotype_st_data_download',
-            label='Download the data'
           ),
           column(
             8,
