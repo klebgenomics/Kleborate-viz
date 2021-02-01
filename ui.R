@@ -107,10 +107,7 @@ ui <- fluidPage(
         tabPanel(
           'Genotypes by ST',
           br(),
-          div(
-            style='display: inline-block;',
-            h4('Count of genomes for common STs'),
-          ),
+          h4('Count of genomes for common STs', style='display: inline-block;'),
           div(
             style='display: inline-block;',
             IconButton('genotype_st_plot_download_show', 'graph_modal'),
@@ -131,9 +128,9 @@ ui <- fluidPage(
         tabPanel(
           'Convergence by ST',
           br(),
-          div(
-            style='display: inline-block;',
-            h4('Mean virulence and resistance scores by ST (click to select genomes)'),
+          h4(
+            'Mean virulence and resistance scores by ST (click to select genomes)',
+            style='display: inline-block;'
           ),
           div(
             style='display: inline-block;',
@@ -158,10 +155,7 @@ ui <- fluidPage(
             ),
           ),
           br(),
-          div(
-            style='display: inline-block;',
-            h4('Genotypes of selected genomes'),
-          ),
+          h4('Genotypes of selected genomes', style='display: inline-block;'),
           div(
             style='display: inline-block;',
             IconButton('convergence_st_heatmap_plot_download_show', 'graph_modal'),
