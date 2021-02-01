@@ -172,11 +172,21 @@ ui <- fluidPage(
         tabPanel(
           'K/O diversity',
           br(),
-          h4('Count of genomes for common K loci'),
-          plotlyOutput('k_locus_barplot', height='400px'),
+          h4('Count of genomes for common K loci', style='display: inline-block;'),
+          div(
+            style='display: inline-block;',
+            IconButton('k_locus_bar_plot_download_show', 'graph_modal'),
+            IconButton('k_locus_bar_data_download', 'data_dl'),
+          ),
+          plotlyOutput('k_locus_bar_plot', height='400px'),
           br(),
-          h4('Count of genomes for common O loci'),
-          plotlyOutput('o_locus_barplot', height='400px'),
+          h4('Count of genomes for common O loci', style='display: inline-block;'),
+          div(
+            style='display: inline-block;',
+            IconButton('o_locus_bar_plot_download_show', 'graph_modal'),
+            IconButton('o_locus_bar_data_download', 'data_dl'),
+          ),
+          plotlyOutput('o_locus_bar_plot', height='400px'),
           br(),
           div(
             style='display: inline-block',
@@ -208,8 +218,13 @@ ui <- fluidPage(
             ),
           ),
           br(),
-          h4('Genotypes of selected genomes'),
-          plotlyOutput('ko_diversity_st_heatmap', height='600px')
+          h4('Genotypes of selected genomes', style='display: inline-block;'),
+          div(
+            style='display: inline-block;',
+            IconButton('ko_diversity_st_heatmap_plot_download_show', 'graph_modal'),
+            IconButton('ko_diversity_st_heatmap_data_download', 'data_dl'),
+          ),
+          plotlyOutput('ko_diversity_st_heatmap_plot', height='600px')
         ),
         tabPanel(
           'Genotypes by metadata',
