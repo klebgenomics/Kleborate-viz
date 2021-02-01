@@ -208,7 +208,12 @@ ui <- fluidPage(
         tabPanel(
           'Genotypes by metadata',
           br(),
-          h4('Genome distributions across metadata'),
+          h4('Genome distributions across metadata', style='display: inline-block;'),
+          div(
+            style='display: inline-block;',
+            IconButton('genotype_metadata_dist_plot_download_show', 'graph_modal'),
+            IconButton('genotype_metadata_dist_data_download', 'data_dl'),
+          ),
           plotlyOutput('genotype_metadata_dist_plot', height='400px'),
           br(),
           selectInput(
