@@ -260,7 +260,12 @@ ui <- fluidPage(
         tabPanel(
           'Sample trends',
           br(),
-          h4('Sample trends'),
+          h4('Sample trends', style='display: inline-block;'),
+          div(
+            style='display: inline-block;',
+            IconButton('prevalence_sample_scatter_plot_download_show', 'graph_modal'),
+            IconButton('prevalence_sample_scatter_data_download', 'data_dl'),
+          ),
           plotlyOutput('prevalence_sample_scatter', height='400px'),
           br(),
           fluidRow(

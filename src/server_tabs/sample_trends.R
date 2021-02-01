@@ -1,17 +1,3 @@
-# Get summary data
-metadata_summary_sample <- reactive({
- inner_join(data_loaded$metadata, data_loaded$kleborate[data_selected$rows, ]) -> d
-  d %>%
-   group_by(
-     sample_trends_col=d[[input$sample_trends_col]],
-     sample_trends_var=d[[input$sample_trends_var]]) %>%
-   summarise(
-     n=n(),
-     mean_virulence_score = mean(virulence_score),
-     mean_resistance_score = mean(resistance_score)
-   )
-})
-
 # User input
 observeEvent(
   data_loaded$metadata,
@@ -38,9 +24,22 @@ sample_trends_colours <- reactive({
 })
 
 # Plot
-output$prevalence_sample_scatter <- renderPlotly({
+output$prevalence_sample_scatter <- renderPlotly(prevalence_sample_scatter_plot())
+prevalence_sample_scatter_data <- reactive({
+  inner_join(data_loaded$metadata, data_loaded$kleborate[data_selected$rows, ]) -> d
+  d %>%
+    group_by(
+      sample_trends_col=d[[input$sample_trends_col]],
+      sample_trends_var=d[[input$sample_trends_var]]) %>%
+    summarise(
+      n=n(),
+      mean_virulence_score = mean(virulence_score),
+      mean_resistance_score = mean(resistance_score)
+    )
+})
+prevalence_sample_scatter_plot <- reactive({
   v.colours <- sample_trends_colours()
-  d <- metadata_summary_sample()
+  d <- prevalence_sample_scatter_data()
   g <- ggplot(d, aes(x=mean_virulence_score, y=mean_resistance_score)) +
     # NOTE: set group to force information in hoverinfo; probably better to directly config hoverinfo
     geom_point(aes(size=n, colour=sample_trends_col, group=sample_trends_var)) +
@@ -49,4 +48,17 @@ output$prevalence_sample_scatter <- renderPlotly({
     xlab("Mean virulence score") +
     ylab("Mean resistance score")
   ggplotly(g)
+})
+
+# Download plot/data
+output$prevalence_sample_scatter_data_download <- downloadHandler(
+  filename=reactive(download_filename(paste0(input$sample_trends_col, '__', input$sample_trends_var), 'csv')),
+  content=function(s.filename) { write.csv(prevalence_sample_scatter_data(), s.filename, row.names=FALSE) }
+)
+output$prevalence_sample_scatter_plot_download <- downloadHandler(
+  filename=reactive(download_filename(paste0(input$sample_trends_col, '__', input$sample_trends_var), 'pdf')),
+  content=function(s.filename) { download_plot(prevalence_sample_scatter_plot, s.filename) }
+)
+observeEvent(input$prevalence_sample_scatter_plot_download_show, {
+  download_modal(downloadButton('prevalence_sample_scatter_plot_download', class='btn-primary'))
 })
