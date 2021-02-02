@@ -123,11 +123,11 @@ cumulative_o_line_combined_plot <- reactive({
 # Download plot/data
 # Overall K prevalence
 output$cumulative_k_line_each_data_download <- downloadHandler(
-  filename=reactive(download_filename('k_locus_prevalence_overall__', 'csv')),
+  filename=reactive(download_filename('k_locus_prevalence_overall', 'csv')),
   content=function(s.filename) { write.csv(metadata_summary_k_locus_combined(), s.filename, row.names=FALSE) }
 )
 output$cumulative_k_line_each_plot_download <- downloadHandler(
-  filename=reactive(download_filename('k_locus_prevalence_overall__', 'pdf')),
+  filename=reactive(download_filename('k_locus_prevalence_overall', 'pdf')),
   content=function(s.filename) { download_plot(cumulative_k_line_each_plot, s.filename) }
 )
 observeEvent(input$cumulative_k_line_each_plot_download_show, {
@@ -135,11 +135,11 @@ observeEvent(input$cumulative_k_line_each_plot_download_show, {
 })
 # Individual K prevalence
 output$cumulative_k_line_combined_data_download <- downloadHandler(
-  filename=reactive(download_filename('k_locus_prevalence_overall__', 'csv')),
+  filename=reactive(download_filename('k_locus_prevalence_overall', 'csv')),
   content=function(s.filename) { write.csv(metadata_summary_k_locus_combined(), s.filename, row.names=FALSE) }
 )
 output$cumulative_k_line_combined_plot_download <- downloadHandler(
-  filename=reactive(download_filename('k_locus_prevalence_overall__', 'pdf')),
+  filename=reactive(download_filename('k_locus_prevalence_overall', 'pdf')),
   content=function(s.filename) { download_plot(cumulative_k_line_combined_plot, s.filename) }
 )
 observeEvent(input$cumulative_k_line_combined_plot_download_show, {
@@ -147,11 +147,11 @@ observeEvent(input$cumulative_k_line_combined_plot_download_show, {
 })
 # Overall O prevalence
 output$cumulative_o_line_each_data_download <- downloadHandler(
-  filename=reactive(download_filename('k_locus_prevalence_overall__', 'csv')),
+  filename=reactive(download_filename('k_locus_prevalence_overall', 'csv')),
   content=function(s.filename) { write.csv(metadata_summary_o_locus_combined(), s.filename, row.names=FALSE) }
 )
 output$cumulative_o_line_each_plot_download <- downloadHandler(
-  filename=reactive(download_filename('k_locus_prevalence_overall__', 'pdf')),
+  filename=reactive(download_filename('k_locus_prevalence_overall', 'pdf')),
   content=function(s.filename) { download_plot(cumulative_o_line_each_plot, s.filename) }
 )
 observeEvent(input$cumulative_o_line_each_plot_download_show, {
@@ -159,11 +159,11 @@ observeEvent(input$cumulative_o_line_each_plot_download_show, {
 })
 # Individual O prevalence
 output$cumulative_o_line_combined_data_download <- downloadHandler(
-  filename=reactive(download_filename('k_locus_prevalence_overall__', 'csv')),
+  filename=reactive(download_filename('k_locus_prevalence_overall', 'csv')),
   content=function(s.filename) { write.csv(metadata_summary_o_locus_combined(), s.filename, row.names=FALSE) }
 )
 output$cumulative_o_line_combined_plot_download <- downloadHandler(
-  filename=reactive(download_filename('k_locus_prevalence_overall__', 'pdf')),
+  filename=reactive(download_filename('k_locus_prevalence_overall', 'pdf')),
   content=function(s.filename) { download_plot(cumulative_o_line_combined_plot, s.filename) }
 )
 observeEvent(input$cumulative_o_line_combined_plot_download_show, {

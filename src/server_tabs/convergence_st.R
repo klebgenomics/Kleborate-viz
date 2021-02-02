@@ -148,11 +148,11 @@ convergence_st_heatmap_plot <- reactive({
 # Download plot/data
 # Scatter
 output$convergence_st_scatter_data_download <- downloadHandler(
-  filename=reactive(download_filename('convergence_scatter__', 'csv')),
+  filename=reactive(download_filename('convergence_scatter', 'csv')),
   content=function(s.filename) { write.csv(convergence_st_scatter_data()$d, s.filename, row.names=FALSE) }
 )
 output$convergence_st_scatter_plot_download <- downloadHandler(
-  filename=reactive(download_filename('convergence_scatter__', 'pdf')),
+  filename=reactive(download_filename('convergence_scatter', 'pdf')),
   content=function(s.filename) { download_plot(convergence_st_scatter_plot, s.filename) }
 )
 observeEvent(input$convergence_st_scatter_plot_download_show, {
@@ -160,11 +160,11 @@ observeEvent(input$convergence_st_scatter_plot_download_show, {
 })
 # Heatmap
 output$convergence_st_heatmap_data_download <- downloadHandler(
-  filename=reactive(download_filename('convergence_heatmap__', 'csv')),
+  filename=reactive(download_filename('convergence_heatmap', 'csv')),
   content=function(s.filename) { write.csv(convergence_st_heatmap_data()$d, s.filename, row.names=FALSE) }
 )
 output$convergence_st_heatmap_plot_download <- downloadHandler(
-  filename=reactive(download_filename('convergence_heatmap__', 'pdf')),
+  filename=reactive(download_filename('convergence_heatmap', 'pdf')),
   content=function(s.filename) { download_plot(convergence_st_heatmap_plot, s.filename) }
 )
 observeEvent(input$convergence_st_heatmap_plot_download_show, {
