@@ -121,14 +121,14 @@ ui <- fluidPage(
           ),
           plotlyOutput('genotype_st_dist_plot', height='400px'),
           br(),
-          selectInput(
-            inputId='genotype_st_dist_plot_anno',
-            label='Annotation variable',
-            choices=v.genotype_var_choices
-          ),
-          column(
-            8,
-            wellPanel(uiOutput('genotype_st_count'))
+          div(
+            align='center',
+            selectInput(
+              inputId='genotype_st_dist_plot_anno',
+              label='Annotation variable',
+              choices=v.genotype_var_choices
+            ),
+            uiOutput('genotype_st_count')
           ),
         ),
         tabPanel(
@@ -146,18 +146,25 @@ ui <- fluidPage(
           plotlyOutput('convergence_st_scatter_plot', height='400px'),
           br(),
           div(
-            style='display: inline-block',
-            textInput('convergence_st_text', 'Select ST:', placeholder='e.g. ST512'),
-          ),
-          div(
-            style='display: inline-block',
-            actionButton(
-              style='margin-bottom: 5px',
-              'convergence_st_text_button', 'Select'
+            align='center',
+            div(
+              style='display: inline-block',
+              textInput(
+                'convergence_st_text',
+                'Select ST:',
+                placeholder='e.g. ST512'
+              ),
             ),
-            actionButton(
-              style='margin-bottom: 5px',
-              'convergence_st_reset_button', 'Reset'
+            div(
+              style='display: inline-block',
+              actionButton(
+                style='margin-bottom: 5px',
+                'convergence_st_text_button', 'Select'
+              ),
+              actionButton(
+                style='margin-bottom: 5px',
+                'convergence_st_reset_button', 'Reset'
+              ),
             ),
           ),
           br(),
@@ -189,33 +196,28 @@ ui <- fluidPage(
           plotlyOutput('o_locus_bar_plot', height='400px'),
           br(),
           div(
-            style='display: inline-block',
-            textInput('ko_diversity_st_text', 'Select ST:', placeholder='e.g. ST512'),
-          ),
-          div(
-            style='display: inline-block',
-            actionButton(
-              style='margin-bottom: 5px',
-              'ko_diversity_st_text_button', 'Select'
+            align='center',
+            div(
+              style='display: inline-block',
+              textInput('ko_diversity_st_text', 'Select ST:', placeholder='e.g. ST512'),
             ),
-            actionButton(
-              style='margin-bottom: 5px',
-              'ko_diversity_st_reset_button', 'Reset'
-            ),
-          ),
-          fluidRow(
-            column(
-              6,
-              selectInput(
-                inputId='ko_dist_plot_anno',
-                label='Annotation variable',
-                choices=v.genotype_var_choices
+            div(
+              style='display: inline-block',
+              actionButton(
+                style='margin-bottom: 4px',
+                'ko_diversity_st_text_button', 'Select'
+              ),
+              actionButton(
+                style='margin-bottom: 4px',
+                'ko_diversity_st_reset_button', 'Reset'
               ),
             ),
-            column(
-              6,
-              uiOutput('ko_diversity_locus_count')
+            selectInput(
+              inputId='ko_dist_plot_anno',
+              label='Annotation variable',
+              choices=v.genotype_var_choices
             ),
+            uiOutput('ko_diversity_locus_count')
           ),
           br(),
           h4('Genotypes of selected genomes', style='display: inline-block;'),
@@ -237,24 +239,19 @@ ui <- fluidPage(
           ),
           plotlyOutput('genotype_metadata_dist_plot', height='400px'),
           br(),
-          selectInput(
-            inputId='genotype_metadata_dist_plot_anno',
-            label='Annotation variable',
-            choices=v.genotype_var_choices
-          ),
-          fluidRow(
-            column(
-              6,
-              selectInput(
-                inputId='genotype_metadata_dist_plot_group',
-                label='Group variable',
-                choices=NULL
-              ),
+          div(
+            align='center',
+            selectInput(
+              inputId='genotype_metadata_dist_plot_anno',
+              label='Annotation variable',
+              choices=v.genotype_var_choices
             ),
-            column(
-              6,
-              uiOutput('genotype_metadata_group_count')
+            selectInput(
+              inputId='genotype_metadata_dist_plot_group',
+              label='Group variable',
+              choices=NULL
             ),
+            uiOutput('genotype_metadata_group_count')
           ),
         ),
         tabPanel(
@@ -353,18 +350,21 @@ ui <- fluidPage(
           'MICs by AMR genotype',
           br(),
           plotlyOutput('amr_profile_dist', height='400px'),
-          selectInput(
-            inputId='amr_profile_mic',
-            label='MIC variable',
-            choices=NULL
-          ),
-          selectInput(
-            inputId='amr_profile_geno',
-            label='AMR genotype',
-            choices=c(
-              'Bla Carb',
-              'Bla ESBL',
-              'Bla acquired'
+          div(
+            align='center',
+            selectInput(
+              inputId='amr_profile_mic',
+              label='MIC variable',
+              choices=NULL
+            ),
+            selectInput(
+              inputId='amr_profile_geno',
+              label='AMR genotype',
+              choices=c(
+                'Bla Carb',
+                'Bla ESBL',
+                'Bla acquired'
+              )
             )
           )
         )
