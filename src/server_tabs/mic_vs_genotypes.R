@@ -88,6 +88,8 @@ amr_profile_dist_data <- reactive({
   # Set order for x-axis
   v.order <- c(v.amr_gt_order_start, v.amr_gt_order_x, v.amr_gt_order_end)
   d$x <- factor(d$x, levels=v.order)
+  # Select columns
+  d <- d[ ,c('x', 'y', 'Omp_mutations_simplified')]
   return(list(d=d, order=v.order))
 })
 amr_profile_dist_plot <- reactive({
