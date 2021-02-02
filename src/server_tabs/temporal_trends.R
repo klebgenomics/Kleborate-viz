@@ -7,7 +7,8 @@ observeEvent(
   {
     v.years <- as.numeric(data_loaded$metadata$Year)
     v.years <- v.years[!is.na(v.years)]
-    updateSliderInput(session, 'temporal_trends_year_slider', min=min(v.years), max=max(v.years), value=c(min(v.years), max(v.years)))
+    temporal_year_selection$min <- min(v.years)
+    temporal_year_selection$max <- max(v.years)
   }
 )
 metadata_summary_year <- reactive({
@@ -35,24 +36,55 @@ metadata_summary_year <- reactive({
   d$Year <- as.numeric(d$Year)
   d <- d[!is.na(d$Year), ]
   # Apply filter and melt data for plotting
-  d <- d[d$Year>=input$temporal_trends_year_slider[1] & d$Year<=input$temporal_trends_year_slider[2], ]
+  d <- d[d$Year>=temporal_year_selection$min & d$Year<=temporal_year_selection$max, ]
   d <- melt(d, id.vars=c('Year', 'n'))
   return(d)
 })
 
-# User input
-output$temporal_trends_year_slider <- renderUI({
-  v.years <- as.numeric(data_loaded$metadata$Year)
-  v.years <- v.years[!is.na(v.years)]
-  sliderInput(
-    inputId='temporal_trends_year_slider',
-    label='',
-    sep='',
-    min=min(v.years),
-    max=max(v.years),
-    value=c(min(v.years), max(v.years)),
-    step=1
-  )
+# User input/histogram
+temporal_year_selection <- reactiveValues(min=NULL, max=NULL)
+output$temporal_trends_year_hist <- renderPlotly({
+  # Do not attempt to plot unless we have defined user inputs
+  if (is.null(temporal_year_selection$min) || is.null(temporal_year_selection$max)) {
+    return()
+  }
+  # Handle selection event
+  ed <- event_data('plotly_selected', source='temporal_trend_year_hist')
+  if(is.null(ed) == FALSE && length(ed) > 0 && nrow(ed) > 0) {
+    if (all(ed$y==0)) {
+      # Select all years
+    } else if (sum(ed$y>0) > 1) {
+      # Set new range selection as long as same year isn't selected twice
+      temporal_year_selection$min <- floor(min(ed$x))
+      temporal_year_selection$max <- ceiling(max(ed$x))
+    }
+    # Immediately clear select event
+    runjs("Shiny.onInputChange('plotly_selected-temporal_trend_year_hist', 'null');")
+    data_selected$rows <- compute_row_selection()
+  }
+  # Get data
+  inner_join(data_loaded$metadata, data_loaded$kleborate) %>%
+    mutate(Bla_ESBL_combined = if_else(Bla_ESBL_acquired == "-" & Bla_ESBL_inhR_acquired == "-", "-", "esbl")) %>%
+    group_by(Year) %>%
+    summarise(
+      n=n()
+    ) -> d
+  d$Year <- as.numeric(d$Year)
+  d <- d[!is.na(d$Year), ]
+  # Set break size
+  n.break_size <- max(round((max(d$Year) - min(d$Year)) / 10, 0), 1)
+  # Define selected years to annotate
+  d$selected <- ifelse(d$Year>=temporal_year_selection$min & d$Year<=temporal_year_selection$max, 'yes', 'no')
+  # Plot
+  g <- ggplot(d, aes(x=Year, y=n, fill=selected)) + geom_histogram(stat='identity')
+  g <- g + theme_bw() + theme(legend.position='none', axis.text.x=element_text(angle=45, hjust=1)) + ylab('') + xlab('')
+  g <- g + scale_x_continuous(breaks=seq(min(d$Year), max(d$Year), n.break_size))
+  g <- g + scale_fill_manual(breaks=c('yes', 'no'), values=c('grey30', 'grey60'))
+  # NOTE: I wanted to add shaded background to indicate selection but rect annotation (and geom_rect) are not honoured by ggplotly
+  # g <- g + annotate('rect', xmin=min(d$Year), xmax=max(d$Year), ymin=-Inf, ymax=Inf, alpha=0.2, fill='red')
+  ggplotly(g, source='temporal_trend_year_hist') %>%
+    layout(xaxis=list(fixedrange=TRUE), yaxis=list(fixedrange=TRUE), dragmode='select', selectdirection='h') %>%
+    config(displayModeBar=FALSE)
 })
 
 # Generalised plotting functions
@@ -66,7 +98,7 @@ temporal_trend_data <- function(v.name_map) {
 }
 temporal_trend_plot <- function(d, v.colours, s.ylab) {
   # Do not attempt to plot unless we have defined user inputs
-  if (is.null(input$temporal_trends_year_slider)) {
+  if (is.null(temporal_year_selection$min) || is.null(temporal_year_selection$max)) {
     return()
   }
   # Plot

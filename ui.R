@@ -232,10 +232,11 @@ ui <- fluidPage(
         ),
         tabPanel(
           'Temporal trends',
-          h4('Year selector'),
+          h4('Sampling density by year'),
           fluidRow(
             align='center',
-            uiOutput('temporal_trends_year_slider'),
+            h5('Drag to select year range'),
+            plotlyOutput('temporal_trends_year_hist', width=350, height=200),
           ),
           br(),
           h4('Virulence and resistance scores', style='display: inline-block;'),
