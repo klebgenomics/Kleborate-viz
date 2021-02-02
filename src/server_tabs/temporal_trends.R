@@ -11,6 +11,22 @@ observeEvent(
     temporal_year_selection$max <- max(v.years)
   }
 )
+observeEvent(
+  data_selected$rows,
+  {
+    if (!is.null(data_loaded$metadata) && !is.null(data_loaded$kleborate)) {
+      v.years <- as.numeric(metadata_summary_year()$Year)
+      v.years <- v.years[!is.na(v.years)]
+      # Ensure we are not setting the range beyond what is in our current data selection
+      if (temporal_year_selection$min < min(v.years) || temporal_year_selection$min > max(v.years)) {
+        temporal_year_selection$min <- min(v.years)
+      }
+      if (temporal_year_selection$max > max(v.years) || temporal_year_selection$max < min(v.years)) {
+        temporal_year_selection$max <- max(v.years)
+      }
+    }
+  }
+)
 metadata_summary_year <- reactive({
   inner_join(data_loaded$metadata, data_loaded$kleborate[data_selected$rows, ]) %>%
     mutate(Bla_ESBL_combined = if_else(Bla_ESBL_acquired == "-" & Bla_ESBL_inhR_acquired == "-", "-", "esbl")) %>%
@@ -35,7 +51,11 @@ metadata_summary_year <- reactive({
   # Cast to numeric and filter non-numerics
   d$Year <- as.numeric(d$Year)
   d <- d[!is.na(d$Year), ]
+  return(d)
+})
+metadata_summary_year_filtered <- reactive({
   # Apply filter and melt data for plotting
+  d <- metadata_summary_year()
   d <- d[d$Year>=temporal_year_selection$min & d$Year<=temporal_year_selection$max, ]
   d <- melt(d, id.vars=c('Year', 'n'))
   return(d)
@@ -63,14 +83,10 @@ output$temporal_trends_year_hist <- renderPlotly({
     data_selected$rows <- compute_row_selection()
   }
   # Get data
-  inner_join(data_loaded$metadata, data_loaded$kleborate) %>%
-    mutate(Bla_ESBL_combined = if_else(Bla_ESBL_acquired == "-" & Bla_ESBL_inhR_acquired == "-", "-", "esbl")) %>%
-    group_by(Year) %>%
-    summarise(
-      n=n()
-    ) -> d
-  d$Year <- as.numeric(d$Year)
-  d <- d[!is.na(d$Year), ]
+  d <- metadata_summary_year()
+  if (nrow(d) == 0) {
+    return()
+  }
   # Set break size
   n.break_size <- max(round((max(d$Year) - min(d$Year)) / 10, 0), 1)
   # Define selected years to annotate
@@ -90,7 +106,7 @@ output$temporal_trends_year_hist <- renderPlotly({
 # Generalised plotting functions
 temporal_trend_data <- function(v.name_map) {
   # Get and select data
-  d <- metadata_summary_year()
+  d <- metadata_summary_year_filtered()
   d <- d[d$variable %in% names(v.name_map), ]
   d$variable <- v.name_map[as.character(d$variable)]
   d <- d[ ,c('Year', 'value', 'variable')]
@@ -99,6 +115,9 @@ temporal_trend_data <- function(v.name_map) {
 temporal_trend_plot <- function(d, v.colours, s.ylab) {
   # Do not attempt to plot unless we have defined user inputs
   if (is.null(temporal_year_selection$min) || is.null(temporal_year_selection$max)) {
+    return()
+  }
+  if (nrow(d) == 0) {
     return()
   }
   # Plot
