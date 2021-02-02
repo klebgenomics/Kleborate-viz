@@ -4,12 +4,12 @@ observe({
   if (is.null(data_loaded$kleborate)) {
     hideTab(inputId="primary", target="Summary by species")
     hideTab(inputId="primary", target="Genotypes by ST")
-    hideTab(inputId="primary", target="Genotypes by metadata")
     hideTab(inputId="primary", target="Convergence by ST")
-    hideTab(inputId="primary", target="K/O diversity")
+    hideTab(inputId="primary", target="Genotypes vs metadata")
+    hideTab(inputId="primary", target="Convergence vs metadata")
     hideTab(inputId="primary", target="Temporal trends")
-    hideTab(inputId="primary", target="Sample trends")
     hideTab(inputId="primary", target="Cumulative K/O prevalence")
+    hideTab(inputId="primary", target="K/O diversity")
     hideTab(inputId="primary", target="MICs by AMR genotype")
   } else {
     showTab(inputId="primary", target="Summary by species")
@@ -18,11 +18,11 @@ observe({
   }
   # Metadata required
   if (is.null(data_loaded$metadata)) {
-    hideTab(inputId="primary", target="Genotypes by metadata")
-    hideTab(inputId="primary", target="Sample trends")
+    hideTab(inputId="primary", target="Genotypes vs metadata")
+    hideTab(inputId="primary", target="Convergence vs metadata")
   } else {
-    showTab(inputId="primary", target="Genotypes by metadata")
-    showTab(inputId="primary", target="Sample trends")
+    showTab(inputId="primary", target="Genotypes vs metadata")
+    showTab(inputId="primary", target="Convergence vs metadata")
   }
   # Metadata required with 'Year' column
   if (! 'Year' %in% colnames(data_loaded$metadata)) {

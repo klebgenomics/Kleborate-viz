@@ -177,59 +177,7 @@ ui <- fluidPage(
           plotlyOutput('convergence_st_heatmap_plot', height='400px')
         ),
         tabPanel(
-          'K/O diversity',
-          br(),
-          h4('Count of genomes for common K loci', style='display: inline-block;'),
-          div(
-            style='display: inline-block;',
-            IconButton('k_locus_bar_plot_download_show', 'graph_modal'),
-            IconButton('k_locus_bar_data_download', 'data_dl'),
-          ),
-          plotlyOutput('k_locus_bar_plot', height='400px'),
-          br(),
-          h4('Count of genomes for common O loci', style='display: inline-block;'),
-          div(
-            style='display: inline-block;',
-            IconButton('o_locus_bar_plot_download_show', 'graph_modal'),
-            IconButton('o_locus_bar_data_download', 'data_dl'),
-          ),
-          plotlyOutput('o_locus_bar_plot', height='400px'),
-          br(),
-          div(
-            align='center',
-            div(
-              style='display: inline-block',
-              textInput('ko_diversity_st_text', 'Select ST:', placeholder='e.g. ST512'),
-            ),
-            div(
-              style='display: inline-block',
-              actionButton(
-                style='margin-bottom: 4px',
-                'ko_diversity_st_text_button', 'Select'
-              ),
-              actionButton(
-                style='margin-bottom: 4px',
-                'ko_diversity_st_reset_button', 'Reset'
-              ),
-            ),
-            selectInput(
-              inputId='ko_dist_plot_anno',
-              label='Annotation variable',
-              choices=v.genotype_var_choices
-            ),
-            uiOutput('ko_diversity_locus_count')
-          ),
-          br(),
-          h4('Genotypes of selected genomes', style='display: inline-block;'),
-          div(
-            style='display: inline-block;',
-            IconButton('ko_diversity_st_heatmap_plot_download_show', 'graph_modal'),
-            IconButton('ko_diversity_st_heatmap_data_download', 'data_dl'),
-          ),
-          plotlyOutput('ko_diversity_st_heatmap_plot', height='600px')
-        ),
-        tabPanel(
-          'Genotypes by metadata',
+          'Genotypes vs metadata',
           br(),
           h4('Genome distributions across metadata', style='display: inline-block;'),
           div(
@@ -255,9 +203,9 @@ ui <- fluidPage(
           ),
         ),
         tabPanel(
-          'Sample trends',
+          'Convergence vs metadata',
           br(),
-          h4('Sample trends', style='display: inline-block;'),
+          h4('Convergence vs metadata', style='display: inline-block;'),
           div(
             style='display: inline-block;',
             IconButton('prevalence_sample_scatter_plot_download_show', 'graph_modal'),
@@ -365,6 +313,58 @@ ui <- fluidPage(
             IconButton('cumulative_o_line_each_data_download', 'data_dl'),
           ),
           plotlyOutput('cumulative_o_line_each_plot', height='400px')
+        ),
+        tabPanel(
+          'K/O diversity',
+          br(),
+          h4('Count of genomes for common K loci', style='display: inline-block;'),
+          div(
+            style='display: inline-block;',
+            IconButton('k_locus_bar_plot_download_show', 'graph_modal'),
+            IconButton('k_locus_bar_data_download', 'data_dl'),
+          ),
+          plotlyOutput('k_locus_bar_plot', height='400px'),
+          br(),
+          h4('Count of genomes for common O loci', style='display: inline-block;'),
+          div(
+            style='display: inline-block;',
+            IconButton('o_locus_bar_plot_download_show', 'graph_modal'),
+            IconButton('o_locus_bar_data_download', 'data_dl'),
+          ),
+          plotlyOutput('o_locus_bar_plot', height='400px'),
+          br(),
+          div(
+            align='center',
+            div(
+              style='display: inline-block',
+              textInput('ko_diversity_st_text', 'Select ST:', placeholder='e.g. ST512'),
+            ),
+            div(
+              style='display: inline-block',
+              actionButton(
+                style='margin-bottom: 4px',
+                'ko_diversity_st_text_button', 'Select'
+              ),
+              actionButton(
+                style='margin-bottom: 4px',
+                'ko_diversity_st_reset_button', 'Reset'
+              ),
+            ),
+            selectInput(
+              inputId='ko_dist_plot_anno',
+              label='Annotation variable',
+              choices=v.genotype_var_choices
+            ),
+            uiOutput('ko_diversity_locus_count')
+          ),
+          br(),
+          h4('Genotypes of selected genomes', style='display: inline-block;'),
+          div(
+            style='display: inline-block;',
+            IconButton('ko_diversity_st_heatmap_plot_download_show', 'graph_modal'),
+            IconButton('ko_diversity_st_heatmap_data_download', 'data_dl'),
+          ),
+          plotlyOutput('ko_diversity_st_heatmap_plot', height='600px')
         ),
         tabPanel(
           'MICs by AMR genotype',
