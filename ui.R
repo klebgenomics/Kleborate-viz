@@ -3,6 +3,18 @@ ui <- fluidPage(
   # This is required specifically to clear plotly event data
   useShinyjs(),
   extendShinyjs(script='shiny.js', functions=c()),
+  # Set style for collapsible panel background
+  # panel-collapse.collapse.in
+  tags$head(
+    # Note the wrapping of the string in HTML()
+    tags$style(
+      HTML("
+        .panel-collapse {
+          background-color: #f5f5f5
+        }
+      ")
+    )
+  ),
   # Title panel
   title='Kleborate-viz',
   fluidRow(
@@ -16,33 +28,40 @@ ui <- fluidPage(
           'Kleborate-viz'),
       ),
       # Side bar
-      wellPanel(
-        # Input files
-        h4('Upload data'),
-        fileInput(
-          'kleborate_file',
-          'Kleborate output (txt)',
-          accept=c('text/csv', 'text/comma-separated-values,text/plain', '.csv')
-        ),
-        fileInput(
-          'metadata_file',
-          'Metadata table (csv)',
-          accept=c('text/csv', 'text/comma-separated-values,text/plain', '.csv')
-        ),
-        fileInput(
-          'mic_file',
-          'MIC table (csv)',
-          accept=c('text/csv', 'text/comma-separated-values,text/plain', '.csv')
-        ),
-        hr(),
-        # Builtin datasets
-        h4('Built in datasets', style='display: inline-block'),
-        h5('(click to view)', style='display: inline-block'),
-        div(
-          align='center',
-          actionButton("dataset_global", "Global dataset"),
-          actionButton("dataset_euscape", "EuSCAPE dataset"),
-        ),
+      bsCollapse(
+        open='data_upload',
+        bsCollapsePanel(
+          # Input files
+          title=tagList(
+            h4('Upload data', style='display: inline-block'),
+            h5(' (click to collapse)', style='display: inline-block'),
+          ),
+          value='data_upload',
+          fileInput(
+            'kleborate_file',
+            'Kleborate output (txt)',
+            accept=c('text/csv', 'text/comma-separated-values,text/plain', '.csv')
+          ),
+          fileInput(
+            'metadata_file',
+            'Metadata table (csv)',
+            accept=c('text/csv', 'text/comma-separated-values,text/plain', '.csv')
+          ),
+          fileInput(
+            'mic_file',
+            'MIC table (csv)',
+            accept=c('text/csv', 'text/comma-separated-values,text/plain', '.csv')
+          ),
+          hr(),
+          # Builtin datasets
+          h4('Built in datasets', style='display: inline-block'),
+          h5('(click to view)', style='display: inline-block'),
+          div(
+            align='center',
+            actionButton("dataset_global", "Global dataset"),
+            actionButton("dataset_euscape", "EuSCAPE dataset"),
+          )
+        )
       ),
       wellPanel(
         # Data summary

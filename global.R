@@ -1,5 +1,6 @@
 # Packages
 library(shiny)
+library(shinyBS)
 library(shinyjs)
 # Misc
 library(tidyverse)
