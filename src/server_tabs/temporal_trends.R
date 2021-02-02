@@ -55,16 +55,21 @@ output$temporal_trends_year_slider <- renderUI({
   )
 })
 
-# Generalised plot function
-temporal_trend_plot <- function(v.name_map, v.colours, s.ylab) {
-  if (is.null(input$temporal_trends_year_slider)) {
-    return()
-  }
+# Generalised plotting functions
+temporal_trend_data <- function(v.name_map) {
   # Get and select data
   d <- metadata_summary_year()
   d <- d[d$variable %in% names(v.name_map), ]
-  # Rename variables and plot
   d$variable <- v.name_map[as.character(d$variable)]
+  d <- d[ ,c('Year', 'value', 'variable')]
+  return(d)
+}
+temporal_trend_plot <- function(d, v.colours, s.ylab) {
+  # Do not attempt to plot unless we have defined user inputs
+  if (is.null(input$temporal_trends_year_slider)) {
+    return()
+  }
+  # Plot
   g <- ggplot(d, aes(x=Year, y=value, colour=variable)) + geom_line()
   g <- g + xlab('Year') + ylab(s.ylab) 
   g <- g + theme_bw()
@@ -72,34 +77,44 @@ temporal_trend_plot <- function(v.name_map, v.colours, s.ylab) {
   ggplotly(g)
 }
 
+# NOTE: functions below are split to allow downloading on data and plots, which each require callable functions without args
 # Mean virulence and resistance scores
-output$year_mean_scores_line <- renderPlotly({
+output$year_mean_scores_line_plot <- renderPlotly(year_mean_scores_line_plot())
+year_mean_scores_line_data <- reactive({
   v.name_map <- c(
     'mean_resistance_score'='Mean resistance score',
     'mean_virulence_score'='Mean virulence score'
   )
+  temporal_trend_data(v.name_map)
+})
+year_mean_scores_line_plot <- reactive({
   v.colours <- c(
     'Mean resistance score'='#bb363c', 
     'Mean virulence score'='#1855b7'
   )
-  temporal_trend_plot(v.name_map, v.colours, 'Mean score')
+  temporal_trend_plot(year_mean_scores_line_data(), v.colours, 'Mean score')
 })
 
 # Prevalence AMR classes and genes by year
-output$year_mean_resistance_line <- renderPlotly({ 
+output$year_mean_resistance_line_plot <- renderPlotly(year_mean_resistance_line_plot())
+year_mean_resistance_line_data <- reactive({
   v.name_map <- c(
     'mean_resistance_genes'='Mean resistance genes',
     'mean_resistance_classes'='Mean resistance classes'
   )
+  temporal_trend_data(v.name_map)
+})
+year_mean_resistance_line_plot <- reactive({
   v.colours <- c(
-    'Mean resistance genes'='#bb363c', 
+    'Mean resistance genes'='#bb363c',
     'Mean resistance classes'='black'
   )
-  temporal_trend_plot(v.name_map, v.colours, 'Mean acquired AMR classes and genes')
+  temporal_trend_plot(year_mean_resistance_line_data(), v.colours, 'Mean acquired AMR classes and genes')
 })
 
 # Prevalence of virulence determinants
-output$virulence_prevalence_year_line <- renderPlotly({
+output$virulence_prevalence_year_line_plot <- renderPlotly(virulence_prevalence_year_line_plot())
+virulence_prevalence_year_line_data <- reactive({
   v.name_map <- c(
     'ybt_prevalence'='YBT prevalance',
     'clb_prevalence'='CLB prevalance',
@@ -108,6 +123,9 @@ output$virulence_prevalence_year_line <- renderPlotly({
     'rmpADC_prevalence'='rmpADC prevalance',
     'rmpA2_prevalence'='rmpA2 prevalance'
   )
+  temporal_trend_data(v.name_map)
+})
+virulence_prevalence_year_line_plot <- reactive({
   v.colours <- c(
     'YBT prevalance'='#68b297',
     'CLB prevalance'='#377c63',
@@ -116,22 +134,76 @@ output$virulence_prevalence_year_line <- renderPlotly({
     'rmpADC prevalance'='#1855b7',
     'rmpA2 prevalance'='#4292c6'
   )
-  temporal_trend_plot(v.name_map, v.colours, 'Prevalance')
+  temporal_trend_plot(virulence_prevalence_year_line_data(), v.colours, 'Prevalance')
 })
 
 # Prevalence of AMR determinants
-output$AMR_prevalence_year_line <- renderPlotly({
+output$AMR_prevalence_year_line_plot <- renderPlotly(AMR_prevalence_year_line_plot())
+AMR_prevalence_year_line_data <- reactive({
   v.name_map <- c(
     'ESBL_prevalence'='ESBL prevalance',
     'carbapenemase_prevalence'='Carbapenemase prevalance',
     'colistin_resistance_mutation_prevalence'='Colistin mutation prevalance',
     'colistin_resistance_gene_prevalence'='Colistin gene prevalance'
   )
+  temporal_trend_data(v.name_map)
+})
+AMR_prevalence_year_line_plot <- reactive({
   v.colours <- c(
     'ESBL prevalance'='#f4bdbd',
     'Carbapenemase prevalance'='#f26158',
     'Colistin mutation prevalance'='#bb363c',
     'Colistin gene prevalance'='black'
   )
-  temporal_trend_plot(v.name_map, v.colours, 'Prevalance')
+  temporal_trend_plot(AMR_prevalence_year_line_data(), v.colours, 'Prevalance')
+})
+
+# Download data/plot
+# Virulence and resistance scores
+output$year_mean_scores_line_data_download <- downloadHandler(
+  filename=reactive(download_filename('year_mean_scores_line', 'csv')),
+  content=function(s.filename) { write.csv(year_mean_scores_line_data(), s.filename, row.names=FALSE) }
+)
+output$year_mean_scores_line_plot_download <- downloadHandler(
+  filename=reactive(download_filename(paste0(input$amr_profile_geno, '__', input$amr_profile_mic), 'pdf')),
+  content=function(s.filename) { download_plot(year_mean_scores_line_plot, s.filename) }
+)
+observeEvent(input$year_mean_scores_line_plot_download_show, {
+  download_modal(downloadButton('year_mean_scores_line_plot_download', class='btn-primary'))
+})
+# Acquired AMR classes and genes by year
+output$year_mean_resistance_line_data_download <- downloadHandler(
+  filename=reactive(download_filename('year_mean_resistance_line', 'csv')),
+  content=function(s.filename) { write.csv(year_mean_resistance_line_data(), s.filename, row.names=FALSE) }
+)
+output$year_mean_resistance_line_plot_download <- downloadHandler(
+  filename=reactive(download_filename(paste0(input$amr_profile_geno, '__', input$amr_profile_mic), 'pdf')),
+  content=function(s.filename) { download_plot(year_mean_resistance_line_plot, s.filename) }
+)
+observeEvent(input$year_mean_resistance_line_plot_download_show, {
+  download_modal(downloadButton('year_mean_resistance_line_plot_download', class='btn-primary'))
+})
+# Virulence determinant prevalence by year
+output$virulence_prevalence_year_line_data_download <- downloadHandler(
+  filename=reactive(download_filename('virulence_prevalence_year_line', 'csv')),
+  content=function(s.filename) { write.csv(virulence_prevalence_year_line_data(), s.filename, row.names=FALSE) }
+)
+output$virulence_prevalence_year_line_plot_download <- downloadHandler(
+  filename=reactive(download_filename(paste0(input$amr_profile_geno, '__', input$amr_profile_mic), 'pdf')),
+  content=function(s.filename) { download_plot(virulence_prevalence_year_line_plot, s.filename) }
+)
+observeEvent(input$virulence_prevalence_year_line_plot_download_show, {
+  download_modal(downloadButton('virulence_prevalence_year_line_plot_download', class='btn-primary'))
+})
+# AMR determinant prevalence by year
+output$AMR_prevalence_year_line_data_download <- downloadHandler(
+  filename=reactive(download_filename('AMR_prevalence_year_line', 'csv')),
+  content=function(s.filename) { write.csv(AMR_prevalence_year_line_data(), s.filename, row.names=FALSE) }
+)
+output$AMR_prevalence_year_line_plot_download <- downloadHandler(
+  filename=reactive(download_filename(paste0(input$amr_profile_geno, '__', input$amr_profile_mic), 'pdf')),
+  content=function(s.filename) { download_plot(AMR_prevalence_year_line_plot, s.filename) }
+)
+observeEvent(input$AMR_prevalence_year_line_plot_download_show, {
+  download_modal(downloadButton('AMR_prevalence_year_line_plot_download', class='btn-primary'))
 })
