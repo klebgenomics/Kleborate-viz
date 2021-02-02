@@ -64,11 +64,10 @@ observeEvent(
     updateSelectInput(session, 'amr_profile_mic', choices=v.cols, selected=v.cols[1])
   }
 )
+
 # Plot
-output$amr_profile_dist <- renderPlotly({
-  if (is.null(input$amr_profile_mic)) {
-    return()
-  }
+output$amr_profile_dist_plot <- renderPlotly(amr_profile_dist_plot())
+amr_profile_dist_data <- reactive({
   d <- inner_join(data_loaded$mic_data, data_loaded$kleborate[data_selected$rows, ])
   # Set MIC for y-axis
   d$y <- d[[input$amr_profile_mic]]
@@ -89,6 +88,17 @@ output$amr_profile_dist <- renderPlotly({
   # Set order for x-axis
   v.order <- c(v.amr_gt_order_start, v.amr_gt_order_x, v.amr_gt_order_end)
   d$x <- factor(d$x, levels=v.order)
+  return(list(d=d, order=v.order))
+})
+amr_profile_dist_plot <- reactive({
+  # Do not attempt to render without defined input variables
+  if (is.null(input$amr_profile_mic)) {
+    return()
+  }
+  # Get data
+  v.data <- amr_profile_dist_data()
+  d <- v.data$d
+  v.order <- v.data$order
   # Plot
   g <- ggplot(d, aes(x=x, y=y))
   g <- g + geom_jitter(aes(colour = Omp_mutations_simplified), width=0.25, height=0.5, alpha= 0.7)
@@ -101,8 +111,21 @@ output$amr_profile_dist <- renderPlotly({
   # Remove outliers
   i <- length(g$x$data)
   g$x$data[i] <- lapply(g$x$data[i], function(d) {
-    d$marker = list(opacity = 0)
+    d$marker <- list(opacity=0)
     return(d)
   })
   g
+})
+
+# Download plot/data
+output$amr_profile_dist_data_download <- downloadHandler(
+  filename=reactive(download_filename(paste0(input$amr_profile_geno, '__', input$amr_profile_mic), 'csv')),
+  content=function(s.filename) { write.csv(amr_profile_dist_data()$d, s.filename, row.names=FALSE) }
+)
+output$amr_profile_dist_plot_download <- downloadHandler(
+  filename=reactive(download_filename(paste0(input$amr_profile_geno, '__', input$amr_profile_mic), 'pdf')),
+  content=function(s.filename) { download_plot(amr_profile_dist_plot, s.filename) }
+)
+observeEvent(input$amr_profile_dist_plot_download_show, {
+  download_modal(downloadButton('amr_profile_dist_plot_download', class='btn-primary'))
 })

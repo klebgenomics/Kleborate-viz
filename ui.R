@@ -349,7 +349,14 @@ ui <- fluidPage(
         tabPanel(
           'MICs by AMR genotype',
           br(),
-          plotlyOutput('amr_profile_dist', height='400px'),
+          h4('MICs by AMR genotype', style='display: inline-block;'),
+          div(
+            style='display: inline-block;',
+            IconButton('amr_profile_dist_plot_download_show', 'graph_modal'),
+            IconButton('amr_profile_dist_data_download', 'data_dl'),
+          ),
+          br(),
+          plotlyOutput('amr_profile_dist_plot', height='400px'),
           div(
             align='center',
             selectInput(
