@@ -43,7 +43,7 @@ output$res_var_heatmap <- renderPlotly({
     data_selected$resistance_max <- max(ed$y)
     data_selected$virulence_min <- min(ed$x)
     data_selected$virulence_max <- max(ed$x)
-    # Immediately clear click event (otherwise it prevents any changes to data_selected res/vir values)
+    # Immediately clear select event (otherwise it prevents any changes to data_selected res/vir values)
     runjs("Shiny.onInputChange('plotly_selected-res_vir_heatmap', 'null');")
     data_selected$rows <- compute_row_selection()
   }
