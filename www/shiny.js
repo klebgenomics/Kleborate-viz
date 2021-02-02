@@ -1,12 +1,17 @@
 // More quickly hide unavailable tabs at load
-shinyjs.init = function() { 
-  $('#primary li a[data-value="Summary by species"]').parent().hide();
-  $('#primary li a[data-value="Genotypes by ST"]').parent().hide();
-  $('#primary li a[data-value="Genotypes by metadata"]').parent().hide();
-  $('#primary li a[data-value="Convergence by ST"]').parent().hide();
-  $('#primary li a[data-value="K/O diversity"]').parent().hide();
-  $('#primary li a[data-value="Temporal trends"]').parent().hide();
-  $('#primary li a[data-value="Sample trends"]').parent().hide();
-  $('#primary li a[data-value="Cumulative K/O prevalence"]').parent().hide();
-  $('#primary li a[data-value="MICs by AMR genotype"]').parent().hide();
+const tab_names = [
+  'Summary by species',
+  'Genotypes by ST',
+  'Convergence by ST',
+  'Genotypes vs metadata',
+  'Convergence vs metadata',
+  'Temporal trends',
+  'Cumulative K/O prevalence',
+  'K/O diversity',
+  'MICs by AMR genotype'
+];
+shinyjs.init = function() {
+  tab_names.forEach(n => {
+    $(`#primary li a[data-value="${n}"]`).parent().hide();
+  });
 }
