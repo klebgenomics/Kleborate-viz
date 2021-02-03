@@ -220,8 +220,8 @@ v.resistance_score_colours <- c(
   '3'='#c94c4c'
 )
 v.clone_type_colours <- c(
-  'MDR'='#f7786b',
-  'Hv'='#798EF6',
+  'MDR'='#bb363c',
+  'Hv'='#1855b7',
   'unassigned'='#c1bfbf'
 )
 v.ESBL_allele_colours <- c(
