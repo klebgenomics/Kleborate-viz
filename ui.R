@@ -4,7 +4,6 @@ ui <- fluidPage(
   useShinyjs(),
   extendShinyjs(script='shiny.js', functions=c()),
   # Set style for collapsible panel background
-  # panel-collapse.collapse.in
   tags$head(
     # Note the wrapping of the string in HTML()
     tags$style(
