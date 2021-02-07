@@ -34,12 +34,12 @@ ui <- fluidPage(
           # Input files
           title=tagList(
             h4('Upload data', style='display: inline-block'),
-            h5(' (click to collapse)', style='display: inline-block'),
+            h5(' (click to collapse/view)', style='display: inline-block'),
           ),
           value='data_upload',
           fileInput(
             'kleborate_file',
-            'Kleborate output (txt)',
+            'Kleborate output',
             accept=c('text/csv', 'text/comma-separated-values,text/plain', '.csv')
           ),
           fileInput(
