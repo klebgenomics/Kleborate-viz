@@ -38,17 +38,17 @@ ui <- fluidPage(
           value='data_upload',
           fileInput(
             'kleborate_file',
-            'Kleborate output',
+            'Kleborate output (required)',
             accept=c('text/csv', 'text/comma-separated-values,text/plain', '.csv')
           ),
           fileInput(
             'metadata_file',
-            'Metadata table (csv)',
+            'Metadata table (csv, optional)',
             accept=c('text/csv', 'text/comma-separated-values,text/plain', '.csv')
           ),
           fileInput(
             'mic_file',
-            'MIC table (csv)',
+            'MIC table (csv, optional)',
             accept=c('text/csv', 'text/comma-separated-values,text/plain', '.csv')
           ),
           hr(),
