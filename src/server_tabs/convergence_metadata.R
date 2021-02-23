@@ -2,14 +2,14 @@
 observeEvent(
   data_loaded$metadata,
   {
-    v.cols <- colnames(data_loaded$metadata)[!colnames(data_loaded$metadata) %in% c('strain', 'Strain', 'Year', 'year')]
+    v.cols <- colnames(data_loaded$metadata)[!colnames(data_loaded$metadata) %in% c('strain', 'Strain')]
     updateSelectInput(session, 'converg_metadata_var', choices=v.cols, selected=v.cols[4])
   }
 )
 observeEvent(
   data_loaded$metadata,
   {
-    c.cols <- colnames(data_loaded$metadata)[!colnames(data_loaded$metadata) %in% c('strain', 'Strain', 'Year', 'year')]
+    c.cols <- colnames(data_loaded$metadata)[!colnames(data_loaded$metadata) %in% c('strain', 'Strain')]
     updateSelectInput(session, 'converg_metadata_col', choices=c.cols, selected=c.cols[3])
   }
 )
@@ -26,16 +26,23 @@ converg_metadata_colours <- reactive({
 # Plot
 output$prevalence_sample_scatter <- renderPlotly(prevalence_sample_scatter_plot())
 prevalence_sample_scatter_data <- reactive({
-  inner_join(data_loaded$metadata, data_loaded$kleborate[data_selected$rows, ]) -> d
+  d <- inner_join(data_loaded$metadata, data_loaded$kleborate[data_selected$rows, ])
   d %>%
     group_by(
       converg_metadata_col=d[[input$converg_metadata_col]],
       converg_metadata_var=d[[input$converg_metadata_var]]) %>%
     summarise(
       n=n(),
-      mean_virulence_score = mean(virulence_score),
-      mean_resistance_score = mean(resistance_score)
-    )
+      mean_virulence_score=mean(virulence_score),
+      mean_resistance_score=mean(resistance_score)
+    ) -> d
+  # Cast continuous any user group/var to discrete
+  for (s.colname in c('converg_metadata_col', 'converg_metadata_var')) {
+    if (is.numeric(d[[s.colname]])) {
+      d[[s.colname]] <- factor(d[[s.colname]], levels=sort(unique(d[[s.colname]])))
+    }
+  }
+  return(d)
 })
 prevalence_sample_scatter_plot <- reactive({
   v.colours <- converg_metadata_colours()
