@@ -3,20 +3,20 @@ observeEvent(
   data_loaded$metadata,
   {
     v.cols <- colnames(data_loaded$metadata)[!colnames(data_loaded$metadata) %in% c('strain', 'Strain', 'Year', 'year')]
-    updateSelectInput(session, 'sample_trends_var', choices=v.cols, selected=v.cols[4])
+    updateSelectInput(session, 'converg_metadata_var', choices=v.cols, selected=v.cols[4])
   }
 )
 observeEvent(
   data_loaded$metadata,
   {
     c.cols <- colnames(data_loaded$metadata)[!colnames(data_loaded$metadata) %in% c('strain', 'Strain', 'Year', 'year')]
-    updateSelectInput(session, 'sample_trends_col', choices=c.cols, selected=c.cols[3])
+    updateSelectInput(session, 'converg_metadata_col', choices=c.cols, selected=c.cols[3])
   }
 )
 
 # Colour generator
-sample_trends_colours <- reactive({
-  v.groups <- unique(data_loaded$metadata[[input$sample_trends_col]])
+converg_metadata_colours <- reactive({
+  v.groups <- unique(data_loaded$metadata[[input$converg_metadata_col]])
   v.groups <- sort(v.groups)
   v.colours <- misc_colour_palette(length(v.groups))
   names(v.colours) <- v.groups
@@ -29,8 +29,8 @@ prevalence_sample_scatter_data <- reactive({
   inner_join(data_loaded$metadata, data_loaded$kleborate[data_selected$rows, ]) -> d
   d %>%
     group_by(
-      sample_trends_col=d[[input$sample_trends_col]],
-      sample_trends_var=d[[input$sample_trends_var]]) %>%
+      converg_metadata_col=d[[input$converg_metadata_col]],
+      converg_metadata_var=d[[input$converg_metadata_var]]) %>%
     summarise(
       n=n(),
       mean_virulence_score = mean(virulence_score),
@@ -38,11 +38,11 @@ prevalence_sample_scatter_data <- reactive({
     )
 })
 prevalence_sample_scatter_plot <- reactive({
-  v.colours <- sample_trends_colours()
+  v.colours <- converg_metadata_colours()
   d <- prevalence_sample_scatter_data()
   g <- ggplot(d, aes(x=mean_virulence_score, y=mean_resistance_score)) +
     # NOTE: set group to force information in hoverinfo; probably better to directly config hoverinfo
-    geom_point(aes(size=n, colour=sample_trends_col, group=sample_trends_var)) +
+    geom_point(aes(size=n, colour=converg_metadata_col, group=converg_metadata_var)) +
     scale_colour_manual(values=v.colours, breaks=names(v.colours)) +
     theme_bw() + theme(legend.title=element_blank()) +
     xlab("Mean virulence score") +
@@ -52,11 +52,11 @@ prevalence_sample_scatter_plot <- reactive({
 
 # Download plot/data
 output$prevalence_sample_scatter_data_download <- downloadHandler(
-  filename=reactive(download_filename(paste0(input$sample_trends_col, '__', input$sample_trends_var), 'csv')),
+  filename=reactive(download_filename(paste0(input$converg_metadata_col, '__', input$converg_metadata_var), 'csv')),
   content=function(s.filename) { write.csv(prevalence_sample_scatter_data(), s.filename, row.names=FALSE) }
 )
 output$prevalence_sample_scatter_plot_download <- downloadHandler(
-  filename=reactive(download_filename(paste0(input$sample_trends_col, '__', input$sample_trends_var), 'pdf')),
+  filename=reactive(download_filename(paste0(input$converg_metadata_col, '__', input$converg_metadata_var), 'pdf')),
   content=function(s.filename) { download_plot(prevalence_sample_scatter_plot, s.filename) }
 )
 observeEvent(input$prevalence_sample_scatter_plot_download_show, {

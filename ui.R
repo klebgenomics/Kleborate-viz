@@ -234,7 +234,7 @@ ui <- fluidPage(
           fluidRow(
             align='center',
             selectInput(
-              inputId='sample_trends_var',
+              inputId='converg_metadata_var',
               label='Group variable',
               choices=NULL
             )
@@ -242,7 +242,7 @@ ui <- fluidPage(
           fluidRow(
             align='center',
             selectInput(
-              inputId='sample_trends_col',
+              inputId='converg_metadata_col',
               label='Colour variable',
               choices=NULL
             )
