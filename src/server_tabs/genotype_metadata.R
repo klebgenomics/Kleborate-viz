@@ -2,7 +2,7 @@
 observeEvent(
   data_loaded$metadata,
   {
-    v.cols <- colnames(data_loaded$metadata)[!colnames(data_loaded$metadata)%in% c('strain', 'Strain', 'Year', 'year')]
+    v.cols <- colnames(data_loaded$metadata)[!colnames(data_loaded$metadata)%in% c('strain', 'Strain')]
     updateSelectInput(session, 'genotype_metadata_dist_plot_group', choices=v.cols, selected=v.cols[1])
   }
 )
@@ -16,7 +16,7 @@ genotype_metadata_dist_data <- reactive({
   d <- v.prep$d
   v.colours <- v.prep$colours
   s.anno_name <- v.prep$anno_name
-    # Order by group size and select
+  # Order by group size and select
   d$group <- d[[input$genotype_metadata_dist_plot_group]]
   v.group_counts <- sort(table(d$group), decreasing=TRUE)
   v.group_order <- names(v.group_counts)
