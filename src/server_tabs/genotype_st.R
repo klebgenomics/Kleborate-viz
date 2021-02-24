@@ -1,18 +1,6 @@
 # ST distribution plot 
 output$genotype_st_dist_plot <- renderPlotly(genotype_st_dist_plot())
 genotype_st_dist_data <- reactive({
-  # NOTE: must use default source of 'A' as heatmaply does not appear to expose the 'source' argument
-  ed <- event_data('plotly_click', source='A')
-  if(is.null(ed) == FALSE && ed$curveNumber == 0) {
-    data_selected$resistance_min <- data_selected$resistance_max <- ed$y - 1
-    data_selected$virulence_min <- data_selected$virulence_max <- ed$x - 1
-    data_selected$rows <- compute_row_selection()
-    # Update input widgets
-    updateSliderInput(session, 'res_score_range_slider', value=c(data_selected$resistance_min, data_selected$resistance_max))
-    updateSliderInput(session, 'vir_score_range_slider', value=c(data_selected$virulence_min, data_selected$virulence_min))
-    # Immediately clear click event (otherwise it prevents any changes to data_selected res/vir values)
-    runjs("Shiny.onInputChange('plotly_click-A', 'null');")
-  }
   # Get configuration for plot type
   d <- data_loaded$kleborate[data_selected$rows, ]
   v.prep <- get_plot_metadata_annotation(d, input$genotype_st_dist_plot_anno)
