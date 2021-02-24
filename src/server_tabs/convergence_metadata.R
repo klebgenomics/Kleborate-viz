@@ -36,7 +36,7 @@ prevalence_sample_scatter_data <- reactive({
       mean_virulence_score=mean(virulence_score),
       mean_resistance_score=mean(resistance_score)
     ) -> d
-  # Cast continuous any user group/var to discrete
+  # Cast any continuous user variable selection to discrete
   for (s.colname in c('converg_metadata_col', 'converg_metadata_var')) {
     if (is.numeric(d[[s.colname]])) {
       d[[s.colname]] <- factor(d[[s.colname]], levels=sort(unique(d[[s.colname]])))
