@@ -2,7 +2,7 @@
 observeEvent(
   data_loaded$metadata,
   {
-    v.cols <- colnames(data_loaded$metadata)[!colnames(data_loaded$metadata)%in% c('strain', 'Strain')]
+    v.cols <- colnames(data_loaded$metadata)[!colnames(data_loaded$metadata)%in% c('strain', 'Strain', 'Year', 'year')]
     updateSelectInput(session, 'genotype_metadata_dist_plot_group', choices=v.cols, selected=v.cols[1])
   }
 )

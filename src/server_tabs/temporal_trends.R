@@ -209,6 +209,50 @@ AMR_prevalence_year_line_plot <- reactive({
   temporal_trend_plot(AMR_prevalence_year_line_data(), v.colours, 'Prevalance')
 })
 
+# Metadata by year plot
+output$genotype_year_dist_plot <- renderPlotly(genotype_year_dist_plot())
+genotype_year_dist_data <- reactive({
+  # Get configuration for plot type
+  d <- inner_join(data_loaded$metadata, data_loaded$kleborate[data_selected$rows, ])
+  d <- d[d$Year>=temporal_year_selection$min & d$Year<=temporal_year_selection$max, ]
+  v.prep <- get_plot_metadata_annotation(d, input$genotype_year_dist_plot_anno)
+  d <- v.prep$d
+  v.colours <- v.prep$colours
+  s.anno_name <- v.prep$anno_name
+  # Subset columns
+  d <- d[ ,c('Year', 'annotation')]
+  return(list(d=d, colours=v.colours, anno_name=s.anno_name))
+})
+genotype_year_dist_plot <- reactive({
+  # Return until input ui element renders and has a default value
+  if (is.null(input$genotype_year_dist_plot_anno)) {
+    return()
+  }
+  # Get data
+  v.data <- genotype_year_dist_data()
+  d <- v.data$d
+  v.colours <- v.data$colours
+  s.anno_name <- v.data$anno_name
+  # Create plot
+  g <- ggplot(data=d, aes(x=Year, fill=annotation))
+  g <- g + geom_bar()
+  g <- g + theme(
+    axis.text.x=element_text(colour='black', size=12, angle=45, hjust=1),
+    axis.text.y=element_text(colour='black', size=12),
+    axis.title.y = element_blank(),
+    axis.title.x = element_text(colour = 'black', size = 16),
+    legend.text = element_text(colour = 'black', size = 12),
+    legend.title = element_text(colour = 'black', size = 16),
+    panel.background=element_blank(),
+    panel.border=element_blank(),
+    axis.line=element_line(colour='black')
+  )
+  g <- g + ylab('Number of genomes') + xlab(input$genotype_metadata_dist_plot_group)
+  g <- g + scale_y_continuous(expand=c(0, 0))
+  g <- g + scale_fill_manual(values=v.colours, breaks=names(v.colours), name=s.anno_name, drop=FALSE)
+  ggplotly(g)
+})
+
 # Download data/plot
 # Virulence and resistance scores
 output$year_mean_scores_line_data_download <- downloadHandler(
@@ -257,4 +301,16 @@ output$AMR_prevalence_year_line_plot_download <- downloadHandler(
 )
 observeEvent(input$AMR_prevalence_year_line_plot_download_show, {
   download_modal(downloadButton('AMR_prevalence_year_line_plot_download', class='btn-primary'))
+})
+# Metadata by year
+output$genotype_year_dist_data_download <- downloadHandler(
+  filename=reactive(download_filename('metadata_year_bar', 'csv')),
+  content=function(s.filename) { write.csv(genotype_year_dist_data()$d, s.filename, row.names=FALSE) }
+)
+output$genotype_year_dist_plot_download <- downloadHandler(
+  filename=reactive(download_filename(paste0(input$amr_profile_geno, '__', input$amr_profile_mic), 'pdf')),
+  content=function(s.filename) { download_plot(genotype_year_dist_plot, s.filename) }
+)
+observeEvent(input$genotype_year_dist_plot_download_show, {
+  download_modal(downloadButton('genotype_year_dist_plot_download', class='btn-primary'))
 })

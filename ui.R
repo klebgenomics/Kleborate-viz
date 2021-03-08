@@ -11,6 +11,10 @@ ui <- fluidPage(
         .panel-collapse {
           background-color: #f5f5f5
         }
+        /* Allow dropdown input to appear upwards */
+        .reverse-dropdown .selectize-dropdown {
+          top: -200px !important;
+        }
       ")
     )
   ),
@@ -287,7 +291,25 @@ ui <- fluidPage(
             IconButton('AMR_prevalence_year_line_plot_download_show', 'graph_modal'),
             IconButton('AMR_prevalence_year_line_data_download', 'data_dl'),
           ),
-          plotlyOutput('AMR_prevalence_year_line_plot', height='400px')
+          plotlyOutput('AMR_prevalence_year_line_plot', height='400px'),
+          br(),
+          h4('Genome distributions across metadata', style='display: inline-block;'),
+          div(
+            style='display: inline-block;',
+            IconButton('genotype_year_dist_plot_download_show', 'graph_modal'),
+            IconButton('genotype_year_dist_data_download', 'data_dl'),
+          ),
+          plotlyOutput('genotype_year_dist_plot', height='400px'),
+          br(),
+          div(
+            align='center',
+            class='reverse-dropdown',
+            selectInput(
+              inputId='genotype_year_dist_plot_anno',
+              label='Annotation variable',
+              choices=v.genotype_var_choices
+            ),
+          )
         ),
         tabPanel(
           'Cumulative K/O prevalence',
