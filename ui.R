@@ -43,17 +43,17 @@ ui <- fluidPage(
           fileInput(
             'kleborate_file',
             'Kleborate output (required)',
-            accept=c('text/csv', 'text/comma-separated-values,text/plain', '.csv')
+            accept=c('text/csv', 'text/tab-separated-values', 'text/plain', '.csv', '.tsv', '.txt')
           ),
           fileInput(
             'metadata_file',
-            'Metadata table (csv, optional)',
-            accept=c('text/csv', 'text/comma-separated-values,text/plain', '.csv')
+            'Metadata table (csv/tsv, optional)',
+            accept=c('text/csv', 'text/tab-separated-values', 'text/plain', '.csv', '.tsv', '.txt')
           ),
           fileInput(
             'mic_file',
-            'MIC table (csv, optional)',
-            accept=c('text/csv', 'text/comma-separated-values,text/plain', '.csv')
+            'MIC table (csv/tsv, optional)',
+            accept=c('text/csv', 'text/tab-separated-values', 'text/plain', '.csv', '.tsv', '.txt')
           ),
           hr(),
           # Builtin datasets

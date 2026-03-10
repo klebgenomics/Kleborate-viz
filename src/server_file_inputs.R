@@ -94,6 +94,35 @@ kleborate_reset <- function() {
   reset('metadata_file')
   reset('mic_file')
 }
+normalize_kleborate_columns <- function(d) {
+  # Rename sample ID column (Kleborate v3.x uses 'Genome Name'; old format uses 'strain')
+  if ('Genome.Name' %in% colnames(d) && !'strain' %in% colnames(d)) {
+    colnames(d)[colnames(d) == 'Genome.Name'] <- 'strain'
+  }
+  # Rename resistance count columns (renamed in Kleborate v3.x)
+  if ('num_resistance_genes' %in% colnames(d) && !'resistance_gene_count' %in% colnames(d)) {
+    colnames(d)[colnames(d) == 'num_resistance_genes'] <- 'resistance_gene_count'
+  }
+  if ('num_resistance_classes' %in% colnames(d) && !'resistance_class_count' %in% colnames(d)) {
+    colnames(d)[colnames(d) == 'num_resistance_classes'] <- 'resistance_class_count'
+  }
+  # Standardize K/O locus columns (Kleborate v3.x changes)
+  if ('K_Missing_expected_genes' %in% colnames(d) && !'K_locus_missing_genes' %in% colnames(d)) {
+    colnames(d)[colnames(d) == 'K_Missing_expected_genes'] <- 'K_locus_missing_genes'
+  }
+  if ('O_Missing_expected_genes' %in% colnames(d) && !'O_locus_missing_genes' %in% colnames(d)) {
+    colnames(d)[colnames(d) == 'O_Missing_expected_genes'] <- 'O_locus_missing_genes'
+  }
+  # Convert numeric columns to numeric type, handling special values like "-" or "?"
+  numeric_cols <- c('virulence_score', 'resistance_score', 'resistance_gene_count', 'resistance_class_count')
+  for (col in numeric_cols) {
+    if (col %in% colnames(d)) {
+      # Replace non-numeric values with NA before converting
+      d[[col]] <- suppressWarnings(as.numeric(d[[col]]))
+    }
+  }
+  return(d)
+}
 kleborate_validate <- function(d) {
   if (! all(v.kleborate_columns_required_base %in% colnames(d))) {
     # First check presence of default columns
@@ -112,6 +141,7 @@ kleborate_validate <- function(d) {
   }
 }
 kleborate_summaries <- function(d) {
+  d <- normalize_kleborate_columns(d)
   d %>%
     # assign clone types
     mutate(clone_type = if_else(ST %in% v.MDR_clones_list, "MDR", "unassigned")) %>%
@@ -167,7 +197,7 @@ kleborate_summaries <- function(d) {
     mutate(rmpADC_simplified = if_else(str_detect(RmpADC, ",") & str_detect(RmpADC, "rmp"), "multiple rmp", rmpADC_simplified)) %>%
     # rmpADC truncations
     mutate(rmpADC_trunc = if_else(str_detect(RmpADC, "rmp"), "intact", "-")) %>%
-    mutate(rmpADC_trunc = if_else(str_detect(RmpADC, "incomplete"), "truncated", rmpADC_trunc)) %>%  
+    mutate(rmpADC_trunc = if_else(str_detect(RmpADC, "incomplete|truncated"), "truncated", rmpADC_trunc)) %>%
     # rmpA2 truncations
     mutate(rmpA2_trunc = if_else(str_detect(rmpA2, "rmp"), "intact", "-")) %>%
     mutate(rmpA2_trunc = if_else(str_detect(rmpA2, "%"), "truncated", rmpA2_trunc))
@@ -177,14 +207,12 @@ observeEvent(
   {
     # Read in file and perform validation
     d <- read_file(input$kleborate_file$datapath, 'Kleborate')
+    # Normalize column names (handles both old and new Kleborate format)
+    d <- normalize_kleborate_columns(d)
     # Short circuit eval
     if (is.null(d) || ! kleborate_validate(d)) {
       kleborate_reset()
       return()
-    }
-    # Rename strain column if input from pathogenwatch
-    if (any(grepl('Genome.Name', colnames(d)))) {
-      colnames(d)[grepl('Genome.Name', colnames(d))] <- 'strain'
     }
     # Prepare some initial summaries that are used across several plots
     d <- kleborate_summaries(d)

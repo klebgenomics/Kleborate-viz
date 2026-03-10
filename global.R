@@ -11,7 +11,7 @@ library(plotly)
 library(heatmaply)
 
 # Set maximum upload file size
-options(shiny.maxRequestSize=20*1024^2)
+options(shiny.maxRequestSize=50*1024^2)
 
 # Builtin datasets, preloading
 # Global
@@ -35,8 +35,8 @@ v.kleborate_columns_required_base <- c(
 )
 v.kleborate_columns_required_res <- c(
   'resistance_score',
-  'num_resistance_genes',
-  'num_resistance_classes',
+  'resistance_gene_count',
+  'resistance_class_count',
   'AGly_acquired',
   'Col_acquired',
   'Fcyn_acquired',
@@ -57,6 +57,28 @@ v.kleborate_columns_required_res <- c(
   'Bla_chr',
   'Omp_mutations',
   'Col_mutations'
+)
+
+# Kleborate v3.x+ provides additional optional columns
+v.kleborate_columns_optional_v3 <- c(
+  'Genome.ID',           # Unique genome identifier
+  'Kleborate.version',   # Version of Kleborate used for analysis
+  'Wrapper.version',     # Version of wrapper script
+  'clonal_complex',      # Clonal complex classification (useful for epidemiological grouping)
+  'K_type',              # Capsule (K) serotype
+  'O_type',              # Lipopolysaccharide (O) serotype
+  'gapA', 'infB', 'mdh', 'pgi', 'phoE', 'rpoB', 'tonB'  # MLST allele numbers
+)
+
+# Additional columns for quality control in Kleborate v3.x+
+v.kleborate_columns_spurious_hits <- c(
+  'spurious_ybt_hits',         # Spurious Yersiniabactin hits detected
+  'spurious_clb_hits',         # Spurious Colibactin hits detected
+  'spurious_abst_hits',        # Spurious Aerobactin hits detected
+  'spurious_smst_hits',        # Spurious Salmochelin hits detected
+  'spurious_rmst_hits',        # Spurious RmpADC hits detected
+  'spurious_virulence_hits',   # Spurious virulence gene hits detected
+  'spurious_resistance_hits'   # Spurious resistance gene hits detected
 )
 
 # Names
@@ -116,8 +138,15 @@ v.genotype_var_choices <- list(
     'Resistance score'='resistance_score',
     'Virulence score'='virulence_score'    
   ),
+  'Serotypes'=list(
+    'K type'='K_type',
+    'O type'='O_type'
+  ),
   'Virulence'=v.virulence_loci,
-  'Resistance'=v.resistance_classes
+  'Resistance'=v.resistance_classes,
+  'Additional Mutations'=list(
+    'SHV β-lactamase mutations'='SHV_mutations'
+  )
 )
 v.virulence_score_names <- list(
   '0'='None',
@@ -311,7 +340,68 @@ v.rmpADC_presence_absence_colours <- c(
 )
 v.rmpA2_presence_absence_colours <- v.rmpADC_presence_absence_colours
 
-# Misc. functions
+# New colour schemes for Kleborate v3.x variables
+# K and O serotypes - using diverse color palettes
+v.K_type_colours <- c(
+  'unknown (KL107)'='#EAEAEA',
+  'K1'='#e41a1c', 'K2'='#377eb8', 'K3'='#4daf4a', 'K5'='#984ea3', 
+  'K10'='#ff7f00', 'K11'='#a65628', 'K13'='#f781bf', 'K14'='#999999',
+  'K15'='#e41a1c', 'K16'='#377eb8', 'K19'='#4daf4a', 'K20'='#984ea3',
+  'K21'='#ff7f00', 'K22'='#a65628', 'K23'='#f781bf', 'K24'='#999999',
+  'K25'='#e41a1c', 'K27'='#377eb8', 'K30'='#4daf4a', 'K35'='#984ea3',
+  'K47'='#ff7f00', 'K54'='#a65628', 'K57'='#f781bf', 'K62'='#999999',
+  'K64'='#e41a1c', 'K67'='#377eb8', 'K71'='#4daf4a', 'K76'='#984ea3',
+  'K77'='#ff7f00', 'K78'='#a65628', 'K80'='#f781bf', 'K81'='#999999'
+)
+v.O_type_colours <- c(
+  'unknown'='#EAEAEA',
+  'O1'='#e41a1c', 'O2α'='#377eb8', 'O2β'='#4daf4a', 'O3αβ'='#984ea3',
+  'O3'='#ff7f00', 'O4'='#a65628', 'O5'='#f781bf', 'O7'='#999999',
+  'O8'='#e41a1c', 'O9'='#377eb8', 'O10'='#4daf4a', 'O11'='#984ea3',
+  'O12'='#ff7f00', 'O13'='#a65628', 'O16'='#f781bf', 'O16Нess'='#999999',
+  'O17'='#e41a1c', 'O18'='#377eb8', 'O19'='#4daf4a', 'O20'='#984ea3',
+  'OL2α'='#ff7f00', 'OL2α.1'='#a65628', 'OL2α.2'='#f781bf', 'OL2β'='#999999',
+  'OL3α/β'='#e41a1c'
+)
+
+# Virulence lineage ST colours (Yersiniabactin, Colibactin, Aerobactin, Salmochelin, RmpADC ST)
+v.YbST_colours <- c(
+  '-'='#EAEAEA',
+  '0'='#c1bfbf',
+  '1'='#b27f91', '2'='#cda12c', '3'='#56a354', '4'='#f28fa2', 
+  '5'='#db7723', '6'='#93539d', '7'='#3a85a8', '8'='#7b75cc',
+  '9'='#d9c5ef', '10'='#449d72', '11'='#ebd930', '12'='#6aa3c6',
+  '13'='#a39f93', '14'='#93539d', '15'='#edc59a', '16'='#840639',
+  '17'='#e25065'
+)
+v.CbST_colours <- c(
+  '-'='#EAEAEA',
+  '1'='#6aa3c6', '2'='#b27f91', '3'='#e25065'
+)
+v.AbST_colours <- c(
+  '-'='#EAEAEA',
+  '1'='#e31a1c', '2'='#1f78b4', '3'='#33a02c'
+)
+v.SmST_colours <- c(
+  '-'='#EAEAEA',
+  '1'='#e31a1c', '2'='#1f78b4', '3'='#984ea3'
+)
+v.RmST_colours <- c(
+  '-'='#EAEAEA',
+  '1'='#e31a1c', '2'='#1f78b4', '3'='#984ea3'
+)
+
+# SHV β-lactamase mutation tracking
+v.SHV_mutations_colours <- c(
+  '-'='#BCBCBC',
+  'SHV-1'='#4575b4',
+  'SHV-5'='#91bfdb',
+  'SHV-11'='#e0f3f8',
+  'SHV-12'='#ffffbf',
+  'SHV-129'='#fee090',
+  'other'='#fc8d59',
+  'multiple'='#d73027'
+)
 IconButton <- function(outputId, type, ...) {
   if (type == 'data_dl') {
     s.class <- 'shiny-download-link'

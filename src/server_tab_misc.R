@@ -77,6 +77,41 @@ get_plot_metadata_annotation <- function(d, s.annotation_name) {
     v.colours <- v.clone_type_colours
     d$annotation <- d$clone_type
     s.display_name <- 'Clone type'
+  } else if (s.annotation_name=='K_type') {
+    v.colours <- v.K_type_colours
+    d$annotation <- d$K_type
+    s.display_name <- 'K type (serotype)'
+  } else if (s.annotation_name=='O_type') {
+    v.colours <- v.O_type_colours
+    d$annotation <- d$O_type
+    s.display_name <- 'O type (serotype)'
+  } else if (s.annotation_name=='YbST') {
+    v.colours <- v.YbST_colours
+    d$annotation <- d$YbST
+    s.display_name <- 'Yersiniabactin ST'
+  } else if (s.annotation_name=='CbST') {
+    v.colours <- v.CbST_colours
+    d$annotation <- d$CbST
+    s.display_name <- 'Colibactin ST'
+  } else if (s.annotation_name=='AbST') {
+    v.colours <- v.AbST_colours
+    d$annotation <- d$AbST
+    s.display_name <- 'Aerobactin ST'
+  } else if (s.annotation_name=='SmST') {
+    v.colours <- v.SmST_colours
+    d$annotation <- d$SmST
+    s.display_name <- 'Salmochelin ST'
+  } else if (s.annotation_name=='RmST') {
+    v.colours <- v.RmST_colours
+    d$annotation <- d$RmST
+    s.display_name <- 'RmpADC ST'
+  } else if (s.annotation_name=='SHV_mutations') {
+    v.colours <- v.SHV_mutations_colours
+    # Simplified display for SHV mutations
+    d$annotation <- ifelse(d$SHV_mutations=='-', '-', 
+                           ifelse(grepl(';', d$SHV_mutations), 'multiple',
+                                  d$SHV_mutations))
+    s.display_name <- 'SHV β-lactamase mutations'
   } else {
     # Here we handle virulence loci and resistance classes annotations; done collectively as they have been 
     # systematically defined
@@ -87,7 +122,12 @@ get_plot_metadata_annotation <- function(d, s.annotation_name) {
     } else if (grepl('_(simplified|trunc)$', s.annotation_name)) {
       d$annotation <- d[[s.annotation_name]]
     } else {
-      stop('Got bad annotation variable')
+      # Fallback for any other variable - treat as a categorical variable
+      if (s.annotation_name %in% colnames(d)) {
+        d$annotation <- d[[s.annotation_name]]
+      } else {
+        stop('Got bad annotation variable: ', s.annotation_name)
+      }
     }
     # Get annotation colour
     if(s.annotation_name=='ybt_simplified') {
@@ -109,23 +149,26 @@ get_plot_metadata_annotation <- function(d, s.annotation_name) {
     } else if(s.annotation_name=='Bla_Carb_simplified') {
       v.colours <- v.carb_allele_colours
     } else if (grepl('_pa$', s.annotation_name)) {
-      if (s.annotation_name %in% v.virulence_loci) {
+      if (s.annotation_name %in% unlist(v.virulence_loci)) {
         v.colours <- c("grey", "#2171b5")
-      } else if (s.annotation_name %in% v.resistance_classes) {
+      } else if (s.annotation_name %in% unlist(v.resistance_classes)) {
         v.colours <- c("grey", "#ef3b2c")
       } else {
-        stop('Got bad annotation var')
+        # Fallback colour for unknown _pa variables
+        v.colours <- c("grey", "#1f77b4")
       }
     } else {
-      stop('Got bad annotation var')
+      # Fallback colour for any other variable
+      v.colours <- NA  # Will use default ggplot colours
     }
     # Get display name
-    if (s.annotation_name %in% v.virulence_loci) {
+    if (s.annotation_name %in% unlist(v.virulence_loci)) {
       s.display_name <- names(v.virulence_loci)[v.virulence_loci==s.annotation_name]
-    } else if (s.annotation_name %in% v.resistance_classes) {
+    } else if (s.annotation_name %in% unlist(v.resistance_classes)) {
       s.display_name <- names(v.resistance_classes)[v.resistance_classes==s.annotation_name]
     } else {
-      stop('Got bad annotation var')
+      # Fallback display name
+      s.display_name <- s.annotation_name
     }
   }
   return(list(d=d, colours=v.colours, anno_name=s.display_name))
